@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>0473</title>
+<script type=text/javascript>
+var url = "https://github.com/bakerhughes0/visual_management/blob/main/img/vismgt_wc0473.jpg?raw=true"
+window.onload=function(){
+    var myImage = document.getElementById('myImage');
+    myImage.src = url;
+    setInterval(function() {
+        var myImage = document.getElementById('myImage');
+        var d = new Date();
+        var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
+        myImage.src = url +"?d=" + sd;
+        }, 20000);
+    }
+</script>
+</head>
+<body style="background-color:#222">
+<img id=myImage width=100% height=100% src=""/>
+</body>
+</html>
