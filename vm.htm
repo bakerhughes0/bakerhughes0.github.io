@@ -3,14 +3,14 @@
 <title>Visual Management 0473</title>
 <script type=text/javascript>
 var o;
-var timestamp = new Date();
+var timestamp = new Date(2022,0,1);
 
 function loadData(){
     var d = new Date();
     var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
     var js = document.createElement('script');
     js.type='text/javascript';
-    js.src="vmwc.js" + "?d=" + sd;;
+    js.src="vmwc.js" ;//+ "?d=" + sd;;
     document.head.appendChild(js);    
     }
   
