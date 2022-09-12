@@ -121,7 +121,7 @@ setInterval(function() {
     var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
     var js = document.createElement('script');
     js.type='text/javascript';
-    js.src="https://raw.githubusercontent.com/bakerhughes0/bakerhughes0.github.io/main/vmwc.js" + "?d=" + sd;;
+    js.src="vmwc.js" + "?d=" + sd;;
     document.head.appendChild(js);
     alert(timestamp);
 }, 20000);
