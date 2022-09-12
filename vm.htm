@@ -5,6 +5,15 @@
 var o;
 var timestamp;
 
+function loadData(){
+    var d = new Date();
+    var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
+    var js = document.createElement('script');
+    js.type='text/javascript';
+    js.src="vmwc.js" + "?d=" + sd;;
+    document.head.appendChild(js);    
+    }
+  
 function draw(){
   //timestamp = new Date(2022,8,12,16,16);
   //alert(timestamp);
@@ -107,6 +116,7 @@ function draw(){
 window.onload=function(){
   o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
+  loadData();
   draw();
   document.body.appendChild(o)
   }
@@ -117,12 +127,7 @@ window.onresize=function(){
 
 
 setInterval(function() {
-    var d = new Date();
-    var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
-    var js = document.createElement('script');
-    js.type='text/javascript';
-    js.src="vmwc.js" + "?d=" + sd;;
-    document.head.appendChild(js);
+    loadData();
     draw();
 }, 20000);
 
