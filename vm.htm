@@ -10,7 +10,7 @@ function loadData(){
     var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
     var js = document.createElement('script');
     js.type='text/javascript';
-    js.src="vmwc.js" ;//+ "?d=" + sd;;
+    js.src="vmwc.js" + "?d=" + sd;;
     document.head.appendChild(js);    
     }
   
