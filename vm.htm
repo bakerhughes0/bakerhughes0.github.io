@@ -38,7 +38,8 @@ function draw(){
     font = (20*r).toString() + "px Arial";
     textAlign = "left";
     fillStyle="#f5f5f5"
-    fillText("Production Control - " + timestamp.getFullYear().toString() + '-' + (timestamp.getMonth()+1).toString() + '-' + timestamp.getDate().toString(), 0, H * 0.02)
+    fillText("Production Control - " + timestamp.getFullYear().toString() + '-' + (timestamp.getMonth()+1).toString() + '-' + timestamp.getDate().toString() +
+             ' ' +  +  (timestamp.getHours() + ':' + timestamp.getMinutes() , 0, H * 0.02)
 
     font = "bold " + (38*r).toString() + "px Arial";
     textAlign = "center";
