@@ -90,11 +90,11 @@ function draw(){
         fillRect(.942*W ,.09*H + .032*H*y,.04*W,.032*H);
         if(mydata[ytbl]){
           if(mydata[ytbl][8]<6){
-            fillStyle='#6f6';}
-          else if(mydata[ytbl][8]<11){
-            fillStyle='#6f6';}
-          
-          fillStyle=fcol;
+            fillStyle='#11df11';
+            }else if(mydata[ytbl][8]<11){
+            fillStyle='#ffa733';
+            }else{fillStyle='#df1111';
+            }
           beginPath();
           arc(.962*W, .106*H + .032*H*y, .005*W, 0, 2 * Math.PI);
           fill();
