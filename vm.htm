@@ -8,8 +8,7 @@ var timestamp = new Date(2022,0,1);
 var data = [];
   
 function draw(){
-  mydata = [];
-  fcol = '#fff';
+  mydata = [], fcol = '#fff', bcol = '#222';
   for(var y=0; y<data.length; y++){
     if(data[y][0]==wc){mydata.push(data[y]);}
     }
@@ -65,7 +64,7 @@ function draw(){
         fillText("Aging", .945*W ,.108*H);
         }else{
         if(mydata[ytbl]){
-          if(mydata[ytbl][1]==1){fcol='#f5f5f5'}else{fcol='#f77';}
+          if(mydata[ytbl][1]==1){fcol='#f77';}else{fcol='#f5f5f5';}
           }
         fillStyle="#222";
         fillRect(.23*W ,.09*H + .032*H*y,.062*W,.032*H);
