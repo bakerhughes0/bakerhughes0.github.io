@@ -9,6 +9,7 @@ var data = [];
   
 function draw(){
   mydata = [];
+  fcol = '#fff';
   for(var y=0; y<data.length; y++){
     if(data[y][0]==wc){mydata.push(data[y]);}
     }
@@ -63,39 +64,42 @@ function draw(){
         fillText("SO / Customer", .775*W ,.108*H);
         fillText("Aging", .945*W ,.108*H);
         }else{
+        if(mydata[ytbl]){
+          if(mydata[ytbl][1]==1){fcol='#f5f5f5'}else{fcol='#f77';}
+          }
         fillStyle="#222";
         fillRect(.23*W ,.09*H + .032*H*y,.062*W,.032*H);
-        fillStyle="#f5f5f5";
+        fillStyle=fcol;
         textAlign = "center";
         font = (26*r).toString() + "px Arial";
         if(mydata[ytbl]){fillText(mydata[ytbl][3].toString(), .261*W ,.108*H + .032*H*y);}
         //fillText("00000000", .261*W ,.108*H + .032*H*y);
         fillStyle="#222";
         fillRect(.292*W ,.09*H + .032*H*y,.22*W,.032*H);
-        fillStyle="#f5f5f5";
+        fillStyle=fcol;
         textAlign = "left";
         fillText("OPERATION...", .295*W ,.108*H + .032*H*y)
         fillStyle="#222";
         fillRect(.512*W ,.09*H + .032*H*y,.22*W,.032*H);
-        fillStyle="#f5f5f5";
+        fillStyle=fcol;
         fillText("DESCRIPTION...", .515*W ,.108*H + .032*H*y);
         fillStyle="#222";
         fillRect(.732*W ,.09*H + .032*H*y,.04*W,.032*H);
-        fillStyle="#f5f5f5";
+        fillStyle=fcol;
         textAlign = "right";
         fillText("0.00", .769*W ,.108*H + .032*H*y);
         fillStyle="#222";
         fillRect(.772*W ,.09*H + .032*H*y,.17*W,.032*H);
-        fillStyle="#f5f5f5";
+        fillStyle=fcol;
         textAlign = "left";
         fillText("1007564-1000 CUSTOMER NAME", .775*W ,.108*H + .032*H*y);
         fillStyle="#222";
         fillRect(.942*W ,.09*H + .032*H*y,.04*W,.032*H);
-        fillStyle="#f5f5f5";
+        fillStyle=fcol;
         beginPath();
         arc(.962*W, .106*H + .032*H*y, .005*W, 0, 2 * Math.PI);
         fill();
-        fillStyle="#f5f5f5";
+        fillStyle=fcol;
         fillRect(.217*W ,.096*H + .032*H*y,.01*W,.018*H);
         }
       strokeRect(.23*W ,.09*H + .032*H*y,.062*W,.032*H);
