@@ -85,13 +85,20 @@ function draw(){
         fillRect(.772*W ,.09*H + .032*H*y,.17*W,.032*H);
         fillStyle=fcol;
         textAlign = "left";
-        fillText("1007564-1000 CUSTOMER NAME", .775*W ,.108*H + .032*H*y);
+        if(mydata[ytbl]){fillText(mydata[ytbl][7], .775*W ,.108*H + .032*H*y);}
         fillStyle="#222";
         fillRect(.942*W ,.09*H + .032*H*y,.04*W,.032*H);
-        fillStyle=fcol;
-        beginPath();
-        arc(.962*W, .106*H + .032*H*y, .005*W, 0, 2 * Math.PI);
-        fill();
+        if(mydata[ytbl]){
+          if(mydata[ytbl][8]<6){
+            fillStyle='#6f6';}
+          else if(mydata[ytbl][8]<11){
+            fillStyle='#6f6';}
+          
+          fillStyle=fcol;
+          beginPath();
+          arc(.962*W, .106*H + .032*H*y, .005*W, 0, 2 * Math.PI);
+          fill();
+          }
         fillStyle=fcol;
         fillRect(.217*W ,.096*H + .032*H*y,.01*W,.018*H);
         }
