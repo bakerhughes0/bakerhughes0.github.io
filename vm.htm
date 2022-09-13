@@ -4,15 +4,6 @@
 <script type=text/javascript>
 var o;
 var timestamp = new Date(2022,0,1);
-
-function loadData(){
-    var d = new Date();
-    var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
-    var js = document.createElement('script');
-    js.type='text/javascript';
-    js.src="vmwc.js" + "?d=" + sd;;
-    document.head.appendChild(js);    
-    }
   
 function draw(){
   //timestamp = new Date(2022,8,12,16,16);
@@ -114,6 +105,16 @@ function draw(){
     }
   }
 
+function loadData(){
+    var d = new Date();
+    var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
+    var js = document.createElement('script');
+    js.type='text/javascript';
+    js.src="vmwc.js" + "?d=" + sd;
+    js.onload = draw;
+    document.head.appendChild(js);    
+    }    
+    
 window.onload=function(){
   o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
