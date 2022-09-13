@@ -31,7 +31,7 @@ function draw(){
     font = (20*r).toString() + "px Arial";
     textAlign = "left";
     fillStyle = fcol;
-    fillText("Production Control - " + timestamp.getFullYear().toString() + '-' + (timestamp.getMonth()+1).toString() + '-' + timestamp.getDate().toString() +
+    fillText("Production Control - " + timestamp.getFullYear().toString() + '-' + ('0'+(timestamp.getMonth()+1).toString()).slice(-2) + '-' + ('0'+timestamp.getDate().toString()).slice(-2) +
              ' ' + timestamp.getHours() + ':' + timestamp.getMinutes(), 0, H * 0.02)
 
     font = "bold " + (38*r).toString() + "px Arial";
