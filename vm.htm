@@ -1,11 +1,16 @@
 <html>
 <head>
-<title>Visual Management 0473</title>
 <script type=text/javascript>
+var wc = '0473';
+
 var o;
 var timestamp = new Date(2022,0,1);
   
 function draw(){
+  mydata = [];
+  for(var y=0; y<data.length; y++){
+    if(data[y][0]==wc){mydata.push(data[y]);}
+    }
   //timestamp = new Date(2022,8,12,16,16);
   //alert(timestamp);
   screenRatio=1080/1920;
@@ -116,6 +121,7 @@ function loadData(){
     }    
     
 window.onload=function(){
+  document.title = wc;
   o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
   loadData();
