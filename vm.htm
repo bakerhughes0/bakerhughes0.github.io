@@ -57,36 +57,38 @@ function draw(){
         fillText("SO / Customer", .775*W ,.108*H);
         fillText("Aging", .945*W ,.108*H);
         }else{
+        bcol = '#222';
         if(mydata[ytbl]){
           if(mydata[ytbl][1]==1){fcol='#f77';}else{fcol='#f5f5f5';}
+          if(mydata[ytbl][2]==4){bcol='#3cf66b';}
           }
-        fillStyle="#222";
+        fillStyle=bcol;
         fillRect(.23*W ,.09*H + .032*H*y,.062*W,.032*H);
         fillStyle=fcol;
         textAlign = "center";
         font = (26*r).toString() + "px Arial";
         if(mydata[ytbl]){fillText(mydata[ytbl][3].toString(), .261*W ,.108*H + .032*H*y);}
         //fillText("00000000", .261*W ,.108*H + .032*H*y);
-        fillStyle="#222";
+        fillStyle=bcol;
         fillRect(.292*W ,.09*H + .032*H*y,.22*W,.032*H);
         fillStyle=fcol;
         textAlign = "left";
         if(mydata[ytbl]){fillText(mydata[ytbl][4], .295*W ,.108*H + .032*H*y);}
-        fillStyle="#222";
+        fillStyle=bcol;
         fillRect(.512*W ,.09*H + .032*H*y,.22*W,.032*H);
         fillStyle=fcol;
         if(mydata[ytbl]){fillText(mydata[ytbl][5], .515*W ,.108*H + .032*H*y);}
-        fillStyle="#222";
+        fillStyle=bcol;
         fillRect(.732*W ,.09*H + .032*H*y,.04*W,.032*H);
         fillStyle=fcol;
         textAlign = "right";
         if(mydata[ytbl]){fillText(mydata[ytbl][6].toString(), .769*W ,.108*H + .032*H*y);}
-        fillStyle="#222";
+        fillStyle=bcol;
         fillRect(.772*W ,.09*H + .032*H*y,.17*W,.032*H);
         fillStyle=fcol;
         textAlign = "left";
         if(mydata[ytbl]){fillText(mydata[ytbl][7], .775*W ,.108*H + .032*H*y);}
-        fillStyle="#222";
+        fillStyle=bcol;
         fillRect(.942*W ,.09*H + .032*H*y,.04*W,.032*H);
         if(mydata[ytbl]){
           if(mydata[ytbl][8]<6){
