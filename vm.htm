@@ -28,21 +28,15 @@ function draw(){
     strokeStyle='#eee';
     //strokeRect(0,0,W,H);
 
-    
-
-
-
     font = (20*r).toString() + "px Arial";
     textAlign = "left";
-    fillStyle="#f5f5f5"
+    fillStyle = fcol;
     fillText("Production Control - " + timestamp.getFullYear().toString() + '-' + (timestamp.getMonth()+1).toString() + '-' + timestamp.getDate().toString() +
              ' ' + timestamp.getHours() + ':' + timestamp.getMinutes(), 0, H * 0.02)
 
     font = "bold " + (38*r).toString() + "px Arial";
     textAlign = "center";
-    textBaseline = "middle";
-    fillStyle="#f5f5f5"
-    fillText("0473. EQUIPEMENT ETALONNAGE CONVENTIONNEL", W* .6, H * 0.03)
+    fillText("0473. EQUIPEMENT ETALONNAGE CONVENTIONNEL", W* .6, H * 0.03);
 
     lineWidth = 4;
     strokeStyle='#888';
@@ -86,7 +80,7 @@ function draw(){
         fillRect(.732*W ,.09*H + .032*H*y,.04*W,.032*H);
         fillStyle=fcol;
         textAlign = "right";
-        fillText("0.00", .769*W ,.108*H + .032*H*y);
+        if(mydata[ytbl]){fillText(mydata[ytbl][6].toString(), .769*W ,.108*H + .032*H*y);}
         fillStyle="#222";
         fillRect(.772*W ,.09*H + .032*H*y,.17*W,.032*H);
         fillStyle=fcol;
