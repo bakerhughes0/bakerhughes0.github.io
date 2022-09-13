@@ -4,6 +4,7 @@
 var wc = '0473';
 
 var o;
+var xcol = ['#222', '#60a2d7', '#e3df7d', '#559b2c', '#a4dc84'];
 var timestamp = new Date(2022,0,1);
 var data = [];
   
@@ -57,11 +58,11 @@ function draw(){
         fillText("SO / Customer", .775*W ,.108*H);
         fillText("Aging", .945*W ,.108*H);
         }else{
-        bcol = '#222';
+        bcol = xcol[0];
         if(mydata[ytbl]){
           if(mydata[ytbl][1]==1){fcol='#FF5050';}else{fcol='#ffffff';}
-          if(mydata[ytbl][2]==3){bcol='#a4dc84';} // 3. New Workable Done
-          if(mydata[ytbl][2]==4){bcol='#a4dc84';} // 4. Workable Done
+          if(mydata[ytbl][2]==3){bcol=xcol[4];} // 3. New Workable Done
+          if(mydata[ytbl][2]==4){bcol=xcol[4];} // 4. Workable Done
           }
         fillStyle=bcol;
         fillRect(.23*W ,.09*H + .032*H*y,.062*W,.032*H);
@@ -106,10 +107,10 @@ function draw(){
           }
         bcol = '#222';
         if(mydata[ytbl]){
-          if(mydata[ytbl][2]==1){fcol='#60a2d7';} // 1. New Workable
-          if(mydata[ytbl][2]==2){fcol='#a4dc84';} // 2. Pending Workable
-          if(mydata[ytbl][2]==3){fcol='#559b2c';} // 3. New Workable Done
-          if(mydata[ytbl][2]==4){fcol='#a4dc84';} // 4. Workable Done
+          if(mydata[ytbl][2]==1){fcol=xcol[1];} // 1. New Workable
+          if(mydata[ytbl][2]==2){fcol=xcol[2];} // 2. Pending Workable
+          if(mydata[ytbl][2]==3){fcol=xcol[3];} // 3. New Workable Done
+          if(mydata[ytbl][2]==4){fcol=xcol[4];} // 4. Workable Done
 
           fillStyle=fcol;
           fillRect(.217*W ,.096*H + .032*H*y,.01*W,.018*H);
