@@ -78,11 +78,11 @@ function draw(){
         fillRect(.292*W ,.09*H + .032*H*y,.22*W,.032*H);
         fillStyle=fcol;
         textAlign = "left";
-        fillText("OPERATION...", .295*W ,.108*H + .032*H*y)
+        if(mydata[ytbl]){fillText(mydata[ytbl][4], .295*W ,.108*H + .032*H*y);}
         fillStyle="#222";
         fillRect(.512*W ,.09*H + .032*H*y,.22*W,.032*H);
         fillStyle=fcol;
-        fillText("DESCRIPTION...", .515*W ,.108*H + .032*H*y);
+        if(mydata[ytbl]){fillText(mydata[ytbl][5], .515*W ,.108*H + .032*H*y);}
         fillStyle="#222";
         fillRect(.732*W ,.09*H + .032*H*y,.04*W,.032*H);
         fillStyle=fcol;
