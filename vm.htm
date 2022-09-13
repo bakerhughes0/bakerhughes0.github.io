@@ -108,9 +108,9 @@ function draw(){
           if(mydata[ytbl][2]==3){fcol='#559b2c';} // 3. New Workable Done
           if(mydata[ytbl][2]==4){fcol='#a4dc84';} // 4. Workable Done
           if(mydata[ytbl][2]==2){fcol='#a4dc84';} // 2. Pending Workable
+          fillStyle=fcol;
+          fillRect(.217*W ,.096*H + .032*H*y,.01*W,.018*H);
           }
-        fillStyle=fcol;
-        fillRect(.217*W ,.096*H + .032*H*y,.01*W,.018*H);
         }
       strokeRect(.23*W ,.09*H + .032*H*y,.062*W,.032*H);
       strokeRect(.292*W ,.09*H + .032*H*y,.22*W,.032*H);
