@@ -47,7 +47,9 @@ function draw(){
     lineWidth = 4;
     strokeStyle='#888';
     font = "bold " + (24*r).toString() + "px Arial";
+    var ytbl;
     for(var y=0;y<27;y++){
+      ytbl=y+1;
       if(y==0){
         fillStyle="#248";
         fillRect(.23*W ,.09*H + .032*H*y,.752*W,.032*H);
@@ -66,7 +68,8 @@ function draw(){
         fillStyle="#f5f5f5";
         textAlign = "center";
         font = (26*r).toString() + "px Arial";
-        fillText("00000000", .261*W ,.108*H + .032*H*y);
+        if(mydata[ytbl]){fillText(mydata[ytbl][0], .261*W ,.108*H + .032*H*y);}
+        //fillText("00000000", .261*W ,.108*H + .032*H*y);
         fillStyle="#222";
         fillRect(.292*W ,.09*H + .032*H*y,.22*W,.032*H);
         fillStyle="#f5f5f5";
