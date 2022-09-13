@@ -60,6 +60,7 @@ function draw(){
         bcol = '#222';
         if(mydata[ytbl]){
           if(mydata[ytbl][1]==1){fcol='#FF5050';}else{fcol='#ffffff';}
+          if(mydata[ytbl][2]==3){bcol='#a4dc84';} // 3. New Workable Done
           if(mydata[ytbl][2]==4){bcol='#a4dc84';} // 4. Workable Done
           }
         fillStyle=bcol;
@@ -100,6 +101,14 @@ function draw(){
           beginPath();
           arc(.962*W, .106*H + .032*H*y, .005*W, 0, 2 * Math.PI);
           fill();
+          }
+        bcol = '#222';
+        if(mydata[ytbl]){
+          if(mydata[ytbl][2]==1){fcol='#60a2d7';} // 1. New Workable
+          if(mydata[ytbl][2]==3){fcol='#559b2c';} // 3. New Workable Done
+          if(mydata[ytbl][2]==4){fcol='#a4dc84';} // 4. Workable Done
+          if(mydata[ytbl][2]==2){fcol='#a4dc84';} // 2. Pending Workable
+          #f2e878
           }
         fillStyle=fcol;
         fillRect(.217*W ,.096*H + .032*H*y,.01*W,.018*H);
