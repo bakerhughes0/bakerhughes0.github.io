@@ -90,7 +90,7 @@ function draw(){
         textAlign = "left";
         if(mydata[ytbl]){fillText(mydata[ytbl][7], .775*W ,.108*H + .032*H*y);}
         fillStyle=bcol;
-        fillRect(.942*W ,.09*H + .032*H*y,.04*W,.032*H);
+        fillRect(.942*W ,.09*H + .032*H*y,.104*W,.032*H);
         if(mydata[ytbl]){
           if(mydata[ytbl][8]<6){
             fillStyle='#11df11';
@@ -105,9 +105,10 @@ function draw(){
         bcol = '#222';
         if(mydata[ytbl]){
           if(mydata[ytbl][2]==1){fcol='#60a2d7';} // 1. New Workable
+          if(mydata[ytbl][2]==2){fcol='#a4dc84';} // 2. Pending Workable
           if(mydata[ytbl][2]==3){fcol='#559b2c';} // 3. New Workable Done
           if(mydata[ytbl][2]==4){fcol='#a4dc84';} // 4. Workable Done
-          if(mydata[ytbl][2]==2){fcol='#a4dc84';} // 2. Pending Workable
+
           fillStyle=fcol;
           fillRect(.217*W ,.096*H + .032*H*y,.01*W,.018*H);
           }
