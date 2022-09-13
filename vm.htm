@@ -49,6 +49,10 @@ function draw(){
       lineTo(.11*W, .27*H);
       fill();
       stroke();
+      fillStyle="#eee"
+      font = (24*r).toString() + "px Arial";
+      textAlign = "center";
+      fillText(sum[x].toString(),.11*W+.085*W*Math.cos((ang2+ang1)/2) , .27*H+.085*W*Math.sin((ang2+ang1)/2));
       ang1 = ang2;
       }
     ang1 = -Math.PI/2;
