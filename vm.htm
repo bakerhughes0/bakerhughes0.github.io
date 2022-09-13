@@ -90,7 +90,9 @@ function draw(){
         textAlign = "left";
         if(mydata[ytbl]){fillText(mydata[ytbl][7], .775*W ,.108*H + .032*H*y);}
         fillStyle=bcol;
-        fillRect(.942*W ,.09*H + .032*H*y,.104*W,.032*H);
+        fillRect(.942*W ,.09*H + .032*H*y,.04*W,.032*H);
+        bcol = '#222'; fillStyle=bcol;
+        fillRect(.982*W ,.09*H + .032*H*y,.1*W,.032*H);  
         if(mydata[ytbl]){
           if(mydata[ytbl][8]<6){
             fillStyle='#11df11';
