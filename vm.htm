@@ -7,10 +7,10 @@ var o;
 var xcol = ['#222', '#60a2d7', '#e3df7d', '#559b2c', '#a4dc84'];
 var timestamp = new Date(2022,0,1);
 var data = [];
-var sum = [];  
+var sum = [], sumh = [];  
 function draw(){
   mydata = [], fcol = '#fff', bcol = '#222';
-  sum = [0,0,0,0];
+  sum = [0,0,0,0];sumh = [0,0,0,0];
   for(var y=0; y<data.length; y++){
     if(data[y][0]==wc){
       mydata.push(data[y]);
