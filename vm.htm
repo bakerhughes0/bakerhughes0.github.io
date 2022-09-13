@@ -2,19 +2,22 @@
 <head>
 <script type=text/javascript>
 var wc = '0473';
-
+var wcname = '0473. EQUIPEMENT ETALONNAGE CONVENTIONNEL'
 var o;
 var xcol = ['#222', '#60a2d7', '#e3df7d', '#559b2c', '#a4dc84'];
 var timestamp = new Date(2022,0,1);
 var data = [];
-  
+var sum = [];  
 function draw(){
   mydata = [], fcol = '#fff', bcol = '#222';
+  sum = [0,0,0,0,0];
   for(var y=0; y<data.length; y++){
-    if(data[y][0]==wc){mydata.push(data[y]);}
+    if(data[y][0]==wc){
+      mydata.push(data[y]);
+      sum[0]++;
+      sum[mydata[y][2]]++;
+      }
     }
-  //timestamp = new Date(2022,8,12,16,16);
-  //alert(timestamp);
   screenRatio=1080/1920;
   wmax = innerWidth-16; hmax = window.innerHeight-16;
   W = wmax; H= W * screenRatio;
@@ -29,16 +32,17 @@ function draw(){
     strokeStyle='#eee';
     //strokeRect(0,0,W,H);
 
+    
+    
+    
     font = (20*r).toString() + "px Arial";
     textAlign = "left";
     fillStyle = fcol;
     fillText("Production Control - " + timestamp.getFullYear().toString() + '-' + ('0'+(timestamp.getMonth()+1).toString()).slice(-2) + '-' + ('0'+timestamp.getDate().toString()).slice(-2) +
              ' ' + timestamp.getHours() + ':' + timestamp.getMinutes(), 0, H * 0.02)
-
     font = "bold " + (38*r).toString() + "px Arial";
     textAlign = "center";
-    fillText("0473. EQUIPEMENT ETALONNAGE CONVENTIONNEL", W* .6, H * 0.03);
-
+    fillText(wcname, W* .6, H * 0.03);
     lineWidth = 4;
     strokeStyle='#888';
     font = "bold " + (24*r).toString() + "px Arial";
