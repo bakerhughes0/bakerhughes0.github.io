@@ -49,7 +49,7 @@ function draw(){
         fillStyle="#eee"
         font = (26*r).toString() + "px Arial";
         textAlign = "center";
-        fillText((Math.round(100*sum[x])/100).toString(),.11*W+.085*W*Math.cos((ang2+ang1)/2) , .27*H+.085*W*Math.sin((ang2+ang1)/2));
+        fillText(sum[x].toString(),.11*W+.085*W*Math.cos((ang2+ang1)/2) , .27*H+.085*W*Math.sin((ang2+ang1)/2));
         }
       ang1 = ang2;
       }
@@ -71,7 +71,7 @@ function draw(){
         fillStyle="#eee"
         font = (26*r).toString() + "px Arial";
         textAlign = "center";
-        fillText(sumh[x].toString(),.11*W+.085*W*Math.cos((ang2+ang1)/2) , .65*H+.085*W*Math.sin((ang2+ang1)/2));
+        fillText(Math.round(100*sumh[x])/100).toString(),.11*W+.085*W*Math.cos((ang2+ang1)/2) , .65*H+.085*W*Math.sin((ang2+ang1)/2));
         }
       ang1 = ang2;
       }
