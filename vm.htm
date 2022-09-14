@@ -32,48 +32,52 @@ function draw(){
   with (o.ctx) {
     textBaseline = "middle";
     lineWidth = .0016*W;
-    ang1 = -Math.PI/2;
-    for(var x=1; x<4; x++){
-      strokeStyle='#eee';
-      if(x==1){fillStyle=xcol[4];}
-      else if(x==2){fillStyle=xcol[2];}
-      else if(x==3){fillStyle=xcol[1];}
-      ang2 = ang1 + (2*Math.PI)*sum[x]/sum[0];
-      beginPath();
-      moveTo(.11*W, .27*H);
-      arc(.11*W, .27*H , .07*W, ang1, ang2);
-      lineTo(.11*W, .27*H);
-      fill();
-      stroke();
-      if(sum[x]>0){
-        fillStyle="#eee"
-        font = (26*r).toString() + "px Arial";
-        textAlign = "center";
-        fillText(sum[x].toString(),.11*W+.085*W*Math.cos((ang2+ang1)/2) , .27*H+.085*W*Math.sin((ang2+ang1)/2));
+    if(sum[0]>0){
+      ang1 = -Math.PI/2;
+      for(var x=1; x<4; x++){
+        strokeStyle='#eee';
+        if(x==1){fillStyle=xcol[4];}
+        else if(x==2){fillStyle=xcol[2];}
+        else if(x==3){fillStyle=xcol[1];}
+        ang2 = ang1 + (2*Math.PI)*sum[x]/sum[0];
+        beginPath();
+        moveTo(.11*W, .27*H);
+        arc(.11*W, .27*H , .07*W, ang1, ang2);
+        lineTo(.11*W, .27*H);
+        fill();
+        stroke();
+        if(sum[x]>0){
+          fillStyle="#eee"
+          font = (26*r).toString() + "px Arial";
+          textAlign = "center";
+          fillText(sum[x].toString(),.11*W+.085*W*Math.cos((ang2+ang1)/2) , .27*H+.085*W*Math.sin((ang2+ang1)/2));
+          }
+        ang1 = ang2;
         }
-      ang1 = ang2;
       }
-    ang1 = -Math.PI/2;
-    for(var x=1; x<4; x++){
-      strokeStyle='#eee';
-      if(x==1){fillStyle=xcol[4];}
-      else if(x==2){fillStyle=xcol[2];}
-      else if(x==3){fillStyle=xcol[1];}
-      lineWidth = .0016*W;
-      ang2 = ang1 + (2*Math.PI)*sumh[x]/sumh[0];
-      beginPath();
-      moveTo(.11*W, .65*H);
-      arc(.11*W, .65*H , .07*W, ang1, ang2);
-      lineTo(.11*W, .65*H);
-      fill();
-      stroke();
-      if(sumh[x]>0){
-        fillStyle="#eee"
-        font = (26*r).toString() + "px Arial";
-        textAlign = "center";
-        fillText((Math.round(100*sumh[x])/100).toString(),.11*W+.085*W*Math.cos((ang2+ang1)/2) , .65*H+.085*W*Math.sin((ang2+ang1)/2));
+    if(sum[0]>0){   
+      ang1 = -Math.PI/2;
+      for(var x=1; x<4; x++){
+        strokeStyle='#eee';
+        if(x==1){fillStyle=xcol[4];}
+        else if(x==2){fillStyle=xcol[2];}
+        else if(x==3){fillStyle=xcol[1];}
+        lineWidth = .0016*W;
+        ang2 = ang1 + (2*Math.PI)*sumh[x]/sumh[0];
+        beginPath();
+        moveTo(.11*W, .65*H);
+        arc(.11*W, .65*H , .07*W, ang1, ang2);
+        lineTo(.11*W, .65*H);
+        fill();
+        stroke();
+        if(sumh[x]>0){
+          fillStyle="#eee"
+          font = (26*r).toString() + "px Arial";
+          textAlign = "center";
+          fillText((Math.round(100*sumh[x])/100).toString(),.11*W+.085*W*Math.cos((ang2+ang1)/2) , .65*H+.085*W*Math.sin((ang2+ang1)/2));
+          }
+        ang1 = ang2;
         }
-      ang1 = ang2;
       }
     font = (22*r).toString() + "px Arial";
     textAlign = "left";
