@@ -1,7 +1,7 @@
 <html>
 <head>
 <script type=text/javascript>
-var wc = '0473';
+var wc = ['0473'];
 var wcname = '0473. EQUIPEMENT ETALONNAGE CONVENTIONNEL'
 var o;
 var xcol = ['#222', '#9ECCF1', '#FBEB85', '#5A7C46', '#A6D28D'];
@@ -12,7 +12,7 @@ function draw(){
   mydata = [], fcol = '#eee', bcol = '#222';
   sum = [0,0,0,0];sumh = [0,0,0,0];
   for(var y=0; y<data.length; y++){
-    if(data[y][0]==wc){
+    if(wc.indexOf(data[y][0])>-1){
       mydata.push(data[y]);
       sum[0]++;sumh[0]+=data[y][6];
       cat = data[y][2];
@@ -202,31 +202,19 @@ function loadData(){
     js.onload = draw;
     document.head.appendChild(js);    
     }    
-    
 window.onload=function(){
-  document.title = wc;
+  document.title = wc.joint('-');
   o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
   loadData();
-  //draw();
   document.body.appendChild(o)
   }
-
 window.onresize=function(){
   draw();
   }
-
-
-setInterval(function() {
-    loadData();
-    draw();
-}, 20000);
-
-
+setInterval(function() {loadData();}, 30000);
 </script>
 </head>
 <body style="background-color:#222">
-
-
 </body>
 </html>
