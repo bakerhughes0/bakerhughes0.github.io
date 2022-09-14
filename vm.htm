@@ -227,10 +227,11 @@ function checkKey(e) {
     }else if (e.keyCode == '40') {
         // down arrow
     }else if (e.keyCode == '37') {
-       // left arrow
+      var n = wclist.indexOf(wc[0]);
+      if(wclist[n-1]){window.location='vm.htm?' + wclist[n-1];}
     }else if (e.keyCode == '39') {
       var n = wclist.indexOf(wc[0]);
-      if(wclist[n+1]){window.location='visman.htm?' + wclist[n+1];}
+      if(wclist[n+1]){window.location='vm.htm?' + wclist[n+1];}
     }
 }
 
