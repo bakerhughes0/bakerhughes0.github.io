@@ -4,7 +4,7 @@
 var wc = '0473';
 var wcname = '0473. EQUIPEMENT ETALONNAGE CONVENTIONNEL'
 var o;
-var xcol = ['#222', '#60a2d7', '#e3df7d', '#559b2c', '#a4dc84'];
+var xcol = ['#222', '#9ECCF1', '#F9EB62', '#5A7C46', '#A9E189'];
 var timestamp = new Date(2022,0,1);
 var data = [];
 var sum = [], sumh = [];  
@@ -31,17 +31,13 @@ function draw(){
   W=W*2; H=H*2;
   with (o.ctx) {
     textBaseline = "middle";
-    lineWidth = 6;
-    strokeStyle='#eee';
-    //strokeRect(0,0,W,H);
-    
+    lineWidth = .0016*W;
     ang1 = -Math.PI/2;
     for(var x=1; x<4; x++){
       strokeStyle='#eee';
       if(x==1){fillStyle=xcol[4];}
       else if(x==2){fillStyle=xcol[2];}
       else if(x==3){fillStyle=xcol[1];}
-      lineWidth = .002*W;
       ang2 = ang1 + (2*Math.PI)*sum[x]/sum[0];
       beginPath();
       moveTo(.11*W, .27*H);
@@ -63,7 +59,7 @@ function draw(){
       if(x==1){fillStyle=xcol[4];}
       else if(x==2){fillStyle=xcol[2];}
       else if(x==3){fillStyle=xcol[1];}
-      lineWidth = .002*W;
+      lineWidth = .0016*W;
       ang2 = ang1 + (2*Math.PI)*sumh[x]/sumh[0];
       beginPath();
       moveTo(.11*W, .65*H);
@@ -88,7 +84,7 @@ function draw(){
     font = "bold " + (38*r).toString() + "px Arial";
     textAlign = "center";
     fillText(wcname, W* .6, H * 0.03);
-    lineWidth = 4;
+    lineWidth = .0008*W;
     strokeStyle='#777';
     font = "bold " + (24*r).toString() + "px Arial";
     var ytbl;
