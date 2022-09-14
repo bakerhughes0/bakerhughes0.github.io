@@ -3,7 +3,7 @@
 <script type=text/javascript src=wclist.js></script>
 <script type=text/javascript>
 var wc = ['0428'];
-var wcname = '0428. MONTAGE NIVEAUX - 0427. EH NIVEAUX'
+//var wcname = '0428. MONTAGE NIVEAUX - 0427. EH NIVEAUX'
 var o;
 var xcol = ['#222', '#9ECCF1', '#FBEB85', '#5A7C46', '#A6D28D'];
 var timestamp = new Date(2022,0,1);
@@ -88,7 +88,7 @@ function draw(){
              ' ' + ('0'+timestamp.getHours()).slice(-2) + ':' + ('0'+timestamp.getMinutes()).slice(-2), 0, H * 0.02);
     font = "bold " + (38*r).toString() + "px Arial";
     textAlign = "center";
-    fillText(wcname, W* .6, H * 0.03);
+    fillText(wcname(wc[0]), W* .6, H * 0.03);
     lineWidth = .0008*W;
     strokeStyle='#777';
     font = "bold " + (24*r).toString() + "px Arial";
