@@ -324,7 +324,7 @@ wcnames = ['0205. TOUR PARALLELE CAZENEUVE OPTIMAX 360',
 '1408. ARRET POUR LE STANDARD']
 
 function wcname(s){
-  var n = wcnames.indexOf(s);
+  var n = wclist.indexOf(s);
   if(n==-1){
     return s + " WORKCENTER NOT FOUND"
     }else{
