@@ -9,7 +9,7 @@ var timestamp = new Date(2022,0,1);
 var data = [];
 var sum = [], sumh = [];  
 function draw(){
-  mydata = [], fcol = '#fff', bcol = '#222';
+  mydata = [], fcol = '#eee', bcol = '#222';
   sum = [0,0,0,0];sumh = [0,0,0,0];
   for(var y=0; y<data.length; y++){
     if(data[y][0]==wc){
@@ -109,7 +109,7 @@ function draw(){
         }else{
         bcol = xcol[0];
         if(mydata[ytbl]){
-          if(mydata[ytbl][1]==1){fcol='#FF5050';}else{fcol='#ffffff';}
+          if(mydata[ytbl][1]==1){fcol='#FF5050';}else{fcol='#eee';}
           if(mydata[ytbl][2]==3){bcol=xcol[4];} // 3. New Workable Done
           if(mydata[ytbl][2]==4){bcol=xcol[4];} // 4. Workable Done
           }
