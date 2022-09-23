@@ -153,10 +153,12 @@ function draw(){
             }
           if(showage){
             textAlign = "right";
+            font = "bold " + (26*r).toString() + "px Arial";
             fillText(mydata[ytbl][8].toString(), .976*W ,.108*H + .032*H*y);
-            beginPath();
-            arc(.978*W, .114*H + .032*H*y, .0016*W, 0, 2 * Math.PI);
-            fill();
+            font = (26*r).toString() + "px Arial";
+            //beginPath();
+            //arc(.978*W, .114*H + .032*H*y, .0016*W, 0, 2 * Math.PI);
+            //fill();
           }else{
             beginPath();
             arc(.962*W, .106*H + .032*H*y, .005*W, 0, 2 * Math.PI);
