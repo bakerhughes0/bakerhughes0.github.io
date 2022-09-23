@@ -1,5 +1,5 @@
 <html>
-
+  
 <head>
 <script type=text/javascript src=wclist.js?001></script>
 <script type=text/javascript>
@@ -8,7 +8,7 @@ var wc = [];
 var o;
 var xcol = ['#222', '#9ECCF1', '#FBEB85', '#5A7C46', '#A6D28D'];
 var timestamp = new Date(2022,0,1);
-var data = [];
+var data = [], showage = 0;
 var sum = [], sumh = [];  
 function draw(){
   mydata = [], fcol = '#eee', bcol = '#222';
@@ -152,9 +152,19 @@ function draw(){
             fillStyle='#ffa733';
             }else{fillStyle='#df1111';
             }
-          beginPath();
-          arc(.962*W, .106*H + .032*H*y, .005*W, 0, 2 * Math.PI);
-          fill();
+          if(showage){
+            textAlign = "right";
+            font = "bold " + (26*r).toString() + "px Arial";
+            fillText(mydata[ytbl][8].toString(), .976*W ,.108*H + .032*H*y);
+            font = (26*r).toString() + "px Arial";
+            //beginPath();
+            //arc(.978*W, .114*H + .032*H*y, .0016*W, 0, 2 * Math.PI);
+            //fill();
+          }else{
+            beginPath();
+            arc(.962*W, .106*H + .032*H*y, .005*W, 0, 2 * Math.PI);
+            fill();
+            }
           }
         bcol = '#222';
         if(mydata[ytbl]){
@@ -215,11 +225,21 @@ window.onload=function(){
   o.ctx=o.getContext('2d');
   loadData();
   document.body.appendChild(o)
+  o.addEventListener("mousemove", function(evt) {
+    var rect = o.getBoundingClientRect();
+    var x = evt.clientX - rect.left, y = evt.clientY - rect.top;
+    if(x>.942*o.width && x < .982*o.width && y > .09*o.height &&   y < .954*o.height){ 
+      if(showage==0){showage=1; draw();}
+      }else{
+      if(showage==1){showage=0; draw();}
+      }
+    }, false);  
   }
 window.onresize=function(){
   draw();
   }
 document.onkeydown = checkKey;
+
 function checkKey(e) {
   e = e || window.event;
  if (e.keyCode == '38') {
@@ -228,12 +248,13 @@ function checkKey(e) {
         // down arrow
     }else if (e.keyCode == '37') {
       var n = wclist.indexOf(wc[0]);
-      if(wclist[n-1]){window.location='visman.htm?' + wclist[n-1];}
+      if(wclist[n-1]){window.location='vm.htm?' + wclist[n-1];}
     }else if (e.keyCode == '39') {
       var n = wclist.indexOf(wc[0]);
-      if(wclist[n+1]){window.location='visman.htm?' + wclist[n+1];}
+      if(wclist[n+1]){window.location='vm.htm?' + wclist[n+1];}
     }
 }
+
 setInterval(function() {loadData();}, 30000);
 </script>
 </head>
