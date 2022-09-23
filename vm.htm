@@ -7,7 +7,7 @@ var wc = [];
 var o;
 var xcol = ['#222', '#9ECCF1', '#FBEB85', '#5A7C46', '#A6D28D'];
 var timestamp = new Date(2022,0,1);
-var data = [];
+var data = [], showage = 0;
 var sum = [], sumh = [];  
 function draw(){
   mydata = [], fcol = '#eee', bcol = '#222';
@@ -151,11 +151,17 @@ function draw(){
             fillStyle='#ffa733';
             }else{fillStyle='#df1111';
             }
-          textAlign = "right";
-          fillText(mydata[ytbl][8], .976*W ,.108*H + .032*H*y);
-         // beginPath();
-         // arc(.962*W, .106*H + .032*H*y, .005*W, 0, 2 * Math.PI);
-         // fill();
+          if(showage){
+            textAlign = "right";
+            fillText("105", .976*W ,.108*H + .032*H*y);
+            beginPath();
+            arc(.978*W, .114*H + .032*H*y, .0016*W, 0, 2 * Math.PI);
+            fill();
+          }else{
+            beginPath();
+            arc(.962*W, .106*H + .032*H*y, .005*W, 0, 2 * Math.PI);
+            fill();
+            }
           }
         bcol = '#222';
         if(mydata[ytbl]){
@@ -216,6 +222,15 @@ window.onload=function(){
   o.ctx=o.getContext('2d');
   loadData();
   document.body.appendChild(o)
+  o.addEventListener("mousemove", function(evt) {
+    var rect = o.getBoundingClientRect();
+    var x = evt.clientX - rect.left, y = evt.clientY - rect.top;
+    if(x>.942*o.width && x < .982*o.width && y > .09*o.height &&   y < .954*o.height){ 
+      if(showage==0){showage=1; draw();}
+      }else{
+      if(showage==1){showage=0; draw();}
+      }
+    }, false);  
   }
 window.onresize=function(){
   draw();
