@@ -7,7 +7,8 @@
 var wc = [];
 //var wcname = '0428. MONTAGE NIVEAUX - 0427. EH NIVEAUX'
 var o;
-var xcol = ['#222', '#9ECCF1', '#FBEB85', '#5A7C46', '#A6D28D'];
+//var xcol = ['#222', '#9ECCF1', '#FBEB85', '#5A7C46', '#A6D28D'];
+var xcol = ['#222', '#9ECCF1', '#FBEB85', '#A6D28D', '#A6D28D'];
 var timestamp = new Date(2022,0,1);
 var data = [], showage = 0;
 var sum = [], sumh = [];  
@@ -201,9 +202,9 @@ function draw(){
     fillText("Completed",.02*W ,.84*H);
     fillText("Pending",.02*W ,.872*H);
     fillText("New Arrival",.02*W ,.904*H);
-    fillText("New Arrival - Completed",.02*W ,.936*H);
+    //fillText("New Arrival - Completed",.02*W ,.936*H);
     colid=[0, 4, 2, 1, 3];
-    for(var x=1; x<5; x++){
+    for(var x=1; x<4; x++){
       fillStyle=xcol[colid[x]];
       fillRect(.006*W,.798*H + .032*H*x,.01*W,.01*W);
       }    
