@@ -225,16 +225,13 @@ function upArrow(){
       }
     }
 
-  
-  
 function loadData(){
   var d = new Date();
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
   var js = document.createElement('script');
   js.type='text/javascript';
   js.src="vmwc.js" + "?d=" + sd;
-  js.onload = draw;
-  upArrow();
+  js.onload = function(){ draw(); upArrow();}
   document.head.appendChild(js);    
   }    
 window.onload=function(){
