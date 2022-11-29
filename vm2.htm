@@ -91,19 +91,6 @@ function draw(){
     lineWidth = .0008*W;
     strokeStyle='#777';
     font = "bold " + (24*r).toString() + "px Arial";
-    if(yoff>0){ // fleche haut
-        fillStyle="#c11";
-        beginPath();
-        moveTo(.222*W ,.09*H);
-        lineTo(.216*W ,.105*H);
-        lineTo(.220*W ,.105*H);
-        lineTo(.220*W ,.12*H);
-        lineTo(.224*W ,.12*H);
-        lineTo(.224*W ,.105*H);
-        lineTo(.228*W ,.105*H);
-        closePath();
-        fill();
-        }
     var ytbl;
     for(var y=0;y<27;y++){
       ytbl=y-1+yoff;
@@ -218,7 +205,28 @@ function draw(){
       }    
     }
   }
+  
+var toggleUpArrow=0
+function upArrow(){
+  toggleUpArrow=1-toggleUpArrow;
+  with (o.ctx) {
+    if(toggleUpArrow && yoff>0){fillStyle="#C11";}else{fillStyle=xcol[0];}
+      beginPath();
+      moveTo(.222*W ,.09*H);
+      lineTo(.216*W ,.105*H);
+      lineTo(.220*W ,.105*H);
+      lineTo(.220*W ,.12*H);
+      lineTo(.224*W ,.12*H);
+      lineTo(.224*W ,.105*H);
+      lineTo(.228*W ,.105*H);
+      closePath();
+      fill();
+      setTimeout(upArrow,450)
+      }
+    }
 
+  
+  
 function loadData(){
   var d = new Date();
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
@@ -226,6 +234,7 @@ function loadData(){
   js.type='text/javascript';
   js.src="vmwc.js" + "?d=" + sd;
   js.onload = draw;
+  upArrow();
   document.head.appendChild(js);    
   }    
 window.onload=function(){
