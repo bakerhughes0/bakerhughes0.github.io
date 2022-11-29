@@ -250,7 +250,18 @@ window.onload=function(){
       }else{
       if(showage==1){showage=0; draw();}
       }
-    }, false);  
+    }, false); 
+  o.addEventListener("wheel", function(evt) { 
+    if(evt.deltaY<0){
+      yoff-=3;
+      if(yoff<0) yoff=0;
+      draw();
+    }else{
+      yoff+=3;
+      if(yoff>sum[0]) yoff=sum[0];
+      draw();
+      }
+    }, false); 
   }
 window.onresize=function(){
   draw();
