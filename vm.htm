@@ -3,13 +3,11 @@
 <script type=text/javascript src=wclist.js?001></script>
 <script type=text/javascript>
 var wc = [];
-//var wcname = '0428. MONTAGE NIVEAUX - 0427. EH NIVEAUX'
 var o;
-//var xcol = ['#222', '#9ECCF1', '#FBEB85', '#5A7C46', '#A6D28D'];
 var xcol = ['#222', '#9ECCF1', '#FBEB85', '#A6D28D', '#A6D28D'];
 var timestamp = new Date(2022,0,1);
 var data = [], showage = 0;
-var sum = [], sumh = [];  
+var sum = [], sumh = [], yoff=0;  
 function draw(){
   mydata = [], fcol = '#eee', bcol = '#222';
   sum = [0,0,0,0];sumh = [0,0,0,0];
@@ -95,7 +93,7 @@ function draw(){
     font = "bold " + (24*r).toString() + "px Arial";
     var ytbl;
     for(var y=0;y<27;y++){
-      ytbl=y-1;
+      ytbl=y-1+yoff;
       if(y==0){
         fillStyle="#324A74";
         fillRect(.23*W ,.09*H + .032*H*y,.752*W,.032*H);
@@ -121,7 +119,6 @@ function draw(){
         textAlign = "center";
         font = (26*r).toString() + "px Arial";
         if(mydata[ytbl]){fillText(mydata[ytbl][3].toString(), .261*W ,.108*H + .032*H*y);}
-        //fillText("00000000", .261*W ,.108*H + .032*H*y);
         fillStyle=bcol;
         fillRect(.292*W ,.09*H + .032*H*y,.22*W,.032*H);
         fillStyle=fcol;
@@ -208,6 +205,25 @@ function draw(){
       }    
     }
   }
+  
+var toggleUpArrow=0
+function upArrow(){
+  toggleUpArrow=1-toggleUpArrow;
+  with (o.ctx) {
+    if(toggleUpArrow && yoff>0){fillStyle="#C11";}else{fillStyle=xcol[0];}
+      beginPath();
+      moveTo(.222*W ,.09*H);
+      lineTo(.216*W ,.105*H);
+      lineTo(.220*W ,.105*H);
+      lineTo(.220*W ,.12*H);
+      lineTo(.224*W ,.12*H);
+      lineTo(.224*W ,.105*H);
+      lineTo(.228*W ,.105*H);
+      closePath();
+      fill();
+      setTimeout(upArrow,450)
+      }
+    }
 
 function loadData(){
   var d = new Date();
@@ -215,7 +231,7 @@ function loadData(){
   var js = document.createElement('script');
   js.type='text/javascript';
   js.src="vmwc.js" + "?d=" + sd;
-  js.onload = draw;
+  js.onload = function(){ draw(); upArrow();}
   document.head.appendChild(js);    
   }    
 window.onload=function(){
@@ -243,9 +259,13 @@ document.onkeydown = checkKey;
 function checkKey(e) {
   e = e || window.event;
  if (e.keyCode == '38') {
-        // up arrow
+    yoff--;
+    if(yoff<0) yoff=0;
+    draw();
     }else if (e.keyCode == '40') {
-        // down arrow
+    yoff++;
+    if(yoff>sum[0]) yoff=sum[0];
+    draw();
     }else if (e.keyCode == '37') {
       var n = wclist.indexOf(wc[0]);
       if(wclist[n-1]){window.location='vm.htm?' + wclist[n-1];}
