@@ -252,11 +252,11 @@ window.onload=function(){
     }, false); 
   o.addEventListener("wheel", function(evt) { 
     if(evt.deltaY<0){
-      yoff--;
+      yoff-=3;
       if(yoff<0) yoff=0;
       draw();
     }else{
-      yoff++;
+      yoff+=3;
       if(yoff>sum[0]) yoff=sum[0];
       draw();
       }
