@@ -91,6 +91,19 @@ function draw(){
     lineWidth = .0008*W;
     strokeStyle='#777';
     font = "bold " + (24*r).toString() + "px Arial";
+    if(yoff>0){ // fleche haut
+        fillStyle="#c11";
+        beginPath();
+        moveTo(.222*W ,.09*H);
+        lineTo(.216*W ,.105*H);
+        lineTo(.220*W ,.105*H);
+        lineTo(.220*W ,.12*H);
+        lineTo(.224*W ,.12*H);
+        lineTo(.224*W ,.105*H);
+        lineTo(.228*W ,.105*H);
+        closePath();
+        fill();
+        }
     var ytbl;
     for(var y=0;y<27;y++){
       ytbl=y-1+yoff;
