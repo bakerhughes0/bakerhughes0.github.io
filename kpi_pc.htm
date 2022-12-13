@@ -9,7 +9,8 @@ function loadData(){
   js.type='text/javascript';
   js.src="kpi.js" + "?d=" + sd;
   js.onload = function(){ 
-   sTxt(blk1.l1,data[0][1].toString());
+   sTxt(blk1.l1,data[0][1].toString()+' op');
+   sTxt(blk1.l2,data[1][1].toString()+' h');
    }
   document.head.appendChild(js);    
   }  
@@ -60,7 +61,7 @@ window.onload=function(){
   loadData();
   move(blk1,[-200,-200,250,150]);
   setTimeout(function(){
-    move(blk1,[100,10,250,150]);
+    move(blk1,[50,50,250,150]);
     },1);
 }
 /*
