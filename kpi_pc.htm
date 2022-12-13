@@ -9,7 +9,7 @@ function loadData(){
   js.type='text/javascript';
   js.src="kpi.js" + "?d=" + sd;
   js.onload = function(){ 
-   sTxt(blk1.l1,data[0][1].toString()+' op');
+   sTxt(blk1.l1,data[0][1].toString()+' wo');
    sTxt(blk1.l2,data[1][1].toString()+' h');
    }
   document.head.appendChild(js);    
@@ -55,9 +55,7 @@ function xBlk2l(){
 window.onload=function(){
   blk1 = new xBlk2l();
   sPar(blk1,0);
-  sTxt(blk1.header,"Workable");
-  //sTxt(blk1.l1,"2200 op");
-  //sTxt(blk1.l2,"1700 h");
+  sTxt(blk1.header,"WORKABLE");
   loadData();
   move(blk1,[-200,-200,250,150]);
   setTimeout(function(){
