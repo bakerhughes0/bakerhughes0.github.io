@@ -1,4 +1,1 @@
-data = [
-['wo_n_total',2101],
-['wo_n_total',1667]
-];
+data = {'wo_n_total':2106,'wo_h_total':1766,'wo_n_late_vs_plan':658,'wo_h_late_vs_plan':610,'wo_mach_n_total':919,'wo_mach_h_total':1511,'wo_mach_n_late_vs_plan':149,'wo_mach_h_late_vs_plan':457}
