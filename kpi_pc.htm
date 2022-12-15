@@ -9,8 +9,10 @@ function loadData(){
   js.type='text/javascript';
   js.src="kpi.js" + "?d=" + sd;
   js.onload = function(){ 
-   sTxt(blk1.l1,data[0][1].toString()+' wo');
-   sTxt(blk1.l2,data[1][1].toString()+' h');
+   sTxt(blk1.l1,data'wo_n_total'].toString()+' wo');
+   sTxt(blk1.l2,data['wo_h_total'].toString()+' h');
+   sTxt(blk2.l1,data['wo_mach_n_total'].toString()+' h');
+   sTxt(blk2.l2,data['wo_mach_h_late_vs_plan'].toString()+' h late');
    }
   document.head.appendChild(js);    
   }  
@@ -54,12 +56,17 @@ function xBlk2l(){
 
 window.onload=function(){
   blk1 = new xBlk2l();
+  move(blk1,[-200,-200,250,150]);
   sPar(blk1,0);
   sTxt(blk1.header,"WORKABLE");
-  loadData();
+  blk2 = new xBlk2l();
   move(blk1,[-200,-200,250,150]);
+  sPar(blk1,0);
+  sTxt(blk1.header,"MACHINING WORKABLE");
+  loadData();
   setTimeout(function(){
     move(blk1,[50,50,250,150]);
+    move(blk2,[400,50,250,150]);
     },1);
 }
 /*
