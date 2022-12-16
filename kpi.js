@@ -1,1 +1,1 @@
-data = {'wo_n_total':1958,'wo_h_total':1534,'wo_n_late_vs_plan':419,'wo_h_late_vs_plan':339,'wo_mach_n_total':827,'wo_mach_h_total':1315,'wo_mach_n_late_vs_plan':97,'wo_mach_h_late_vs_plan':290}
+data = {'wo_n_total':1976,'wo_h_total':1592,'wo_n_late_vs_plan':479,'wo_h_late_vs_plan':334,'wo_mach_n_total':836,'wo_mach_h_total':1376,'wo_mach_n_late_vs_plan':99,'wo_mach_h_late_vs_plan':276}
