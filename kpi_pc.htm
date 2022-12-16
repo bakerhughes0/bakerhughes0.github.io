@@ -37,6 +37,8 @@ function xBlk2l(){
   sBrR(o.bb, [0,0,15,15]);
   sBkL(o.bb,87,'#98d9b5 10%, #6fab8a 70%');
   sPar(o.bb,o);
+  o.g1=new xDiv();
+  sPar(o.g1,o.bb);
   o.l1=new xLab();
   sFtA(o.l1,'center');
   sPar(o.l1,o.bb);
@@ -49,6 +51,7 @@ function xBlk2l(){
     move(t,[0,0,w,40]);
     move(o.bb,[0,40,w,h-40]);
     h-=40;
+    move(o.g1,[-1,-1,w,h/2]);
     move(o.l1,[0,h*.1,w,h*.36]);
     move(o.l2,[0,h*.5,w,h*.36]);
     }
