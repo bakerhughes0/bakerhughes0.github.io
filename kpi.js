@@ -1,1 +1,1 @@
-data = {'wo_n_total':1904,'wo_h_total':1648,'wo_mach_n_total':842,'wo_mach_h_total':1365,'wo_n_late_vs_plan':433,'wo_h_late_vs_plan':357,'wo_mach_n_late_vs_plan':83,'wo_mach_h_late_vs_plan':243,'q_name':'22Q4','q_perc':0.87,'q_workdaysleft':8}
+data = {'wo_n_total':1931,'wo_h_total':1686,'wo_mach_n_total':864,'wo_mach_h_total':1394,'wo_n_late_vs_plan':435,'wo_h_late_vs_plan':364,'wo_mach_n_late_vs_plan':88,'wo_mach_h_late_vs_plan':242,'q_name':'22Q4','q_perc':0.87,'q_workdaysleft':8}
