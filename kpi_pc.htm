@@ -18,6 +18,10 @@ function loadData(){
    gfx01.options.data[0].dataPoints=gfx01_d1;
    gfx01.options.data[1].dataPoints=gfx01_d2;
    gfx01.render();
+   gfx02.options.title.text='QUARTER '+data.q_name; 
+   gfx02.options.data[0].dataPoints=[{y:data.q_elapsed}];
+   gfx02.options.data[1].dataPoints=[{y:data.q_remaining}];
+   gfx02.render();
    }
   document.head.appendChild(js);    
   }  
@@ -103,6 +107,39 @@ window.onload=function(){
     { type: "stackedColumn", legendText: "Overdue", color: "#C44", showInLegend: true, dataPoints: [] }
     ]
   });
+  g02 = new xDiv()
+  move(g02,[50,450,450,250]);
+  sBrW(g02,[4]);
+  sBrC(g02,['#dfe']);
+  sBrR(g02,[5]);
+  sPar(g02,0);
+  gfx02 = new CanvasJS.Chart(g02, {
+  animationEnabled: true,
+  animationDuration: 2500,
+  title: {text: "QUARTER", fontColor:"#ddd"},
+  backgroundColor: "#427057",
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    fontSize: 14,
+    fontColor: "#eee"
+    },
+  axisX:{
+    lineColor:'#ccc', lineThickness: 1,
+    interval: null,
+    },
+  axisY:{
+    suffix: "%", interval: 10,
+    lineColor:'#ccc', lineThickness: 1,
+    gridColor:'#ccc', gridThickness: 1,
+    labelFontColor: "#eee",
+    },
+  toolTip: {enabled: true, content: '<b>{name}</b>: #percent %'},
+  data: [              
+    { type: "stackedBar100",  showInLegend: true, name: "Elapsed", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "stackedBar100",  showInLegend: true, name: "Remaining", indexLabelFontColor:'#eee', color:"#ddd", dataPoints: [] },
+    ]
+  });  
   loadData();  
   setTimeout(function(){
     move(blk1,[50,50,250,150]);
