@@ -17,6 +17,9 @@ function loadData(){
     gfx02.options.data[0].dataPoints=[{y:data.q_elapsed}];
     gfx02.options.data[1].dataPoints=[{y:data.q_remaining}];
     gfx02.render();
+    gfx03.options.data[0].dataPoints=gfx03_d1;
+    gfx03.options.data[1].dataPoints=gfx03_d2;
+    gfx03.render();
     }
   document.head.appendChild(js);    
   }
@@ -85,6 +88,41 @@ window.onload=function(){
   data: [              
     { type: "stackedBar100",  showInLegend: true, name: "Elapsed", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
     { type: "stackedBar100",  showInLegend: true, name: "Remaining", indexLabelFontColor:'#eee', color:"#ddd", dataPoints: [] },
+    ]
+  });  
+  g03 = new xDiv()
+  move(g03,[1050,50,450,250]);
+  sBrW(g03,[4]);
+  sBrC(g03,['#dfe']);
+  sBrR(g03,[5]);
+  sPar(g03,0);
+  gfx03 = new CanvasJS.Chart(g03, {
+  animationEnabled: true,
+  animationDuration: 2500,
+  title: {text: "TOP 5 WORKCENTERS LOAD", fontColor:"#ddd"},
+  backgroundColor: "#427057",
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    fontSize: 14,
+    fontColor: "#eee",
+    },
+  axisX:{
+    lineColor:'#ccc', lineThickness: 1,
+    labelFontColor: "#eee",
+    labelFontSize: 10,
+    },
+  axisY:{
+    title:"Std hours",
+    titleFontColor: "#eee",
+    lineColor:'#ccc', lineThickness: 1,
+    gridColor:'#ccc', gridThickness: 1,
+    labelFontColor: "#eee",
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "bar",  showInLegend: true, name: "Workable", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "stackedBar",  showInLegend: true, name: "Overdue", indexLabelFontColor:'#eee', color: "#C44", dataPoints: [] },
     ]
   });  
   loadData();  
