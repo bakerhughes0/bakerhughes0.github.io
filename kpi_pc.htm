@@ -15,6 +15,9 @@ function loadData(){
    sTxt(blk2.l1,data.wo_mach_h_total.toString()+' h');
    ovd=(data.wo_mach_h_late_vs_plan/data.wo_mach_h_total*100).toFixed(0); 
    sTxt(blk2.l2, 'ovd : '+data.wo_mach_h_late_vs_plan.toString()+' h ('+ovd+'%)');
+   gfx01.options.data[0].dataPoints=gfx01_d1;
+   gfx01.options.data[1].dataPoints=gfx01_d2;
+   gfx01.render();
    }
   document.head.appendChild(js);    
   }  
@@ -69,6 +72,39 @@ window.onload=function(){
   sPar(blk2,0);
   sTxt(blk2.header,"MACHINING WORKABLE");
   loadData();
+  var g01 = new xDiv()
+  move(g01,[50,50,450,250]);
+  sBrW(g01,[4]);
+  sBrC(g01,['#dfe']);
+  sBrR(g01,[5]);
+  sPar(g01,0);
+  var gfx01 = new CanvasJS.Chart(g01, {
+  animationEnabled: true,
+  animationDuration: 2500,
+  title: {text: "MACHINING WORKABLE", fontColor:"#ddd"},
+  backgroundColor: "#427057",
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    fontSize: 14,
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Standard hours",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -28,
+    },
+  data: [              
+    { type: "column", legendText: "Workable", color: "#8b9", showInLegend: true, dataPoints: [] },
+    { type: "stackedColumn", legendText: "Overdue", color: "#C44", showInLegend: true, dataPoints: [] }
+    ]
+  });
+  
   setTimeout(function(){
     move(blk1,[50,50,250,150]);
     move(blk2,[400,50,250,150]);
