@@ -71,13 +71,13 @@ window.onload=function(){
   move(blk2,[-200,-200,250,150]);
   sPar(blk2,0);
   sTxt(blk2.header,"MACHINING WORKABLE");
-  var g01 = new xDiv()
+  g01 = new xDiv()
   move(g01,[50,50,450,250]);
   sBrW(g01,[4]);
   sBrC(g01,['#dfe']);
   sBrR(g01,[5]);
   sPar(g01,0);
-  var gfx01 = new CanvasJS.Chart(g01, {
+  gfx01 = new CanvasJS.Chart(g01, {
   animationEnabled: true,
   animationDuration: 2500,
   title: {text: "MACHINING WORKABLE", fontColor:"#ddd"},
