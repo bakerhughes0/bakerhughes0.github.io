@@ -71,7 +71,6 @@ window.onload=function(){
   move(blk2,[-200,-200,250,150]);
   sPar(blk2,0);
   sTxt(blk2.header,"MACHINING WORKABLE");
-  loadData();
   var g01 = new xDiv()
   move(g01,[50,50,450,250]);
   sBrW(g01,[4]);
@@ -104,7 +103,7 @@ window.onload=function(){
     { type: "stackedColumn", legendText: "Overdue", color: "#C44", showInLegend: true, dataPoints: [] }
     ]
   });
-  
+  loadData();  
   setTimeout(function(){
     move(blk1,[50,50,250,150]);
     move(blk2,[400,50,250,150]);
