@@ -10,71 +10,18 @@ function loadData(){
   js.type='text/javascript';
   js.src="kpi.js" + "?d=" + sd;
   js.onload = function(){ 
-   sTxt(blk1.l1,data['wo_n_total'].toString()+' wo');
-   sTxt(blk1.l2,data['wo_h_total'].toString()+' h');
-   sTxt(blk2.l1,data.wo_mach_h_total.toString()+' h');
-   ovd=(data.wo_mach_h_late_vs_plan/data.wo_mach_h_total*100).toFixed(0); 
-   sTxt(blk2.l2, 'ovd : '+data.wo_mach_h_late_vs_plan.toString()+' h ('+ovd+'%)');
-   gfx01.options.data[0].dataPoints=gfx01_d1;
-   gfx01.options.data[1].dataPoints=gfx01_d2;
-   gfx01.render();
-   gfx02.options.title.text='QUARTER '+data.q_name; 
-   gfx02.options.data[0].dataPoints=[{y:data.q_elapsed}];
-   gfx02.options.data[1].dataPoints=[{y:data.q_remaining}];
-   gfx02.render();
-   }
-  document.head.appendChild(js);    
-  }  
-
-function xBlk2l(){
-  var o = new xDiv();
-  o.header = new xDiv();
-  var t = o.header;
-  sFtN(t,'bold 20px/40px Calibri');
-  sFtA(t,'center');
-  sFtC(t,'#e4eddf') 
-  sBrW(t, [2,2,0,2]);
-  sBrC(t, ['#2a5739']);
-  sBkC(t, '#427057');
-  sBrR(t, [15,15,0,0]);
-  sPar(t,o);
-  o.bb = new xDiv();
-  sBrW(o.bb, [2]);
-  sBrC(o.bb, ['#2a5739']);
-  sBrR(o.bb, [0,0,15,15]);
-  sBkL(o.bb,87,'#98d9b5 10%, #6fab8a 70%');
-  sPar(o.bb,o);
-  o.g1=new xDiv();
-  sPar(o.g1,o.bb);
-  o.l1=new xLab();
-  sFtA(o.l1,'center');
-  sPar(o.l1,o.bb);
-  o.l2=new xLab();
-  sFtA(o.l2,'center');
-  sPar(o.l2,o.bb);
-  o.eRes=function(){
-    so = gSiz(o);
-    w=so[0];h=so[1];
-    move(t,[0,0,w,40]);
-    move(o.bb,[0,40,w,h-40]);
-    h-=40;
-    move(o.g1,[-1,-1,w,h/2]);
-    move(o.l1,[0,h*.1,w,h*.36]);
-    move(o.l2,[0,h*.5,w,h*.36]);
+    gfx01.options.data[0].dataPoints=gfx01_d1;
+    gfx01.options.data[1].dataPoints=gfx01_d2;
+    gfx01.render();
+    gfx02.options.title.text='QUARTER '+data.q_name; 
+    gfx02.options.data[0].dataPoints=[{y:data.q_elapsed}];
+    gfx02.options.data[1].dataPoints=[{y:data.q_remaining}];
+    gfx02.render();
     }
-  sTrx(o,'all 1s')
-  return o;
-}
+  document.head.appendChild(js);    
+  }
 
 window.onload=function(){
-  blk1 = new xBlk2l();
-  move(blk1,[-200,-200,250,150]);
-  sPar(blk1,0);
-  sTxt(blk1.header,"WORKABLE");
-  blk2 = new xBlk2l();
-  move(blk2,[-200,-200,250,150]);
-  sPar(blk2,0);
-  sTxt(blk2.header,"MACHINING WORKABLE");
   g01 = new xDiv()
   move(g01,[50,250,450,250]);
   sBrW(g01,[4]);
@@ -108,7 +55,7 @@ window.onload=function(){
     ]
   });
   g02 = new xDiv()
-  move(g02,[50,450,450,250]);
+  move(g02,[450,50,450,250]);
   sBrW(g02,[4]);
   sBrC(g02,['#dfe']);
   sBrR(g02,[5]);
@@ -141,16 +88,8 @@ window.onload=function(){
     ]
   });  
   loadData();  
-  setTimeout(function(){
-    move(blk1,[50,50,250,150]);
-    move(blk2,[400,50,250,150]);
-    },1);
 }
-/*
-setTimeout(function(){
-  sOpa(blk1, 0);
-  },2000);
-*/  
+ 
 </script>
 </head>
 <body style="background-color:#222">
