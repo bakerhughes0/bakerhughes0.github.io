@@ -20,6 +20,9 @@ function loadData(){
     gfx03.options.data[0].dataPoints=gfx03_d1;
     gfx03.options.data[1].dataPoints=gfx03_d2;
     gfx03.render();
+    gfx04.options.data[0].dataPoints=gfx04_d1;
+    gfx04.options.data[1].dataPoints=gfx04_d2;
+    gfx04.render();
     }
   document.head.appendChild(js);    
   }
@@ -100,6 +103,41 @@ window.onload=function(){
   animationEnabled: true,
   animationDuration: 2500,
   title: {text: "TOP 5 WORKCENTERS LOAD", fontColor:"#ddd"},
+  backgroundColor: "#427057",
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    fontSize: 14,
+    fontColor: "#eee",
+    },
+  axisX:{
+    lineColor:'#ccc', lineThickness: 1,
+    labelFontColor: "#eee",
+    labelFontSize: 10,
+    },
+  axisY:{
+    title:"Std hours",
+    titleFontColor: "#eee",
+    lineColor:'#ccc', lineThickness: 1,
+    gridColor:'#ccc', gridThickness: 1,
+    labelFontColor: "#eee",
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "bar",  showInLegend: true, name: "Workable", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "stackedBar",  showInLegend: true, name: "Overdue", indexLabelFontColor:'#eee', color: "#C44", dataPoints: [] },
+    ]
+  });  
+  g04 = new xDiv()
+  move(g04,[1050,350,450,250]);
+  sBrW(g04,[4]);
+  sBrC(g04,['#dfe']);
+  sBrR(g04,[5]);
+  sPar(g04,0);
+  gfx04 = new CanvasJS.Chart(g04, {
+  animationEnabled: true,
+  animationDuration: 2500,
+  title: {text: "TOP 5 WORKCENTERS LATE", fontColor:"#ddd"},
   backgroundColor: "#427057",
   legend: {
     horizontalAlign: "center",
