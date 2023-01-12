@@ -60,8 +60,8 @@ window.onload=function(){
     },
   toolTip: {shared: true},
   data: [              
-    { type: "column", legendText: "Workable", color: "#8b9", showInLegend: true, dataPoints: [] },
-    { type: "stackedColumn", legendText: "Overdue", color: "#C44", showInLegend: true, dataPoints: [] }
+    { type: "column", name: "Workable", color: "#8b9", showInLegend: true, dataPoints: [] },
+    { type: "stackedColumn", name: "Overdue", color: "#C44", showInLegend: true, dataPoints: [] }
     ]
   });
   g02 = new xDiv()
@@ -196,7 +196,7 @@ window.onload=function(){
     },
   toolTip: {shared: true},
   data: [              
-    { type: "line", name: "Target", lineDashType: "dash", color: "#da0", showInLegend: true, dataPoints: [] },
+    { type: "line", name: "Target", legendText: "Target (7000 h)", lineDashType: "dash", color: "#da0", showInLegend: true, dataPoints: [] },
     { type: "line", name:"Done",  color:"#8b9", showInLegend: true, dataPoints: [] }
     ]
   });
