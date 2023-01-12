@@ -163,6 +163,39 @@ window.onload=function(){
     { type: "stackedBar",  showInLegend: true, name: "Overdue", indexLabelFontColor:'#eee', color: "#C44", dataPoints: [] },
     ]
   });  
+  g05 = new xDiv()
+  move(g05,[550,350,450,250]);
+  sBrW(g05,[4]);
+  sBrC(g05,['#dfe']);
+  sBrR(g05,[5]);
+  sPar(g05,0);
+  gfx05 = new CanvasJS.Chart(g05, {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "MACHINING COMPLETION", fontColor:"#ddd"},
+  backgroundColor: "#427057",
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    fontSize: 14,
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Standard hours",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -28,
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "line", name: "Target", color: "#da0", showInLegend: true, dataPoints: [] },
+    { type: "line", name:"Done",  color:"#8b9", showInLegend: true, dataPoints: [] }
+    ]
+  });
   loadData();  
 }
  
