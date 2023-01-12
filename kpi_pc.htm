@@ -227,7 +227,7 @@ window.onload=function(){
     interval: 1,
     labelAngle: -28,
     },
-  toolTip: {shared: true},
+  toolTip: {shared: true, content: toolTipContent6},
   data: [              
     { type: "stackedColumn", name: "Mon", color: "#8b9", dataPoints: [] },
     { type: "stackedColumn", name: "Tue", color: "#8b7", dataPoints: [] },
@@ -238,7 +238,22 @@ window.onload=function(){
   });  
   loadData();  
 }
- 
+
+function toolTipContent6(e) {
+	var str = "";
+	var total = 0;
+	var str2, str3;
+	for (var i = 0; i < e.entries.length; i++){
+		var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+e.entries[i].dataPoint.y+"</strong><br/>";
+		total = e.entries[i].dataPoint.y + total;
+		str = str.concat(str1);
+	  }
+	str2 = "<span style = \"color:DodgerBlue;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
+	total = Math.round(total * 100) / 100;
+	str3 = "<span style = \"color:Tomato\">Total:</span><strong> "+total+"</strong><br/>";
+	return (str2.concat(str)).concat(str3);
+  }  
+  
 </script>
 </head>
 <body style="background-color:#222">
