@@ -58,6 +58,7 @@ window.onload=function(){
     interval: 1,
     labelAngle: -28,
     },
+  toolTip: {shared: true},
   data: [              
     { type: "column", legendText: "Workable", color: "#8b9", showInLegend: true, dataPoints: [] },
     { type: "stackedColumn", legendText: "Overdue", color: "#C44", showInLegend: true, dataPoints: [] }
@@ -174,7 +175,7 @@ window.onload=function(){
   sPar(g05,0);
   gfx05 = new CanvasJS.Chart(g05, {
   animationEnabled: true,
-  animationDuration: 2500,
+  animationDuration: 1500,
   title: {text: "MACHINING COMPLETION", fontColor:"#ddd"},
   backgroundColor: "#427057",
   legend: {
