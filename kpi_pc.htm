@@ -12,19 +12,19 @@ function loadData(){
   js.onload = function(){ 
     gfx01.options.data[0].dataPoints=gfx01_d1;
     gfx01.options.data[1].dataPoints=gfx01_d2;
-    gfx01.render();
     gfx02.options.title.text='QUARTER '+data.q_name; 
     gfx02.options.data[0].dataPoints=[{y:data.q_elapsed}];
     gfx02.options.data[1].dataPoints=[{y:data.q_remaining}];
-    gfx02.render();
     gfx03.options.data[0].dataPoints=gfx03_d1;
     gfx03.options.data[1].dataPoints=gfx03_d2;
-    gfx03.render();
     gfx04.options.data[0].dataPoints=gfx04_d1;
     gfx04.options.data[1].dataPoints=gfx04_d2;
-    gfx04.render();
     gfx05.options.data[0].dataPoints=gfx05_d1;
     gfx05.options.data[1].dataPoints=gfx05_d2;
+    gfx01.render();    
+    gfx02.render();
+    gfx03.render();
+    gfx04.render();
     gfx05.render();
     }
   document.head.appendChild(js);    
@@ -200,6 +200,42 @@ window.onload=function(){
     { type: "line", name:"Done",  color:"#8b9", showInLegend: true, dataPoints: [] }
     ]
   });
+  g06 = new xDiv()
+  move(g06,[50,350,450,250]);
+  sBrW(g06,[4]);
+  sBrC(g06,['#dfe']);
+  sBrR(g06,[5]);
+  sPar(g06,0);
+  gfx06 = new CanvasJS.Chart(g06, {
+  animationEnabled: true,
+  animationDuration: 2500,
+  title: {text: "MACHINING COMPLETION", fontColor:"#ddd"},
+  backgroundColor: "#427057",
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    fontSize: 14,
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Standard hours",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -28,
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8b9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#8b7", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8b5",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#8b3", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
+    ]
+  });  
   loadData();  
 }
  
