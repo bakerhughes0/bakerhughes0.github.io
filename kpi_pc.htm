@@ -38,7 +38,7 @@ function loadData(){
 
 window.onload=function(){
   g01 = new xDiv()
-  move(g01,[50,50,450,250]);
+  move(g01,[550,50,450,250]);
   sBrW(g01,[4]);
   sBrC(g01,['#dfe']);
   sBrR(g01,[5]);
@@ -55,7 +55,7 @@ window.onload=function(){
     fontColor: "#eee"
     },
   axisY:{
-    title: "Std hours",
+    title: "Standard hours",
     titleFontColor: "#eee",
     labelFontColor: "#eee",
     },
@@ -71,7 +71,7 @@ window.onload=function(){
     ]
   });
   g02 = new xDiv()
-  move(g02,[550,50,450,250]);
+  move(g02,[50,50,450,250]);
   sBrW(g02,[4]);
   sBrC(g02,['#dfe']);
   sBrR(g02,[5]);
@@ -134,7 +134,7 @@ window.onload=function(){
     },
   toolTip: {shared: true},
   data: [              
-    { type: "bar",  showInLegend: true, name: "Workable", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "bar", showInLegend: true, name: "Workable", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
     { type: "stackedBar",  showInLegend: true, name: "Overdue", indexLabelFontColor:'#eee', color: "#C44", dataPoints: [] },
     ]
   });  
