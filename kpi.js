@@ -13,3 +13,4 @@ gfx06_d3 = [{y:143.414},{y:222.917},];
 gfx06_d4 = [{y:64.868},{y:125.13},];
 gfx06_d5 = [{y:111.431},{y:82.619},];
 gfx07_d1 = [{label:'0210. CAZENEUVE OPTIMAX 720', y:86.76},{label:'0207. MONFORTS KNC5', y:77.05},{label:'1003. CONTROLE QUALITE', y:76.062},{label:'0248. CU MANDELLI 7', y:69.333},{label:'0226. CTX 600 PR.ATE', y:65.375},];
+
