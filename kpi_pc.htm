@@ -26,12 +26,14 @@ function loadData(){
     gfx06.options.data[2].dataPoints=gfx06_d3;
     gfx06.options.data[3].dataPoints=gfx06_d4;
     gfx06.options.data[4].dataPoints=gfx06_d5;
+    gfx07.options.data[0].dataPoints=gfx07_d1;
     gfx01.render();    
     gfx02.render();
     gfx03.render();
     gfx04.render();
     gfx05.render();
     gfx06.render();
+    gfx07.render();
     }
   document.head.appendChild(js);    
   }
@@ -242,6 +244,41 @@ window.onload=function(){
     { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
     ]
   });  
+  g07 = new xDiv()
+  move(g07,[1050,350,450,250]);
+  sBrW(g07,[4]);
+  sBrC(g07,['#dfe']);
+  sBrR(g07,[5]);
+  sPar(g07,0);
+  gfx07 = new CanvasJS.Chart(g07, {
+  animationEnabled: true,
+  animationDuration: 2500,
+  title: {text: "TOP 5 WORKCENTERS HOURS", fontColor:"#ddd"},
+  backgroundColor: "#427057",
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    fontSize: 14,
+    fontColor: "#eee",
+    },
+  axisX:{
+    lineColor:'#ccc', lineThickness: 1,
+    labelFontColor: "#eee",
+    labelFontSize: 12,
+    },
+  axisY:{
+    title:"Standard hours",titleFontSize:14,
+    titleFontColor: "#eee",
+    lineColor:'#ccc', lineThickness: 1,
+    gridColor:'#ccc', gridThickness: 1,
+    labelFontColor: "#eee",
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "bar", showInLegend: true, name: "Completed", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    ]
+  });  
+
   loadData();  
 }
 
