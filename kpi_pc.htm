@@ -254,7 +254,7 @@ window.onload=function(){
   gfx07 = new CanvasJS.Chart(g07, {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "TOP 10 WORKCENTERS HOURS", fontColor:"#ddd"},
+  title: {text: "TOP 10 MACHINING WC HOURS", fontColor:"#ddd"},
   backgroundColor: "#427057",
   legend: {
     horizontalAlign: "center",
@@ -269,7 +269,7 @@ window.onload=function(){
 	  interval: 1,
     },
   axisY:{
-    title:"Standard hours",titleFontSize:14,
+    title:"Quarter Standard hours",titleFontSize:14,
     titleFontColor: "#eee",
     lineColor:'#ccc', lineThickness: 1,
     gridColor:'#ccc', gridThickness: 1,
@@ -277,7 +277,7 @@ window.onload=function(){
     },
   toolTip: {shared: true},
   data: [              
-    { type: "bar", showInLegend: true, name: "Quarter Completion", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "bar", name: "Quarter Completion", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
     ]
   });  
 
