@@ -182,7 +182,7 @@ window.onload=function(){
   gfx05 = new CanvasJS.Chart(g05, {
   animationEnabled: true,
   animationDuration: 1500,
-  title: {text: "MACHINING COMPLETION", fontColor:"#ddd"},
+  title: {text: "MACHINING QUARTER TARGET", fontColor:"#ddd"},
   backgroundColor: "#427057",
   legend: {
     horizontalAlign: "center",
@@ -203,7 +203,7 @@ window.onload=function(){
   toolTip: {shared: true},
   data: [              
     { type: "line", name: "Target", legendText: "Target (7000 h)", lineDashType: "dash", color: "#da0", showInLegend: true, dataPoints: [] },
-    { type: "line", name:"Done",  color:"#8b9", showInLegend: true, dataPoints: [] }
+    { type: "line", name:"Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
     ]
   });
   g06 = new xDiv()
@@ -215,7 +215,7 @@ window.onload=function(){
   gfx06 = new CanvasJS.Chart(g06, {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "MACHINING COMPLETION", fontColor:"#ddd"},
+  title: {text: "MACHINING WEEK COMPLETION", fontColor:"#ddd"},
   backgroundColor: "#427057",
   legend: {
     horizontalAlign: "center",
