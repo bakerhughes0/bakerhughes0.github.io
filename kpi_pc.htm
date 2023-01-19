@@ -139,7 +139,7 @@ window.onload=function(){
   gfx03 = new CanvasJS.Chart(g03, {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "TOP 5 WORKCENTERS LOAD", fontColor:"#ddd"},
+  title: {text: "TOP 10 WORKCENTERS LOAD", fontColor:"#ddd"},
   backgroundColor: "#427057",
   legend: {
     horizontalAlign: "center",
@@ -151,6 +151,7 @@ window.onload=function(){
     lineColor:'#ccc', lineThickness: 1,
     labelFontColor: "#eee",
     labelFontSize: 12,
+    interval: 1,
     },
   axisY:{
     title:"Standard hours",titleFontSize:14,
@@ -174,7 +175,7 @@ window.onload=function(){
   gfx04 = new CanvasJS.Chart(g04, {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "TOP 5 WORKCENTERS LATE", fontColor:"#ddd"},
+  title: {text: "TOP 10 WORKCENTERS LATE", fontColor:"#ddd"},
   backgroundColor: "#427057",
   legend: {
     horizontalAlign: "center",
@@ -186,6 +187,7 @@ window.onload=function(){
     lineColor:'#ccc', lineThickness: 1,
     labelFontColor: "#eee",
     labelFontSize: 12,
+    interval: 1,
     },
   axisY:{
     title:"Standard hours",titleFontSize:14,
@@ -290,7 +292,7 @@ window.onload=function(){
     lineColor:'#ccc', lineThickness: 1,
     labelFontColor: "#eee",
     labelFontSize: 12,
-	  interval: 1,
+    interval: 1,
     },
   axisY:{
     title:"Quarter Standard hours",titleFontSize:14,
