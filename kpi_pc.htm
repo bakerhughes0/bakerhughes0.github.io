@@ -47,6 +47,8 @@ function loadData(){
     gfx11.options.data[2].dataPoints=gfx11_d3;
     gfx11.options.data[3].dataPoints=gfx11_d4;
     gfx11.options.data[4].dataPoints=gfx11_d5;
+    gfx12.options.data[0].dataPoints=[{y:45},{y:55},{y:65},{y:118},{y:187},{y:2325},{y:278},{y:331},{y:378},{y:429},{y:461},{y:468},{y:475},].slice(0,gfx12_d2.length);
+    gfx12.options.data[1].dataPoints=gfx12_d2;
     gfx01.render();    
     gfx02.render();
     gfx03.render();
@@ -58,14 +60,15 @@ function loadData(){
     gfx09.render();
     gfx10.render();
     gfx11.render();
+    gfx12.render();
     }
   document.head.appendChild(js);    
   }
 
 window.onload=function(){
   sBkL(document.body,100,'#243 30%, #222 100%');
-  g01 = new xDiv()
-  move(g01,[500,50,450,250]);
+  g01 = new xDiv();	g01.id="g01"
+  move(g01,[500,40,450,250]);
   sBrW(g01,[4]);
   sBrC(g01,['#dfe']);
   sBrR(g01,[5]);
@@ -97,8 +100,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Overdue", color: "#C44", showInLegend: true, dataPoints: [] }
     ]
   });
-  g02 = new xDiv()
-  move(g02,[30,50,450,250]);
+  g02 = new xDiv(); g02.id="g02"
+  move(g02,[30,40,450,250]);
   sBrW(g02,[4]);
   sBrC(g02,['#dfe']);
   sBrR(g02,[5]);
@@ -130,8 +133,8 @@ window.onload=function(){
     { type: "stackedBar100",  showInLegend: true, name: "Remaining", indexLabelFontColor:'#eee', color:"#ddd", dataPoints: [] },
     ]
   });  
-  g03 = new xDiv()
-  move(g03,[970,50,450,250]);
+  g03 = new xDiv(); g03.id="g03"
+  move(g03,[970,40,450,250]);
   sBrW(g03,[4]);
   sBrC(g03,['#dfe']);
   sBrR(g03,[5]);
@@ -166,8 +169,8 @@ window.onload=function(){
     { type: "stackedBar",  showInLegend: true, name: "Overdue", indexLabelFontColor:'#eee', color: "#C44", dataPoints: [] },
     ]
   });  
-  g04 = new xDiv()
-  move(g04,[1440,50,450,250]);
+  g04 = new xDiv(); g04.id="g04"
+  move(g04,[1440,40,450,250]);
   sBrW(g04,[4]);
   sBrC(g04,['#dfe']);
   sBrR(g04,[5]);
@@ -202,8 +205,8 @@ window.onload=function(){
     { type: "stackedBar",  showInLegend: true, name: "Overdue", indexLabelFontColor:'#eee', color: "#C44", dataPoints: [] },
     ]
   });  
-  g05 = new xDiv()
-  move(g05,[500,350,450,250]);
+  g05 = new xDiv(); g05.id="g05"
+  move(g05,[500,300,450,250]);
   sBrW(g05,[4]);
   sBrC(g05,['#dfe']);
   sBrR(g05,[5]);
@@ -235,8 +238,8 @@ window.onload=function(){
     { type: "line", name:"Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
     ]
   });
-  g06 = new xDiv()
-  move(g06,[30,350,450,250]);
+  g06 = new xDiv(); g06.id="g06"
+  move(g06,[30,300,450,250]);
   sBrW(g06,[4]);
   sBrC(g06,['#dfe']);
   sBrR(g06,[5]);
@@ -271,8 +274,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
     ]
   });  
-  g07 = new xDiv()
-  move(g07,[970,350,450,250]);
+  g07 = new xDiv(); g07.id="g07"
+  move(g07,[970,300,450,250]);
   sBrW(g07,[4]);
   sBrC(g07,['#dfe']);
   sBrR(g07,[5]);
@@ -306,8 +309,8 @@ window.onload=function(){
     { type: "bar", name: "Quarter Completion", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
     ]
   });  
-  g08 = new xDiv()
-  move(g08,[30,650,450,250]);
+  g08 = new xDiv(); g08.id="g08"
+  move(g08,[30,560,450,250]);
   sBrW(g08,[4]);
   sBrC(g08,['#dfe']);
   sBrR(g08,[5]);
@@ -336,8 +339,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
     ]
   });
-g09 = new xDiv()
-  move(g09,[500,650,450,250]);
+g09 = new xDiv(); g09.id="g09"
+  move(g09,[500,560,450,250]);
   sBrW(g09,[4]);
   sBrC(g09,['#dfe']);
   sBrR(g09,[5]);
@@ -366,8 +369,8 @@ g09 = new xDiv()
     { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
     ]
   });
-  g10 = new xDiv()
-  move(g10,[970,650,450,250]);
+  g10 = new xDiv(); g10.id="g10"
+  move(g10,[970,560,450,250]);
   sBrW(g10,[4]);
   sBrC(g10,['#dfe']);
   sBrR(g10,[5]);
@@ -396,8 +399,8 @@ g09 = new xDiv()
     { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
     ]
   });
-  g11 = new xDiv()
-  move(g11,[1440,650,450,250]);
+  g11 = new xDiv(); g11.id="g11"
+  move(g11,[1440,560,450,250]);
   sBrW(g11,[4]);
   sBrC(g11,['#dfe']);
   sBrR(g11,[5]);
@@ -426,7 +429,39 @@ g09 = new xDiv()
     { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
     ]
   });
-  loadData();  
+  g12 = new xDiv(); g12.id="g12"
+  move(g12,[30,820,450,250]);
+  sBrW(g12,[4]);
+  sBrC(g12,['#dfe']);
+  sBrR(g12,[5]);
+  sPar(g12,0);
+  gfx12 = new CanvasJS.Chart(g12, {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "CAMFLEX QUARTER TARGET", fontColor:"#ddd"},
+  backgroundColor: "#427057",
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    fontSize: 14,
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Standard hours",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -28,
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#da0", showInLegend: true, dataPoints: [] },
+    { type: "line", name:"Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
+    ]
+  });  loadData();  
 }
 
 function toolTipContent6(e) {
