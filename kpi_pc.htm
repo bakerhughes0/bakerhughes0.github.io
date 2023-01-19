@@ -68,13 +68,16 @@ function loadData(){
   }
 
 window.onload=function(){
-  sBkL(document.body,100,'#243 30%, #222 100%');
+	page = new xDiv();
+  move(page,[0,0,1920,1080]);
+  sBkL(page,100,'#243 30%, #222 100%');
+  
   g01 = new xDiv();	g01.id="g01"
   move(g01,[500,40,450,250]);
   sBrW(g01,[4]);
   sBrC(g01,['#dfe']);
   sBrR(g01,[5]);
-  sPar(g01,0);
+  sPar(g01,page);
   gfx01 = new CanvasJS.Chart(g01, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -107,7 +110,7 @@ window.onload=function(){
   sBrW(g02,[4]);
   sBrC(g02,['#dfe']);
   sBrR(g02,[5]);
-  sPar(g02,0);
+  sPar(g02,page);
   gfx02 = new CanvasJS.Chart(g02, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -140,7 +143,7 @@ window.onload=function(){
   sBrW(g03,[4]);
   sBrC(g03,['#dfe']);
   sBrR(g03,[5]);
-  sPar(g03,0);
+  sPar(g03,page);
   gfx03 = new CanvasJS.Chart(g03, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -176,7 +179,7 @@ window.onload=function(){
   sBrW(g04,[4]);
   sBrC(g04,['#dfe']);
   sBrR(g04,[5]);
-  sPar(g04,0);
+  sPar(g04,page);
   gfx04 = new CanvasJS.Chart(g04, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -212,7 +215,7 @@ window.onload=function(){
   sBrW(g05,[4]);
   sBrC(g05,['#dfe']);
   sBrR(g05,[5]);
-  sPar(g05,0);
+  sPar(g05,page);
   gfx05 = new CanvasJS.Chart(g05, {
   animationEnabled: true,
   animationDuration: 1500,
@@ -245,7 +248,7 @@ window.onload=function(){
   sBrW(g06,[4]);
   sBrC(g06,['#dfe']);
   sBrR(g06,[5]);
-  sPar(g06,0);
+  sPar(g06,page);
   gfx06 = new CanvasJS.Chart(g06, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -281,7 +284,7 @@ window.onload=function(){
   sBrW(g07,[4]);
   sBrC(g07,['#dfe']);
   sBrR(g07,[5]);
-  sPar(g07,0);
+  sPar(g07,page);
   gfx07 = new CanvasJS.Chart(g07, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -316,7 +319,7 @@ window.onload=function(){
   sBrW(g08,[4]);
   sBrC(g08,['#dfe']);
   sBrR(g08,[5]);
-  sPar(g08,0);
+  sPar(g08,page);
   gfx08 = new CanvasJS.Chart(g08, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -346,7 +349,7 @@ g09 = new xDiv(); g09.id="g09"
   sBrW(g09,[4]);
   sBrC(g09,['#dfe']);
   sBrR(g09,[5]);
-  sPar(g09,0);
+  sPar(g09,page);
   gfx09 = new CanvasJS.Chart(g09, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -376,7 +379,7 @@ g09 = new xDiv(); g09.id="g09"
   sBrW(g10,[4]);
   sBrC(g10,['#dfe']);
   sBrR(g10,[5]);
-  sPar(g10,0);
+  sPar(g10,page);
   gfx10 = new CanvasJS.Chart(g10, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -406,7 +409,7 @@ g09 = new xDiv(); g09.id="g09"
   sBrW(g11,[4]);
   sBrC(g11,['#dfe']);
   sBrR(g11,[5]);
-  sPar(g11,0);
+  sPar(g11,page);
   gfx11 = new CanvasJS.Chart(g11, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -436,7 +439,7 @@ g09 = new xDiv(); g09.id="g09"
   sBrW(g12,[4]);
   sBrC(g12,['#dfe']);
   sBrR(g12,[5]);
-  sPar(g12,0);
+  sPar(g12,page);
   gfx12 = new CanvasJS.Chart(g12, {
   animationEnabled: true,
   animationDuration: 1500,
@@ -469,7 +472,7 @@ g09 = new xDiv(); g09.id="g09"
   sBrW(g13,[4]);
   sBrC(g13,['#dfe']);
   sBrR(g13,[5]);
-  sPar(g13,0);
+  sPar(g13,page);
   gfx13 = new CanvasJS.Chart(g13, {
   animationEnabled: true,
   animationDuration: 1500,
