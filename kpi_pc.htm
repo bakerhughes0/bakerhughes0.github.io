@@ -37,6 +37,16 @@ function loadData(){
     gfx09.options.data[2].dataPoints=gfx09_d3;
     gfx09.options.data[3].dataPoints=gfx09_d4;
     gfx09.options.data[4].dataPoints=gfx09_d5;
+    gfx10.options.data[0].dataPoints=gfx10_d1;
+    gfx10.options.data[1].dataPoints=gfx10_d2;
+    gfx10.options.data[2].dataPoints=gfx10_d3;
+    gfx10.options.data[3].dataPoints=gfx10_d4;
+    gfx10.options.data[4].dataPoints=gfx10_d5;
+    gfx11.options.data[0].dataPoints=gfx11_d1;
+    gfx11.options.data[1].dataPoints=gfx11_d2;
+    gfx11.options.data[2].dataPoints=gfx11_d3;
+    gfx11.options.data[3].dataPoints=gfx11_d4;
+    gfx11.options.data[4].dataPoints=gfx11_d5;
     gfx01.render();    
     gfx02.render();
     gfx03.render();
@@ -46,6 +56,8 @@ function loadData(){
     gfx07.render();
     gfx08.render();
     gfx09.render();
+    gfx10.render();
+    gfx11.render();
     }
   document.head.appendChild(js);    
   }
@@ -332,6 +344,66 @@ g09 = new xDiv()
   animationEnabled: true,
   animationDuration: 2500,
   title: {text: "PRODUCTION VARIPAK", fontColor:"#ddd"},
+  backgroundColor: "#427057",
+  axisY:{
+    title: "Quantity",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -28,
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8b9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#8b7", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8b5",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#8b3", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
+    ]
+  });
+  g10 = new xDiv()
+  move(g10,[970,650,450,250]);
+  sBrW(g10,[4]);
+  sBrC(g10,['#dfe']);
+  sBrR(g10,[5]);
+  sPar(g10,0);
+  gfx10 = new CanvasJS.Chart(g10, {
+  animationEnabled: true,
+  animationDuration: 2500,
+  title: {text: "PRODUCTION GLOBES", fontColor:"#ddd"},
+  backgroundColor: "#427057",
+  axisY:{
+    title: "Quantity",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -28,
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8b9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#8b7", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8b5",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#8b3", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
+    ]
+  });
+  g11 = new xDiv()
+  move(g11,[1440,650,450,250]);
+  sBrW(g11,[4]);
+  sBrC(g11,['#dfe']);
+  sBrR(g11,[5]);
+  sPar(g11,0);
+  gfx11 = new CanvasJS.Chart(g11, {
+  animationEnabled: true,
+  animationDuration: 2500,
+  title: {text: "PRODUCTION GLOBES", fontColor:"#ddd"},
   backgroundColor: "#427057",
   axisY:{
     title: "Quantity",
