@@ -47,8 +47,10 @@ function loadData(){
     gfx11.options.data[2].dataPoints=gfx11_d3;
     gfx11.options.data[3].dataPoints=gfx11_d4;
     gfx11.options.data[4].dataPoints=gfx11_d5;
-    gfx12.options.data[0].dataPoints=[{y:45},{y:55},{y:65},{y:118},{y:187},{y:2325},{y:278},{y:331},{y:378},{y:429},{y:461},{y:468},{y:475},].slice(0,gfx12_d2.length);
+    gfx12.options.data[0].dataPoints=[{y:45},{y:55},{y:65},{y:118},{y:187},{y:232},{y:278},{y:331},{y:378},{y:429},{y:461},{y:468},{y:475},].slice(0,gfx12_d2.length);
     gfx12.options.data[1].dataPoints=gfx12_d2;
+    gfx13.options.data[0].dataPoints=[{y:19},{y:51},{y:73},{y:79},{y:88},{y:89},{y:99},{y:118},{y:132},{y:145},{y:146},{y:152},{y:154},].slice(0,gfx13_d2.length);
+    gfx13.options.data[1].dataPoints=gfx13_d2;
     gfx01.render();    
     gfx02.render();
     gfx03.render();
@@ -447,7 +449,7 @@ g09 = new xDiv(); g09.id="g09"
     fontColor: "#eee"
     },
   axisY:{
-    title: "Standard hours",
+    title: "Quantity",
     titleFontColor: "#eee",
     labelFontColor: "#eee",
     },
@@ -461,7 +463,41 @@ g09 = new xDiv(); g09.id="g09"
     { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#da0", showInLegend: true, dataPoints: [] },
     { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
     ]
-  });  loadData();  
+  	});
+  g13 = new xDiv(); g13.id="g13"
+  move(g13,[500,820,450,250]);
+  sBrW(g13,[4]);
+  sBrC(g13,['#dfe']);
+  sBrR(g13,[5]);
+  sPar(g13,0);
+  gfx13 = new CanvasJS.Chart(g13, {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "VARIPAK QUARTER TARGET", fontColor:"#ddd"},
+  backgroundColor: "#427057",
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    fontSize: 14,
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Quantity",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -28,
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#da0", showInLegend: true, dataPoints: [] },
+    { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
+    ]
+  	});  
+  loadData();  
 }
 
 function toolTipContent6(e) {
