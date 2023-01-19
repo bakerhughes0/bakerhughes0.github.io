@@ -27,6 +27,11 @@ function loadData(){
     gfx06.options.data[3].dataPoints=gfx06_d4;
     gfx06.options.data[4].dataPoints=gfx06_d5;
     gfx07.options.data[0].dataPoints=gfx07_d1.reverse();
+    gfx08.options.data[0].dataPoints=gfx08_d1;
+    gfx08.options.data[1].dataPoints=gfx08_d2;
+    gfx08.options.data[2].dataPoints=gfx08_d3;
+    gfx08.options.data[3].dataPoints=gfx08_d4;
+    gfx08.options.data[4].dataPoints=gfx08_d5;
     gfx01.render();    
     gfx02.render();
     gfx03.render();
@@ -34,6 +39,7 @@ function loadData(){
     gfx05.render();
     gfx06.render();
     gfx07.render();
+    gfx08.render();
     }
   document.head.appendChild(js);    
   }
@@ -280,7 +286,36 @@ window.onload=function(){
     { type: "bar", name: "Quarter Completion", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
     ]
   });  
-
+	g08 = new xDiv()
+	move(g08,[50,50,450,250]);
+	sBrW(g08,[4]);
+	sBrC(g08,['#dfe']);
+	sBrR(g08,[5]);
+	sPar(g08,0);
+	gfx08 = new CanvasJS.Chart(g08, {
+	animationEnabled: true,
+	animationDuration: 2500,
+	title: {text: "PRODUCTION CAMFLEX", fontColor:"#ddd"},
+	backgroundColor: "#427057",
+	axisY:{
+	  title: "Quantity",
+	  titleFontColor: "#eee",
+	  labelFontColor: "#eee",
+	  },
+	axisX:{
+	  labelFontColor: "#eee",
+	  interval: 1,
+	  labelAngle: -28,
+	  },
+	toolTip: {shared: true, content: toolTipContent6},
+	data: [              
+	  { type: "stackedColumn", name: "Mon", color: "#8b9", dataPoints: [] },
+	  { type: "stackedColumn", name: "Tue", color: "#8b7", dataPoints: [] },
+	  { type: "stackedColumn", name: "Wed", color: "#8b5",  dataPoints: [] },
+	  { type: "stackedColumn", name: "Thu", color: "#8b3", dataPoints: [] },
+	  { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
+	  ]
+	});
   loadData();  
 }
 
