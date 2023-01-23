@@ -51,6 +51,10 @@ function loadData(){
     gfx12.options.data[1].dataPoints=gfx12_d2;
     gfx13.options.data[0].dataPoints=[{y:19},{y:51},{y:73},{y:79},{y:88},{y:89},{y:99},{y:118},{y:132},{y:145},{y:146},{y:152},{y:154},].slice(0,gfx13_d2.length);
     gfx13.options.data[1].dataPoints=gfx13_d2;
+    gfx14.options.data[0].dataPoints=[{y:5},{y:12},{y:22},{y:39},{y:46},{y:52},{y:57},{y:71},{y:83},{y:103},{y:115},{y:139},{y:144},].slice(0,gfx14_d2.length);
+    gfx14.options.data[1].dataPoints=gfx14_d2;
+    gfx15.options.data[0].dataPoints=[{y:6},{y:11},{y:28},{y:42},{y:55},{y:72},{y:92},{y:98},{y:102},{y:111},{y:140},{y:151},{y:152},].slice(0,gfx15_d2.length);
+    gfx15.options.data[1].dataPoints=gfx15_d2;
     gfx01.render();    
     gfx02.render();
     gfx03.render();
@@ -501,7 +505,73 @@ g09 = new xDiv(); g09.id="g09"
     { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#da0", showInLegend: true, dataPoints: [] },
     { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
     ]
-  	});  
+  	});
+  g14 = new xDiv(); g14.id="g14"
+  move(g14,[970,820,450,250]);
+  sBrW(g14,[4]);
+  sBrC(g14,['#dfe']);
+  sBrR(g14,[5]);
+  sPar(g14,page);
+  gfx14 = new CanvasJS.Chart(g14, {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "GLOBES QUARTER TARGET", fontColor:"#ddd"},
+  backgroundColor: "#427057",
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    fontSize: 14,
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Quantity",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -28,
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#da0", showInLegend: true, dataPoints: [] },
+    { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
+    ]
+  });  
+  g15 = new xDiv(); g15.id="g15"
+  move(g15,[1440,820,450,250]);
+  sBrW(g15,[4]);
+  sBrC(g15,['#dfe']);
+  sBrR(g15,[5]);
+  sPar(g15,page);
+  gfx15 = new CanvasJS.Chart(g15, {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "LEVELS QUARTER TARGET", fontColor:"#ddd"},
+  backgroundColor: "#427057",
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    fontSize: 14,
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Quantity",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -28,
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#da0", showInLegend: true, dataPoints: [] },
+    { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
+    ]
+  }); 
   loadData();  
 }
 
