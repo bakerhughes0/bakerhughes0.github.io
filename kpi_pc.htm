@@ -32,6 +32,8 @@ function loadData(){
     gfx08.options.data[2].dataPoints=gfx08_d3;
     gfx08.options.data[3].dataPoints=gfx08_d4;
     gfx08.options.data[4].dataPoints=gfx08_d5;
+    gfx08.options.data[5].dataPoints=[{label:'22W01',y:45},{label:'22W02',y:10},{label:'22W03',y:10},{label:'22W04',y:53},{label:'22W05',y:69},{label:'22W06',y:45},{label:'22W07',y:46},{label:'22W08',y:53},{label:'22W09',y:47},{label:'22W10',y:51},{label:'22W11',y:32},{label:'22W12',y:7},{label:'22W13',y:7},].slice(0,gfx08_d4.length+2);
+
     gfx09.options.data[0].dataPoints=gfx09_d1;
     gfx09.options.data[1].dataPoints=gfx09_d2;
     gfx09.options.data[2].dataPoints=gfx09_d3;
@@ -47,13 +49,13 @@ function loadData(){
     gfx11.options.data[2].dataPoints=gfx11_d3;
     gfx11.options.data[3].dataPoints=gfx11_d4;
     gfx11.options.data[4].dataPoints=gfx11_d5;
-    gfx12.options.data[0].dataPoints=[{y:45},{y:55},{y:65},{y:118},{y:187},{y:232},{y:278},{y:331},{y:378},{y:429},{y:461},{y:468},{y:475},].slice(0,gfx12_d2.length);
+    gfx12.options.data[0].dataPoints=[{label:'22W01',y:45},{label:'22W02',y:55},{label:'22W03',y:65},{label:'22W04',y:118},{label:'22W05',y:187},{label:'22W06',y:232},{label:'22W07',y:278},{label:'22W08',y:331},{label:'22W09',y:378},{label:'22W10',y:429},{label:'22W11',y:461},{label:'22W12',y:468},{label:'22W13',y:475},].slice(0,gfx12_d2.length+2);
     gfx12.options.data[1].dataPoints=gfx12_d2;
-    gfx13.options.data[0].dataPoints=[{y:19},{y:51},{y:73},{y:79},{y:88},{y:89},{y:99},{y:118},{y:132},{y:145},{y:146},{y:152},{y:154},].slice(0,gfx13_d2.length);
+    gfx13.options.data[0].dataPoints=[{label:'22W01',y:19},{label:'22W02',y:51},{label:'22W03',y:73},{label:'22W04',y:79},{label:'22W05',y:88},{label:'22W06',y:89},{label:'22W07',y:99},{label:'22W08',y:118},{label:'22W09',y:132},{label:'22W10',y:145},{label:'22W11',y:146},{label:'22W12',y:152},{label:'22W13',y:154},].slice(0,gfx13_d2.length+2);
     gfx13.options.data[1].dataPoints=gfx13_d2;
-    gfx14.options.data[0].dataPoints=[{y:5},{y:12},{y:19},{y:28},{y:37},{y:50},{y:65},{y:77},{y:91},{y:110},{y:126},{y:137},{y:144},].slice(0,gfx14_d2.length);
+    gfx14.options.data[0].dataPoints=[{label:'22W01',y:5},{label:'22W02',y:12},{label:'22W03',y:19},{label:'22W04',y:28},{label:'22W05',y:37},{label:'22W06',y:50},{label:'22W07',y:65},{label:'22W08',y:77},{label:'22W09',y:91},{label:'22W10',y:110},{label:'22W11',y:126},{label:'22W12',y:137},{label:'22W13',y:144},].slice(0,gfx14_d2.length+2);
     gfx14.options.data[1].dataPoints=gfx14_d2;
-    gfx15.options.data[0].dataPoints=[{y:6},{y:11},{y:28},{y:42},{y:55},{y:72},{y:92},{y:98},{y:102},{y:111},{y:140},{y:151},{y:152},].slice(0,gfx15_d2.length);
+    gfx15.options.data[0].dataPoints=[{label:'22W01',y:6},{label:'22W02',y:11},{label:'22W03',y:28},{label:'22W04',y:42},{label:'22W05',y:55},{label:'22W06',y:72},{label:'22W07',y:92},{label:'22W08',y:98},{label:'22W09',y:102},{label:'22W10',y:111},{label:'22W11',y:140},{label:'22W12',y:151},{label:'22W13',y:152},].slice(0,gfx15_d2.length+2);
     gfx15.options.data[1].dataPoints=gfx15_d2;
     gfx01.render();    
     gfx02.render();
@@ -79,7 +81,7 @@ function pageModel(n){
   var o = new xDiv();
   move(o,[1920*n,0,1920,1080]);
   sBkL(o,100,'#243 30%, #222 100%');
-  sTrx(o, 'all 1.5s');
+  sTrx(o, 'all .5s');
   sBrW(o,[1]);
   sOvf(o,'hidden');
   var l1 = new xDiv();
@@ -100,7 +102,7 @@ function pageModel(n){
   return o;
   }
 
-disptime=20000;
+disptime=15000;
 p=[]; p_idx=0;
 ctl = new xDiv();
 autoplay=1;manual=0;
@@ -157,7 +159,7 @@ window.onload=function(){
     }
   ctl.s=new xDiv();
   sBrW(ctl.s,[2]);sBrR(ctl.s,[100]);sBrC(ctl.s,['#8a9']);
-  sTrx(ctl.s, 'all 1.5s');
+  sTrx(ctl.s, 'all .5s');
   sPar(ctl.s,ctl);
   move(ctl.s,[5+30*0,5,16,16]);
   sPar(ctl,0);
@@ -412,7 +414,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Tue", color: "#8b7", dataPoints: [] },
     { type: "stackedColumn", name: "Wed", color: "#8b5",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#8b3", dataPoints: [] },
-    { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
+    { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] },
+    { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#da0", showInLegend: true, dataPoints: [] },
     ]
   });
   g09 = new gfxBlk(p[0]); g09.id="g09"
@@ -750,9 +753,13 @@ function toolTipContent6(e) {
 	var total = 0;
 	var str2, str3;
 	for (var i = 0; i < e.entries.length; i++){
+
 		var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+e.entries[i].dataPoint.y+"</strong><br/>";
-		total = e.entries[i].dataPoint.y + total;
+	  if(e.entries[i].dataSeries.name!='Target'){	
+            total = e.entries[i].dataPoint.y + total;
+            }
 		str = str.concat(str1);
+
 	  }
 	str2 = "<span style = \"color:DodgerBlue;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
 	total = Math.round(total * 100) / 100;
