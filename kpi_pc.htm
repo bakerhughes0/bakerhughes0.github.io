@@ -70,41 +70,118 @@ function loadData(){
     gfx13.render();
     gfx14.render();
     gfx15.render();
+
     }
   document.head.appendChild(js);    
   }
 
+function pageModel(n){
+  var o = new xDiv();
+  move(o,[1920*n,0,1920,1080]);
+  sBkL(o,100,'#243 30%, #222 100%');
+  sTrx(o, 'all 1.5s');
+  sBrW(o,[1]);
+  sOvf(o,'hidden');
+  var l1 = new xDiv();
+  move(l1,[1000,300,1500,200]);
+  sBrW(l1,[2]);
+  sBrC(l1,['#8a9']);
+  sBrR(l1,[100]);
+  sPar(l1,o);
+  sRot(l1,[0,0,20]);
+  l2 = new xDiv();
+  move(l2,[1000,500,1500,200]);
+  sBrW(l2,[2]);
+  sBrC(l2,['#8a9']);
+  sBrR(l2,[100]);
+  sPar(l2,o);
+  sRot(l2,[0,0,-20]);
+  sPar(o,0);  
+  return o;
+  }
+
+disptime=20000;
+p=[]; p_idx=0;
+ctl = new xDiv();
+autoplay=1;manual=0;
+
+function scrollPage(){
+  if(autoplay || manual){
+    p_idx++;
+    if(p_idx>p.length-1) p_idx=0;
+    for(var i=0;i<p.length;i++){move(p[i],[(i-p_idx)*1920,0,1920,1080]);}
+    move(ctl.s,[6+30*p_idx,6,14,14]);
+    }
+  clearTimeout(tout);
+  tout = setTimeout(scrollPage,disptime);
+  loadData(); 
+  }
+
+function gfxBlk(parent){
+  var o = new xDiv();
+  sBrW(o,[1]);
+  sBrC(o,['#486']);
+  sBrR(o,[8]);
+  sBkL(o,100,'#243 30%, #222 100%');
+  sOpa(o,.88);
+  sSiz(o,[450,240]);
+  o.onmouseover=function(){autoplay=0;}
+  o.onmouseleave=function(){autoplay=1;}
+  sPar(o,parent);
+  return o;
+  }
+
+function gfxPos(o,parent,posX,posY){
+  sPar(o,parent);
+  sPos(o, [30+470*posX,40+260*posY]);
+  }
+
+
 window.onload=function(){
-  page = new xDiv();
-  move(page,[0,0,1920,1080]);
-  sBkL(page,100,'#243 30%, #222 100%');
-  sPar(page,0);
-	sOvf(page,'hidden');
-	l1 = new xDiv();
-	  move(l1,[1000,300,1500,200]);
-	  sBrW(l1,[2]);
-	  sBrC(l1,['#8a9']);
-	  sBrR(l1,[100]);
-	  sPar(l1,page)
-	  sRot(l1,[0,0,20]);
-	l2 = new xDiv();
-	  move(l2,[1000,500,1500,200]);
-	  sBrW(l2,[2]);
-	  sBrC(l2,['#8a9']);
-	  sBrR(l2,[100]);
-	  sPar(l2,page)
-	  sRot(l2,[0,0,-20]);  
-  g01 = new xDiv();	g01.id="g01"
-  move(g01,[970,40,450,250]);
-  sBrW(g01,[4]);
-  sBrC(g01,['#dfe']);
-  sBrR(g01,[5]);
-  sPar(g01,page);
+  document.title = "Materials KPI";
+  sOvf(document.body,'hidden');
+  p[0] = new pageModel(0);
+  p[1] = new pageModel(1);
+  p[2] = new pageModel(2);
+
+  move(ctl,[scrW()/2-p.length*15,5,p.length*30,30]);
+  sBrC(ctl,['#fff']);sBrW(ctl,[2]); sBrR(ctl,[100]);sBrC(ctl,['#8a9']);
+  ctl.p=[];
+  for(var i=0;i<p.length;i++){
+    ctl.p[i]=new xDiv();
+    sBrR(ctl.p[i],[100]);sBkC(ctl.p[i],['#8a9']);
+    sPar(ctl.p[i],ctl);
+    move(ctl.p[i],[8+30*i,8,10,10]);
+    ctl.p[i].idx=i;
+    sThE(ctl.p[i], function(evt){ p_idx=this.idx-1; manual=1;scrollPage();manual=0; });
+    }
+  ctl.s=new xDiv();
+  sBrW(ctl.s,[2]);sBrR(ctl.s,[100]);sBrC(ctl.s,['#8a9']);
+  sTrx(ctl.s, 'all 1.5s');
+  sPar(ctl.s,ctl);
+  move(ctl.s,[5+30*0,5,16,16]);
+  sPar(ctl,0);
+  ctl.onmouseover=function(){autoplay=0;}
+  ctl.onmouseleave=function(){autoplay=1;}
+  tout = setTimeout(scrollPage,disptime);
+
+
+  var t=new xLab();sPar(t,p[0]);
+  move(t,[30,40,400,35]);
+  sTxt(t,"MATERIALS KPI");
+  sFtC(t,'#ccc');
+  var t=new xLab();sPar(t,p[0]);
+  move(t,[30,80,400,30]);
+  sTxt(t,"PRODUCTION CONTROL I/II");
+  sFtC(t,'#bbb');
+ 
+  g01 = new gfxBlk(p[0]); g01.id="g01"
+  gfxPos(g01,p[0],2,0);
   gfx01 = new CanvasJS.Chart(g01, {
   animationEnabled: true,
   animationDuration: 2500,
   title: {text: "MACHINING WORKABLE", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  backgroundColor: null,
   legend: {
     horizontalAlign: "center",
     verticalAlign: "bottom",
@@ -124,20 +201,16 @@ window.onload=function(){
   toolTip: {shared: true},
   data: [              
     { type: "column", name: "Workable", color: "#8b9", showInLegend: true, dataPoints: [] },
-    { type: "stackedColumn", name: "Overdue", color: "#C44", showInLegend: true, dataPoints: [] }
+    { type: "stackedColumn", name: "Overdue", color: "#b33", showInLegend: true, dataPoints: [] }
     ]
   });
-  g02 = new xDiv(); g02.id="g02"
-  move(g02,[30,40,450,250]);
-  sBrW(g02,[4]);
-  sBrC(g02,['#dfe']);
-  sBrR(g02,[5]);
-  sPar(g02,page);
+  g02 = new gfxBlk(p[0]); g02.id="g02"
+  gfxPos(g02,p[0],0,1);
   gfx02 = new CanvasJS.Chart(g02, {
   animationEnabled: true,
   animationDuration: 2500,
   title: {text: "QUARTER", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  backgroundColor: null,
   legend: {
     horizontalAlign: "center",
     verticalAlign: "bottom",
@@ -160,17 +233,13 @@ window.onload=function(){
     { type: "stackedBar100",  showInLegend: true, name: "Remaining", indexLabelFontColor:'#eee', color:"#ddd", dataPoints: [] },
     ]
   });  
-  g03 = new xDiv(); g03.id="g03"
-  move(g03,[1440,40,450,250]);
-  sBrW(g03,[4]);
-  sBrC(g03,['#dfe']);
-  sBrR(g03,[5]);
-  sPar(g03,page);
+  g03 = new gfxBlk(p[0]); g03.id="g03"
+  gfxPos(g03,p[0],3,0);
   gfx03 = new CanvasJS.Chart(g03, {
   animationEnabled: true,
   animationDuration: 2500,
   title: {text: "TOP 10 WORKCENTERS LOAD", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  backgroundColor: null,
   legend: {
     horizontalAlign: "center",
     verticalAlign: "bottom",
@@ -193,20 +262,16 @@ window.onload=function(){
   toolTip: {shared: true},
   data: [              
     { type: "bar", showInLegend: true, name: "Workable", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
-    { type: "stackedBar",  showInLegend: true, name: "Overdue", indexLabelFontColor:'#eee', color: "#C44", dataPoints: [] },
+    { type: "stackedBar",  showInLegend: true, name: "Overdue", indexLabelFontColor:'#eee', color: "#b33", dataPoints: [] },
     ]
   });  
-  g04 = new xDiv(); g04.id="g04"
-  move(g04,[1440,300,450,250]);
-  sBrW(g04,[4]);
-  sBrC(g04,['#dfe']);
-  sBrR(g04,[5]);
-  sPar(g04,page);
+  g04 = new gfxBlk(p[0]); g04.id="g04"
+  gfxPos(g04,p[0],3,1);
   gfx04 = new CanvasJS.Chart(g04, {
   animationEnabled: true,
   animationDuration: 2500,
   title: {text: "TOP 10 WORKCENTERS LATE", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  backgroundColor: null,
   legend: {
     horizontalAlign: "center",
     verticalAlign: "bottom",
@@ -229,20 +294,16 @@ window.onload=function(){
   toolTip: {shared: true},
   data: [              
     { type: "bar",  showInLegend: true, name: "Workable", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
-    { type: "stackedBar",  showInLegend: true, name: "Overdue", indexLabelFontColor:'#eee', color: "#C44", dataPoints: [] },
+    { type: "stackedBar",  showInLegend: true, name: "Overdue", indexLabelFontColor:'#eee', color: "#b33", dataPoints: [] },
     ]
   });  
-  g05 = new xDiv(); g05.id="g05"
-  move(g05,[500,300,450,250]);
-  sBrW(g05,[4]);
-  sBrC(g05,['#dfe']);
-  sBrR(g05,[5]);
-  sPar(g05,page);
+  g05 = new gfxBlk(p[0]); g05.id="g05"
+  gfxPos(g05,p[0],1,1);
   gfx05 = new CanvasJS.Chart(g05, {
   animationEnabled: true,
   animationDuration: 1500,
   title: {text: "MACHINING QUARTER TARGET", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  backgroundColor: null,
   legend: {
     horizontalAlign: "center",
     verticalAlign: "bottom",
@@ -265,17 +326,13 @@ window.onload=function(){
     { type: "line", name:"Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
     ]
   });
-  g06 = new xDiv(); g06.id="g06"
-  move(g06,[500,40,450,250]);
-  sBrW(g06,[4]);
-  sBrC(g06,['#dfe']);
-  sBrR(g06,[5]);
-  sPar(g06,page);
+  g06 = new gfxBlk(p[0]); g06.id="g06"
+  gfxPos(g06,p[0],1,0);
   gfx06 = new CanvasJS.Chart(g06, {
   animationEnabled: true,
   animationDuration: 2500,
   title: {text: "MACHINING WEEK COMPLETION", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  backgroundColor: null,
   legend: {
     horizontalAlign: "center",
     verticalAlign: "bottom",
@@ -301,17 +358,13 @@ window.onload=function(){
     { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
     ]
   });  
-  g07 = new xDiv(); g07.id="g07"
-  move(g07,[970,300,450,250]);
-  sBrW(g07,[4]);
-  sBrC(g07,['#dfe']);
-  sBrR(g07,[5]);
-  sPar(g07,page);
+  g07 = new gfxBlk(p[0]); g07.id="g07"
+  gfxPos(g07,p[0],2,1);
   gfx07 = new CanvasJS.Chart(g07, {
   animationEnabled: true,
   animationDuration: 2500,
   title: {text: "TOP 10 MACHINING WORKCENTERS", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  backgroundColor: null,
   legend: {
     horizontalAlign: "center",
     verticalAlign: "bottom",
@@ -336,17 +389,13 @@ window.onload=function(){
     { type: "bar", name: "Quarter Completion", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
     ]
   });  
-  g08 = new xDiv(); g08.id="g08"
-  move(g08,[30,560,450,250]);
-  sBrW(g08,[4]);
-  sBrC(g08,['#dfe']);
-  sBrR(g08,[5]);
-  sPar(g08,page);
+  g08 = new gfxBlk(p[0]); g08.id="g08"
+  gfxPos(g08,p[0],0,2);
   gfx08 = new CanvasJS.Chart(g08, {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "PRODUCTION CAMFLEX", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  title: {text: "CAMFLEX WEEK PRODUCTION", fontColor:"#ddd"},
+  backgroundColor: null,
   axisY:{
     title: "Quantity",
     titleFontColor: "#eee",
@@ -366,17 +415,13 @@ window.onload=function(){
     { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
     ]
   });
-g09 = new xDiv(); g09.id="g09"
-  move(g09,[500,560,450,250]);
-  sBrW(g09,[4]);
-  sBrC(g09,['#dfe']);
-  sBrR(g09,[5]);
-  sPar(g09,page);
+  g09 = new gfxBlk(p[0]); g09.id="g09"
+  gfxPos(g09,p[0],1,2);
   gfx09 = new CanvasJS.Chart(g09, {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "PRODUCTION VARIPAK", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  title: {text: "VARIPAK WEEK PRODUCTION", fontColor:"#ddd"},
+  backgroundColor: null,
   axisY:{
     title: "Quantity",
     titleFontColor: "#eee",
@@ -396,17 +441,13 @@ g09 = new xDiv(); g09.id="g09"
     { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
     ]
   });
-  g10 = new xDiv(); g10.id="g10"
-  move(g10,[970,560,450,250]);
-  sBrW(g10,[4]);
-  sBrC(g10,['#dfe']);
-  sBrR(g10,[5]);
-  sPar(g10,page);
+  g10 = new gfxBlk(p[0]); g10.id="g10"
+  gfxPos(g10,p[0],2,2);
   gfx10 = new CanvasJS.Chart(g10, {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "PRODUCTION GLOBES", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  title: {text: "GLOBES WEEK PRODUCTION", fontColor:"#ddd"},
+  backgroundColor: null,
   axisY:{
     title: "Quantity",
     titleFontColor: "#eee",
@@ -426,17 +467,13 @@ g09 = new xDiv(); g09.id="g09"
     { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
     ]
   });
-  g11 = new xDiv(); g11.id="g11"
-  move(g11,[1440,560,450,250]);
-  sBrW(g11,[4]);
-  sBrC(g11,['#dfe']);
-  sBrR(g11,[5]);
-  sPar(g11,page);
+  g11 = new gfxBlk(p[0]); g11.id="g11"
+  gfxPos(g11,p[0],3,2);
   gfx11 = new CanvasJS.Chart(g11, {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "PRODUCTION LEVELS", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  title: {text: "LEVELS WEEK PRODUCTION", fontColor:"#ddd"},
+  backgroundColor: null,
   axisY:{
     title: "Quantity",
     titleFontColor: "#eee",
@@ -456,17 +493,13 @@ g09 = new xDiv(); g09.id="g09"
     { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
     ]
   });
-  g12 = new xDiv(); g12.id="g12"
-  move(g12,[30,820,450,250]);
-  sBrW(g12,[4]);
-  sBrC(g12,['#dfe']);
-  sBrR(g12,[5]);
-  sPar(g12,page);
+  g12 = new gfxBlk(p[0]); g12.id="g12"
+  gfxPos(g12,p[0],0,3);
   gfx12 = new CanvasJS.Chart(g12, {
   animationEnabled: true,
   animationDuration: 1500,
   title: {text: "CAMFLEX QUARTER TARGET", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  backgroundColor: null,
   legend: {
     horizontalAlign: "center",
     verticalAlign: "bottom",
@@ -489,17 +522,13 @@ g09 = new xDiv(); g09.id="g09"
     { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
     ]
   	});
-  g13 = new xDiv(); g13.id="g13"
-  move(g13,[500,820,450,250]);
-  sBrW(g13,[4]);
-  sBrC(g13,['#dfe']);
-  sBrR(g13,[5]);
-  sPar(g13,page);
+  g13 = new gfxBlk(p[0]); g13.id="g13"
+  gfxPos(g13,p[0],1,3);
   gfx13 = new CanvasJS.Chart(g13, {
   animationEnabled: true,
   animationDuration: 1500,
   title: {text: "VARIPAK QUARTER TARGET", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  backgroundColor: null,
   legend: {
     horizontalAlign: "center",
     verticalAlign: "bottom",
@@ -522,17 +551,13 @@ g09 = new xDiv(); g09.id="g09"
     { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
     ]
   	});
-  g14 = new xDiv(); g14.id="g14"
-  move(g14,[970,820,450,250]);
-  sBrW(g14,[4]);
-  sBrC(g14,['#dfe']);
-  sBrR(g14,[5]);
-  sPar(g14,page);
+  g14 = new gfxBlk(p[0]); g14.id="g14"
+  gfxPos(g14,p[0],2,3);
   gfx14 = new CanvasJS.Chart(g14, {
   animationEnabled: true,
   animationDuration: 1500,
   title: {text: "GLOBES QUARTER TARGET", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  backgroundColor: null,
   legend: {
     horizontalAlign: "center",
     verticalAlign: "bottom",
@@ -555,17 +580,13 @@ g09 = new xDiv(); g09.id="g09"
     { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
     ]
   });  
-  g15 = new xDiv(); g15.id="g15"
-  move(g15,[1440,820,450,250]);
-  sBrW(g15,[4]);
-  sBrC(g15,['#dfe']);
-  sBrR(g15,[5]);
-  sPar(g15,page);
+  g15 = new gfxBlk(p[0]); g15.id="g15"
+  gfxPos(g15,p[0],3,3);
   gfx15 = new CanvasJS.Chart(g15, {
   animationEnabled: true,
   animationDuration: 1500,
   title: {text: "LEVELS QUARTER TARGET", fontColor:"#ddd"},
-  backgroundColor: "#427057",
+  backgroundColor: null,
   legend: {
     horizontalAlign: "center",
     verticalAlign: "bottom",
@@ -588,6 +609,139 @@ g09 = new xDiv(); g09.id="g09"
     { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
     ]
   }); 
+
+
+//____________________________________________________________________________________________________________________________
+  var t=new xLab();sPar(t,p[1]);
+  move(t,[30,40,400,35]);
+  sTxt(t,"MATERIALS KPI");
+  sFtC(t,'#ccc');
+  var t=new xLab();sPar(t,p[1]);
+  move(t,[30,80,400,30]);
+  sTxt(t,"PRODUCTION CONTROL II/II");
+  sFtC(t,'#bbb');
+
+  g16 = new gfxBlk(p[1]); g16.id="g16"
+  gfxPos(g16,p[1],0,1);
+  gfx16 = new CanvasJS.Chart(g16, {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "CAMFLEX QUARTER PRODUCTION", fontColor:"#ddd"},
+  backgroundColor: null,
+  axisY:{
+    title: "Quantity",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "line", name: "Products",  color:"#8b9",  dataPoints: [] },
+    ]
+  }); 
+  g17 = new gfxBlk(p[1]); g17.id="g17"
+  gfxPos(g17,p[1],1,1);
+  gfx17 = new CanvasJS.Chart(g17, {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "VARIPAK QUARTER PRODUCTION", fontColor:"#ddd"},
+  backgroundColor: null,
+  axisY:{
+    title: "Quantity",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "line", name: "Products",  color:"#8b9",  dataPoints: [] },
+    ]
+  }); 
+  g18 = new gfxBlk(p[1]); g18.id="g18"
+  gfxPos(g18,p[1],2,1);
+  gfx18 = new CanvasJS.Chart(g18, {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "GLOBES QUARTER PRODUCTION", fontColor:"#ddd"},
+  backgroundColor: null,
+  axisY:{
+    title: "Quantity",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "line", name: "Products",  color:"#8b9",  dataPoints: [] },
+    ]
+  });
+  g19 = new gfxBlk(p[1]); g19.id="g19"
+  gfxPos(g19,p[1],3,1);
+  gfx19 = new CanvasJS.Chart(g19, {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "LEVELS QUARTER PRODUCTION", fontColor:"#ddd"},
+  backgroundColor: null,
+  axisY:{
+    title: "Quantity",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "line", name: "Products",  color:"#8b9",  dataPoints: [] },
+    ]
+  });
+
+  gfx16.options.data[0].dataPoints=[{label:'18Q1', y:470},{label:'18Q2', y:474},{label:'18Q3', y:425},{label:'18Q4', y:540},{label:'19Q1', y:727},{label:'19Q2', y:558},{label:'19Q3', y:588},{label:'19Q4', y:778},{label:'20Q1', y:837},{label:'20Q2', y:596},{label:'20Q3', y:677},{label:'20Q4', y:519},{label:'21Q1', y:423},{label:'21Q2', y:501},{label:'21Q3', y:606},{label:'21Q4', y:679},{label:'22Q1', y:572},{label:'22Q2', y:445},{label:'22Q3', y:532},{label:'22Q4', y:496},];
+  gfx17.options.data[0].dataPoints=[{label:'18Q1',y:189},{label:'18Q2',y:139},{label:'18Q3',y:133},{label:'18Q4',y:132},{label:'19Q1',y:138},{label:'19Q2',y:204},{label:'19Q3',y:181},{label:'19Q4',y:184},{label:'20Q1',y:211},{label:'20Q2',y:200},{label:'20Q3',y:281},{label:'20Q4',y:209},{label:'21Q1',y:254},{label:'21Q2',y:233},{label:'21Q3',y:163},{label:'21Q4',y:188},{label:'22Q1',y:126},{label:'22Q2',y:93},{label:'22Q3',y:136},{label:'22Q4',y:179},];
+  gfx18.options.data[0].dataPoints=[{label:'18Q1',y:592},{label:'18Q2',y:365},{label:'18Q3',y:295},{label:'18Q4',y:368},{label:'19Q1',y:364},{label:'19Q2',y:207},{label:'19Q3',y:321},{label:'19Q4',y:286},{label:'20Q1',y:543},{label:'20Q2',y:331},{label:'20Q3',y:359},{label:'20Q4',y:310},{label:'21Q1',y:212},{label:'21Q2',y:319},{label:'21Q3',y:469},{label:'21Q4',y:468},{label:'22Q1',y:408},{label:'22Q2',y:287},{label:'22Q3',y:141},{label:'22Q4',y:159},];
+  gfx19.options.data[0].dataPoints=[{label:'18Q1',y:320},{label:'18Q2',y:253},{label:'18Q3',y:246},{label:'18Q4',y:312},{label:'19Q1',y:272},{label:'19Q2',y:200},{label:'19Q3',y:603},{label:'19Q4',y:338},{label:'20Q1',y:212},{label:'20Q2',y:286},{label:'20Q3',y:248},{label:'20Q4',y:188},{label:'21Q1',y:312},{label:'21Q2',y:186},{label:'21Q3',y:184},{label:'21Q4',y:147},{label:'22Q1',y:152},{label:'22Q2',y:202},{label:'22Q3',y:172},{label:'22Q4',y:140},];
+  gfx16.render();
+  gfx17.render();
+  gfx18.render();
+  gfx19.render();
+
+//____________________________________________________________________________________________________________________________
+  var t=new xLab();sPar(t,p[2]);
+  move(t,[30,40,400,35]);
+  sTxt(t,"MATERIALS KPI");
+  sFtC(t,'#ccc');
+  var t=new xLab();sPar(t,p[2]);
+  move(t,[30,80,400,30]);
+  sTxt(t,"PLANNING");
+  sFtC(t,'#bbb');
+  for(var x=0;x<4;x++){
+    for(var y=0;y<4;y++){
+      if(x || y){
+        dummy = new gfxBlk(p[2]);
+        gfxPos(dummy,p[2],x,y);
+
+        }
+      }
+    }
+
+
+
+
+
   loadData();  
 }
 
