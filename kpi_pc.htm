@@ -112,7 +112,7 @@ function scrollPage(){
     p_idx++;
     if(p_idx>p.length-1) p_idx=0;
     for(var i=0;i<p.length;i++){move(p[i],[(i-p_idx)*1920,0,1920,1080]);}
-    move(ctl.s,[6+30*p_idx,6,14,14]);
+    sPos(ctl.s,[4+30*p_idx,4]);
     }
   clearTimeout(tout);
   tout = setTimeout(scrollPage,disptime);
@@ -161,7 +161,7 @@ window.onload=function(){
   sBrW(ctl.s,[2]);sBrR(ctl.s,[100]);sBrC(ctl.s,['#8a9']);
   sTrx(ctl.s, 'all .5s');
   sPar(ctl.s,ctl);
-  move(ctl.s,[5+30*0,5,16,16]);
+  move(ctl.s,[4+30*0,4,18,18]);
   sPar(ctl,0);
   ctl.onmouseover=function(){autoplay=0;}
   ctl.onmouseleave=function(){autoplay=1;}
