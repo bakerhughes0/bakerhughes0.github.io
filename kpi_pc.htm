@@ -33,22 +33,24 @@ function loadData(){
     gfx08.options.data[3].dataPoints=gfx08_d4;
     gfx08.options.data[4].dataPoints=gfx08_d5;
     gfx08.options.data[5].dataPoints=[{label:'22W01',y:45},{label:'22W02',y:10},{label:'22W03',y:10},{label:'22W04',y:53},{label:'22W05',y:69},{label:'22W06',y:45},{label:'22W07',y:46},{label:'22W08',y:53},{label:'22W09',y:47},{label:'22W10',y:51},{label:'22W11',y:32},{label:'22W12',y:7},{label:'22W13',y:7},].slice(0,gfx08_d4.length+2);
-
     gfx09.options.data[0].dataPoints=gfx09_d1;
     gfx09.options.data[1].dataPoints=gfx09_d2;
     gfx09.options.data[2].dataPoints=gfx09_d3;
     gfx09.options.data[3].dataPoints=gfx09_d4;
     gfx09.options.data[4].dataPoints=gfx09_d5;
+    gfx09.options.data[5].dataPoints=[{label:'22W01',y:19},{label:'22W02',y:32},{label:'22W03',y:22},{label:'22W04',y:6},{label:'22W05',y:9},{label:'22W06',y:1},{label:'22W07',y:10},{label:'22W08',y:19},{label:'22W09',y:14},{label:'22W10',y:13},{label:'22W11',y:1},{label:'22W12',y:6},{label:'22W13',y:2},].slice(0,gfx09_d4.length+2);
     gfx10.options.data[0].dataPoints=gfx10_d1;
     gfx10.options.data[1].dataPoints=gfx10_d2;
     gfx10.options.data[2].dataPoints=gfx10_d3;
     gfx10.options.data[3].dataPoints=gfx10_d4;
     gfx10.options.data[4].dataPoints=gfx10_d5;
+    gfx10.options.data[5].dataPoints=[{label:'22W01',y:5},{label:'22W02',y:7},{label:'22W03',y:7},{label:'22W04',y:9},{label:'22W05',y:9},{label:'22W06',y:13},{label:'22W07',y:15},{label:'22W08',y:12},{label:'22W09',y:14},{label:'22W10',y:19},{label:'22W11',y:16},{label:'22W12',y:11},{label:'22W13',y:7},].slice(0,gfx10_d4.length+2);
     gfx11.options.data[0].dataPoints=gfx11_d1;
     gfx11.options.data[1].dataPoints=gfx11_d2;
     gfx11.options.data[2].dataPoints=gfx11_d3;
     gfx11.options.data[3].dataPoints=gfx11_d4;
     gfx11.options.data[4].dataPoints=gfx11_d5;
+    gfx11.options.data[5].dataPoints=[{label:'22W01',y:6},{label:'22W02',y:5},{label:'22W03',y:17},{label:'22W04',y:14},{label:'22W05',y:13},{label:'22W06',y:17},{label:'22W07',y:20},{label:'22W08',y:6},{label:'22W09',y:4},{label:'22W10',y:9},{label:'22W11',y:29},{label:'22W12',y:11},{label:'22W13',y:1},].slice(0,gfx11_d4.length+2);
     gfx12.options.data[0].dataPoints=[{label:'22W01',y:45},{label:'22W02',y:55},{label:'22W03',y:65},{label:'22W04',y:118},{label:'22W05',y:187},{label:'22W06',y:232},{label:'22W07',y:278},{label:'22W08',y:331},{label:'22W09',y:378},{label:'22W10',y:429},{label:'22W11',y:461},{label:'22W12',y:468},{label:'22W13',y:475},].slice(0,gfx12_d2.length+2);
     gfx12.options.data[1].dataPoints=gfx12_d2;
     gfx13.options.data[0].dataPoints=[{label:'22W01',y:19},{label:'22W02',y:51},{label:'22W03',y:73},{label:'22W04',y:79},{label:'22W05',y:88},{label:'22W06',y:89},{label:'22W07',y:99},{label:'22W08',y:118},{label:'22W09',y:132},{label:'22W10',y:145},{label:'22W11',y:146},{label:'22W12',y:152},{label:'22W13',y:154},].slice(0,gfx13_d2.length+2);
@@ -400,6 +402,7 @@ window.onload=function(){
   animationDuration: 2500,
   title: {text: "CAMFLEX WEEK PRODUCTION", fontColor:"#ddd"},
   backgroundColor: null,
+  legend:{horizontalAlign:'center',verticalAlign:'bottom',fontSize:12,fontColor:'#eee'},
   axisY:{
     title: "Quantity",
     titleFontColor: "#eee",
@@ -417,7 +420,7 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8b5",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#8b3", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] },
-    { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#da0", showInLegend: true, dataPoints: [] },
+    { type: "line", name:"Target",lineDashType:"dash",color: "#da0",showInLegend:true,dataPoints:[]},
     ]
   });
   g09 = new gfxBlk(p[0]); g09.id="g09"
@@ -427,6 +430,7 @@ window.onload=function(){
   animationDuration: 2500,
   title: {text: "VARIPAK WEEK PRODUCTION", fontColor:"#ddd"},
   backgroundColor: null,
+  legend:{horizontalAlign:'center',verticalAlign:'bottom',fontSize:12,fontColor:'#eee'},
   axisY:{
     title: "Quantity",
     titleFontColor: "#eee",
@@ -443,7 +447,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Tue", color: "#8b7", dataPoints: [] },
     { type: "stackedColumn", name: "Wed", color: "#8b5",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#8b3", dataPoints: [] },
-    { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
+    { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] },
+    { type: "line", name:"Target",lineDashType:"dash",color: "#da0",showInLegend:true,dataPoints:[]},
     ]
   });
   g10 = new gfxBlk(p[0]); g10.id="g10"
@@ -453,6 +458,7 @@ window.onload=function(){
   animationDuration: 2500,
   title: {text: "GLOBES WEEK PRODUCTION", fontColor:"#ddd"},
   backgroundColor: null,
+  legend:{horizontalAlign:'center',verticalAlign:'bottom',fontSize:12,fontColor:'#eee'},
   axisY:{
     title: "Quantity",
     titleFontColor: "#eee",
@@ -469,7 +475,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Tue", color: "#8b7", dataPoints: [] },
     { type: "stackedColumn", name: "Wed", color: "#8b5",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#8b3", dataPoints: [] },
-    { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
+    { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] },
+    { type: "line", name:"Target",lineDashType:"dash",color: "#da0",showInLegend:true,dataPoints:[]},
     ]
   });
   g11 = new gfxBlk(p[0]); g11.id="g11"
@@ -479,6 +486,7 @@ window.onload=function(){
   animationDuration: 2500,
   title: {text: "LEVELS WEEK PRODUCTION", fontColor:"#ddd"},
   backgroundColor: null,
+  legend:{horizontalAlign:'center',verticalAlign:'bottom',fontSize:12,fontColor:'#eee'},
   axisY:{
     title: "Quantity",
     titleFontColor: "#eee",
@@ -495,7 +503,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Tue", color: "#8b7", dataPoints: [] },
     { type: "stackedColumn", name: "Wed", color: "#8b5",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#8b3", dataPoints: [] },
-    { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] }
+    { type: "stackedColumn", name: "Fri", color: "#8b1",  dataPoints: [] },
+    { type: "line", name:"Target",lineDashType:"dash",color: "#da0",showInLegend:true,dataPoints:[]},
     ]
   });
   g12 = new gfxBlk(p[0]); g12.id="g12"
