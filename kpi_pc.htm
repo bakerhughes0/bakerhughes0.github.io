@@ -98,7 +98,7 @@ function pageModel(n){
   sBrR(l2,[100]);
   sPar(l2,o);
   sRot(l2,[0,0,-20]);
-  sPar(o,0);  
+  sPar(o,main);  
   return o;
   }
 
@@ -137,17 +137,20 @@ function gfxPos(o,parent,posX,posY){
   sPar(o,parent);
   sPos(o, [30+470*posX,40+260*posY]);
   }
-
+window.onresize=function(){
+  move(ctl,[scrW()/2-p.length*15,5,p.length*30,30]);
+  }
 
 window.onload=function(){
   document.title = "Materials KPI";
-  sOvf(document.body,'hidden');
+  
+  main=new xDiv(); sPar(main,0);move(main,[0,0,1920,1080]);sOvf(main,'hidden');
   p[0] = new pageModel(0);
   p[1] = new pageModel(1);
   p[2] = new pageModel(2);
 
-  move(ctl,[scrW()/2-p.length*15,5,p.length*30,30]);
   sBrC(ctl,['#fff']);sBrW(ctl,[2]); sBrR(ctl,[100]);sBrC(ctl,['#8a9']);
+  move(ctl,[scrW()/2-p.length*15,5,p.length*30,30]);
   ctl.p=[];
   for(var i=0;i<p.length;i++){
     ctl.p[i]=new xDiv();
@@ -166,7 +169,6 @@ window.onload=function(){
   ctl.onmouseover=function(){autoplay=0;}
   ctl.onmouseleave=function(){autoplay=1;}
   tout = setTimeout(scrollPage,disptime);
-
 
   var t=new xLab();sPar(t,p[0]);
   move(t,[30,40,400,35]);
