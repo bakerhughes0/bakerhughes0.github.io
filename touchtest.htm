@@ -7,10 +7,10 @@ touchX1=0; touchX2=0;
 window.onload=function(){
   document.title = "touch test";
   
-  main=new xDiv(); sPar(main,0);move(main,[0,0,1920,1080]);sOvf(main,'hidden');
+  main=new xDiv(); sPar(main,0);move(main,[0,0,scrW(),scrH()]);sOvf(main,'hidden');
  sBkC(main,'#eee');
-  a = new xLab();sPar(a,main);move(a,[10,10,400,20]);
-  b = new xLab();sPar(b,main);move(b,[10,30,400,20]);
+  a = new xLab();sPar(a,main);move(a,[10,10,800,50]);
+  b = new xLab();sPar(b,main);move(b,[10,50,800,50]);
 
   sThS(main, function(evt){ sTxt(a,evt.x); });
   sThE(main, function(evt){ sTxt(b,evt.x); });
