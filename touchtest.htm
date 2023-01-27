@@ -1,0 +1,25 @@
+<html>
+<head>
+<script type=text/javascript src=js/func.js?001></script>
+<script type=text/javascript>
+
+touchX1=0; touchX2=0;
+window.onload=function(){
+  document.title = "touch test";
+  
+  main=new xDiv(); sPar(main,0);move(main,[0,0,1920,1080]);sOvf(main,'hidden');
+ sBkC(main,'#eee');
+  a = new xLab();sPar(a,main);move(a,[10,10,400,20]);
+  b = new xLab();sPar(b,main);move(b,[10,30,400,20]);
+
+  sThS(main, function(evt){ sTxt(a,evt.x); });
+  sThE(main, function(evt){ sTxt(b,evt.x); });
+
+}
+
+  
+</script>
+</head>
+<body style="background-color:#243">
+</body>
+</html>
