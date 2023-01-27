@@ -184,9 +184,7 @@ window.onload=function(){
   sPar(ctl.s,ctl);
   move(ctl.s,[4+30*0,4,18,18]);
   sPar(ctl,0);
-  //ctl.onmouseover=function(){autoplay=0;}
-  //ctl.onmouseleave=function(){autoplay=1;}
-  tout = setTimeout(scrollPage,disptime);
+  tout = setTimeout(autoScrollPage(),disptime);
 
   var t=new xLab();sPar(t,p[0]);
   move(t,[30,40,400,35]);
