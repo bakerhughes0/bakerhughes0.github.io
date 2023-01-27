@@ -12,8 +12,13 @@ window.onload=function(){
   a = new xLab();sPar(a,main);move(a,[10,10,800,50]);
   b = new xLab();sPar(b,main);move(b,[10,50,800,50]);
 
+if(isMobile()){
   sThS(main, function(evt){ sTxt(a,evt.x); });
   sThE(main, function(evt){ sTxt(b,evt.x); });
+}else{
+  sThS(main, function(evt){ sTxt(a,evt.x); });
+  sThE(main, function(evt){ sTxt(b,evt.x); });
+}
 
 }
 
