@@ -13,8 +13,8 @@ window.onload=function(){
   b = new xLab();sPar(b,main);move(b,[10,50,800,50]);
 
 if(isMobile()){
-  sThS(main, function(evt){ sTxt(a,Touch.clientX); });
-  sThE(main, function(evt){ sTxt(b,Touch.clientY); });
+  sThS(main, function(evt){ sTxt(a,e.touches[0].clientX); });
+  sThE(main, function(evt){ sTxt(b,e.changedTouches[0].clientX); });
 }else{
   sThS(main, function(evt){ sTxt(a,evt.x); });
   sThE(main, function(evt){ sTxt(b,evt.x); });
