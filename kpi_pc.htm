@@ -81,25 +81,10 @@ function loadData(){
 
 function pageModel(n){
   var o = new xDiv();
-  move(o,[1920*n,0,1920,1080]);
-  sBkL(o,100,'#243 30%, #222 100%');
+  move(o,[scrW()*n,0,scrW(),1080]);
   sTrx(o, 'all .5s');
   sBrW(o,[1]);
   sOvf(o,'hidden');
-  var l1 = new xDiv();
-  move(l1,[1000,300,1500,200]);
-  sBrW(l1,[2]);
-  sBrC(l1,['#8a9']);
-  sBrR(l1,[100]);
-  sPar(l1,o);
-  sRot(l1,[0,0,20]);
-  l2 = new xDiv();
-  move(l2,[1000,500,1500,200]);
-  sBrW(l2,[2]);
-  sBrC(l2,['#8a9']);
-  sBrR(l2,[100]);
-  sPar(l2,o);
-  sRot(l2,[0,0,-20]);
   sPar(o,main);  
   return o;
   }
@@ -122,7 +107,9 @@ function autoScrollPage(){
   }
 
 function scrollPage(){
-  for(var i=0;i<p.length;i++){move(p[i],[(i-p_idx)*1920,0,1920,1080]);}
+  W=scrW();
+  for(var i=0;i<p.length;i++){sPos(p[i],[(i-p_idx)*W,0]);}
+  //for(var i=0;i<p.length;i++){move(p[i],[(i-p_idx)*1920,0,1920,1080]);}
   sPos(ctl.s,[4+30*p_idx,4]); 
   }
 
@@ -133,16 +120,47 @@ function gfxBlk(){
   sBrR(o,[8]);
   sBkL(o,100,'#243 30%, #222 100%');
   sOpa(o,.88);
-  sSiz(o,[450,240]);
+  //sSiz(o,[450,240]);
   return o;
   }
 
 function gfxPos(o,parent,posX,posY){
+  W=scrW(); H=scrH();
   sPar(o,parent);
-  sPos(o, [30+470*posX,40+260*posY]);
+  //sPos(o, [30+470*posX,40+260*posY]);
+  move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.23),W*0.2375,H*0.22]);
   }
+
+function redraw(){
+  W=scrW(); H=scrH();
+  sSiz(main,[W,H]);
+  move(ctl,[W/2-p.length*15,5,p.length*30,30]);
+  for(var i=0;i<p.length;i++){move(p[i],[(i-p_idx)*W,0,W,H]);}
+  gfxPos(g01,p[0],2,0);
+  gfxPos(g02,p[0],0,1);
+  gfxPos(g03,p[0],3,0);
+  gfxPos(g04,p[0],3,1);
+  gfxPos(g05,p[0],1,1);
+  gfxPos(g06,p[0],1,0);
+  gfxPos(g07,p[0],2,1);
+  gfxPos(g08,p[1],0,1);
+  gfxPos(g09,p[1],1,1);
+  gfxPos(g10,p[1],2,1);
+  gfxPos(g11,p[1],3,1);
+  gfxPos(g12,p[1],0,2);
+  gfxPos(g13,p[1],1,2);
+  gfxPos(g14,p[1],2,2);
+  gfxPos(g15,p[1],3,2);
+  gfxPos(g16,p[1],0,3);
+  gfxPos(g17,p[1],1,3);
+  gfxPos(g18,p[1],2,3);
+  gfxPos(g19,p[1],3,3);
+  gfxPos(g20,p[0],1,2);
+
+  }
+
 window.onresize=function(){
-  move(ctl,[scrW()/2-p.length*15,5,p.length*30,30]);
+  redraw();
   }
 
 touchX1=0; touchX2=0;
@@ -150,6 +168,17 @@ window.onload=function(){
   document.title = "Materials KPI";
   
   main=new xDiv(); sPar(main,0);move(main,[0,0,1920,1080]);sOvf(main,'hidden');
+  sBkL(main,100,'#243 30%, #222 100%');
+  main.l1 = new xDiv();
+  sBrW(main.l1,[2]);sBrC(main.l1,['#8a9']);sBrR(main.l1,[9999]);sRot(main.l1,[0,0,20]);sPar(main.l1,main);
+  main.l2 = new xDiv();
+  sBrW(main.l2,[2]);sBrC(main.l2,['#8a9']);sBrR(main.l2,[9999]);sRot(main.l2,[0,0,-20]);sPar(main.l2,main);
+  main.eRes=function(){
+    W=scrW(); H=scrH();
+    move(main.l1,[0.5*W,0.3*H,0.8*W,0.2*H]);
+    move(main.l2,[0.5*W,0.5*H,0.8*W,0.2*H]);
+    }
+
   sThS(main, function(evt){ touchX1=evt.x; });
   sThE(main, function(evt){ touchX2=evt.x; 
     if((touchX2-touchX1)<-150){
@@ -196,7 +225,6 @@ window.onload=function(){
   sFtC(t,'#bbb');
  
   g01 = new gfxBlk(); g01.id="g01"
-  gfxPos(g01,p[0],2,0);
   gfx01 = new CanvasJS.Chart(g01, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -225,7 +253,6 @@ window.onload=function(){
     ]
   });
   g02 = new gfxBlk(); g02.id="g02"
-  gfxPos(g02,p[0],0,1);
   gfx02 = new CanvasJS.Chart(g02, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -254,7 +281,6 @@ window.onload=function(){
     ]
   });  
   g03 = new gfxBlk(); g03.id="g03"
-  gfxPos(g03,p[0],3,0);
   gfx03 = new CanvasJS.Chart(g03, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -286,7 +312,6 @@ window.onload=function(){
     ]
   });  
   g04 = new gfxBlk(); g04.id="g04"
-  gfxPos(g04,p[0],3,1);
   gfx04 = new CanvasJS.Chart(g04, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -318,7 +343,6 @@ window.onload=function(){
     ]
   });  
   g05 = new gfxBlk(); g05.id="g05"
-  gfxPos(g05,p[0],1,1);
   gfx05 = new CanvasJS.Chart(g05, {
   animationEnabled: true,
   animationDuration: 1500,
@@ -347,7 +371,6 @@ window.onload=function(){
     ]
   });
   g06 = new gfxBlk(); g06.id="g06"
-  gfxPos(g06,p[0],1,0);
   gfx06 = new CanvasJS.Chart(g06, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -379,7 +402,6 @@ window.onload=function(){
     ]
   });  
   g07 = new gfxBlk(); g07.id="g07"
-  gfxPos(g07,p[0],2,1);
   gfx07 = new CanvasJS.Chart(g07, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -410,7 +432,6 @@ window.onload=function(){
     ]
   });  
   g08 = new gfxBlk(); g08.id="g08"
-  gfxPos(g08,p[1],0,1);
   gfx08 = new CanvasJS.Chart(g08, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -438,7 +459,6 @@ window.onload=function(){
     ]
   });
   g09 = new gfxBlk(); g09.id="g09"
-  gfxPos(g09,p[1],1,1);
   gfx09 = new CanvasJS.Chart(g09, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -466,7 +486,6 @@ window.onload=function(){
     ]
   });
   g10 = new gfxBlk(); g10.id="g10"
-  gfxPos(g10,p[1],2,1);
   gfx10 = new CanvasJS.Chart(g10, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -494,7 +513,6 @@ window.onload=function(){
     ]
   });
   g11 = new gfxBlk(); g11.id="g11"
-  gfxPos(g11,p[1],3,1);
   gfx11 = new CanvasJS.Chart(g11, {
   animationEnabled: true,
   animationDuration: 2500,
@@ -522,7 +540,6 @@ window.onload=function(){
     ]
   });
   g12 = new gfxBlk(); g12.id="g12"
-  gfxPos(g12,p[1],0,2);
   gfx12 = new CanvasJS.Chart(g12, {
   animationEnabled: true,
   animationDuration: 1500,
@@ -551,7 +568,6 @@ window.onload=function(){
     ]
   	});
   g13 = new gfxBlk(); g13.id="g13"
-  gfxPos(g13,p[1],1,2);
   gfx13 = new CanvasJS.Chart(g13, {
   animationEnabled: true,
   animationDuration: 1500,
@@ -580,7 +596,6 @@ window.onload=function(){
     ]
   	});
   g14 = new gfxBlk(); g14.id="g14"
-  gfxPos(g14,p[1],2,2);
   gfx14 = new CanvasJS.Chart(g14, {
   animationEnabled: true,
   animationDuration: 1500,
@@ -609,7 +624,6 @@ window.onload=function(){
     ]
   });  
   g15 = new gfxBlk(); g15.id="g15"
-  gfxPos(g15,p[1],3,2);
   gfx15 = new CanvasJS.Chart(g15, {
   animationEnabled: true,
   animationDuration: 1500,
@@ -650,7 +664,6 @@ window.onload=function(){
   sFtC(t,'#bbb');
 
   g16 = new gfxBlk(); g16.id="g16"
-  gfxPos(g16,p[1],0,3);
   gfx16 = new CanvasJS.Chart(g16, {
   animationEnabled: true,
   animationDuration: 1500,
@@ -672,7 +685,6 @@ window.onload=function(){
     ]
   }); 
   g17 = new gfxBlk(); g17.id="g17"
-  gfxPos(g17,p[1],1,3);
   gfx17 = new CanvasJS.Chart(g17, {
   animationEnabled: true,
   animationDuration: 1500,
@@ -694,7 +706,6 @@ window.onload=function(){
     ]
   }); 
   g18 = new gfxBlk(); g18.id="g18"
-  gfxPos(g18,p[1],2,3);
   gfx18 = new CanvasJS.Chart(g18, {
   animationEnabled: true,
   animationDuration: 1500,
@@ -716,7 +727,6 @@ window.onload=function(){
     ]
   });
   g19 = new gfxBlk(); g19.id="g19"
-  gfxPos(g19,p[1],3,3);
   gfx19 = new CanvasJS.Chart(g19, {
   animationEnabled: true,
   animationDuration: 1500,
@@ -742,13 +752,8 @@ window.onload=function(){
   gfx17.options.data[0].dataPoints=[{label:'18Q1',y:189},{label:'18Q2',y:139},{label:'18Q3',y:133},{label:'18Q4',y:132},{label:'19Q1',y:138},{label:'19Q2',y:204},{label:'19Q3',y:181},{label:'19Q4',y:184},{label:'20Q1',y:211},{label:'20Q2',y:200},{label:'20Q3',y:281},{label:'20Q4',y:209},{label:'21Q1',y:254},{label:'21Q2',y:233},{label:'21Q3',y:163},{label:'21Q4',y:188},{label:'22Q1',y:126},{label:'22Q2',y:93},{label:'22Q3',y:136},{label:'22Q4',y:179},];
   gfx18.options.data[0].dataPoints=[{label:'18Q1',y:592},{label:'18Q2',y:365},{label:'18Q3',y:295},{label:'18Q4',y:368},{label:'19Q1',y:364},{label:'19Q2',y:207},{label:'19Q3',y:321},{label:'19Q4',y:286},{label:'20Q1',y:543},{label:'20Q2',y:331},{label:'20Q3',y:359},{label:'20Q4',y:310},{label:'21Q1',y:212},{label:'21Q2',y:319},{label:'21Q3',y:469},{label:'21Q4',y:468},{label:'22Q1',y:408},{label:'22Q2',y:287},{label:'22Q3',y:141},{label:'22Q4',y:159},];
   gfx19.options.data[0].dataPoints=[{label:'18Q1',y:320},{label:'18Q2',y:253},{label:'18Q3',y:246},{label:'18Q4',y:312},{label:'19Q1',y:272},{label:'19Q2',y:200},{label:'19Q3',y:603},{label:'19Q4',y:338},{label:'20Q1',y:212},{label:'20Q2',y:286},{label:'20Q3',y:248},{label:'20Q4',y:188},{label:'21Q1',y:312},{label:'21Q2',y:186},{label:'21Q3',y:184},{label:'21Q4',y:147},{label:'22Q1',y:152},{label:'22Q2',y:202},{label:'22Q3',y:172},{label:'22Q4',y:140},];
-  gfx16.render();
-  gfx17.render();
-  gfx18.render();
-  gfx19.render();
 
   g20 = new gfxBlk(); g20.id="g20"
-  gfxPos(g20,p[0],1,2);
   gfx20 = new CanvasJS.Chart(g20, {
   animationEnabled: true,
   animationDuration: 1500,
@@ -770,7 +775,7 @@ window.onload=function(){
     ]
   }); 
   gfx20.options.data[0].dataPoints=[{label:'18Q1',y:9111},{label:'18Q2',y:8678},{label:'18Q3',y:6263},{label:'18Q4',y:6176},{label:'19Q1',y:7358},{label:'19Q2',y:8972},{label:'19Q3',y:7468},{label:'19Q4',y:7858},{label:'20Q1',y:8845},{label:'20Q2',y:6617},{label:'20Q3',y:8151},{label:'20Q4',y:7973},{label:'21Q1',y:7899},{label:'21Q2',y:7256},{label:'21Q3',y:6077},{label:'21Q4',y:7773},{label:'22Q1',y:7174},{label:'22Q2',y:6818},{label:'22Q3',y:6516},{label:'22Q4',y:7411},];
-  gfx20.render();
+ 
 
 
 
@@ -786,8 +791,8 @@ window.onload=function(){
   for(var x=0;x<4;x++){
     for(var y=0;y<4;y++){
       if(x || y){
-        dummy = new gfxBlk();
-        gfxPos(dummy,p[2],x,y);
+        //dummy = new gfxBlk();
+        //gfxPos(dummy,p[2],x,y);
 
         }
       }
@@ -797,7 +802,14 @@ window.onload=function(){
 
 
 
-  loadData();  
+  loadData(); 
+  redraw(); 
+
+  gfx16.render();
+  gfx17.render();
+  gfx18.render();
+  gfx19.render();
+  gfx20.render();
 }
 
 function toolTipContent6(e) {
