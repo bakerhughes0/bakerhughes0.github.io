@@ -111,21 +111,22 @@ function pageModel(n){
   return o;
   }
 
-disptime=15000;
+disptime=20000;
 p=[]; p_idx=0;
 ctl = new xDiv();
-autoplay=1;
+autoplay=0;
 
 function autoScrollPage(){
+  loadData();
   if(autoplay){
+    W=scrW();H=scrH();
     p_idx++;
     if(p_idx>p.length-1) p_idx=0;
-    for(var i=0;i<p.length;i++){move(p[i],[(i-p_idx)*1920,0,1920,1080]);}
+    for(var i=0;i<p.length;i++){move(p[i],[(i-p_idx)*W,0,W,H]);}
     sPos(ctl.s,[4+30*p_idx,4]);
-    clearTimeout(tout);
-    tout = setTimeout(autoScrollPage,disptime);
-    loadData(); 
     }
+  clearTimeout(tout);
+  tout = setTimeout(autoScrollPage,disptime);
   }
 
 function scrollPage(){
