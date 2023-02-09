@@ -1,6 +1,7 @@
 <html>
  
 <head>
+<script type=text/javascript src=js/func.js?001></script>
 <script type=text/javascript src=wclist.js?001></script>
 <script type=text/javascript>
 var wc = [];
@@ -205,6 +206,7 @@ function draw(){
       fillRect(.006*W,.83*H + .032*H*x,.01*W,.01*W);
       }    
     }
+  move(lnk,[W*0.47,H*.01,W*.03,H*.02]);
   }
   
 var toggleUpArrow=0
@@ -238,7 +240,20 @@ function loadData(){
 window.onload=function(){
   if(window.location.search.length>0){wc.push(window.location.search.substring(1));}
   document.title = wc.join('-');
-  o=document.createElement('canvas');
+  lnk=new xBtn();
+  sPar(lnk,0);
+  sVis(lnk,0);
+  sTxt(lnk, "link");
+  if(wc[0]=='0461'){
+    sVis(lnk,1);
+    sTxt(lnk, "462 >");
+    lnk.eClk=function(){window.location='vm.htm?0462';}
+    }
+  if(wc[0]=='0462'){
+    sVis(lnk,1);
+    sTxt(lnk, "461 >");
+    lnk.eClk=function(){window.location='vm.htm?0461';}
+    }  o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
   loadData();
   document.body.appendChild(o)
