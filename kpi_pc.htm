@@ -86,7 +86,7 @@ function loadData(){
     gfx25.render();
     gfx26.options.data[0].dataPoints=gfx26_d1;
     gfx26.render();
-    sTxt(main.tm,tm);
+    sTxt(main.tm,'Updated on ' + tm);
     }
   document.head.appendChild(js);    
   }
@@ -141,7 +141,6 @@ function gfxBlk(){
   sBrR(o,[8]);
   sBkL(o,100,'#243 30%, #222 100%');
   sOpa(o,.88);
-  //sSiz(o,[450,240]);
   return o;
   }
 
@@ -165,20 +164,20 @@ function redraw(){
   gfxPos(g17,p[0],1,2);
   gfxPos(g18,p[0],2,2);
   gfxPos(g19,p[0],3,2);
-  gfxPos(g01,p[1],2,0);
-  gfxPos(g02,p[1],0,1);
-  gfxPos(g03,p[1],3,0);
-  gfxPos(g04,p[1],3,1);
-  gfxPos(g05,p[1],1,1);
+  gfxPos(g01,p[1],0,0);
+  gfxPos(g03,p[1],0,1);
+  gfxPos(g04,p[1],0,2);
   gfxPos(g06,p[1],1,0);
-  gfxPos(g07,p[1],2,1);
+  gfxPos(g05,p[1],1,1);
   gfxPos(g20,p[1],1,2);
+  gfxPos(g07,p[1],2,0);
+  gfxPos(g02,p[1],3,0);
   gfxPos(g21,p[2],0,0);
   gfxPos(g22,p[2],1,0);
-  gfxPos(g23,p[2],0,1);
-  gfxPos(g24,p[2],1,1);
-  gfxPos(g25,p[2],2,1);
-  gfxPos(g26,p[2],3,1);
+  gfxPos(g23,p[2],2,0);
+  gfxPos(g24,p[2],0,1);
+  gfxPos(g25,p[2],1,1);
+  gfxPos(g26,p[2],2,1);
 
   }
 
@@ -199,7 +198,7 @@ window.onload=function(){
 main.l2 = new xDiv();
   sBrW(main.l2,[2]);sBrC(main.l2,['#8a9']);sBrR(main.l2,[9999]);sRot(main.l2,[0,0,-20]);sPar(main.l2,main);
   sBkL(main.l2,92,'#222 0%, #243 40%, #243 60%, #222 100%');sOpa(main.l2,.5);
-  main.tm=new xLab();sPar(main.tm,main);sFtC(main.tm,'#aaa');
+  main.tm=new xLab();sPar(main.tm,main);sFtC(main.tm,'#666');
   main.eRes=function(){
     W=scrW(); H=scrH();
     move(ctl,[W/2-p.length*15,5,p.length*30,30]);
@@ -224,7 +223,7 @@ main.l2 = new xDiv();
     });
   p[0] = new pageModel(0);
     sTxt(p[0].t1,"CONDE MATERIALS KPI - PRODUCTION CONTROL");
-    sTxt(p[0].t2,"PRODUCTION");
+    sTxt(p[0].t2,"ASSEMBLY PRODUCTION");
   p[1] = new pageModel(1);
     sTxt(p[1].t1,"CONDE MATERIALS KPI - PRODUCTION CONTROL");
     sTxt(p[1].t2,"MACHINING");
@@ -843,7 +842,7 @@ main.l2 = new xDiv();
   title: {text: "SMAD TO ASSIGN", fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
   axisY:{
-    title: "Lines",
+    title: "Line Items",
     titleFontColor: "#eee",
     labelFontColor: "#eee",
     labelFontFamily: 'Arial',
@@ -856,7 +855,7 @@ main.l2 = new xDiv();
     },
   toolTip: {shared: true},
   data: [              
-    { type: "column", name: "Lines",  color:"#8b9",  dataPoints: [] },
+    { type: "column", name: "Line Items",  color:"#8b9",  dataPoints: [] },
     ]
   }); 
   g22 = new gfxBlk(); g22.id="g22"
@@ -866,7 +865,7 @@ main.l2 = new xDiv();
   title: {text: "PMAD IN THE PAST", fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
   axisY:{
-    title: "Lines",
+    title: "Line Items",
     titleFontColor: "#eee",
     labelFontColor: "#eee",
     labelFontFamily: 'Arial',
@@ -879,7 +878,7 @@ main.l2 = new xDiv();
     },
   toolTip: {shared: true},
   data: [              
-    { type: "column", name: "Lines",  color:"#8b9",  dataPoints: [] },
+    { type: "column", name: "Line Items",  color:"#8b9",  dataPoints: [] },
     ]
   }); 
   g23 = new gfxBlk(); g23.id="g23"
