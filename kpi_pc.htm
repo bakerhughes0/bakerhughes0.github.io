@@ -86,6 +86,7 @@ function loadData(){
     gfx25.render();
     gfx26.options.data[0].dataPoints=gfx26_d1;
     gfx26.render();
+    sTxt(main.tm,tm);
     }
   document.head.appendChild(js);    
   }
@@ -198,12 +199,14 @@ window.onload=function(){
 main.l2 = new xDiv();
   sBrW(main.l2,[2]);sBrC(main.l2,['#8a9']);sBrR(main.l2,[9999]);sRot(main.l2,[0,0,-20]);sPar(main.l2,main);
   sBkL(main.l2,92,'#222 0%, #243 40%, #243 60%, #222 100%');sOpa(main.l2,.5);
+  main.tm=new xLab();sPar(main.tm,main);sFtC(main.tm,'#aaa');
   main.eRes=function(){
     W=scrW(); H=scrH();
     move(ctl,[W/2-p.length*15,5,p.length*30,30]);
     for(var i=0;i<p.length;i++){move(p[i],[(i-p_idx)*W,0,W,H]);}
     move(main.l1,[0.6*W,0.3*H,0.8*W,0.2*H]);
     move(main.l2,[0.6*W,0.5*H,0.8*W,0.2*H]);
+    move(main.tm,[0.01*W,0.97*H,W,0.03*H]);
     }
 
   sThS(main, function(evt){ touchX1=evt.x; });
