@@ -252,7 +252,18 @@ window.onload=function(){
     sVis(lnk,1);
     sTxt(lnk, "461 >");
     lnk.eClk=function(){window.location='vm.htm?0461';}
-    }  o=document.createElement('canvas');
+    }  
+  if(wc[0]=='0403'){
+    sVis(lnk,1);
+    sTxt(lnk, "470 >");
+    lnk.eClk=function(){window.location='vm.htm?0470';}
+    }  
+  if(wc[0]=='0470'){
+    sVis(lnk,1);
+    sTxt(lnk, "403 >");
+    lnk.eClk=function(){window.location='vm.htm?0403';}
+    }  
+  o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
   loadData();
   document.body.appendChild(o)
