@@ -206,7 +206,7 @@ function draw(){
       fillRect(.006*W,.83*H + .032*H*x,.01*W,.01*W);
       }    
     }
-  move(lnk,[W*0.47,H*.01,W*.03,H*.02]);
+  if(lnk){move(lnk,[W*0.485,H*.01,W*.02,W*.02])};
   }
   
 var toggleUpArrow=0
@@ -240,50 +240,20 @@ function loadData(){
 window.onload=function(){
   if(window.location.search.length>0){wc.push(window.location.search.substring(1));}
   document.title = wc.join('-');
-  lnk=new xBtn();
-  sPar(lnk,0);
-  sVis(lnk,0);
-  sTxt(lnk, "link");
-  if(wc[0]=='0461'){
-    sVis(lnk,1);
-    sTxt(lnk, "0462 >");
-    lnk.eClk=function(){window.location='vm.htm?0462';}
-    }
-  if(wc[0]=='0462'){
-    sVis(lnk,1);
-    sTxt(lnk, "0461 >");
-    lnk.eClk=function(){window.location='vm.htm?0461';}
-    }  
-  if(wc[0]=='0403'){
-    sVis(lnk,1);
-    sTxt(lnk, "0470 >");
-    lnk.eClk=function(){window.location='vm.htm?0470';}
-    }  
-  if(wc[0]=='0470'){
-    sVis(lnk,1);
-    sTxt(lnk, "0403 >");
-    lnk.eClk=function(){window.location='vm.htm?0403';}
-    }  
 
-  if(wc[0]=='0220'){sVis(lnk,1);
-    sTxt(lnk, "0264 >");lnk.eClk=function(){window.location='vm.htm?0264';}
-    }  
-  if(wc[0]=='0264'){sVis(lnk,1);
-    sTxt(lnk, "0277 >");lnk.eClk=function(){window.location='vm.htm?0277';}
-    } 
-  if(wc[0]=='0277'){sVis(lnk,1);
-    sTxt(lnk, "0220 >");lnk.eClk=function(){window.location='vm.htm?0220';}
-    } 
+  if(wc[0]=='0461'){lnk = new xTmr("462");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0462';}}
+  if(wc[0]=='0462'){lnk = new xTmr("461");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0461';}}
 
-  if(wc[0]=='0271'){sVis(lnk,1);
-    sTxt(lnk, "0272 >");lnk.eClk=function(){window.location='vm.htm?0272';}
-    }  
-  if(wc[0]=='0272'){sVis(lnk,1);
-    sTxt(lnk, "0247 >");lnk.eClk=function(){window.location='vm.htm?0247';}
-    } 
-  if(wc[0]=='0247'){sVis(lnk,1);
-    sTxt(lnk, "0271 >");lnk.eClk=function(){window.location='vm.htm?0271';}
-    } 
+  if(wc[0]=='0403'){lnk = new xTmr("470");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0470';}}
+  if(wc[0]=='0470'){lnk = new xTmr("403");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0403';}}
+
+  if(wc[0]=='0220'){lnk = new xTmr("264");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0264';}}
+  if(wc[0]=='0264'){lnk = new xTmr("277");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0277';}}
+  if(wc[0]=='0277'){lnk = new xTmr("220");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0220';}}
+
+  if(wc[0]=='0271'){lnk = new xTmr("272");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0272';}}
+  if(wc[0]=='0272'){lnk = new xTmr("247");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0247';}}
+  if(wc[0]=='0247'){lnk = new xTmr("271");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0271';}}
 
   o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
@@ -333,6 +303,50 @@ function checkKey(e) {
       if(wclist[n+1]){window.location='vm.htm?' + wclist[n+1];}
     }
 }
+
+function xTmr(text){
+  var o=document.createElement('canvas');
+  o.width=250;o.height=250;
+  o.max=20;
+  o.val=0;
+  o.ctx=o.getContext('2d');
+  var W=250,H=250,w2=125,h2=125,pi=3.141592653
+  o.ctx.beginPath()
+  o.ctx.fillStyle = '#111';
+  o.ctx.arc(w2, h2, 125 , 0, 2 * pi)
+  o.ctx.fill()
+  o.ctx.fillStyle = '#eee'
+    o.ctx.font = "bold 68px Arial ";
+    o.ctx.textAlign = "center";
+    o.ctx.textBaseline = "middle";
+    o.ctx.fillText(text +" >", w2, h2);
+  o.eClk = function(){};
+  o.seq=function(){
+    for(var i=0;i<o.max;i++){
+      o.ctx.lineWidth=15;
+      o.ctx.beginPath();
+      o.ctx.strokeStyle = '#999';
+      o.ctx.arc(w2, h2, 110, -pi/2 +(2*pi*(i/o.max)), -pi/2 +(2*pi*((i+1)/o.max))-.05 );
+      o.ctx.stroke();
+      }
+    for(var i=0;i<o.val;i++){
+      o.ctx.lineWidth=15;
+      o.ctx.beginPath();
+      o.ctx.strokeStyle = '#6ac';
+      o.ctx.arc(w2, h2, 110, -pi/2 +(2*pi*(i/o.max)), -pi/2 +(2*pi*((i+1)/o.max))-.05 );
+      o.ctx.stroke();
+      }
+    if(o.val+1>o.max){
+      o.val=0;
+      setTimeout(function(){o.val++;o.eClk();},100);
+      }else{
+      setTimeout(function(){o.val++;o.seq();},1000);
+      }
+    }
+  o.seq();
+  sThE(o, function(evt){o.eClk();});
+  return o;
+  }
 
 setInterval(function() {loadData();}, 30000);
 </script>
