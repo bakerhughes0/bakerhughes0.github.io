@@ -305,34 +305,34 @@ function checkKey(e) {
 
 function xTmr(text){
   var o=document.createElement('canvas');
-  o.width=250;o.height=250;
+  o.width=100;o.height=100;
   o.max=20;
   o.val=0;
   o.ctx=o.getContext('2d');
-  var W=250,H=250,w2=125,h2=125,pi=3.141592653
-  o.ctx.beginPath()
-  o.ctx.fillStyle = '#111';
-  o.ctx.arc(w2, h2, 125 , 0, 2 * pi)
-  o.ctx.fill()
+  var W=100,H=100,w2=50,h2=50,pi=3.141592653
+  //o.ctx.beginPath()
+  //o.ctx.fillStyle = '#111';
+  //o.ctx.arc(w2, h2, W, 0, 2 * pi)
+  //o.ctx.fill()
   o.ctx.fillStyle = '#eee'
-    o.ctx.font = "bold 68px Arial ";
+    o.ctx.font = "bold 22px Arial ";
     o.ctx.textAlign = "center";
     o.ctx.textBaseline = "middle";
     o.ctx.fillText(text +" >", w2, h2);
   o.eClk = function(){};
   o.seq=function(){
     for(var i=0;i<o.max;i++){
-      o.ctx.lineWidth=15;
+      o.ctx.lineWidth=9;
       o.ctx.beginPath();
       o.ctx.strokeStyle = '#999';
-      o.ctx.arc(w2, h2, 110, -pi/2 +(2*pi*(i/o.max)), -pi/2 +(2*pi*((i+1)/o.max))-.05 );
+      o.ctx.arc(w2, h2, 40, -pi/2 +(2*pi*(i/o.max)), -pi/2 +(2*pi*((i+1)/o.max))-.05 );
       o.ctx.stroke();
       }
     for(var i=0;i<o.val;i++){
-      o.ctx.lineWidth=15;
+      o.ctx.lineWidth=14;
       o.ctx.beginPath();
       o.ctx.strokeStyle = '#6ac';
-      o.ctx.arc(w2, h2, 110, -pi/2 +(2*pi*(i/o.max)), -pi/2 +(2*pi*((i+1)/o.max))-.05 );
+      o.ctx.arc(w2, h2, 40, -pi/2 +(2*pi*(i/o.max)), -pi/2 +(2*pi*((i+1)/o.max))-.05 );
       o.ctx.stroke();
       }
     if(o.val+1>o.max){
