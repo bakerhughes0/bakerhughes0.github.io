@@ -86,7 +86,13 @@ function loadData(){
     gfx25.render();
     gfx26.options.data[0].dataPoints=gfx26_d1;
     gfx26.render();
-    gfx27.options.data[0].dataPoints=gfx27_d1;
+    gfx27.options.data[0].dataPoints=gfx27_d1.reverse();
+    gfx27.options.data[1].dataPoints=gfx27_d2.reverse();
+    gfx27.options.data[2].dataPoints=gfx27_d3.reverse();
+    gfx27.options.data[3].dataPoints=gfx27_d4.reverse();
+    gfx27.options.data[4].dataPoints=gfx27_d5.reverse();
+    gfx27.options.data[5].dataPoints=gfx27_d6.reverse();
+
     gfx27.render();
     sTxt(main.tm,'Update : ' + tm);
     }
@@ -151,7 +157,7 @@ function gfxPos(o,parent,posX,posY){
   W=scrW(); H=scrH();
   sPar(o,parent);
   if(o==g27){
-    move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.30),W*0.485,H*0.59]);
+    move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.30),W*0.98,H*0.89]);
     }else{
     move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.30),W*0.2375,H*0.29]);
     }
@@ -179,13 +185,15 @@ function redraw(){
   gfxPos(g20,p[1],1,2);
   gfxPos(g02,p[1],3,0);
   gfxPos(g07,p[1],2,0);
-  gfxPos(g21,p[2],0,0);
-  gfxPos(g22,p[2],1,0);
-  gfxPos(g23,p[2],2,0);
-  gfxPos(g24,p[2],0,1);
-  gfxPos(g25,p[2],1,1);
-  gfxPos(g26,p[2],2,1);
-  gfxPos(g27,p[1],2,1);
+
+  gfxPos(g27,p[2],0,0);
+
+  gfxPos(g21,p[3],0,0);
+  gfxPos(g22,p[3],1,0);
+  gfxPos(g23,p[3],2,0);
+  gfxPos(g24,p[3],0,1);
+  gfxPos(g25,p[3],1,1);
+  gfxPos(g26,p[3],2,1);
 
   }
 
@@ -236,7 +244,10 @@ main.l2 = new xDiv();
     sTxt(p[1].t1,"CONDE MATERIALS KPI - PRODUCTION CONTROL");
     sTxt(p[1].t2,"MACHINING");
   p[2] = new pageModel(2);
-    sTxt(p[2].t1,"CONDE MATERIALS KPI - PLANNING");
+    sTxt(p[2].t1,"CONDE MATERIALS KPI - PRODUCTION CONTROL");
+    sTxt(p[2].t2,"MACHINING 2");
+  p[3] = new pageModel(3);
+    sTxt(p[3].t1,"CONDE MATERIALS KPI - PLANNING");
 
 
   sBrC(ctl,['#fff']);sBrW(ctl,[2]); sBrR(ctl,[100]);sBrC(ctl,['#8a9']);
@@ -998,7 +1009,7 @@ main.l2 = new xDiv();
   gfx27 = new CanvasJS.Chart(g27, {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "WORKCENTERS HOURS/DAY [AVG]", fontColor:"#ddd",fontFamily: 'Arial',fontSize: 18,},
+  title: {text: "WORKCENTERS CAPACITIES / LOAD", fontColor:"#ddd",fontFamily: 'Arial',fontSize: 18,},
   backgroundColor: null,
   legend: {
     horizontalAlign: "center",
@@ -1012,7 +1023,7 @@ main.l2 = new xDiv();
     labelFontFamily: 'Arial',
     interval: 1,
     labelFontSize: 10,
-    labelAngle: -80,
+    //labelAngle: -80,
     },
   axisY:{
     title:"Standard hours",
@@ -1028,7 +1039,12 @@ main.l2 = new xDiv();
     },
   toolTip: {shared: true},
   data: [              
-    { type: "column", name: "Average Standard hours / Day", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "stackedBar", name: "S", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "stackedBar", name: "S+1", indexLabelFontColor:'#eee', color:"#586", dataPoints: [] },
+    { type: "stackedBar", name: "S+2", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "stackedBar", name: "S+3", indexLabelFontColor:'#eee', color:"#586", dataPoints: [] },
+    { type: "stackedBar", name: "S+4", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "stackedBar", name: "S+5", indexLabelFontColor:'#eee', color:"#586", dataPoints: [] },
     ]
   });  
 
