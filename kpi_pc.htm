@@ -177,7 +177,7 @@ function gfxPos(o,parent,posX,posY){
   sPar(o,parent);
   if(o==g27){
     move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.30),W*0.98,H*0.89]);
-    }else if(o==g28){
+    }else if(o==g28 || o==g07){
     move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.30),W*0.2375,H*0.59]);
     }else{
     move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.30),W*0.2375,H*0.29]);
@@ -204,7 +204,7 @@ function redraw(){
   gfxPos(g06,p[1],1,0);
   gfxPos(g05,p[1],1,1);
   gfxPos(g20,p[1],1,2);
-  gfxPos(g07,p[1],3,0);
+  gfxPos(g07,p[1],3,1);
   gfxPos(g28,p[1],2,1);
   gfxPos(g29,p[1],2,0);
 
@@ -480,7 +480,7 @@ main.l2 = new xDiv();
   gfx07 = new CanvasJS.Chart(g07, {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "TOP 10 WORKCENTERS", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "QUARTER HOURS", fontColor:"#ddd",fontFamily: 'Arial',fontSize:14},
   backgroundColor: null,
   legend: {
     horizontalAlign: "center",
@@ -493,14 +493,18 @@ main.l2 = new xDiv();
     labelFontColor: "#eee",
     labelFontFamily: 'Arial',
     interval: 1,
+    labelFontSize: 10,
     },
   axisY:{
-    title:"Quarter Standard hours",
+    title:"Standard hours",
     titleFontColor: "#eee",
     lineColor:'#ccc', lineThickness: 1,
     gridColor:'#ccc', gridThickness: 1,
     labelFontColor: "#eee",
     labelFontFamily: 'Arial',
+    labelFontSize: 12,
+    titleFontFamily: 'Arial',
+    titleFontSize: 12,
     },
   toolTip: {shared: true},
   data: [              
@@ -1066,7 +1070,7 @@ main.l2 = new xDiv();
   gfx28 = new CanvasJS.Chart(g28, {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "WEEK HOURS / CAPACITY", fontColor:"#ddd",fontFamily: 'Arial',fontSize: 20,},
+  title: {text: "WEEK HOURS / CAPACITY", fontColor:"#ddd",fontFamily: 'Arial',fontSize:14,},
   backgroundColor: null,
   legend: {
     horizontalAlign: "center",
@@ -1096,7 +1100,7 @@ main.l2 = new xDiv();
     },
   toolTip: {shared: true, content: toolTipContent6},
   data: [              
-    { type: "bar", name: "Capacity", lineDashType: "dash", color: "#DDA", showInLegend: true, dataPoints: [],fillOpacity:.85},
+    { type: "bar", name: "Capacity", lineDashType: "dash", color: "#DDA", dataPoints: [],fillOpacity:.85},
     { type: "stackedBar", name: "Mon", color: "#8B9", dataPoints: [] },
     { type: "stackedBar", name: "Tue", color: "#586", dataPoints: [] },
     { type: "stackedBar", name: "Wed", color: "#8B9",  dataPoints: [] },
