@@ -92,8 +92,15 @@ function loadData(){
     gfx27.options.data[3].dataPoints=gfx27_d4.reverse();
     gfx27.options.data[4].dataPoints=gfx27_d5.reverse();
     gfx27.options.data[5].dataPoints=gfx27_d6.reverse();
-
     gfx27.render();
+    gfx28.options.data[0].dataPoints=gfx28_d1.reverse();
+    gfx28.options.data[1].dataPoints=gfx28_d2.reverse();
+    gfx28.options.data[2].dataPoints=gfx28_d3.reverse();
+    gfx28.options.data[3].dataPoints=gfx28_d4.reverse();
+    gfx28.options.data[4].dataPoints=gfx28_d5.reverse();
+    gfx28.render();
+
+
     sTxt(main.tm,'Update : ' + tm);
     }
   document.head.appendChild(js);    
@@ -158,6 +165,8 @@ function gfxPos(o,parent,posX,posY){
   sPar(o,parent);
   if(o==g27){
     move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.30),W*0.98,H*0.89]);
+    }else if(o==g28){
+    move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.30),W*0.2375,H*0.59]);
     }else{
     move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.30),W*0.2375,H*0.29]);
     }
@@ -185,6 +194,7 @@ function redraw(){
   gfxPos(g20,p[1],1,2);
   gfxPos(g02,p[1],3,0);
   gfxPos(g07,p[1],2,0);
+  gfxPos(g28,p[1],2,1);
 
   gfxPos(g27,p[2],0,0);
 
@@ -1048,6 +1058,48 @@ main.l2 = new xDiv();
     ]
   });  
 
+//____________________________________________________________________________________________________________________________
+
+  g28 = new gfxBlk(); g28.id="g28"
+  gfx28 = new CanvasJS.Chart(g28, {
+  animationEnabled: true,
+  animationDuration: 2500,
+  title: {text: "WORKCENTERS WEEK COMPLETION", fontColor:"#ddd",fontFamily: 'Arial',fontSize: 18,},
+  backgroundColor: null,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee",
+    },
+  axisX:{
+    lineColor:'#ccc', lineThickness: 1,
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    interval: 1,
+    labelFontSize: 10,
+    },
+  axisY:{
+    title:"Standard hours",
+    titleFontColor: "#eee",
+    lineColor:'#ccc', lineThickness: 1,
+    gridColor:'#ccc', gridThickness: 1,
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    labelFontSize: 12,
+    titleFontFamily: 'Arial',
+    titleFontSize: 12,
+    minimum: 0
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "stackedBar", name: "Mon", color: "#8B9", dataPoints: [] },
+    { type: "stackedBar", name: "Tue", color: "#586", dataPoints: [] },
+    { type: "stackedBar", name: "Wed", color: "#8B9",  dataPoints: [] },
+    { type: "stackedBar", name: "Thu", color: "#586", dataPoints: [] },
+    { type: "stackedBar", name: "Fri", color: "#8B9",  dataPoints: [] },
+    ]
+  });  
 
 
 
