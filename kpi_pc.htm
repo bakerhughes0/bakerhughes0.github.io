@@ -93,13 +93,15 @@ function loadData(){
     gfx27.options.data[4].dataPoints=gfx27_d5.reverse();
     gfx27.options.data[5].dataPoints=gfx27_d6.reverse();
     gfx27.render();
-    gfx28.options.data[0].dataPoints=gfx28_d1.reverse();
-    gfx28.options.data[1].dataPoints=gfx28_d2.reverse();
-    gfx28.options.data[2].dataPoints=gfx28_d3.reverse();
-    gfx28.options.data[3].dataPoints=gfx28_d4.reverse();
-    gfx28.options.data[4].dataPoints=gfx28_d5.reverse();
+    gfx28.options.data[1].dataPoints=gfx28_d1.reverse();
+    gfx28.options.data[2].dataPoints=gfx28_d2.reverse();
+    gfx28.options.data[3].dataPoints=gfx28_d3.reverse();
+    gfx28.options.data[4].dataPoints=gfx28_d4.reverse();
+    gfx28.options.data[5].dataPoints=gfx28_d5.reverse();
+    gfx28.options.data[0].dataPoints=gfx28_d6.reverse();
     gfx28.render();
-
+    gfx29.options.data[0].dataPoints=gfx29_d1;
+    gfx29.render();
 
     sTxt(main.tm,'Update : ' + tm);
     }
@@ -192,9 +194,9 @@ function redraw(){
   gfxPos(g06,p[1],1,0);
   gfxPos(g05,p[1],1,1);
   gfxPos(g20,p[1],1,2);
-  gfxPos(g02,p[1],3,0);
-  gfxPos(g07,p[1],2,0);
+  gfxPos(g07,p[1],3,0);
   gfxPos(g28,p[1],2,1);
+  gfxPos(g29,p[1],2,0);
 
   gfxPos(g27,p[2],0,0);
 
@@ -204,6 +206,7 @@ function redraw(){
   gfxPos(g24,p[3],0,1);
   gfxPos(g25,p[3],1,1);
   gfxPos(g26,p[3],2,1);
+  gfxPos(g02,p[3],3,0);
 
   }
 
@@ -1064,13 +1067,14 @@ main.l2 = new xDiv();
   gfx28 = new CanvasJS.Chart(g28, {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "WORKCENTERS WEEK COMPLETION", fontColor:"#ddd",fontFamily: 'Arial',fontSize: 18,},
+  title: {text: "WORKCENTERS WEEK COMPLETION", fontColor:"#ddd",fontFamily: 'Arial',fontSize: 20,},
   backgroundColor: null,
   legend: {
     horizontalAlign: "center",
     verticalAlign: "bottom",
     labelFontFamily: 'Arial',
     fontColor: "#eee",
+fontSize : 12,
     },
   axisX:{
     lineColor:'#ccc', lineThickness: 1,
@@ -1093,6 +1097,7 @@ main.l2 = new xDiv();
     },
   toolTip: {shared: true, content: toolTipContent6},
   data: [              
+    { type: "bar", name: "Target", lineDashType: "dash", color: "#cc0", showInLegend: true, dataPoints: [],fillOpacity: .3, },
     { type: "stackedBar", name: "Mon", color: "#8B9", dataPoints: [] },
     { type: "stackedBar", name: "Tue", color: "#586", dataPoints: [] },
     { type: "stackedBar", name: "Wed", color: "#8B9",  dataPoints: [] },
@@ -1101,7 +1106,37 @@ main.l2 = new xDiv();
     ]
   });  
 
+//____________________________________________________________________________________________________________________________
 
+  g29 = new gfxBlk(); g29.id="g29"
+  gfx29 = new CanvasJS.Chart(g29, {
+  animationEnabled: true,
+  animationDuration: 2500,
+  title: {text: "6 WEEKS CAPACITY", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee",
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -32,
+    labelFontFamily: 'Arial',
+    },
+  axisY:{
+    title: "Standard hours",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "column", name: "Week", color: "#8B9", dataPoints: [] },
+    ]
+  });  
 
 
   loadData(); 
