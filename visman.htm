@@ -255,7 +255,10 @@ window.onload=function(){
   if(wc[0]=='0272'){lnk = new xTmr("247");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0247';}}
   if(wc[0]=='0247'){lnk = new xTmr("271");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0271';}}
 
-  o=document.createElement('canvas');
+  if(wc[0]=='0804'){lnk = new xTmr("805");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0805';}}
+  if(wc[0]=='0805'){lnk = new xTmr("804");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0804';}}
+ 
+ o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
   loadData();
   document.body.appendChild(o)
