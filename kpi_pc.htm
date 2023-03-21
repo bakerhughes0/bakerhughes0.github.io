@@ -902,6 +902,12 @@ main.l2 = new xDiv();
   animationDuration: 1500,
   title: {text: "SMAD IN THE PAST", fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee"
+    },
   axisY:{
     title: "Line Items",
     titleFontColor: "#eee",
@@ -916,11 +922,11 @@ main.l2 = new xDiv();
     },
   toolTip: {shared: true, content: toolTipContent6},
   data: [              
-    { type: "stackedColumn", name: "Camflex",  color:"#8b9",  dataPoints: [] },
-    { type: "stackedColumn", name: "Varipak",  color:"#586",  dataPoints: [] },
-    { type: "stackedColumn", name: "Globes",  color:"#8b9",  dataPoints: [] },
-    { type: "stackedColumn", name: "Levels",  color:"#586",  dataPoints: [] },
-    { type: "stackedColumn", name: "Others",  color:"#8b9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69",  dataPoints: [] },
+    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888",  dataPoints: [] },
+    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900",  dataPoints: [] },
+    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C",  dataPoints: [] },
+    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#696",  dataPoints: [] },
     ]
   }); 
   g22 = new gfxBlk(); g22.id="g22"
@@ -929,6 +935,12 @@ main.l2 = new xDiv();
   animationDuration: 1500,
   title: {text: "PMAD IN THE PAST", fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee"
+    },
   axisY:{
     title: "Line Items",
     titleFontColor: "#eee",
@@ -943,11 +955,11 @@ main.l2 = new xDiv();
     },
   toolTip: {shared: true, content: toolTipContent6},
   data: [              
-    { type: "stackedColumn", name: "Camflex",  color:"#8b9",  dataPoints: [] },
-    { type: "stackedColumn", name: "Varipak",  color:"#586",  dataPoints: [] },
-    { type: "stackedColumn", name: "Globes",  color:"#8b9",  dataPoints: [] },
-    { type: "stackedColumn", name: "Levels",  color:"#586",  dataPoints: [] },
-    { type: "stackedColumn", name: "Others",  color:"#8b9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69", dataPoints: [] },
+    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888", dataPoints: [] },
+    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900", dataPoints: [] },
+    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C", dataPoints: [] },
+    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#696", dataPoints: [] },
     ]
   }); 
   g23 = new gfxBlk(); g23.id="g23"
@@ -986,6 +998,12 @@ main.l2 = new xDiv();
   animationDuration: 1500,
   title: {text: "WO RELEASED", fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee"
+    },
   axisY:{
     title: "Products Quantity",
     titleFontColor: "#eee",
@@ -1000,11 +1018,11 @@ main.l2 = new xDiv();
     },
   toolTip: {shared: true},
   data: [              
-    { type: "stackedColumn", name: "Camflex",  color:"#8b9",  dataPoints: [] },
-    { type: "stackedColumn", name: "Varipak",  color:"#586",  dataPoints: [] },
-    { type: "stackedColumn", name: "Globes",  color:"#8b9",  dataPoints: [] },
-    { type: "stackedColumn", name: "Levels",  color:"#586",  dataPoints: [] },
-    { type: "stackedColumn", name: "Others",  color:"#8b9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69", dataPoints: [] },
+    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888", dataPoints: [] },
+    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900", dataPoints: [] },
+    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C", dataPoints: [] },
+    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#696", dataPoints: [] },
     ]
   });  
   g25 = new gfxBlk(); g25.id="g25"
