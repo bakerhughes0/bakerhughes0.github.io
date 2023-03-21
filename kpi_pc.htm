@@ -106,6 +106,9 @@ function loadData(){
     gfx24.options.data[4].dataPoints=gfx24_d5;
     gfx24.render();
     gfx25.options.data[0].dataPoints=gfx25_d1;
+    gfx25.options.data[1].dataPoints=gfx25_d2;
+    gfx25.options.data[2].dataPoints=gfx25_d3;
+    gfx25.options.data[3].dataPoints=gfx25_d4;
     gfx25.render();
 //    gfx26.options.data[0].dataPoints=gfx26_d1;
     gfx26.render();
@@ -1010,6 +1013,12 @@ main.l2 = new xDiv();
   animationDuration: 1500,
   title: {text: "PLANNED ORDERS NOT CONVERTED", fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#ddd"
+    },
   axisY:{
     title: "Planned Orders",
     titleFontColor: "#eee",
@@ -1022,9 +1031,12 @@ main.l2 = new xDiv();
     labelAngle: -36,
     labelFontFamily: 'Arial',
     },
-  toolTip: {shared: true},
+  toolTip: {shared: true, content: toolTipContent6},
   data: [              
-    { type: "column", name: "Planned Orders",  color:"#8b9",  dataPoints: [] },
+    { type: "stackedColumn", name: "P1.P1.SP", showInLegend: true,color:"#930",  dataPoints: [] },
+    { type: "stackedColumn", name: "P1.P1.RB", showInLegend: true,color:"#cc0",  dataPoints: [] },
+    { type: "stackedColumn", name: "P1.P1.P1", showInLegend: true,color:"#093",  dataPoints: [] },
+    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#903",  dataPoints: [] },
     ]
   });
   g26 = new gfxBlk(); g26.id="g26"
