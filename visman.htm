@@ -206,7 +206,7 @@ function draw(){
       fillRect(.006*W,.83*H + .032*H*x,.01*W,.01*W);
       }    
     }
-  if(lnk){move(lnk,[W*0.485,H*.01,W*.02,W*.02])};
+  if(lnk){move(lnk,[W*0.485,H*.01,W*.02,W*.02]);sPar(lnk, 0);};
   }
   
 var toggleUpArrow=0
@@ -241,60 +241,53 @@ window.onload=function(){
   if(window.location.search.length>0){wc.push(window.location.search.substring(1));}
   document.title = wc.join('-');
 
-  if(wc[0]=='0205'){lnk = new xTmr("209");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0209';}}
-  if(wc[0]=='0209'){lnk = new xTmr("210");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0210';}}
-  if(wc[0]=='0210'){lnk = new xTmr("205");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0205';}}
+  if(wc[0]=='0205'){lnk = new xTmr("209");lnk.eClk=function(){window.location='vm.htm?0209';}}
+  if(wc[0]=='0209'){lnk = new xTmr("210");lnk.eClk=function(){window.location='vm.htm?0210';}}
+  if(wc[0]=='0210'){lnk = new xTmr("205");lnk.eClk=function(){window.location='vm.htm?0205';}}
 
-  if(wc[0]=='0230'){lnk = new xTmr("224");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0224';}}
-  if(wc[0]=='0224'){lnk = new xTmr("230");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0230';}}
+  if(wc[0]=='0230'){lnk = new xTmr("224");lnk.eClk=function(){window.location='vm.htm?0224';}}
+  if(wc[0]=='0224'){lnk = new xTmr("230");lnk.eClk=function(){window.location='vm.htm?0230';}}
 
-  if(wc[0]=='0207'){lnk = new xTmr("208");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0208';}}
-  if(wc[0]=='0208'){lnk = new xTmr("207");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0207';}}
+  if(wc[0]=='0207'){lnk = new xTmr("208");lnk.eClk=function(){window.location='vm.htm?0208';}}
+  if(wc[0]=='0208'){lnk = new xTmr("207");lnk.eClk=function(){window.location='vm.htm?0207';}}
 
-  if(wc[0]=='0247'){lnk = new xTmr("270");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0270';}}
-  if(wc[0]=='0270'){lnk = new xTmr("271");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0271';}}
-  if(wc[0]=='0271'){lnk = new xTmr("272");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0272';}}
-  if(wc[0]=='0272'){lnk = new xTmr("247");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0247';}}
+  if(wc[0]=='0247'){lnk = new xTmr("270");lnk.eClk=function(){window.location='vm.htm?0270';}}
+  if(wc[0]=='0270'){lnk = new xTmr("271");lnk.eClk=function(){window.location='vm.htm?0271';}}
+  if(wc[0]=='0271'){lnk = new xTmr("272");lnk.eClk=function(){window.location='vm.htm?0272';}}
+  if(wc[0]=='0272'){lnk = new xTmr("247");lnk.eClk=function(){window.location='vm.htm?0247';}}
 
-  if(wc[0]=='0220'){lnk = new xTmr("264");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0264';}}
-  if(wc[0]=='0264'){lnk = new xTmr("277");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0277';}}
-  if(wc[0]=='0277'){lnk = new xTmr("220");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0220';}}
+  if(wc[0]=='0220'){lnk = new xTmr("264");lnk.eClk=function(){window.location='vm.htm?0264';}}
+  if(wc[0]=='0264'){lnk = new xTmr("277");lnk.eClk=function(){window.location='vm.htm?0277';}}
+  if(wc[0]=='0277'){lnk = new xTmr("220");lnk.eClk=function(){window.location='vm.htm?0220';}}
 
-  if(wc[0]=='0228'){lnk = new xTmr("249");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0249';}}
-  if(wc[0]=='0249'){lnk = new xTmr("284");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0284';}}
-  if(wc[0]=='0284'){lnk = new xTmr("250");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0250';}}
-  if(wc[0]=='0250'){lnk = new xTmr("228");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0228';}}
+  if(wc[0]=='0228'){lnk = new xTmr("249");lnk.eClk=function(){window.location='vm.htm?0249';}}
+  if(wc[0]=='0249'){lnk = new xTmr("284");lnk.eClk=function(){window.location='vm.htm?0284';}}
+  if(wc[0]=='0284'){lnk = new xTmr("250");lnk.eClk=function(){window.location='vm.htm?0250';}}
+  if(wc[0]=='0250'){lnk = new xTmr("228");lnk.eClk=function(){window.location='vm.htm?0228';}}
 
-  if(wc[0]=='0461'){lnk = new xTmr("462");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0462';}}
-  if(wc[0]=='0462'){lnk = new xTmr("461");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0461';}}
 
-  if(wc[0]=='0403'){lnk = new xTmr("470");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0470';}}
-  if(wc[0]=='0470'){lnk = new xTmr("403");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0403';}}
+  if(wc[0]=='0461'){lnk = new xTmr("462");lnk.eClk=function(){window.location='vm.htm?0462';}}
+  if(wc[0]=='0462'){lnk = new xTmr("461");lnk.eClk=function(){window.location='vm.htm?0461';}}
 
-  if(wc[0]=='0220'){lnk = new xTmr("264");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0264';}}
-  if(wc[0]=='0264'){lnk = new xTmr("277");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0277';}}
-  if(wc[0]=='0277'){lnk = new xTmr("220");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0220';}}
+  if(wc[0]=='0403'){lnk = new xTmr("470");lnk.eClk=function(){window.location='vm.htm?0470';}}
+  if(wc[0]=='0470'){lnk = new xTmr("403");lnk.eClk=function(){window.location='vm.htm?0403';}}
 
-  if(wc[0]=='0271'){lnk = new xTmr("272");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0272';}}
-  if(wc[0]=='0272'){lnk = new xTmr("247");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0247';}}
-  if(wc[0]=='0247'){lnk = new xTmr("271");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0271';}}
+  if(wc[0]=='0220'){lnk = new xTmr("264");lnk.eClk=function(){window.location='vm.htm?0264';}}
+  if(wc[0]=='0264'){lnk = new xTmr("277");lnk.eClk=function(){window.location='vm.htm?0277';}}
+  if(wc[0]=='0277'){lnk = new xTmr("220");lnk.eClk=function(){window.location='vm.htm?0220';}}
 
-  if(wc[0]=='0804'){lnk = new xTmr("805");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0805';}}
-  if(wc[0]=='0805'){lnk = new xTmr("804");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0804';}}
- 
-  if(wc[0]=='0902'){lnk = new xTmr("905");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0905';}}
-  if(wc[0]=='0905'){lnk = new xTmr("412");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0412';}}
-  if(wc[0]=='0412'){lnk = new xTmr("902");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0902';}}
+  if(wc[0]=='0271'){lnk = new xTmr("272");lnk.eClk=function(){window.location='vm.htm?0272';}}
+  if(wc[0]=='0272'){lnk = new xTmr("247");lnk.eClk=function(){window.location='vm.htm?0247';}}
+  if(wc[0]=='0247'){lnk = new xTmr("271");lnk.eClk=function(){window.location='vm.htm?0271';}}
 
-  if(wc[0]=='0422'){lnk = new xTmr("454");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0454';}}
-  if(wc[0]=='0454'){lnk = new xTmr("422");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0422';}}
+  if(wc[0]=='0804'){lnk = new xTmr("805");lnk.eClk=function(){window.location='vm.htm?0805';}}
+  if(wc[0]=='0805'){lnk = new xTmr("804");lnk.eClk=function(){window.location='vm.htm?0804';}}
 
-  if(wc[0]=='0459'){lnk = new xTmr("458");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0458';}}
-  if(wc[0]=='0458'){lnk = new xTmr("421");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0421';}}
-  if(wc[0]=='0421'){lnk = new xTmr("423");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0423';}}
-  if(wc[0]=='0423'){lnk = new xTmr("459");sPar(lnk,0);lnk.eClk=function(){window.location='vm.htm?0459';}}
+  if(wc[0]=='0902'){lnk = new xTmr("905");lnk.eClk=function(){window.location='vm.htm?0905';}}
+  if(wc[0]=='0905'){lnk = new xTmr("412");lnk.eClk=function(){window.location='vm.htm?0412';}}
+  if(wc[0]=='0412'){lnk = new xTmr("902");lnk.eClk=function(){window.location='vm.htm?0902';}}
 
- o=document.createElement('canvas');
+  o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
   loadData();
   document.body.appendChild(o)
@@ -350,10 +343,6 @@ function xTmr(text){
   o.val=0;
   o.ctx=o.getContext('2d');
   var W=100,H=100,w2=50,h2=50,pi=3.141592653
-  //o.ctx.beginPath()
-  //o.ctx.fillStyle = '#111';
-  //o.ctx.arc(w2, h2, W, 0, 2 * pi)
-  //o.ctx.fill()
   o.ctx.fillStyle = '#eee'
     o.ctx.font = "bold 22px Arial ";
     o.ctx.textAlign = "center";
