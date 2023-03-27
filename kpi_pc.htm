@@ -110,7 +110,9 @@ function loadData(){
     gfx25.options.data[2].dataPoints=gfx25_d3;
     gfx25.options.data[3].dataPoints=gfx25_d4;
     gfx25.render();
-//    gfx26.options.data[0].dataPoints=gfx26_d1;
+    gfx26.options.data[0].dataPoints=gfx26_d1;
+    gfx26.options.data[1].dataPoints=gfx26_d2;
+    gfx26.options.data[2].dataPoints=gfx26_d3;
     gfx26.render();
     gfx27.options.data[0].dataPoints=gfx27_d1.reverse();
     gfx27.options.data[1].dataPoints=gfx27_d2.reverse();
@@ -1063,8 +1065,14 @@ main.l2 = new xDiv();
   animationDuration: 1500,
   title: {text: "ORDER LINES SIM", fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee"
+    },
   axisY:{
-    title: "Workorders",
+    title: "Line Items",
     titleFontColor: "#eee",
     labelFontColor: "#eee",
     labelFontFamily: 'Arial',
@@ -1077,7 +1085,9 @@ main.l2 = new xDiv();
     },
   toolTip: {shared: true},
   data: [              
-    { type: "column", name: "Workorders",  color:"#8b9",  dataPoints: [] },
+    { type: "stackedColumn", name: "<=0w", showInLegend: true,color:"#298A08",  dataPoints: [] },
+    { type: "stackedColumn", name: "1 to 4w", showInLegend: true,color:"#FE9A2E",  dataPoints: [] },
+    { type: "stackedColumn", name: ">4w", showInLegend: true,color:"#FF0000",  dataPoints: [] },
     ]
   });
 
