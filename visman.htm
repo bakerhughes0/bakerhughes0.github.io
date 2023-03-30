@@ -2,7 +2,7 @@
  
 <head>
 <script type=text/javascript src=js/func.js?001></script>
-<script type=text/javascript src=wclist.js?003></script>
+<script type=text/javascript src=wclist.js?002></script>
 <script type=text/javascript>
 var wc = [];
 var o;
@@ -12,11 +12,12 @@ var data = [], showage = 0;
 var sum = [], sumh = [], yoff=0;  
 function draw(){
   mydata = [], fcol = '#eee', bcol = '#222';
-  sum = [0,0,0,0];sumh = [0,0,0,0];
+  sum = [0,0,0,0];sumh = [0,0,0,0]; ret=0; reth = 0;
   for(var y=0; y<data.length; y++){
     if(wc.indexOf(data[y][0])>-1){
       mydata.push(data[y]);
       sum[0]++;sumh[0]+=data[y][6];
+      if(data[y][1]==1) {ret++; reth+=data[y][6]}
       cat = data[y][2];
       if(cat>2){sum[1]++;sumh[1]+=data[y][6];}
         else if(cat==2){sum[2]++;sumh[2]+=data[y][6];}
@@ -43,19 +44,25 @@ function draw(){
         else if(x==3){fillStyle=xcol[1];}
         ang2 = ang1 + (2*Math.PI)*sum[x]/sum[0];
         beginPath();
-        moveTo(.11*W, .27*H);
-        arc(.11*W, .27*H , .07*W, ang1, ang2);
-        lineTo(.11*W, .27*H);
+        moveTo(.11*W, .23*H);
+        arc(.11*W, .23*H , .06*W, ang1, ang2);
+        lineTo(.11*W, .23*H);
         fill();
         stroke();
         if(sum[x]>0){
           fillStyle="#eee"
           font = (26*r).toString() + "px Arial";
           textAlign = "center";
-          fillText(sum[x].toString(),.11*W+.085*W*Math.cos((ang2+ang1)/2) , .27*H+.085*W*Math.sin((ang2+ang1)/2));
+          fillText(sum[x].toString(),.11*W+.072*W*Math.cos((ang2+ang1)/2) , .23*H+.072*W*Math.sin((ang2+ang1)/2));
           }
         ang1 = ang2;
         }
+        lineWidth = .0010*W;
+        strokeRect(.01*W,.4*H,.195*W,.008*H);
+        fillStyle="#ddd"
+        fillRect(.01*W,.4*H,.195*W,.008*H);
+        fillStyle="#ff5050"
+        fillRect(.01*W,.4*H,.195*W*(ret/sum[0]),.008*H);
       }
     if(sum[0]>0){   
       ang1 = -Math.PI/2;
@@ -67,19 +74,25 @@ function draw(){
         lineWidth = .0016*W;
         ang2 = ang1 + (2*Math.PI)*sumh[x]/sumh[0];
         beginPath();
-        moveTo(.11*W, .65*H);
-        arc(.11*W, .65*H , .07*W, ang1, ang2);
-        lineTo(.11*W, .65*H);
+        moveTo(.11*W, .62*H);
+        arc(.11*W, .62*H , .06*W, ang1, ang2);
+        lineTo(.11*W, .62*H);
         fill();
         stroke();
         if(sumh[x]>0){
           fillStyle="#eee"
           font = (26*r).toString() + "px Arial";
           textAlign = "center";
-          fillText((Math.round(100*sumh[x])/100).toString(),.11*W+.085*W*Math.cos((ang2+ang1)/2) , .65*H+.085*W*Math.sin((ang2+ang1)/2));
+          fillText((Math.round(100*sumh[x])/100).toString(),.11*W+.072*W*Math.cos((ang2+ang1)/2) , .62*H+.072*W*Math.sin((ang2+ang1)/2));
           }
         ang1 = ang2;
         }
+        lineWidth = .0010*W;
+        strokeRect(.01*W,.8*H,.195*W,.008*H);
+        fillStyle="#ddd"
+        fillRect(.01*W,.8*H,.195*W,.008*H);
+        fillStyle="#ff5050"
+        fillRect(.01*W,.8*H,.195*W*(reth/sumh[0]),.008*H);
       }
     font = (22*r).toString() + "px Arial";
     textAlign = "left";
@@ -287,10 +300,7 @@ window.onload=function(){
   if(wc[0]=='0905'){lnk = new xTmr("412");lnk.eClk=function(){window.location='vm.htm?0412';}}
   if(wc[0]=='0412'){lnk = new xTmr("902");lnk.eClk=function(){window.location='vm.htm?0902';}}
 
-  if(wc[0]=='0703'){lnk = new xTmr("704");lnk.eClk=function(){window.location='vm.htm?0704';}}
-  if(wc[0]=='0704'){lnk = new xTmr("703");lnk.eClk=function(){window.location='vm.htm?0703';}}
-
- o=document.createElement('canvas');
+  o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
   loadData();
   document.body.appendChild(o)
