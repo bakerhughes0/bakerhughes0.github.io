@@ -130,6 +130,12 @@ function loadData(){
     gfx28.render();
     gfx29.options.data[0].dataPoints=gfx29_d1;
     gfx29.render();
+    gfx30.options.data[0].dataPoints=gfx30_d1;
+    gfx30.options.data[1].dataPoints=gfx30_d2;
+    gfx30.options.data[2].dataPoints=gfx30_d3;
+    gfx30.options.data[3].dataPoints=gfx30_d4;
+    gfx30.options.data[4].dataPoints=gfx30_d5;
+    gfx30.render();
 
     sTxt(main.tm,'Update : ' + tm);
     }
@@ -228,13 +234,14 @@ function redraw(){
 
   gfxPos(g27,p[2],0,0);
 
-  gfxPos(g21,p[3],0,0);
-  gfxPos(g22,p[3],1,0);
-  gfxPos(g23,p[3],2,0);
+  gfxPos(g30,p[3],0,0);
+  gfxPos(g21,p[3],1,0);
+  gfxPos(g22,p[3],2,0);
+  gfxPos(g23,p[3],3,0);
   gfxPos(g24,p[3],0,1);
   gfxPos(g25,p[3],1,1);
   gfxPos(g26,p[3],2,1);
-  gfxPos(g02,p[3],3,0);
+  gfxPos(g02,p[3],3,1);
 
   }
 
@@ -897,6 +904,39 @@ main.l2 = new xDiv();
     ]
   }); 
  
+  g30 = new gfxBlk(); g30.id="g30"
+  gfx30 = new CanvasJS.Chart(g30, {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "ENGINEERING CLOSURE", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Line Items",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69",  dataPoints: [] },
+    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888",  dataPoints: [] },
+    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900",  dataPoints: [] },
+    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C",  dataPoints: [] },
+    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#696",  dataPoints: [] },
+    ]
+  });
 
   g21 = new gfxBlk(); g21.id="g21"
   gfx21 = new CanvasJS.Chart(g21, {
