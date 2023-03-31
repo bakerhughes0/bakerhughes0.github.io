@@ -237,10 +237,10 @@ function redraw(){
   gfxPos(g30,p[3],0,0);
   gfxPos(g21,p[3],1,0);
   gfxPos(g22,p[3],2,0);
-  gfxPos(g23,p[3],3,0);
+  gfxPos(g23,p[3],2,1);
   gfxPos(g24,p[3],0,1);
   gfxPos(g25,p[3],1,1);
-  gfxPos(g26,p[3],2,1);
+  gfxPos(g26,p[3],3,0);
   gfxPos(g02,p[3],3,1);
 
   }
@@ -908,7 +908,7 @@ main.l2 = new xDiv();
   gfx30 = new CanvasJS.Chart(g30, {
   animationEnabled: true,
   animationDuration: 1500,
-  title: {text: "ENGINEERING CLOSURE", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "ENGINEERING OUTPUT", fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
   legend: {
     horizontalAlign: "center",
