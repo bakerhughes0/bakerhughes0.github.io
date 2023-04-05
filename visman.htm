@@ -9,7 +9,9 @@ var o;
 var xcol = ['#222', '#9ECCF1', '#FBEB85', '#A6D28D', '#A6D28D'];
 var timestamp = new Date(2022,0,1);
 var data = [], showage = 0;
-var sum = [], sumh = [], yoff=0;  
+var sum = [], sumh = [], yoff=0; 
+var tbox=[0,0,0,0], mouseOnTitle=0;
+ 
 function draw(){
   mydata = [], fcol = '#eee', bcol = '#222';
   sum = [0,0,0,0];sumh = [0,0,0,0]; ret=0; reth = 0;
@@ -85,7 +87,7 @@ function draw(){
           fillStyle="#eee"
           font = (26*r).toString() + "px Arial";
           textAlign = "center";
-          fillText((Math.round(100*sumh[x])/100).toString(),.11*W+.072*W*Math.cos((ang2+ang1)/2) , .62*H+.072*W*Math.sin((ang2+ang1)/2));
+          fillText((Math.round(100*sumh[x])/100).toString(),.11*W+.077*W*Math.cos((ang2+ang1)/2) , .62*H+.077*W*Math.sin((ang2+ang1)/2));
           }
         ang1 = ang2;
         }
@@ -105,6 +107,15 @@ function draw(){
     font = "bold " + (38*r).toString() + "px Arial";
     textAlign = "center";
     fillText(wcname(wc[0]), W* .6, H * 0.03);
+    titlelen = measureText(wcname(wc[0])).width;
+    tbox=[W*.6-titlelen/2,H * 0.013]
+    tbox[2]=tbox[0]+titlelen;
+    tbox[3]=tbox[1]+H * 0.03;
+    for(var i=0;i<4;i++){tbox[i]/=2;}
+
+    if(mouseOnTitle==1){
+      strokeRect(W*.6-titlelen/2,H * 0.013, titlelen,H * 0.03)
+      }
     lineWidth = .0008*W;
     strokeStyle='#777';
     font = "bold " + (24*r).toString() + "px Arial";
@@ -259,7 +270,9 @@ function draw(){
     }
   if(lnk){move(lnk,[W*0.485,H*.01,W*.02,W*.02]);sPar(lnk, 0);};
   }
-  
+
+
+var timer1;  
 var toggleUpArrow=0
 function upArrow(){
   toggleUpArrow=1-toggleUpArrow;
@@ -275,7 +288,7 @@ function upArrow(){
       lineTo(.228*W ,.105*H);
       closePath();
       fill();
-      setTimeout(upArrow,450)
+      clearTimeout(timer1);timer1=setTimeout(upArrow,400)
       }
     }
 
@@ -289,6 +302,7 @@ function loadData(){
   document.head.appendChild(js);    
   }    
 window.onload=function(){
+
   if(window.location.search.length>0){wc.push(window.location.search.substring(1));}
   document.title = wc.join('-');
 
@@ -338,6 +352,8 @@ window.onload=function(){
 
   o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
+
+
   loadData();
   document.body.appendChild(o)
   o.addEventListener("mousemove", function(evt) {
@@ -348,22 +364,36 @@ window.onload=function(){
       }else{
       if(showage==1){showage=0; draw();}
       }
+    //console.log(tbox, x, y);
+    if(x>tbox[0] && x<tbox[2] && y>tbox[1] && y<tbox[3]){
+      if(mouseOnTitle==0){mouseOnTitle=1;draw();console.log(mouseOnTitle);sMoP(o,'pointer')}
+    }else{
+      if(mouseOnTitle==1){mouseOnTitle=0;draw();console.log(mouseOnTitle);}
+      };
     }, false); 
   o.addEventListener("wheel", function(evt) { 
     if(evt.deltaY<0){
       yoff-=3;
       if(yoff<0) yoff=0;
       draw();
+      if(lnk){lnk.val=0};
     }else{
       yoff+=3;
       if(yoff>sum[0]) yoff=sum[0];
       draw();
+      if(lnk){lnk.val=0};
       }
     }, false); 
   }
 window.onresize=function(){
-  draw();
+  draw(); 
   }
+
+document.onmousedown = function(){
+  if(mouseOnTitle==1){window.location='wcsel.htm'};
+  }
+
+
 document.onkeydown = checkKey;
 
 function checkKey(e) {
@@ -371,10 +401,12 @@ function checkKey(e) {
  if (e.keyCode == '38') {
     yoff--;
     if(yoff<0) yoff=0;
+    if(lnk){lnk.val=0};
     draw();
     }else if (e.keyCode == '40') {
     yoff++;
     if(yoff>sum[0]) yoff=sum[0];
+    if(lnk){lnk.val=0};
     draw();
     }else if (e.keyCode == '37') {
       var n = wclist.indexOf(wc[0]);
@@ -400,22 +432,22 @@ function xTmr(text){
   o.eClk = function(){};
   o.seq=function(){
     for(var i=0;i<o.max;i++){
-      o.ctx.lineWidth=9;
+      o.ctx.lineWidth=10;
       o.ctx.beginPath();
-      o.ctx.strokeStyle = '#999';
+      o.ctx.strokeStyle = '#555';
       o.ctx.arc(w2, h2, 40, -pi/2 +(2*pi*(i/o.max)), -pi/2 +(2*pi*((i+1)/o.max))-.05 );
       o.ctx.stroke();
       }
     for(var i=0;i<o.val;i++){
-      o.ctx.lineWidth=14;
+      o.ctx.lineWidth=10;
       o.ctx.beginPath();
-      o.ctx.strokeStyle = '#6ac';
+      o.ctx.strokeStyle = '#8D6';
       o.ctx.arc(w2, h2, 40, -pi/2 +(2*pi*(i/o.max)), -pi/2 +(2*pi*((i+1)/o.max))-.05 );
       o.ctx.stroke();
       }
     if(o.val+1>o.max){
       o.val=0;
-      setTimeout(function(){o.val++;o.eClk();},100);
+      setTimeout(function(){o.val++;o.eClk();},200);
       }else{
       setTimeout(function(){o.val++;o.seq();},1000);
       }
@@ -426,6 +458,8 @@ function xTmr(text){
   }
 
 setInterval(function() {loadData();}, 30000);
+
+
 </script>
 </head>
 <body style="background-color:#222">
