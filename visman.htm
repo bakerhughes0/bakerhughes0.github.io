@@ -129,7 +129,7 @@ function draw(){
           if(mydata[ytbl][1]==1){fcol='#FF5050';}else{fcol='#eee';}
           if(mydata[ytbl][2]==3){bcol=xcol[4];} // 3. New Workable Done
           if(mydata[ytbl][2]==4){bcol=xcol[4];} // 4. Workable Done
-          if(mydata[ytbl][9]=='L'){fcol='#888';bcol='#333';} // L. Locked
+          if(mydata[ytbl][9]=='L'){fcol='#888';bcol='#444';} // L. Locked
          
           }
         fillStyle=bcol;
@@ -173,8 +173,8 @@ function draw(){
               fillStyle = '#dd2';
               fillRect(.957*W, .106*H + .032*H*y, .01*W,  .013*H*y);
               fillStyle = '#555';
-              arc(.962*W, .11*H + .032*H*y, .0015*W,0,6.28,0); fill();   
               beginPath();moveTo(.9615*W, .11*H + .032*H*y,);lineTo(.9605*W, .117*H + .032*H*y,);lineTo(.9635*W, .117*H + .032*H*y,);lineTo(.9625*W, .11*H + .032*H*y,);fill();
+              arc(.962*W, .11*H + .032*H*y, .0015*W,0,6.28,0); fill();   
               strokeStyle = '#ccc';
               lineWidth=.002*W;
               beginPath();
@@ -191,16 +191,13 @@ function draw(){
               fillText(mydata[ytbl][8].toString(), .976*W ,.108*H + .032*H*y);
               font = (26*r).toString() + "px Arial";
               }
-            //beginPath();
-            //arc(.978*W, .114*H + .032*H*y, .0016*W, 0, 2 * Math.PI);
-            //fill();
           }else{
             if(mydata[ytbl][9]=='L'){
               fillStyle = '#dd2';
               fillRect(.957*W, .106*H + .032*H*y, .01*W,  .013*H*y);
               fillStyle = '#555';
-              arc(.962*W, .11*H + .032*H*y, .0015*W,0,6.28,0); fill();   
               beginPath();moveTo(.9615*W, .11*H + .032*H*y,);lineTo(.9605*W, .117*H + .032*H*y,);lineTo(.9635*W, .117*H + .032*H*y,);lineTo(.9625*W, .11*H + .032*H*y,);fill();
+              arc(.962*W, .11*H + .032*H*y, .0015*W,0,6.28,0); fill();   
               strokeStyle = '#ccc';
               lineWidth=.002*W;
               beginPath();
