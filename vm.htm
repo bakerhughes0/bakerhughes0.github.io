@@ -32,6 +32,8 @@ function draw(){
   o.ctx.scale(0.5,0.5);
   W=W*2; H=H*2;
   with (o.ctx) {
+    fillStyle="#222";
+    fillRect(0,0,W,H);
     textBaseline = "middle";
     lineWidth = .0016*W;
     if(sum[0]>0){
@@ -126,6 +128,8 @@ function draw(){
           if(mydata[ytbl][1]==1){fcol='#FF5050';}else{fcol='#eee';}
           if(mydata[ytbl][2]==3){bcol=xcol[4];} // 3. New Workable Done
           if(mydata[ytbl][2]==4){bcol=xcol[4];} // 4. Workable Done
+          if(mydata[ytbl][9]=='L'){fcol='#888';bcol='#333';} // L. Locked
+         
           }
         fillStyle=bcol;
         fillRect(.23*W ,.09*H + .032*H*y,.062*W,.032*H);
@@ -164,17 +168,54 @@ function draw(){
             }else{fillStyle='#df1111';
             }
           if(showage){
-            textAlign = "right";
-            font = "bold " + (26*r).toString() + "px Arial";
-            fillText(mydata[ytbl][8].toString(), .976*W ,.108*H + .032*H*y);
-            font = (26*r).toString() + "px Arial";
+            if(mydata[ytbl][9]=='L'){
+              fillStyle = '#dd2';
+              fillRect(.957*W, .106*H + .032*H*y, .01*W,  .013*H*y);
+              fillStyle = '#555';
+              arc(.962*W, .11*H + .032*H*y, .0015*W,0,6.28,0); fill();   
+              beginPath();moveTo(.9615*W, .11*H + .032*H*y,);lineTo(.9605*W, .117*H + .032*H*y,);lineTo(.9635*W, .117*H + .032*H*y,);lineTo(.9625*W, .11*H + .032*H*y,);fill();
+              strokeStyle = '#ccc';
+              lineWidth=.002*W;
+              beginPath();
+              moveTo(.965*W, .106*H + .032*H*y);
+              lineTo(.965*W, .103*H + .032*H*y);
+              arc(.962*W, .102*H + .032*H*y,.0028*W,0,3.14,1);
+              lineTo(.959*W, .106*H + .032*H*y);
+              stroke();
+              lineWidth = .0008*W;
+              strokeStyle='#777';
+            }else{
+              textAlign = "right";
+              font = "bold " + (26*r).toString() + "px Arial";
+              fillText(mydata[ytbl][8].toString(), .976*W ,.108*H + .032*H*y);
+              font = (26*r).toString() + "px Arial";
+              }
             //beginPath();
             //arc(.978*W, .114*H + .032*H*y, .0016*W, 0, 2 * Math.PI);
             //fill();
           }else{
-            beginPath();
-            arc(.962*W, .106*H + .032*H*y, .005*W, 0, 2 * Math.PI);
-            fill();
+            if(mydata[ytbl][9]=='L'){
+              fillStyle = '#dd2';
+              fillRect(.957*W, .106*H + .032*H*y, .01*W,  .013*H*y);
+              fillStyle = '#555';
+              arc(.962*W, .11*H + .032*H*y, .0015*W,0,6.28,0); fill();   
+              beginPath();moveTo(.9615*W, .11*H + .032*H*y,);lineTo(.9605*W, .117*H + .032*H*y,);lineTo(.9635*W, .117*H + .032*H*y,);lineTo(.9625*W, .11*H + .032*H*y,);fill();
+              strokeStyle = '#ccc';
+              lineWidth=.002*W;
+              beginPath();
+              moveTo(.965*W, .106*H + .032*H*y);
+              lineTo(.965*W, .103*H + .032*H*y);
+              arc(.962*W, .102*H + .032*H*y,.0028*W,0,3.14,1);
+              lineTo(.959*W, .106*H + .032*H*y);
+              stroke();
+              lineWidth = .0008*W;
+              strokeStyle='#777';
+
+            }else{
+              beginPath();
+              arc(.962*W, .106*H + .032*H*y, .005*W, 0, 2 * Math.PI);
+              fill();
+              }
             }
           }
         bcol = '#222';
@@ -262,11 +303,6 @@ window.onload=function(){
 
   if(wc[0]=='0207'){lnk = new xTmr("208");lnk.eClk=function(){window.location='vm.htm?0208';}}
   if(wc[0]=='0208'){lnk = new xTmr("207");lnk.eClk=function(){window.location='vm.htm?0207';}}
-
-  if(wc[0]=='0247'){lnk = new xTmr("270");lnk.eClk=function(){window.location='vm.htm?0270';}}
-  if(wc[0]=='0270'){lnk = new xTmr("271");lnk.eClk=function(){window.location='vm.htm?0271';}}
-  if(wc[0]=='0271'){lnk = new xTmr("272");lnk.eClk=function(){window.location='vm.htm?0272';}}
-  if(wc[0]=='0272'){lnk = new xTmr("247");lnk.eClk=function(){window.location='vm.htm?0247';}}
 
   if(wc[0]=='0220'){lnk = new xTmr("264");lnk.eClk=function(){window.location='vm.htm?0264';}}
   if(wc[0]=='0264'){lnk = new xTmr("277");lnk.eClk=function(){window.location='vm.htm?0277';}}
