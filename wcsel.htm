@@ -1,0 +1,248 @@
+<html>
+<head>
+<script type=text/javascript src=js/func.js?001></script>
+<script type=text/javascript>
+window.onload=function(){
+  var y=10, x=10;
+  var b = new xDiv();sPar(b,0);move(b,[0,0,scrW(),scrH()]);
+  sBkC(b,'#eee');
+  b.style.overflowY='scroll';
+
+  w=700; h=40;
+  y+=0;l =new xLab();sPar(l,b);sTxt(l,"MACHINING");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0205. TOUR PARALLELE CAZENEUVE OPTIMAX 360');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0206. TOUR PARALLELE CHOLET 550');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0207. TOUR PARALLELE MONFORTS KNC5');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0208. TOUR PARALLELE MONFORTS KNC6');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0209. TOUR PARALLELE CAZENEUVE OPTIMAX 590');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0210. TOUR PARALLELE CAZENEUVE OPTIMAX 720');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0212. TOUR SOMAB 1100');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0220. TOUR NEF 660');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0224. TOUR CN 35');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0225. TOUR SONIM T11');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0226. CTX 600 PR.ATE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0228. TOUR CN RNC4');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0230. MAZAK 5 AXES E 500');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0231. TOUR CN KNC 150');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0237. TOUR VERTICAL');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0242. FRAISEUSE HOCHUN');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0247. CENTRE USINAGE TOYODA FH 45');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0248. CU MANDELLI 7');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0249. CU MAZAK H 500 / 50');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0250. MACHINE A FIL');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0262. PERCEUSE MAS VR 6A');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0263. PERCEUSE GSP');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0264. CENTRE D USINAGE HARDINGE GX 600');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0270. RECTIFIEUSE PLANE MAS KENT');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0271. RECTIFIEUSE GLAUCHAU');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0272. RECTIFIEUSE JONES ET SHIPMAN');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0275. DEBIT');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0277. BANC EH CELLULE USINAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0278. DEGRAISSAGE USINAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0284. BROCHAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0286. AJUSTAGE ET OUTILLAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0288. ASSEMBLAGE STACKS');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0289. TRACAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0295. MARQUAGE CONTROLE PROTECTION');move(l,[x,y,w,h]);
+  x-=30;
+  y+=h+15;l =new xLab();sPar(l,b);sTxt(l,"WELDING");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l =new xLab();sPar(l,b);sTxt(l,"WELDING MACHINING");move(l,[x,y,w,h]);
+  x+=30;
+  w=670;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0605. DEPOT STELLITE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0606. SOUDURE ARC MANUEL');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0607. DECOUPE PLASMA DEPOT REPARATION');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0609. POSTE EXAMEN REPLIQUE ET AUTRES');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0610. SOUDURE TIG MANUEL');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0611. ROBOT-PLASMA');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0612. DEPOT PLASMA OBTURATEUR');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0613. RECHARGEMENT HETTIGER SOUDURE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0614. TRAITEMENT THERMIQUE PAR INDUCTION');move(l,[x,y,w,h]);
+  x-=30;
+  y+=h+5;l =new xLab();sPar(l,b);sTxt(l,"WELDING ASSEMBLY");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0502. SOUDURE MANUEL ET NIVEAUX');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0504. 0507. OXYACETYLENE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0507. BANC DE SOUDAGE TUBE DE TORSION');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0508. BANC SOUDURE PLASMA');move(l,[x,y,w,h]);
+  x-=30;
+  x-=30;
+  y+=h+15;l =new xLab();sPar(l,b);sTxt(l,"ASSEMBLY");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l =new xLab();sPar(l,b);sTxt(l,"ASSEMBLY CFX/VPK");move(l,[x,y,w,h]);
+  x+=30;
+  w=670;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0419. MONTAGE CAMFLEX 1"-2"');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0420. MONTAGE CAMFLEX 3"/4"');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0421. MONTAGE CAMFLEX 6"/12"');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0422. MONTAGE VARIPAK');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0423. MONTAGE MINITORK');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0425. ATELIER CRYO ET TEST HELIUM');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0442. EQUIPEMENT CAMFLEX 1"- 2"');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0443. ETALONNAGE CAMFLEX 1" A 2"');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0454. ETALONNAGE VARIPAK');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0456. EQUIPEMENT CAMFLEX 3"- 4"');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0457. ETALONNAGE CAMFLEX 3"- 4"');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0458. EQUIPEMENT CAMFLEX 6" - 16"');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0459. ETALONNAGE CAMFLEX 6"-16"');move(l,[x,y,w,h]);
+  x-=30;
+  y+=h+5;l =new xLab();sPar(l,b);sTxt(l,"ASSEMBLY CVTL");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0403. BANCS EH PETITE VANNE CONVENTIONNELLE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0424. MONTAGE SALLE PROPRE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0430. MONTAGE SM 37/38/87/88');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0441. MONTAGE VANNES CONVENTIONNELLES GVU');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0455. POSTE DE BILLAGE ASSEMBLAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0470. BANC MONTAGE PETITE VANNE CONVENTIONNEL');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0471. BANC EH GROSSES VANNES CONVENTIONNELLES');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0473. EQUIPEMENT ETALONNAGE CONVENTIONNEL');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0480. GOUPILLAGE CONVENTIONNEL');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0482. FRAPPE PLAQUES INSTRUMENTS');move(l,[x,y,w,h]);
+  x-=30;
+  y+=h+5;l =new xLab();sPar(l,b);sTxt(l,"ASSEMBLY CVTL");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0426. MONTAGE NIVEAUX - 0427. EH NIVEAUX');move(l,[x,y,w,h]);l.eClk=function(){window.location='vm.htm?'+'0426-0427'}
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0460. PAVILLON R&D DEVERMINAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0461. INSTRUMENTATION DIVERS');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0462. INSTRUMENTATION NIVEAUX');move(l,[x,y,w,h]);
+  x-=30;
+  x-=30;
+  y+=h+15;l =new xLab();sPar(l,b);sTxt(l,"TSP");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l =new xLab();sPar(l,b);sTxt(l,"ST/HYDRO");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0412. EH VANNE CAMFLEX VARIPAK BATIMENT C');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0900. MACHINE ULTRASON');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0902. CHAINE TRAITEMENT DE SURFACE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0903. MACHINE A DEGRAISSER');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0904. AIRE DE NETTOYAGE HAUTE PRESSION');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0905. MISE EN PROPRETE');move(l,[x,y,w,h]);
+  x-=30;
+  y+=h+5;l =new xLab();sPar(l,b);sTxt(l,"PAINTING");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0701. CAMOUFLAGE PEINTURE GVU');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0702. CABINE PEINTURE GVU');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0703. CABINE PEINTURE CONV');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0704. CAMOUFLAGE PEINTURE CONV');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0804. CAMOUFLAGE PEINTURE CHAINE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0805. PEINTURE SUR CHAINE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0806. CHAMBRE CHAUDE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0901. CAMOUFLAGE CABINES GRENAILLAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0906. CABINES GRENAILLAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0907. GRENAILLEUSE AUTOMATIQUE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0908. CAMOUFLAGE GRENAILLEUSE AUTO');move(l,[x,y,w,h]);
+  x-=30;
+  x-=30;
+  y+=h+15;l =new xLab();sPar(l,b);sTxt(l,"QUALITY CONTROL");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l =new xLab();sPar(l,b);sTxt(l,"WIP CONTROL");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1002. CONTROLE RECEPTION');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1003. CONTROLE QUALITE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1004. CONTROLE RESSUAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1008. DURETE USINAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1020. INSPECTION PAR ORGANISME');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1021. PREPARATION DOSSIER CND');move(l,[x,y,w,h]);
+  x-=30;
+  y+=h+5;l =new xLab();sPar(l,b);sTxt(l,"FINAL CONTROL");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1014. DOSSIER QUALITE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1015. CONTROLE FINAL');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1016. CONTROLE FINAL STD');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1210. MISE A DISPOSITION POUR EMBALLAGE');move(l,[x,y,w,h]);
+  x-=30;
+  y+=h+5;l =new xLab();sPar(l,b);sTxt(l,"NCR");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1405. ARRET POUR LES GLOBES');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1406. ARRET USINAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1407. ARRET PEINTURE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1408. ARRET POUR LE STANDARD');move(l,[x,y,w,h]);
+  x-=30;
+  x-=30;
+  y+=h+15;l =new xLab();sPar(l,b);sTxt(l,"SCHEDULING");move(l,[x,y,w,h]);
+  x+=30;
+  w=700;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0294. ORDONNANCEMENT USINAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0490. ORDONNANCEMENT STANDARD');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0491. ORDONNANCEMENT CONVENTIONNEL');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0494. ORDONNANCEMENT INSTRUMENTS');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0495. ORDONNANCEMENT NIVEAUX');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0594. ORDONNANCEMENT SOUDURE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0894. ORDONNANCEMENT PEINTURE');move(l,[x,y,w,h]);
+  x-=30;
+  y+=h+15;l =new xLab();sPar(l,b);sTxt(l,"EXT. OP");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1301. DELESTAGE USINAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1302. SOUS TRAITANTS ORDO USINAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1303. DELESTAGE PEINTURE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1306. SOUS TRAITANTS PEINTURE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1308. SOUS TRAITANTS CONTRÔLE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1313. OPEX (preparation emballage)');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1404. ACHETER');move(l,[x,y,w,h]);
+  x-=30;
+  y+=h+15;l =new xLab();sPar(l,b);sTxt(l,"R&D");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1401. SERVICE PROJECTS R&D');move(l,[x,y,w,h]);
+  x-=30;
+  y+=h+15;l =new xLab();sPar(l,b);sTxt(l,"WAREHOUSE");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0409. PICKING INTRUMENT/TETE NIVEAU/DIVERS');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0435. PICKING CAMFLEX VPK 31K ACT 35 MTF');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0465. PICKING NIVEAUX CARTOUCHE CARTOUCHE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0469. PICKING ACTIONNEUR GLOBES /535');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'0483. CONDITIONNEMENT ASSEMBLAGE KIT ET DIVERS');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1200. PICKING E.H');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1201. PICKING USINAGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1202. PICKING DIVERS');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1203. PICKING GLOBES');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1204. MAGASIN RECHANGE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1205. MAGASIN PROVENANCE');move(l,[x,y,w,h]);
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1211. MAGASIN REWORK (retour)');move(l,[x,y,w,h]);
+  }
+
+
+
+
+
+function xBtn2(){
+    var o = new xDiv();
+    o.bold=0;
+    sFtA(o,'left');
+    sTxS(o,1,1,1,'#eee');
+    sBrW(o,[1]); sBrR(o,[3]);
+    sShd(o,1,1,0,8,'rgba(100,100,100,.2)');
+    sNoS(o); sMoP(o,'pointer'); 
+    o.eClk = function(){window.location='vm.htm?'+o.childNodes[0].nodeValue.substring(0,4);};
+    o.c=0;
+    o.draw = function () {
+        o.eRes = null;
+        var h = gSiz(o)[1];
+        sFtN(o, (o.bold ? 'bold ' : '') + h * 0.6 + 'px/' + (h*.95) + 'px fnt1');
+        if(o.c) {
+            sFtC(o,'#666');
+            sPad(o,[1,0,0,10]);
+            sBrC(o,['#999']);
+            sBkL(o, 90, '#ccc 10%, #ddd 30%');
+            } else {
+            sFtC(o,'#222');
+            sPad(o,[0,0,0,10]);
+            sBrC(o,['#bbb']);
+            sBkL(o, 90, '#eee 10%, #ccc 50%');
+            }
+        o.eRes = o.draw;
+        }
+    sThS(o,function(evt){o.c=1;o.draw();});
+    sThE(o, function(evt){if(o.c) {o.c=0;o.draw();o.eClk();}else{o.draw();}});
+    o.onmouseleave=function () {o.c=0;o.draw();} 
+    o.tabIndex = 0;
+    o.draw();
+    return o;
+    };
+
+</script>
+</head>
+<body style="background-color:#222">
+</body>
+</html>
