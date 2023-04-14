@@ -139,6 +139,8 @@ function loadData(){
     gfx30.options.data[3].dataPoints=gfx30_d4;
     gfx30.options.data[4].dataPoints=gfx30_d5;
     gfx30.render();
+    gfx31.options.data[0].dataPoints=gfx31_d1;
+    gfx31.render();
 
     sTxt(main.tm,'Update : ' + tm);
     }
@@ -225,6 +227,7 @@ function redraw(){
   gfxPos(g17,p[0],1,2);
   gfxPos(g18,p[0],2,2);
   gfxPos(g19,p[0],3,2);
+
   gfxPos(g01,p[1],0,0);
   gfxPos(g03,p[1],0,1);
   gfxPos(g04,p[1],0,2);
@@ -234,6 +237,7 @@ function redraw(){
   gfxPos(g07,p[1],3,1);
   gfxPos(g28,p[1],2,1);
   gfxPos(g29,p[1],2,0);
+  gfxPos(g31,p[1],3,0);
 
   gfxPos(g27,p[2],0,0);
 
@@ -1255,6 +1259,40 @@ main.l2 = new xDiv();
     { type: "column", name: "Week", color: "#8B9", dataPoints: [] },
     ]
   });  
+
+//____________________________________________________________________________________________________________________________
+
+  g31 = new gfxBlk(); g31.id="g31"
+  gfx31 = new CanvasJS.Chart(g31, {
+  animationEnabled: true,
+  animationDuration: 1000,
+  title: {text: "WELDING QUARTER", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Standard hours",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 5,
+    labelAngle: -32,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "line", name:"Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
+    ]
+  });
+
+
 
 
   loadData(); 
