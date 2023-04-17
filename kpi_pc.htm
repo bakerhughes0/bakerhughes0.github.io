@@ -140,6 +140,7 @@ function loadData(){
     gfx30.options.data[4].dataPoints=gfx30_d5;
     gfx30.render();
     gfx31.options.data[0].dataPoints=gfx31_d1;
+    gfx31.options.data[1].dataPoints=gfx31_d2;
     gfx31.render();
 
     sTxt(main.tm,'Update : ' + tm);
@@ -1288,6 +1289,7 @@ main.l2 = new xDiv();
     },
   toolTip: {shared: true},
   data: [              
+    { type: "line", name: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
     { type: "line", name:"Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
     ]
   });
