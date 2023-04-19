@@ -1334,7 +1334,7 @@ main.l2 = new xDiv();
     labelAngle: -36,
     labelFontFamily: 'Arial',
     },
-  toolTip: {shared: true, content: toolTipContent6},
+  toolTip: {shared: true, content: toolTipContent32},
   data: [              
     { type: "line", name: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
     { type: "stackedColumn", name: "Public", color: "#8b9", showInLegend: true, dataPoints: [] },
@@ -1366,8 +1366,27 @@ function toolTipContent6(e) {
 	total = Math.round(total * 100) / 100;
 	str3 = "<span style = \"color:Tomato\">Total:</span><strong> "+total+"</strong><br/>";
 	return (str2.concat(str)).concat(str3);
-  }  
-  
+  } 
+ 
+function fmtCur2(num) {
+ var a=parseFloat(num).toFixed(0);
+ return a.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
+ }
+
+function toolTipContent32(e) {
+  var str = "";
+  var total = 0;
+  var str2, str3;
+  for (var i = 0; i < e.entries.length; i++){
+    var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtCur2(e.entries[i].dataPoint.y)+"</strong><br/>";
+    if(e.entries[i].dataSeries.name!='Target' && e.entries[i].dataSeries.name!='Capacity'){ total += e.entries[i].dataPoint.y;}
+    str = str.concat(str1);
+    }
+  str2 = "<span style = \"color:DodgerBlue;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
+  total = Math.round(total * 100) / 100;
+  str3 = "<span style = \"color:Tomato\">Total:</span><strong> "+fmtCur2(total)+"</strong><br/>";
+  return (str2.concat(str)).concat(str3);
+  }   
 </script>
 </head>
 <body style="background-color:#243">
