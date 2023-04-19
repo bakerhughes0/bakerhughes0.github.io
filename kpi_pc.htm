@@ -1,7 +1,7 @@
 <html>
 <head>
 <script type=text/javascript src=js/func.js?001></script>
-<script type=text/javascript src=js/canvasjs.js?001></script>
+<script type=text/javascript src=js/canvasjs.min.js?006></script>
 <script type=text/javascript>
 
 setTimeout(function(){window.location+='';},3600000);
@@ -142,6 +142,10 @@ function loadData(){
     gfx31.options.data[0].dataPoints=gfx31_d1;
     gfx31.options.data[1].dataPoints=gfx31_d2;
     gfx31.render();
+    gfx32.options.data[0].dataPoints=gfx32_d1;
+    gfx32.options.data[1].dataPoints=gfx32_d2;
+    gfx32.options.data[2].dataPoints=gfx32_d3;
+    gfx32.render();
 
     sTxt(main.tm,'Update : ' + tm);
     }
@@ -205,7 +209,7 @@ function gfxBlk(){
 function gfxPos(o,parent,posX,posY){
   W=scrW(); H=scrH();
   sPar(o,parent);
-  if(o==g27){
+  if(o==g27 || o==g32){
     move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.30),W*0.98,H*0.89]);
     }else if(o==g28 || o==g07){
     move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.30),W*0.2375,H*0.59]);
@@ -251,6 +255,7 @@ function redraw(){
   gfxPos(g26,p[3],3,0);
   gfxPos(g02,p[3],3,1);
 
+  gfxPos(g32,p[4],0,0);
   }
 
 window.onresize=function(){
@@ -304,6 +309,9 @@ main.l2 = new xDiv();
     sTxt(p[2].t2,"MACHINING CAPACITY");
   p[3] = new pageModel(3);
     sTxt(p[3].t1,"CONDE MATERIALS KPI - PLANNING");
+  p[4] = new pageModel(4);
+    sTxt(p[4].t1,"CONDE MATERIALS KPI - SHIPPING");
+    sTxt(p[4].t2,"QUARTER SHIPMENT");
 
 
   sBrC(ctl,['#fff']);sBrW(ctl,[2]); sBrR(ctl,[100]);sBrC(ctl,['#8a9']);
@@ -1294,7 +1302,45 @@ main.l2 = new xDiv();
     ]
   });
 
+//____________________________________________________________________________________________________________________________
 
+  g32 = new gfxBlk(); g32.id="g32"
+  gfx32 = new CanvasJS.Chart(g32, {
+  animationEnabled: true,
+  animationDuration: 2500,
+  //title: {text: "SHIPMENT", fontColor:"#ddd",fontFamily: 'Arial',fontSize: 22,},
+  backgroundColor: null,
+  legend: {
+    fontSize: 12,
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#ddd"
+    },
+  axisY:{
+    title: "USD",
+    titleFontColor: "#ddd",
+    titleFontSize: 15,
+    labelFontColor: "#ddd",
+    labelFontFamily: 'Arial',
+    labelFontSize: 12,
+    //interval: 500000,
+    },
+  axisX:{
+    labelFontColor: "#ddd",
+    labelFontSize: 12,
+
+    interval: 1,
+    labelAngle: -36,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "line", name: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
+    { type: "stackedColumn", name: "Public", color: "#8b9", showInLegend: true, dataPoints: [] },
+    { type: "stackedColumn", name: "Assocos", color: "#586", showInLegend: true, dataPoints: [] },
+    ]
+  });
 
 
   loadData(); 
