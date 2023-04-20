@@ -1,7 +1,7 @@
 <html>
 <head>
 <script type=text/javascript src=js/func.js?001></script>
-<script type=text/javascript src=js/canvasjs.min.js?006></script>
+<script type=text/javascript src=js/canvasjs.min.js?007></script>
 <script type=text/javascript>
 
 setTimeout(function(){window.location+='';},3600000);
@@ -146,6 +146,10 @@ function loadData(){
     gfx32.options.data[1].dataPoints=gfx32_d2;
     gfx32.options.data[2].dataPoints=gfx32_d3;
     gfx32.render();
+    gfx33.options.data[0].dataPoints=gfx33_d1;
+    gfx33.options.data[1].dataPoints=gfx33_d2;
+    gfx33.options.data[2].dataPoints=gfx33_d3;
+    gfx33.render();
 
     sTxt(main.tm,'Update : ' + tm);
     }
@@ -256,6 +260,7 @@ function redraw(){
   gfxPos(g02,p[3],3,1);
 
   gfxPos(g32,p[4],0,0);
+  gfxPos(g33,p[4],0.4,0.2);
   }
 
 window.onresize=function(){
@@ -1342,6 +1347,38 @@ main.l2 = new xDiv();
     ]
   });
 
+  g33 = new gfxBlk(); g33.id="g33"
+  gfx33 = new CanvasJS.Chart(g33, {
+  animationEnabled: true,
+  animationDuration: 2500,
+  title: {text: "WEEK", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#ddd"
+    },
+  axisY:{
+    title: "USD",
+    titleFontColor: "#ddd",
+    titleFontSize: 15,
+    labelFontColor: "#ddd",
+    labelFontFamily: 'Arial',
+    },
+  axisX:{
+    labelFontColor: "#ddd",
+    interval: 1,
+    labelAngle: -36,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true, content: toolTipContent32},
+  data: [              
+    { type: "line", name: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints:[], showInLegend:false},
+    { type: "stackedColumn", name: "Public", color: "#8b9", showInLegend: true, dataPoints: [], showInLegend:false},
+    { type: "stackedColumn", name: "Assocos", color: "#586", showInLegend: true, dataPoints: [], showInLegend:false},
+    ]
+  });
 
   loadData(); 
   redraw(); 
