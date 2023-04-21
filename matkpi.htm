@@ -260,7 +260,7 @@ function redraw(){
   gfxPos(g02,p[3],3,1);
 
   gfxPos(g32,p[4],0,0);
-  gfxPos(g33,p[4],0.4,0.2);
+  gfxPos(g33,p[4],0.1,0.15);
   }
 
 window.onresize=function(){
@@ -1322,14 +1322,14 @@ main.l2 = new xDiv();
     labelFontFamily: 'Arial',
     fontColor: "#ddd"
     },
-  axisY:{
+  axisY2:{
     title: "USD",
+    valueFormatString: "# ### ##0",
     titleFontColor: "#ddd",
     titleFontSize: 15,
     labelFontColor: "#ddd",
     labelFontFamily: 'Arial',
     labelFontSize: 12,
-    //interval: 500000,
     },
   axisX:{
     labelFontColor: "#ddd",
@@ -1341,9 +1341,9 @@ main.l2 = new xDiv();
     },
   toolTip: {shared: true, content: toolTipContent32},
   data: [              
-    { type: "line", name: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
-    { type: "stackedColumn", name: "Public", color: "#8b9", showInLegend: true, dataPoints: [] },
-    { type: "stackedColumn", name: "Assocos", color: "#586", showInLegend: true, dataPoints: [] },
+    { type: "line", name: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [], axisYType: "secondary", },
+    { type: "stackedColumn", name: "Public", color: "#8b9", showInLegend: true, dataPoints: [], axisYType: "secondary", },
+    { type: "stackedColumn", name: "Assocos", color: "#586", showInLegend: true, dataPoints: [], axisYType: "secondary", },
     ]
   });
 
@@ -1359,10 +1359,10 @@ main.l2 = new xDiv();
     labelFontFamily: 'Arial',
     fontColor: "#ddd"
     },
-  axisY:{
+  axisY2:{
     title: "USD",
+    valueFormatString: "# ### ##0",
     titleFontColor: "#ddd",
-    titleFontSize: 15,
     labelFontColor: "#ddd",
     labelFontFamily: 'Arial',
     },
@@ -1374,9 +1374,9 @@ main.l2 = new xDiv();
     },
   toolTip: {shared: true, content: toolTipContent32},
   data: [              
-    { type: "line", name: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints:[], showInLegend:false},
-    { type: "stackedColumn", name: "Public", color: "#8b9", showInLegend: true, dataPoints: [], showInLegend:false},
-    { type: "stackedColumn", name: "Assocos", color: "#586", showInLegend: true, dataPoints: [], showInLegend:false},
+    { type: "line", name: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints:[], showInLegend:false, axisYType: "secondary"},
+    { type: "stackedColumn", name: "Public", color: "#8b9", showInLegend: true, dataPoints: [], showInLegend:false, axisYType: "secondary"},
+    { type: "stackedColumn", name: "Assocos", color: "#586", showInLegend: true, dataPoints: [], showInLegend:false, axisYType: "secondary"},
     ]
   });
 
