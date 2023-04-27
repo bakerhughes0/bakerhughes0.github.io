@@ -130,7 +130,8 @@ wclist = [
 '1405',
 '1406',
 '1407',
-'1408'];
+'1408',
+'QMLOT'];
 
 wcnames = [
 '0205. TOUR PARALLELE CAZENEUVE OPTIMAX 360',
@@ -264,7 +265,8 @@ wcnames = [
 '1405. ARRET POUR LES GLOBES',
 '1406. ARRET USINAGE',
 '1407. ARRET PEINTURE',
-'1408. ARRET POUR LE STANDARD']
+'1408. ARRET POUR LE STANDARD',
+'QMLOT. INCOMING INSPECTION']
 
 function wcname(s){
   var n = wclist.indexOf(s);
@@ -274,4 +276,3 @@ function wcname(s){
     return wcnames[n];
     }
   }
-
