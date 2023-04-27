@@ -160,6 +160,10 @@ window.onload=function(){
   y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1407. ARRET PEINTURE');move(l,[x,y,w,h]);
   y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'1408. ARRET POUR LE STANDARD');move(l,[x,y,w,h]);
   x-=30;
+  y+=h+5;l =new xLab();sPar(l,b);sTxt(l,"QMLOT");move(l,[x,y,w,h]);
+  x+=30;
+  y+=h+5;l=new xBtn2();sPar(l,b);sTxt(l,'QMLOT. INCOMING INSPECTION');move(l,[x,y,w,h]);l.eClk=function(){window.location='vm.htm?'+'QMLOT'}
+  x-=30;
   x-=30;
   y+=h+15;l =new xLab();sPar(l,b);sTxt(l,"SCHEDULING");move(l,[x,y,w,h]);
   x+=30;
