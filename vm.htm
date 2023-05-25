@@ -349,7 +349,11 @@ window.onload=function(){
   if(wc[0]=='0703'){lnk = new xTmr("704");lnk.eClk=function(){window.location='vm.htm?0704';}}
   if(wc[0]=='0704'){lnk = new xTmr("703");lnk.eClk=function(){window.location='vm.htm?0703';}}
 
-  o=document.createElement('canvas');
+  if(wc[0]=='0419'){lnk = new xTmr("442");lnk.eClk=function(){window.location='vm.htm?0442';}}
+  if(wc[0]=='0442'){lnk = new xTmr("443");lnk.eClk=function(){window.location='vm.htm?0443';}}
+  if(wc[0]=='0443'){lnk = new xTmr("419");lnk.eClk=function(){window.location='vm.htm?0419';}}
+
+ o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
 
 
