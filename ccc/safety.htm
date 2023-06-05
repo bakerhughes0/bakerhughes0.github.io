@@ -1,0 +1,72 @@
+<html>
+<head>
+<script type=text/javascript src=../js/func.js?001></script>
+<script type=text/javascript>
+window.onload=function(){
+  
+sBkL(document.body,100,'#243 30%, #222 100%');
+
+function safetyCross(x,y,width){
+  var c = new xDiv();
+  c.brd=5;
+  c.data=[];
+  var colB=['#bbb','#2a2','#fa0','#f22'],colF=['#888','#000','#000','#000'];
+  var size = (width+c.brd)/8;
+  move(c, [x,y,8*size, 10*size]);
+  sFtN(c,(12*size-1) + 'px/' + (10*size-1) + 'px fnt1');sFtA(c, 'center');
+  sFtC(c,'#163');sOpa(c,.7);
+  sTxt(c,'S');
+  sPar(c,0);
+  c.o=[];
+  for (n=0; n<31; n++) {
+    c.o[n] = new xDiv();
+    sBrW(c.o[n],[1]);sBrR(c.o[n], [size/6]);sBrC(c.o[n],['#aaa']);
+    sPar(c.o[n], 0);
+    }
+  c.setdata= function(d){
+    c.data=d;
+    var x1=x, y1=y;
+    if(c.data.length<31) y1+=size/2;
+    for (n=1; n<32; n++) {
+      if(n==1) x1=x+=3*size;
+      move(c.o[n-1],[x1,y1,size-c.brd,size-c.brd]);
+      if(n==31) move(c.o[n-1],[x1,y1,2*size-c.brd,size-c.brd]);
+      if(n<=c.data.length){
+        sOpa(c.o[n-1],.85)
+        sBkC(c.o[n-1],'#eee');
+        if(c.data[n-1]==undefined){ 
+          sBkC(c.o[n-1],colB[0]); sFtC(c.o[n-1],colF[0]); 
+          }else if(c.data[n-1]==0){sBkC(c.o[n-1],'#eee'); sFtC(c.o[n-1],'#000');
+        }else{
+          sBkC(c.o[n-1],colB[c.data[n-1]]); sFtC(c.o[n-1],colF[c.data[n-1]]);
+          }
+      }else{
+        sOpa(c.o[n-1],0);sBkC(c.o[n-1],colB[0]); sFtC(c.o[n-1],colF[0]);      
+        }
+      sFtN(c.o[n-1],(.5*size-1) + 'px/' + (size-c.brd-1) + 'px fnt1');
+      sFtA(c.o[n-1], 'center');
+      sTxt(c.o[n-1], n.toString());
+      x1+=size;
+      if (n==2||n==4||n==6||n==26||n==28||n==30) {x1-=2*size; y1+=size;}
+      if (n==8||n==24) {x1-=5*size; y1+=size;}
+      if (n==16) {x1-=8*size; y1+=size;}
+      }
+    }
+  return c;
+  }
+
+var croix=new safetyCross(10,10,500);
+croix.setdata([1,1, , ,1,0,0,0,0, , ,0,0,0,0,0, , ,0,0,0,0,0, , ,0,0,0,0,0]);
+
+
+  
+  
+  
+  
+  
+  }
+</script>
+</head>
+<body style="background-color:#243">
+</body>
+</html>
