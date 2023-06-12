@@ -17,14 +17,52 @@ function safetyCross(x,y,width){
   var size = (width+c.brd)/8;
   move(c, [x,y,8*size, 10*size]);
   sFtN(c,(12*size-1) + 'px/' + (10*size-1) + 'px fnt1');sFtA(c, 'center');
-  sFtC(c,'#163');sOpa(c,.7);
+  sFtC(c,'#163');sOpa(c,.85);
   sTxt(c,'S');
   sPar(c,0);
   c.o=[];
+  c.t=[];c.l=[];
+  tw = size*3;th = size*.85;sx=size+c.brd
+  for (n=0; n<31; n++) {
+    c.t[n] = new xDiv(); sPar(c.t[n], c); sBrW(c.t[n],[1]); sBkC(c.t[n],'#eee');
+    sFtN(c.t[n],'bold 20px/25px Calibri'); sVis(c.t[n],0);
+    c.l[n] = new xLng(); sPar(c.l[n], c); sBrC(c.l[n],['#fff']); sBrW(c.l[n],[2,0,0,0]); sVis(c.l[n],0);
+    }
+  move(c.t[0],[-size,-1*size,tw,th]); 
+  move(c.t[1],[size*6,-1*size,tw,th]);
+  move(c.t[2],[-size,0*size,tw,th]);
+  move(c.t[3],[size*6,0*size,tw,th]);
+  move(c.t[4],[-size,1*size,tw,th]);
+  move(c.t[5],[size*6,1*size,tw,th]);
+  move(c.t[6],[-size,2*size,tw,th]);
+  move(c.t[7],[size*6,2*size,tw,th]);
+  move(c.t[8],[-size*4.5,3*size,tw,th]);
+  move(c.t[9],[-size*4.5,2*size,tw,th]);
+  move(c.t[10],[-size*4.5,1*size,tw,th]);
+  move(c.t[11],[-size*4.5,0*size,tw,th]);
+  move(c.t[12],[size*9.5,0*size,tw,th]);
+  move(c.t[13],[size*9.5,1*size,tw,th]);
+  move(c.t[14],[size*9.5,2*size,tw,th]);
+  move(c.t[15],[size*9.5,3*size,tw,th]);
+  move(c.t[16],[-size*4.5,7*size,tw,th]);
+  move(c.t[17],[-size*4.5,8*size,tw,th]);
+  move(c.t[18],[-size*4.5,9*size,tw,th]);
+  move(c.t[19],[-size*4.5,10*size,tw,th]);
+  move(c.t[20],[size*9.5,10*size,tw,th]);
+  move(c.t[21],[size*9.5,9*size,tw,th]);
+  move(c.t[22],[size*9.5,8*size,tw,th]);
+  move(c.t[23],[size*9.5,7*size,tw,th]);
+  move(c.t[24],[-size,8*size,tw,th]);
+  move(c.t[25],[size*6,8*size,tw,th]);
+  move(c.t[26],[-size,9*size,tw,th]);
+  move(c.t[27],[size*6,9*size,tw,th]);
+  move(c.t[28],[-size,10*size,tw,th]);
+  move(c.t[29],[size*6,10*size,tw,th]);
+  move(c.t[30],[-size,11*size,tw,th]);
   for (n=0; n<31; n++) {
     c.o[n] = new xDiv();
     sBrW(c.o[n],[1]);sBrR(c.o[n], [size/6]);sBrC(c.o[n],['#aaa']);
-    sPar(c.o[n], c);
+    sPar(c.o[n], c);  
     }
   c.setdata= function(d){
     c.data=d;
@@ -35,7 +73,7 @@ function safetyCross(x,y,width){
       move(c.o[n-1],[x1,y1,size-c.brd,size-c.brd]);
       if(n==31) move(c.o[n-1],[x1,y1,2*size-c.brd,size-c.brd]);
       if(n<=c.data.length){
-        sOpa(c.o[n-1],.85)
+        sOpa(c.o[n-1],.9)
         sBkC(c.o[n-1],'#eee');
         if(c.data[n-1]==undefined){ 
           sBkC(c.o[n-1],colB[0]); sFtC(c.o[n-1],colF[0]); 
@@ -53,6 +91,22 @@ function safetyCross(x,y,width){
       if (n==2||n==4||n==6||n==26||n==28||n==30) {x1-=2*size; y1+=size;}
       if (n==8||n==24) {x1-=5*size; y1+=size;}
       if (n==16) {x1-=8*size; y1+=size;}
+      if(gPos(c.o[n-1])[0]<size*4){
+        c.l[n-1].draw( [  gPos(c.t[n-1])[0]+tw, gPos(c.t[n-1])[1]+th/2, gPos(c.o[n-1])[0]+size/2, gPos(c.o[n-1])[1]+size/2   ]) ;
+        }else{
+        c.l[n-1].draw( [  gPos(c.t[n-1])[0], gPos(c.t[n-1])[1]+th/2, gPos(c.o[n-1])[0]+size/2, gPos(c.o[n-1])[1]+size/2   ]) ;
+        }
+      }
+    }
+  c.settext=function(arr){
+    for(var n=0;n<31;n++){sVis(c.t[n],0);sVis(c.l[n],0);}
+    for(var n=0;n<arr.length;n++){
+      if(arr[n]!=undefined){
+      if(arr[n].length>0){
+        sTxt(c.t[n],arr[n]);
+        sVis(c.t[n],1);sVis(c.l[n],1);
+        }
+        }
       }
     }
   return c;
@@ -66,12 +120,13 @@ function loaddata(){
   js.src="data.js" + "?d=" + sd;
   js.onload = function(){ 
     croix.setdata(saf_pnt)
+    croix.settext(saf_pnt_txt)
     console.log(saf_pnt)
     }
   document.head.appendChild(js);    
   };
 
-var croix=new safetyCross(10,10,450);
+var croix=new safetyCross(10,10,500);
 loaddata();
 cScr(croix);
 window.onresize=function(){cScr(croix);}  
