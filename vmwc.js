@@ -1,4 +1,4 @@
-timestamp = new Date(2023,5,15,20,15,30);
+timestamp = new Date(2023,5,15,20,20,32);
 data = [
 ['0205',1,2,31878238,'0020. FRAPPER CODE MATIERE','2 x GRAIN DE PE',0.002,'',86,''],
 ['0205',1,2,32007753,'0020. TOURNER','8 x MANCHON CHAPE PLONGEUR PLIABLE',4,'',23,''],
@@ -287,7 +287,7 @@ data = [
 ['0226',,2,31966774,'0020. TOURNER...........................','2 x CONTRE-BRIDE 1" EN 1092-1 PN250#F',2.5,'1079541-43000 GE Steam Power Systems',37,''],
 ['0226',,2,31966775,'0020. TOURNER...........................','2 x CONTRE-BRIDE 1" EN 1092-1 PN250#F',2.5,'1079541-44000 GE Steam Power Systems',37,''],
 ['0226',,2,31966776,'0020. TOURNER...........................','2 x CONTRE-BRIDE 1" EN 1092-1 PN250#F',2.5,'1079541-45000 GE Steam Power Systems',37,''],
-['0226',,2,31966954,'0020. TOURNER...........................','2 x CONTRE-BRIDE 1" EN 1092-1 PN100#F',1.5,'1079541-21000 GE Steam Power Systems',50,''],
+['0226',,3,31966954,'0020. TOURNER...........................','2 x CONTRE-BRIDE 1" EN 1092-1 PN100#F',1.5,'1079541-21000 GE Steam Power Systems',0,''],
 ['0226',,2,31966955,'0020. TOURNER...........................','2 x CONTRE-BRIDE 1" EN 1092-1 PN100#F',1.5,'1079541-22000 GE Steam Power Systems',50,''],
 ['0226',,2,31966956,'0020. TOURNER...........................','2 x CONTRE-BRIDE 1" EN 1092-1 PN100#F',1.5,'1079541-23000 GE Steam Power Systems',50,''],
 ['0226',,2,31966957,'0020. TOURNER...........................','2 x CONTRE-BRIDE 1" EN 1092-1 PN100#F',1.5,'1079541-24000 GE Steam Power Systems',50,''],
@@ -831,6 +831,7 @@ data = [
 ['0277',,2,31966900,'0030. EPREUVE HYDRO','1 x CONTRE-BRIDE 1/2" EN 1092-1 PN250#F ',0.25,'1079541-43000 GE Steam Power Systems',30,''],
 ['0277',,2,31966901,'0030. EPREUVE HYDRO','1 x CONTRE-BRIDE 1/2" EN 1092-1 PN250#F ',0.25,'1079541-44000 GE Steam Power Systems',30,''],
 ['0277',,2,31966902,'0030. EPREUVE HYDRO','1 x CONTRE-BRIDE 1/2" EN 1092-1 PN250#F ',0.25,'1079541-45000 GE Steam Power Systems',30,''],
+['0277',,1,31966954,'0030. EPREUVE HYDRO','2 x CONTRE-BRIDE 1" EN 1092-1 PN100#F',0.5,'1079541-21000 GE Steam Power Systems',0,''],
 ['0277',,2,31966966,'0030. EPREUVE HYDRO','2 x CONTRE-BRIDE 1" EN 1092-1 PN100#F',0.5,'1079541-38000 GE Steam Power Systems',3,''],
 ['0277',,2,31967021,'0030. EPREUVE HYDRO','1 x CONTRE-BRIDE 1/2" EN 1092-1 PN100#F',0.25,'1079541-21000 GE Steam Power Systems',49,''],
 ['0277',,2,31967022,'0030. EPREUVE HYDRO','1 x CONTRE-BRIDE 1/2" EN 1092-1 PN100#F',0.25,'1079541-22000 GE Steam Power Systems',49,''],
