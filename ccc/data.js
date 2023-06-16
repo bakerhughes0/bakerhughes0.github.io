@@ -1,2 +1,2 @@
 saf_pnt=[1,2,,,1,1,1,1,3,,,1,1,1,1,1,,,0,0,0,0,0,,,0,0,0,0,0];
-saf_pnt_txt=[,'Remarque pour essai',,,,,,,'Foulure du pied de Stephane Louvet',,,,,,,,,,,,,,,,,,,,,];
+saf_pnt_txt=[,'Remarque pour essai',,,,,,,'Foulure du pied de Stephane Louvet',,,,,,,'Aujourd\'hui',,,,,,,,,,,,,,];
