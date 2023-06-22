@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>CCC Peinture</title>
+<script type=text/javascript src=../js/func.js?001></script>
+<script type=text/javascript>
+var pageLink=['safety.htm?dep=peinture','quality.htm?dep=peinture','shipping.htm?dep=peinture'];
+pageIdx=0;
+var page;
+window.onload = function(){
+  page = document.createElement('iframe');sOvf(page,'hidden');sBrW(page,[0]);sPar(page,0);
+  prec = new xDiv(); sPar(prec,0);
+  sBrW(prec,[40,40,40,0]);
+  sBrC(prec,['transparent','#497','transparent','transparent']);
+  sMoP(prec,'pointer');
+  prec.addEventListener('click', goleft, false);
+
+  suiv = new xDiv(); sPar(suiv,0);
+  sBrW(suiv,[40,0,40,40]);
+  sBrC(suiv,['transparent','transparent','transparent','#497']);
+  sMoP(suiv,'pointer');
+  suiv.addEventListener('click', goright, false);
+  window.onresize();
+  page.src=pageLink[pageIdx];
+  }
+
+goleft=function(){
+  pageIdx--;
+  if (pageIdx<0) pageIdx++;
+  page.src=pageLink[pageIdx];
+  }
+goright=function(){
+  pageIdx+=1;
+console.log(pageIdx)
+  if (pageIdx>pageLink.length-1) { pageIdx=pageLink.length-1;}
+  page.src=pageLink[pageIdx];
+  }
+
+window.onresize = function(){
+  s = [scrW(),scrH()];
+  move(page,[0,0,s[0],s[1]]);
+  move(prec,[20,s[1]-100,1,1]);
+  move(suiv,[s[0]-60,s[1]-100,1,1]);
+  }
+</script>
+</head>
+<body style="background-color:#243; overflow: hidden">
+</body>
+</html>
+
+
