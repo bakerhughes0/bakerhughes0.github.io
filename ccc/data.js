@@ -1,3 +1,4 @@
+year=2023;month=6;day=22;
 saf_usi=[1,2,,,1,1,1,1,3,,,1,1,1,1,1,,,0,0,0,0,0,,,0,0,0,0,0];
 saf_usi_txt=[,'Remarque pour essai',,,,,,,'Foulure du pied de Stephane Louvet',,,,,,,'Aujourd\'hui',,,,,,,,,,,,,,];
 saf_pnt=[0,0,,,0,0,0,0,0,,,0,0,0,0,0,,,0,0,0,0,0,,,0,0,0,0,0];
