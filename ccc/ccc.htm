@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>CCC Peinture</title>
+<script type=text/javascript src=../js/func.js?001></script>
+<script type=text/javascript>
+
+function qs(variable) {
+  var vars = window.location.search.substring(1).toLowerCase().split('&');
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split('=');
+    if (decodeURIComponent(pair[0]) == variable) return decodeURIComponent(pair[1]);
+    }
+  }
+
+var pageLink=['intro.htm'];
+pageIdx=0;
+var page;
+window.onload = function(){
+  var dep=qs('dep');
+    if(dep=='usinage'){
+      document.title='CCC Usinage';
+      pageLink=['safety.htm?dep=usinage','quality.htm?dep=usinage','shipping.htm?dep=usinage'];
+      }
+    else if(dep=='peinture'){
+      document.title='CCC Peinture';
+      pageLink=['safety.htm?dep=peinture','quality.htm?dep=peinture','shipping.htm?dep=peinture'];
+      }
+    else if(dep=='picking'){
+      document.title='CCC Picking';
+      pageLink=['safety.htm?dep=picking','quality.htm?dep=picking','shipping.htm?dep=picking'];
+      }
+    else if(dep=='standard'){
+      document.title='CCC Assemblage Standard';
+      pageLink=['safety.htm?dep=standard','quality.htm?dep=standard','shipping.htm?dep=standard'];
+      }
+    else if(dep=='conventionnel'){
+      document.title='CCC Assemblage Conventionnel';
+      pageLink=['safety.htm?dep=conventionnel','quality.htm?dep=conventionnel','shipping.htm?dep=conventionnel'];
+      }
+
+  page = document.createElement('iframe');sOvf(page,'hidden');sBrW(page,[0]);sPar(page,0);
+  prec = new xDiv(); sPar(prec,0);
+  sBrW(prec,[40,40,40,0]);
+  sBrC(prec,['transparent','#497','transparent','transparent']);
+  sMoP(prec,'pointer');
+  prec.addEventListener('click', goleft, false);
+  suiv = new xDiv(); sPar(suiv,0);
+  sBrW(suiv,[40,0,40,40]);
+  sBrC(suiv,['transparent','transparent','transparent','#497']);
+  sMoP(suiv,'pointer');
+  suiv.addEventListener('click', goright, false);
+  window.onresize();
+  page.src=pageLink[pageIdx];
+  }
+
+goleft=function(){
+  pageIdx--;
+  if (pageIdx<0) pageIdx++;
+  page.src=pageLink[pageIdx];
+  }
+goright=function(){
+  pageIdx+=1;
+console.log(pageIdx)
+  if (pageIdx>pageLink.length-1) { pageIdx=pageLink.length-1;}
+  page.src=pageLink[pageIdx];
+  }
+
+window.onresize = function(){
+  s = [scrW(),scrH()];
+  move(page,[0,0,s[0],s[1]]);
+  move(prec,[20,s[1]-100,1,1]);
+  move(suiv,[s[0]-60,s[1]-100,1,1]);
+  }
+</script>
+</head>
+<body style="background-color:#243; overflow: hidden">
+</body>
+</html>
+
+
