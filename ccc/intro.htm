@@ -9,23 +9,30 @@
 <script LANGUAGE=Javascript>
 includeFont('fnt1', '../js/fnt1.ttf', 'truetype');
 window.onload = main;
-
+b_lnk=['usinage','peinture','picking','standard','conventionnel'];
+toto='toto'
 function main() {
   var p = new xDiv();
   move(p,[0,0,400,700]);
   sPar(p, 0);
 
   var c=new clock01();
-  move(c,[0,0,400,400]);
+  move(c,[50,50,300,300]);
   sPar(c,p);
-  var b=[];
-  var b_cap=["Usinage","Peinture","Picking","Assemblage Standard","Assemblage Conventionnel"]
+  b=[];
+  var b_cap=["Usinage","Peinture","Picking","Assemblage Standard","Assemblage Conventionnel"];
+  
   for(var n=0;n<5;n++){
     b[n]=new xBtn();sPar(b[n],p);move(b[n],[10,410+45*n,380,30]);
     sTxt(b[n], b_cap[n]);
-    }
-b[0].eClk=function() {window.location='https://bakerhughes0.github.io/ccc/ccc.htm?dep=usinage'; }
-b[1].eClk=function() {window.location='https://bakerhughes0.github.io/ccc/ccc.htm?dep=peinture'; }
+    b[n].idx = n;
+    b[n].eClk=function(){
+      var l = document.createElement('a');l.href='ccc.htm?dep='+b_lnk[this.idx];
+      l.setAttribute('target', '_top');
+      l.click();
+      }
+    }  
+
   window.onresize = function(){
     cScr(p);
     }
