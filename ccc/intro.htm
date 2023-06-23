@@ -23,7 +23,7 @@ function main() {
   var b_cap=["Usinage","Peinture","Picking","Assemblage Standard","Assemblage Conventionnel"];
   
   for(var n=0;n<5;n++){
-    b[n]=new xBtn();sPar(b[n],p);move(b[n],[10,410+45*n,380,30]);
+    b[n]=new xBtn();sPar(b[n],p);move(b[n],[10,380+50*n,380,30]);
     sTxt(b[n], b_cap[n]);
     b[n].idx = n;
     b[n].eClk=function(){
