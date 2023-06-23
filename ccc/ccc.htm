@@ -41,7 +41,7 @@ window.onload = function(){
       document.title='CCC Assemblage Conventionnel';
       pageLink=['safety.htm?dep=conventionnel','quality.htm?dep=conventionnel','shipping.htm?dep=conventionnel'];
       }
-
+ 
   page = document.createElement('iframe');sOvf(page,'hidden');sBrW(page,[0]);sPar(page,0);
   prec = new xDiv(); sPar(prec,0);
   sBrW(prec,[40,40,40,0]);
@@ -55,12 +55,16 @@ window.onload = function(){
   suiv.addEventListener('click', goright, false);
   window.onresize();
   page.src=pageLink[pageIdx];
+  if(dep==undefined) {sVis(prec,0);sVis(suiv,0);}
   }
 
 goleft=function(){
   pageIdx--;
-  if (pageIdx<0) pageIdx++;
-  page.src=pageLink[pageIdx];
+  if (pageIdx<0) {
+    var l = document.createElement('a'); l.href='ccc.htm';
+    l.setAttribute('target', '_top');
+    l.click();
+    } else { page.src=pageLink[pageIdx];}
   }
 goright=function(){
   pageIdx+=1;
