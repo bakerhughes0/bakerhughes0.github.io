@@ -36,6 +36,16 @@ var pageLink=['intro.htm'];
 pageIdx=0;
 var page;
 var hom;
+
+window.onmessage = function(e) {
+  if (e.data == 'removethisimage') {
+    console.log(pageLink)
+    pageLink.splice(pageIdx,1)
+    page.src=pageLink[pageIdx];
+    }
+  };
+
+
 window.onload = function(){
   sBkL(document.body,100,'#243 30%, #222 100%');
   var dep=qs('dep');
@@ -49,7 +59,7 @@ window.onload = function(){
       }
     else if(dep=='picking'){
       document.title='CCC Picking';
-      pageLink=['safety.htm?dep=picking','quality.htm?dep=picking','shipping.htm?dep=picking','../matkpi.htm?p=0','image.htm?dep=picking&img=picking-1.jpg','image.htm?dep=picking&img=picking-2.jpg','image.htm?dep=picking&img=picking-2.jpg','end.htm'];
+      pageLink=['safety.htm?dep=picking','quality.htm?dep=picking','shipping.htm?dep=picking','../matkpi.htm?p=0','image.htm?dep=picking&img=picking-1.jpg','image.htm?dep=picking&img=picking-2.jpg','image.htm?dep=picking&img=picking-3.jpg','end.htm'];
       }
     else if(dep=='standard'){
       document.title='CCC Assemblage Standard';
