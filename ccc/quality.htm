@@ -22,7 +22,7 @@ function safetyCross(x,y,width){
   c.t=[];c.l=[];
   tw = size*3;th = size*.85;sx=size+c.brd
   for (n=0; n<31; n++) {
-    c.t[n] = new xDiv(); sPar(c.t[n], c); sBrW(c.t[n],[1]);sBrR(c.t[n],[8]); sBrC(c.t[n],['#ddd']); //;sBkC(c.t[n],'#ccc')
+    c.t[n] = new xDiv(); sPar(c.t[n], c); sBrW(c.t[n],[1]);sBrR(c.t[n],[8]); sBrC(c.t[n],['#ddd']); sBkC(c.t[n],'rgba(0,0,0,0');sOpa(c.t[n],0.1)
     sFtN(c.t[n],'bold '+th/2.6+'px Calibri'); 
     c.l[n] = new xLng(); sPar(c.l[n], c); sBrC(c.l[n],['#eee']); sBrW(c.l[n],[2,0,0,0]);
     }
