@@ -32,7 +32,7 @@ function toolTipContent32(e) {
   var str2, str3;
   for (var i = 0; i < e.entries.length; i++){
     var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtCur2(e.entries[i].dataPoint.y)+"</strong><br/>";
-    if(e.entries[i].dataSeries.name!='Target' && e.entries[i].dataSeries.name!='Capacity'){ total += e.entries[i].dataPoint.y;}
+    if(e.entries[i].dataSeries.name!='Target' && e.entries[i].dataSeries.name!='Capacity' && e.entries[i].dataSeries.name!='Cible'){ total += e.entries[i].dataPoint.y;}
     str = str.concat(str1);
     }
   str2 = "<span style = \"color:DodgerBlue;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
