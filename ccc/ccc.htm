@@ -4,10 +4,6 @@
 <script type=text/javascript src=../js/func.js?001></script>
 <script type=text/javascript>
 
-function goto(query){
-  window.location.search=query;
-  }
-
 function qs(variable) {
   var vars = window.location.search.substring(1).toLowerCase().split('&');
   for (var i = 0; i < vars.length; i++) {
@@ -69,7 +65,6 @@ goleft=function(){
   }
 goright=function(){
   pageIdx+=1;
-console.log(pageIdx)
   if (pageIdx>pageLink.length-1) { pageIdx=pageLink.length-1;}
   page.src=pageLink[pageIdx];
   }
