@@ -12,9 +12,30 @@ function qs(variable) {
     }
   }
 
+function xHom(){
+  var o = document.createElement('canvas');o.width=200;o.height=200;o.ctx=o.getContext('2d');
+  o.draw = function(){
+  with(o.ctx) {
+    clearRect(0,0,200,200);
+    lineWidth=10;
+    lineCap='round';
+    strokeStyle='#497'
+    beginPath();
+    moveTo(40,100);
+    lineTo(100,40);lineTo(160,100);
+    moveTo(55,90);lineTo(55,160);lineTo(145,160);lineTo(145,90);
+    moveTo(100,160);lineTo(100,120);lineTo(120,120);lineTo(120,160);
+    stroke();
+    }
+    };o.draw();
+  sMoP(o, 'pointer');
+  return o;
+  }
+
 var pageLink=['intro.htm'];
 pageIdx=0;
 var page;
+var hom;
 window.onload = function(){
   sBkL(document.body,100,'#243 30%, #222 100%');
   var dep=qs('dep');
@@ -38,7 +59,24 @@ window.onload = function(){
       document.title='CCC Assemblage Conventionnel';
       pageLink=['safety.htm?dep=conventionnel','quality.htm?dep=conventionnel','../matkpi.htm?p=0','shipping.htm?dep=conventionnel','image.htm?dep=conventionnel&img=conventionnel-1.jpg','image.htm?dep=conventionnel&img=conventionnel-2.jpg','image.htm?dep=conventionnel&img=conventionnel-3.jpg','end.htm'];
       }
- 
+
+goleft=function(){
+  pageIdx--;
+  if (pageIdx<0) {
+    var l = document.createElement('a'); l.href='ccc.htm';
+    l.setAttribute('target', '_top');
+    l.click();
+    } else { page.src=pageLink[pageIdx];}
+  }
+
+goright=function(){
+  pageIdx+=1;
+  if (pageIdx>pageLink.length-1) { pageIdx=pageLink.length-1;}
+  page.src=pageLink[pageIdx];
+  }
+
+gohome = function(){var l = document.createElement('a'); l.href='ccc.htm';l.setAttribute('target', '_top');l.click()}
+
   page = document.createElement('iframe');sOvf(page,'hidden');sBrW(page,[0]);sPar(page,0);
   prec = new xDiv(); sPar(prec,0);
   sBrW(prec,[40,40,40,0]);
@@ -50,31 +88,26 @@ window.onload = function(){
   sBrC(suiv,['transparent','transparent','transparent','#497']);
   sMoP(suiv,'pointer');
   suiv.addEventListener('click', goright, false);
-  window.onresize();
+  
   page.src=pageLink[pageIdx];
-  if(dep==undefined) {sVis(prec,0);sVis(suiv,0);}
-  }
 
-goleft=function(){
-  pageIdx--;
-  if (pageIdx<0) {
-    var l = document.createElement('a'); l.href='ccc.htm';
-    l.setAttribute('target', '_top');
-    l.click();
-    } else { page.src=pageLink[pageIdx];}
-  }
-goright=function(){
-  pageIdx+=1;
-  if (pageIdx>pageLink.length-1) { pageIdx=pageLink.length-1;}
-  page.src=pageLink[pageIdx];
-  }
+  hom = new xHom();sPar(hom,0);
+  hom.addEventListener('click', gohome, false);
+  
 
-window.onresize = function(){
-  s = [scrW(),scrH()];
-  move(page,[0,0,s[0],s[1]]);
-  move(prec,[20,s[1]-100,1,1]);
-  move(suiv,[s[0]-60,s[1]-100,1,1]);
-  }
+  window.onresize = function(){
+    s = [scrW(),scrH()];
+    move(page,[0,0,s[0],s[1]]);
+    move(prec,[20,s[1]-100,1,1]);
+    move(suiv,[s[0]-60,s[1]-100,1,1]);
+    move(hom,[65,s[1]-90,80,80]);
+    };window.onresize();
+  if(dep==undefined) {sVis(prec,0);sVis(hom,0);sVis(suiv,0);}
+
+
+
+
+ }
 </script>
 </head>
 <body style="background-color:#243; overflow: hidden">
