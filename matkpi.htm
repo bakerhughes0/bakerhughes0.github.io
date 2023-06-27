@@ -6,6 +6,14 @@
 
 setTimeout(function(){window.location+='';},3600000);
 
+function qs(variable) {
+  var vars = window.location.search.substring(1).toLowerCase().split('&');
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split('=');
+    if (decodeURIComponent(pair[0]) == variable) return decodeURIComponent(pair[1]);
+    }
+  }
+
 function loadData(){
   var d = new Date();
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
@@ -338,9 +346,6 @@ main.l2 = new xDiv();
   sPar(ctl,0);
   tout = setTimeout(autoScrollPage,disptime);
 
-  
-
- 
   g01 = new gfxBlk(); g01.id="g01"
   gfx01 = new CanvasJS.Chart(g01, {
   animationEnabled: true,
@@ -1386,6 +1391,13 @@ main.l2 = new xDiv();
     { type: "stackedColumn", name: "Assocos", color: "#586", showInLegend: true, dataPoints: [], showInLegend:false},
     ]
   });
+
+  var req = qs('p');
+  if(req){
+    p_idx=parseInt(req);
+    sVis(ctl,0);
+    //scrollPage();autoplay=0;
+    }
 
   loadData(); 
   redraw(); 
