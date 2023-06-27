@@ -8,6 +8,7 @@ window.onload=function(){
   var i= new xImg();sPar(i,0);i.src=qs('img');
   i.onload=function(){window.onresize();}
   window.onresize=function(){
+    console.log(i.naturalWidth);
     if(i.naturalWidth>0){ //image is now loaded
       if(i.naturalWidth<100) {window.top.postMessage('removethisimage', '*')}
       r = i.naturalWidth/i.naturalHeight;
