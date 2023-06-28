@@ -10,7 +10,7 @@ window.onload=function(){
   window.onresize=function(){
     console.log(i.naturalWidth);
     if(i.naturalWidth>0){ //image is now loaded
-      if(i.naturalWidth<100) {window.top.postMessage('removethisimage', '*')}
+      if(i.naturalWidth<200) {window.top.postMessage('removethisimage', '*')}
       r = i.naturalWidth/i.naturalHeight;
       if(r>1){
         w = scrW() * .8;
