@@ -5,21 +5,21 @@
 window.onload=function(){
   includeFont('fnt1', '../js/fnt1.ttf', 'truetype');  
   var tit=new xLab();sPar(tit,0);sFtC(tit,'#eee');move(tit,[10,10,800,35]);
-  var i= new xImg();sPar(i,0);i.src=qs('img');
+  var i= new xImg();sPar(i,0);i.src=qs('img');sOpa(i,0);sTrx(i,'all .5s');
   i.onload=function(){window.onresize();}
   window.onresize=function(){
-    console.log(i.naturalWidth);
     if(i.naturalWidth>0){ //image is now loaded
-      if(i.naturalWidth<200) {window.top.postMessage('removethisimage', '*')}
-      r = i.naturalWidth/i.naturalHeight;
-      if(r>1){
-        w = scrW() * .8;
-        h = w/r;
-        }else{
-        h = scrH() * .8;
-        w = h/r;
-        }
-      move(i,[.1*w,.5*(scrH()-h),w,h]);
+      if(i.naturalWidth<100) {window.top.postMessage('removethisimage', '*')}
+     // r = i.naturalWidth/i.naturalHeight;
+      scaleW = (.8*scrW()) / i.naturalWidth;
+      scaleH = (.8*scrH()) / i.naturalHeight;
+      scale = Math.min(scaleW, scaleH);
+
+      w = i.naturalWidth * scale;
+      h = i.naturalHeight * scale;
+
+      move(i,[.5*(scrW()-w),.5*(scrH()-h),w,h]);
+      sOpa(i,1);
       }
     }
   window.onresize();  
