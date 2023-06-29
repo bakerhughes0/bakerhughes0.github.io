@@ -1,0 +1,242 @@
+<html>
+<head>
+<script type=text/javascript src=js/func.js?001></script>
+<script type=text/javascript src=js/canvasjs.min.js?007></script>
+<script type=text/javascript src=module.js?001></script>
+<script type=text/javascript>
+
+function loadData(){
+  var d = new Date();
+  var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
+  var js = document.createElement('script');
+  js.type='text/javascript';
+  js.src="kpi.js" + "?d=" + sd;
+  document.head.appendChild(js);    
+  js.onload = function(){ 
+    sTxt(timstp,'Update : ' + tm);
+    for(var n=0, cum=0;n<g34_0.length;n++){
+      gfx34.options.data[0].dataPoints.push({label:g34_0[n], y:g34_1[n]});
+      gfx34.options.data[1].dataPoints.push({y:g34_2[n]});
+      gfx34.options.data[2].dataPoints.push({y:g34_3[n]});
+      gfx34.options.data[3].dataPoints.push({y:g34_4[n]});
+      gfx34.options.data[4].dataPoints.push({y:g34_5[n]});
+      cum+=g34_1[n]+g34_2[n]+g34_3[n]+g34_4[n]+g34_5[n];
+      gfx34.options.data[5].dataPoints.push({y:cum});
+      }
+    gfx34.render();
+    for(var n=0, cum=0;n<g34_0.length;n++){
+      gfx35.options.data[0].dataPoints.push({label:g34_0[n], y:g35_1[n]});
+      gfx35.options.data[1].dataPoints.push({y:g35_2[n]});
+      gfx35.options.data[2].dataPoints.push({y:g35_3[n]});
+      gfx35.options.data[3].dataPoints.push({y:g35_4[n]});
+      gfx35.options.data[4].dataPoints.push({y:g35_5[n]});
+      cum+=g35_1[n]+g35_2[n]+g35_3[n]+g35_4[n]+g35_5[n];
+      gfx35.options.data[5].dataPoints.push({y:cum});
+      }
+    gfx35.render();
+    for(var n=0, cum=0;n<g34_0.length;n++){
+      gfx36.options.data[0].dataPoints.push({label:g34_0[n], y:g36_1[n]});
+      gfx36.options.data[1].dataPoints.push({y:g36_2[n]});
+      gfx36.options.data[2].dataPoints.push({y:g36_3[n]});
+      gfx36.options.data[3].dataPoints.push({y:g36_4[n]});
+      gfx36.options.data[4].dataPoints.push({y:g36_5[n]});
+      cum+=g36_1[n]+g36_2[n]+g36_3[n]+g36_4[n]+g36_5[n];
+      gfx36.options.data[5].dataPoints.push({y:cum});
+      }
+    gfx36.render();
+    for(var n=0, cum=0;n<g34_0.length;n++){
+      gfx37.options.data[0].dataPoints.push({label:g34_0[n], y:g37_1[n]});
+      gfx37.options.data[1].dataPoints.push({y:g37_2[n]});
+      gfx37.options.data[2].dataPoints.push({y:g37_3[n]});
+      gfx37.options.data[3].dataPoints.push({y:g37_4[n]});
+      gfx37.options.data[4].dataPoints.push({y:g37_5[n]});
+      cum+=g37_1[n]+g37_2[n]+g37_3[n]+g37_4[n]+g37_5[n];
+      gfx37.options.data[5].dataPoints.push({y:cum});
+      }
+    gfx37.render();
+    for(var n=0, cum=0;n<g34_0.length;n++){
+      gfx38.options.data[0].dataPoints.push({label:g34_0[n], y:g38_1[n]});
+      gfx38.options.data[1].dataPoints.push({y:g38_2[n]});
+      gfx38.options.data[2].dataPoints.push({y:g38_3[n]});
+      gfx38.options.data[3].dataPoints.push({y:g38_4[n]});
+      gfx38.options.data[4].dataPoints.push({y:g38_5[n]});
+      cum+=g38_1[n]+g38_2[n]+g38_3[n]+g38_4[n]+g38_5[n];
+      gfx38.options.data[5].dataPoints.push({y:cum});
+      }
+    gfx38.render();
+    for(var n=0, cum=0;n<g34_0.length;n++){
+      gfx39.options.data[0].dataPoints.push({label:g34_0[n], y:g39_1[n]});
+      gfx39.options.data[1].dataPoints.push({y:g39_2[n]});
+      gfx39.options.data[2].dataPoints.push({y:g39_3[n]});
+      gfx39.options.data[3].dataPoints.push({y:g39_4[n]});
+      gfx39.options.data[4].dataPoints.push({y:g39_5[n]});
+      cum+=g39_1[n]+g39_2[n]+g39_3[n]+g39_4[n]+g39_5[n];
+      gfx39.options.data[5].dataPoints.push({y:cum});
+      }
+    gfx39.render();
+    for(var n=0, cum=0;n<g34_0.length;n++){
+      gfx40.options.data[0].dataPoints.push({label:g34_0[n], y:g34_1[n]+g35_1[n]+g36_1[n]+g37_1[n]+g38_1[n]+g39_1[n]+g40_1[n]});
+      gfx40.options.data[1].dataPoints.push({y:g34_2[n]+g35_2[n]+g36_2[n]+g37_2[n]+g38_2[n]+g39_2[n]+g40_2[n]});
+      gfx40.options.data[2].dataPoints.push({y:g34_3[n]+g35_3[n]+g36_3[n]+g37_3[n]+g38_3[n]+g39_3[n]+g40_3[n]});
+      gfx40.options.data[3].dataPoints.push({y:g34_4[n]+g35_4[n]+g36_4[n]+g37_4[n]+g38_4[n]+g39_4[n]+g40_4[n]});
+      gfx40.options.data[4].dataPoints.push({y:g34_5[n]+g35_5[n]+g36_5[n]+g37_5[n]+g38_5[n]+g39_5[n]+g40_5[n]});
+      cum+=g34_1[n]+g35_1[n]+g36_1[n]+g37_1[n]+g38_1[n]+g39_1[n]+g40_1[n]+g34_2[n]+g35_2[n]+g36_2[n]+g37_2[n]+g38_2[n]+g39_2[n]+g40_2[n]+g34_3[n]+g35_3[n]+g36_3[n]+g37_3[n]+g38_3[n]+g39_3[n]+g40_3[n]+g34_4[n]+g35_4[n]+g36_4[n]+g37_4[n]+g38_4[n]+g39_4[n]+g40_4[n]+g34_5[n]+g35_5[n]+g36_5[n]+g37_5[n]+g38_5[n]+g39_5[n]+g40_5[n];
+      gfx40.options.data[5].dataPoints.push({y:cum});
+      }
+    gfx40.render();
+    }
+  }
+
+window.onload=function(){
+  var bg = new background();
+  t1=new xLab();sFtC(t1,'#ccc');sPar(t1,0);
+  t2=new xLab();sFtC(t2,'#ccc');sPar(t2,0);sFtA(t2,'right');
+  sTxt(t1,"CONDE MATERIALS KPI - STANDARD HOURS");
+  sTxt(t2,"GSCM");
+  timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
+  var g = [];
+  for(var n=0; n<7; n++){g[n] = new gfxbox();}
+
+  var axeY_1 = [{  labelFontColor: "#eee", labelFontFamily: 'Arial',
+    labelAngle: -90},{title: "Standard hours", titleFontColor: "#eee", titleFontSize:12, labelFontColor: "#175", labelFontFamily: 'Arial', labelAngle: -90}];
+  var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -66, labelFontFamily: 'Arial'}
+
+  gfx34 = new CanvasJS.Chart(g[0], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "MACHINING", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: {shared: true},
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
+    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    ]
+  }); 
+  gfx35 = new CanvasJS.Chart(g[1], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "WELDING", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: {shared: true},
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
+    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    ]
+  }); 
+  gfx36 = new CanvasJS.Chart(g[2], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "PAINTING", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: {shared: true},
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
+    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    ]
+  }); 
+  gfx37 = new CanvasJS.Chart(g[3], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "ASSEMBLY STANDARD", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: {shared: true},
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
+    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    ]
+  }); 
+  gfx38 = new CanvasJS.Chart(g[4], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "ASSEMBLY GLOBES", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: {shared: true},
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
+    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    ]
+  }); 
+  gfx39 = new CanvasJS.Chart(g[5], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "ASSEMBLY LEVELS", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: {shared: true},
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
+    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    ]
+  }); 
+  gfx40 = new CanvasJS.Chart(g[6], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "GSCM TOTAL", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: {shared: true},
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
+    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    ]
+  }); 
+  window.onresize=function(){
+    movep(bg,[0,0,1,1]);
+    movep(t1,[.01, .01, .98, .045]);
+    movep(t2,[.01, .01, .98, .045]);
+    movep(timstp,[.01, .97, 1, .03]);
+    for(var n=0; n<7; n++){
+      x = n % 4;
+      y = Math.floor(n/4);
+      movep(g[n],[.01+x*.2475, .07+y*.452, .2375, .44]);
+      if(n==6){movep(g[n],[.01+x*.2475, .07+y*.452, .485, .44]);}
+      }
+    };window.onresize();
+
+  loadData();
+  }
+</script>
+</head>
+<body >
+</body>
+</html>
