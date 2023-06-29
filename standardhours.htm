@@ -5,6 +5,14 @@
 <script type=text/javascript src=module.js?001></script>
 <script type=text/javascript>
 
+var target_machining = 7000;
+var target_welding = 750;
+var target_painting = 1400;
+var target_standard = 2300;
+var target_globes = 800;
+var target_levels = 950;
+var target_gscm = 7000+750+1400+2300+800+950;
+
 function loadData(){
   var d = new Date();
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
@@ -24,6 +32,7 @@ function loadData(){
       gfx40.options.data[n].dataPoints=[];
       }
     for(var n=0, cum=0;n<g34_0.length;n++){
+      g34_0[n]=g34_0[n].slice(2,5); //remove year in labels
       gfx34.options.data[0].dataPoints.push({label:g34_0[n], y:g34_1[n]});
       gfx34.options.data[1].dataPoints.push({y:g34_2[n]});
       gfx34.options.data[2].dataPoints.push({y:g34_3[n]});
@@ -32,6 +41,8 @@ function loadData(){
       cum+=g34_1[n]+g34_2[n]+g34_3[n]+g34_4[n]+g34_5[n];
       gfx34.options.data[5].dataPoints.push({y:cum});
       }
+    var target = target_machining;
+    gfx34.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
     gfx34.render();
     for(var n=0, cum=0;n<g34_0.length;n++){
       gfx35.options.data[0].dataPoints.push({label:g34_0[n], y:g35_1[n]});
@@ -42,6 +53,8 @@ function loadData(){
       cum+=g35_1[n]+g35_2[n]+g35_3[n]+g35_4[n]+g35_5[n];
       gfx35.options.data[5].dataPoints.push({y:cum});
       }
+    var target = target_welding;
+    gfx35.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
     gfx35.render();
     for(var n=0, cum=0;n<g34_0.length;n++){
       gfx36.options.data[0].dataPoints.push({label:g34_0[n], y:g36_1[n]});
@@ -52,6 +65,8 @@ function loadData(){
       cum+=g36_1[n]+g36_2[n]+g36_3[n]+g36_4[n]+g36_5[n];
       gfx36.options.data[5].dataPoints.push({y:cum});
       }
+    var target = target_painting;
+    gfx36.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
     gfx36.render();
     for(var n=0, cum=0;n<g34_0.length;n++){
       gfx37.options.data[0].dataPoints.push({label:g34_0[n], y:g37_1[n]});
@@ -62,6 +77,8 @@ function loadData(){
       cum+=g37_1[n]+g37_2[n]+g37_3[n]+g37_4[n]+g37_5[n];
       gfx37.options.data[5].dataPoints.push({y:cum});
       }
+    var target = target_standard;
+    gfx37.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
     gfx37.render();
     for(var n=0, cum=0;n<g34_0.length;n++){
       gfx38.options.data[0].dataPoints.push({label:g34_0[n], y:g38_1[n]});
@@ -72,6 +89,8 @@ function loadData(){
       cum+=g38_1[n]+g38_2[n]+g38_3[n]+g38_4[n]+g38_5[n];
       gfx38.options.data[5].dataPoints.push({y:cum});
       }
+    var target = target_globes;
+    gfx38.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
     gfx38.render();
     for(var n=0, cum=0;n<g34_0.length;n++){
       gfx39.options.data[0].dataPoints.push({label:g34_0[n], y:g39_1[n]});
@@ -82,6 +101,8 @@ function loadData(){
       cum+=g39_1[n]+g39_2[n]+g39_3[n]+g39_4[n]+g39_5[n];
       gfx39.options.data[5].dataPoints.push({y:cum});
       }
+    var target = target_levels;
+    gfx39.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
     gfx39.render();
     for(var n=0, cum=0;n<g34_0.length;n++){
       gfx40.options.data[0].dataPoints.push({label:g34_0[n], y:g34_1[n]+g35_1[n]+g36_1[n]+g37_1[n]+g38_1[n]+g39_1[n]+g40_1[n]});
@@ -92,7 +113,10 @@ function loadData(){
       cum+=g34_1[n]+g35_1[n]+g36_1[n]+g37_1[n]+g38_1[n]+g39_1[n]+g40_1[n]+g34_2[n]+g35_2[n]+g36_2[n]+g37_2[n]+g38_2[n]+g39_2[n]+g40_2[n]+g34_3[n]+g35_3[n]+g36_3[n]+g37_3[n]+g38_3[n]+g39_3[n]+g40_3[n]+g34_4[n]+g35_4[n]+g36_4[n]+g37_4[n]+g38_4[n]+g39_4[n]+g40_4[n]+g34_5[n]+g35_5[n]+g36_5[n]+g37_5[n]+g38_5[n]+g39_5[n]+g40_5[n];
       gfx40.options.data[5].dataPoints.push({y:cum});
       }
+    var target = target_gscm;
+    gfx40.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
     gfx40.render();
+    sTxt(t2,data.q_name);
     }
   setTimeout(loadData, 60000);
   }
@@ -101,15 +125,16 @@ window.onload=function(){
   var bg = new background();
   t1=new xLab();sFtC(t1,'#ccc');sPar(t1,0);
   t2=new xLab();sFtC(t2,'#ccc');sPar(t2,0);sFtA(t2,'right');
-  sTxt(t1,"CONDE MATERIALS KPI - STANDARD HOURS");
-  sTxt(t2,"GSCM");
+  sTxt(t1,"CONDE MATERIALS KPI - GSCM STANDARD HOURS");
+  sTxt(t2,"");
   timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
   var g = [];
   for(var n=0; n<7; n++){g[n] = new gfxbox();}
 
   var axeY_1 = [{  labelFontColor: "#eee", labelFontFamily: 'Arial',
     labelAngle: -90},{title: "Standard hours", titleFontColor: "#eee", titleFontSize:12, labelFontColor: "#175", labelFontFamily: 'Arial', labelAngle: -90}];
-  var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -66, labelFontFamily: 'Arial'}
+  var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -72, labelFontFamily: 'Arial'}
+  var leg_1 = {horizontalAlign: "center", verticalAlign: "bottom", labelFontFamily: 'Arial', fontColor: "#ddd"}
 
   gfx34 = new CanvasJS.Chart(g[0], {
   animationEnabled: true,
@@ -125,7 +150,9 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
+
     ]
   }); 
   gfx35 = new CanvasJS.Chart(g[1], {
@@ -142,7 +169,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
     ]
   }); 
   gfx36 = new CanvasJS.Chart(g[2], {
@@ -159,7 +187,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
     ]
   }); 
   gfx37 = new CanvasJS.Chart(g[3], {
@@ -176,7 +205,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
     ]
   }); 
   gfx38 = new CanvasJS.Chart(g[4], {
@@ -193,7 +223,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
     ]
   }); 
   gfx39 = new CanvasJS.Chart(g[5], {
@@ -210,7 +241,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
     ]
   }); 
   gfx40 = new CanvasJS.Chart(g[6], {
@@ -218,6 +250,7 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "GSCM TOTAL", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
   backgroundColor: null,
+  legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
   toolTip: {shared: true},
@@ -227,7 +260,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "cumulative", color: "#175",  dataPoints: [], axisYIndex: 1, },
+    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1,showInLegend:true, },
+    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1,showInLegend:true, },
     ]
   }); 
   window.onresize=function(){
