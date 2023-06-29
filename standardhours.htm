@@ -14,13 +14,15 @@ function loadData(){
   document.head.appendChild(js);    
   js.onload = function(){ 
     sTxt(timstp,'Update : ' + tm);
-    gfx34.options.data[5].dataPoints=[];
-    gfx35.options.data[5].dataPoints=[];
-    gfx36.options.data[5].dataPoints=[];
-    gfx37.options.data[5].dataPoints=[];
-    gfx38.options.data[5].dataPoints=[];
-    gfx39.options.data[5].dataPoints=[];
-    gfx40.options.data[5].dataPoints=[];
+    for(var n=0;n<6;n++){
+      gfx34.options.data[n].dataPoints=[];
+      gfx35.options.data[n].dataPoints=[];
+      gfx36.options.data[n].dataPoints=[];
+      gfx37.options.data[n].dataPoints=[];
+      gfx38.options.data[n].dataPoints=[];
+      gfx39.options.data[n].dataPoints=[];
+      gfx40.options.data[n].dataPoints=[];
+      }
     for(var n=0, cum=0;n<g34_0.length;n++){
       gfx34.options.data[0].dataPoints.push({label:g34_0[n], y:g34_1[n]});
       gfx34.options.data[1].dataPoints.push({y:g34_2[n]});
