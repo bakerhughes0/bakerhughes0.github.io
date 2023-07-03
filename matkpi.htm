@@ -2,17 +2,11 @@
 <head>
 <script type=text/javascript src=js/func.js?001></script>
 <script type=text/javascript src=js/canvasjs.min.js?007></script>
+<script type=text/javascript src=module.js?001></script>
+
 <script type=text/javascript>
 
 setTimeout(function(){window.location+='';},3600000);
-
-function qs(variable) {
-  var vars = window.location.search.substring(1).toLowerCase().split('&');
-  for (var i = 0; i < vars.length; i++) {
-    var pair = vars[i].split('=');
-    if (decodeURIComponent(pair[0]) == variable) return decodeURIComponent(pair[1]);
-    }
-  }
 
 function loadData(){
   var d = new Date();
@@ -38,38 +32,40 @@ function loadData(){
     gfx06.options.data[3].dataPoints=gfx06_d4;
     gfx06.options.data[4].dataPoints=gfx06_d5;
     gfx07.options.data[0].dataPoints=gfx07_d1.reverse();
+/*
     gfx08.options.data[0].dataPoints=gfx08_d1;
     gfx08.options.data[1].dataPoints=gfx08_d2;
     gfx08.options.data[2].dataPoints=gfx08_d3;
     gfx08.options.data[3].dataPoints=gfx08_d4;
     gfx08.options.data[4].dataPoints=gfx08_d5;
-    gfx08.options.data[5].dataPoints=[{label:'23W14',y:42},{label:'23W15',y:42},{label:'23W16',y:44},{label:'23W17',y:54},{label:'23W18',y:47},{label:'23W19',y:42},{label:'23W20',y:32},{label:'23W21',y:49},{label:'23W22',y:38},{label:'23W23',y:38},{label:'23W24',y:36},{label:'23W25',y:39},{label:'23W26',y:21},].slice(0,gfx08_d4.length+3);
+    gfx08.options.data[5].dataPoints=[{label:'23W27',y:26},{label:'23W28',y:13},{label:'23W29',y:47},{label:'23W30',y:45},{label:'23W31',y:25},{label:'23W32',y:36},{label:'23W33',y:51},{label:'23W34',y:34},{label:'23W35',y:56},{label:'23W36',y:41},{label:'23W37',y:49},{label:'23W38',y:35},{label:'23W39',y:1},].slice(0,gfx08_d4.length+6);
     gfx09.options.data[0].dataPoints=gfx09_d1;
     gfx09.options.data[1].dataPoints=gfx09_d2;
     gfx09.options.data[2].dataPoints=gfx09_d3;
     gfx09.options.data[3].dataPoints=gfx09_d4;
     gfx09.options.data[4].dataPoints=gfx09_d5;
-    gfx09.options.data[5].dataPoints=[{label:'23W14',y:6},{label:'23W15',y:4},{label:'23W16',y:7},{label:'23W17',y:10},{label:'23W18',y:8},{label:'23W19',y:6},{label:'23W20',y:7},{label:'23W21',y:9},{label:'23W22',y:2},{label:'23W23',y:7},{label:'23W24',y:6},{label:'23W25',y:8},{label:'23W26',y:7},].slice(0,gfx09_d4.length+3);
+    gfx09.options.data[5].dataPoints=[{label:'23W27',y:12},{label:'23W28',y:13},{label:'23W29',y:3},{label:'23W30',y:8},{label:'23W31',y:10},{label:'23W32',y:14},{label:'23W33',y:7},{label:'23W34',y:13},{label:'23W35',y:0},{label:'23W36',y:3},{label:'23W37',y:8},{label:'23W38',y:0},{label:'23W39',y:0},].slice(0,gfx09_d4.length+6);
     gfx10.options.data[0].dataPoints=gfx10_d1;
     gfx10.options.data[1].dataPoints=gfx10_d2;
     gfx10.options.data[2].dataPoints=gfx10_d3;
     gfx10.options.data[3].dataPoints=gfx10_d4;
     gfx10.options.data[4].dataPoints=gfx10_d5;
-    gfx10.options.data[5].dataPoints=[{label:'23W14',y:9},{label:'23W15',y:5},{label:'23W16',y:10},{label:'23W17',y:8},{label:'23W18',y:9},{label:'23W19',y:9},{label:'23W20',y:7},{label:'23W21',y:9},{label:'23W22',y:9},{label:'23W23',y:11},{label:'23W24',y:11},{label:'23W25',y:8},{label:'23W26',y:5},].slice(0,gfx10_d4.length+3);
+    gfx10.options.data[5].dataPoints=[{label:'23W27',y:3},{label:'23W28',y:6},{label:'23W29',y:12},{label:'23W30',y:9},{label:'23W31',y:4},{label:'23W32',y:13},{label:'23W33',y:8},{label:'23W34',y:20},{label:'23W35',y:12},{label:'23W36',y:5},{label:'23W37',y:9},{label:'23W38',y:5},{label:'23W39',y:4},].slice(0,gfx10_d4.length+6);
     gfx11.options.data[0].dataPoints=gfx11_d1;
     gfx11.options.data[1].dataPoints=gfx11_d2;
     gfx11.options.data[2].dataPoints=gfx11_d3;
     gfx11.options.data[3].dataPoints=gfx11_d4;
     gfx11.options.data[4].dataPoints=gfx11_d5;
-    gfx11.options.data[5].dataPoints=[{label:'23W14',y:12},{label:'23W15',y:8},{label:'23W16',y:13},{label:'23W17',y:17},{label:'23W18',y:18},{label:'23W19',y:18},{label:'23W20',y:10},{label:'23W21',y:20},{label:'23W22',y:15},{label:'23W23',y:12},{label:'23W24',y:14},{label:'23W25',y:15},{label:'23W26',y:14},].slice(0,gfx11_d4.length+3);
-    gfx12.options.data[0].dataPoints=[{label:'23W14',y:42},{label:'23W15',y:84},{label:'23W16',y:128},{label:'23W17',y:182},{label:'23W18',y:229},{label:'23W19',y:271},{label:'23W20',y:303},{label:'23W21',y:352},{label:'23W22',y:390},{label:'23W23',y:428},{label:'23W24',y:464},{label:'23W25',y:503},{label:'23W26',y:524},].slice(0,gfx12_d2.length+3);
+    gfx11.options.data[5].dataPoints=[{label:'23W27',y:11},{label:'23W28',y:14},{label:'23W29',y:26},{label:'23W30',y:30},{label:'23W31',y:30},{label:'23W32',y:20},{label:'23W33',y:14},{label:'23W34',y:21},{label:'23W35',y:8},{label:'23W36',y:22},{label:'23W37',y:21},{label:'23W38',y:9},{label:'23W39',y:4},].slice(0,gfx11_d4.length+6);
+    gfx12.options.data[0].dataPoints=[{label:'23W27',y:26},{label:'23W28',y:39},{label:'23W29',y:86},{label:'23W30',y:131},{label:'23W31',y:156},{label:'23W32',y:192},{label:'23W33',y:243},{label:'23W34',y:277},{label:'23W35',y:333},{label:'23W36',y:374},{label:'23W37',y:423},{label:'23W38',y:458},{label:'23W39',y:459},].slice(0,gfx12_d2.length+6);
     gfx12.options.data[1].dataPoints=gfx12_d2;
-    gfx13.options.data[0].dataPoints=[{label:'23W14',y:6},{label:'23W15',y:10},{label:'23W16',y:17},{label:'23W17',y:27},{label:'23W18',y:35},{label:'23W19',y:41},{label:'23W20',y:48},{label:'23W21',y:57},{label:'23W22',y:59},{label:'23W23',y:66},{label:'23W24',y:72},{label:'23W25',y:80},{label:'23W26',y:87},].slice(0,gfx13_d2.length+3);
+    gfx13.options.data[0].dataPoints=[{label:'23W27',y:12},{label:'23W28',y:25},{label:'23W29',y:28},{label:'23W30',y:36},{label:'23W31',y:46},{label:'23W32',y:60},{label:'23W33',y:67},{label:'23W34',y:80},{label:'23W35',y:80},{label:'23W36',y:83},{label:'23W37',y:91},{label:'23W38',y:91},{label:'23W39',y:91},].slice(0,gfx13_d2.length+6);
     gfx13.options.data[1].dataPoints=gfx13_d2;
-    gfx14.options.data[0].dataPoints=[{label:'23W14',y:9},{label:'23W15',y:14},{label:'23W16',y:24},{label:'23W17',y:32},{label:'23W18',y:41},{label:'23W19',y:50},{label:'23W20',y:57},{label:'23W21',y:66},{label:'23W22',y:75},{label:'23W23',y:86},{label:'23W24',y:97},{label:'23W25',y:105},{label:'23W26',y:110},].slice(0,gfx14_d2.length+3);
+    gfx14.options.data[0].dataPoints=[{label:'23W27',y:3},{label:'23W28',y:9},{label:'23W29',y:21},{label:'23W30',y:30},{label:'23W31',y:34},{label:'23W32',y:47},{label:'23W33',y:55},{label:'23W34',y:75},{label:'23W35',y:87},{label:'23W36',y:92},{label:'23W37',y:101},{label:'23W38',y:106},{label:'23W39',y:110},].slice(0,gfx14_d2.length+6);
     gfx14.options.data[1].dataPoints=gfx14_d2;
-    gfx15.options.data[0].dataPoints=[{label:'23W14',y:12},{label:'23W15',y:20},{label:'23W16',y:33},{label:'23W17',y:50},{label:'23W18',y:68},{label:'23W19',y:86},{label:'23W20',y:96},{label:'23W21',y:116},{label:'23W22',y:131},{label:'23W23',y:143},{label:'23W24',y:157},{label:'23W25',y:172},{label:'23W26',y:186},].slice(0,gfx15_d2.length+3);
+    gfx15.options.data[0].dataPoints=[{label:'23W27',y:11},{label:'23W28',y:25},{label:'23W29',y:51},{label:'23W30',y:81},{label:'23W31',y:111},{label:'23W32',y:131},{label:'23W33',y:145},{label:'23W34',y:166},{label:'23W35',y:174},{label:'23W36',y:196},{label:'23W37',y:217},{label:'23W38',y:226},{label:'23W39',y:230},].slice(0,gfx15_d2.length+6);
     gfx15.options.data[1].dataPoints=gfx15_d2;
+*/
     gfx01.render();    
     gfx02.render();
     gfx03.render();
@@ -77,6 +73,7 @@ function loadData(){
     gfx05.render();
     gfx06.render();
     gfx07.render();
+/*
     gfx08.render();
     gfx09.render();
     gfx10.render();
@@ -85,15 +82,18 @@ function loadData(){
     gfx13.render();
     gfx14.render();
     gfx15.render();
-    gfx16.options.data[0].dataPoints=[{label:'18Q1', y:470},{label:'18Q2', y:474},{label:'18Q3', y:425},{label:'18Q4', y:540},{label:'19Q1', y:727},{label:'19Q2', y:558},{label:'19Q3', y:588},{label:'19Q4', y:778},{label:'20Q1', y:837},{label:'20Q2', y:596},{label:'20Q3', y:677},{label:'20Q4', y:519},{label:'21Q1', y:423},{label:'21Q2', y:501},{label:'21Q3', y:606},{label:'21Q4', y:679},{label:'22Q1', y:572},{label:'22Q2', y:445},{label:'22Q3', y:532},{label:'22Q4', y:496},{label:'23Q1', y:524},{name:"Target",color:"#cc6",label:'23Q2', y:524}];
+*/
+/*
+    gfx16.options.data[0].dataPoints=[{label:'18Q1', y:470},{label:'18Q2', y:474},{label:'18Q3', y:425},{label:'18Q4', y:540},{label:'19Q1', y:727},{label:'19Q2', y:558},{label:'19Q3', y:588},{label:'19Q4', y:778},{label:'20Q1', y:837},{label:'20Q2', y:596},{label:'20Q3', y:677},{label:'20Q4', y:519},{label:'21Q1', y:423},{label:'21Q2', y:501},{label:'21Q3', y:606},{label:'21Q4', y:679},{label:'22Q1', y:572},{label:'22Q2', y:445},{label:'22Q3', y:532},{label:'22Q4', y:496},{label:'23Q1', y:546},{label:'23Q2', y:613},{name:"Target",color:"#cc6",label:'23Q3', y:459}];
     gfx16.render();
-    gfx17.options.data[0].dataPoints=[{label:'18Q1',y:189},{label:'18Q2',y:139},{label:'18Q3',y:133},{label:'18Q4',y:132},{label:'19Q1',y:138},{label:'19Q2',y:204},{label:'19Q3',y:181},{label:'19Q4',y:184},{label:'20Q1',y:211},{label:'20Q2',y:200},{label:'20Q3',y:281},{label:'20Q4',y:209},{label:'21Q1',y:254},{label:'21Q2',y:233},{label:'21Q3',y:163},{label:'21Q4',y:188},{label:'22Q1',y:126},{label:'22Q2',y:93},{label:'22Q3',y:136},{label:'22Q4',y:179},{label:'23Q1',y:170},{name:"Target",color:"#cc6",label:'23Q2', y:87}];
+    gfx17.options.data[0].dataPoints=[{label:'18Q1',y:189},{label:'18Q2',y:139},{label:'18Q3',y:133},{label:'18Q4',y:132},{label:'19Q1',y:138},{label:'19Q2',y:204},{label:'19Q3',y:181},{label:'19Q4',y:184},{label:'20Q1',y:211},{label:'20Q2',y:200},{label:'20Q3',y:281},{label:'20Q4',y:209},{label:'21Q1',y:254},{label:'21Q2',y:233},{label:'21Q3',y:163},{label:'21Q4',y:188},{label:'22Q1',y:126},{label:'22Q2',y:93},{label:'22Q3',y:136},{label:'22Q4',y:179},{label:'23Q1',y:170},{label:'23Q2',y:113},{name:"Target",color:"#cc6",label:'23Q3', y:91}];
     gfx17.render();
-    gfx18.options.data[0].dataPoints=[{label:'18Q1',y:592},{label:'18Q2',y:365},{label:'18Q3',y:295},{label:'18Q4',y:368},{label:'19Q1',y:364},{label:'19Q2',y:207},{label:'19Q3',y:321},{label:'19Q4',y:286},{label:'20Q1',y:543},{label:'20Q2',y:331},{label:'20Q3',y:359},{label:'20Q4',y:310},{label:'21Q1',y:212},{label:'21Q2',y:319},{label:'21Q3',y:469},{label:'21Q4',y:468},{label:'22Q1',y:408},{label:'22Q2',y:287},{label:'22Q3',y:141},{label:'22Q4',y:157},{label:'23Q1',y:142},{name:"Target",color:"#cc6",label:'23Q2', y:110}];
+    gfx18.options.data[0].dataPoints=[{label:'18Q1',y:592},{label:'18Q2',y:365},{label:'18Q3',y:295},{label:'18Q4',y:368},{label:'19Q1',y:364},{label:'19Q2',y:207},{label:'19Q3',y:321},{label:'19Q4',y:286},{label:'20Q1',y:543},{label:'20Q2',y:331},{label:'20Q3',y:359},{label:'20Q4',y:310},{label:'21Q1',y:212},{label:'21Q2',y:319},{label:'21Q3',y:469},{label:'21Q4',y:468},{label:'22Q1',y:408},{label:'22Q2',y:287},{label:'22Q3',y:141},{label:'22Q4',y:157},{label:'23Q1',y:142},{label:'23Q2',y:90},{name:"Target",color:"#cc6",label:'23Q3', y:110}];
     gfx18.render();
-    gfx19.options.data[0].dataPoints=[{label:'18Q1',y:320},{label:'18Q2',y:253},{label:'18Q3',y:246},{label:'18Q4',y:312},{label:'19Q1',y:272},{label:'19Q2',y:200},{label:'19Q3',y:603},{label:'19Q4',y:338},{label:'20Q1',y:212},{label:'20Q2',y:286},{label:'20Q3',y:248},{label:'20Q4',y:188},{label:'21Q1',y:312},{label:'21Q2',y:186},{label:'21Q3',y:184},{label:'21Q4',y:147},{label:'22Q1',y:152},{label:'22Q2',y:202},{label:'22Q3',y:172},{label:'22Q4',y:140},{label:'23Q1',y:209},{name:"Target",color:"#cc6",label:'23Q2', y:186}];
+    gfx19.options.data[0].dataPoints=[{label:'18Q1',y:320},{label:'18Q2',y:253},{label:'18Q3',y:246},{label:'18Q4',y:312},{label:'19Q1',y:272},{label:'19Q2',y:200},{label:'19Q3',y:603},{label:'19Q4',y:338},{label:'20Q1',y:212},{label:'20Q2',y:286},{label:'20Q3',y:248},{label:'20Q4',y:188},{label:'21Q1',y:312},{label:'21Q2',y:186},{label:'21Q3',y:184},{label:'21Q4',y:147},{label:'22Q1',y:152},{label:'22Q2',y:202},{label:'22Q3',y:172},{label:'22Q4',y:140},{label:'23Q1',y:209},{label:'23Q2',y:218},{name:"Target",color:"#cc6",label:'23Q3', y:230}];
     gfx19.render();
-    gfx20.options.data[0].dataPoints=[{label:'18Q1',y:9111},{label:'18Q2',y:8678},{label:'18Q3',y:6263},{label:'18Q4',y:6176},{label:'19Q1',y:7358},{label:'19Q2',y:8972},{label:'19Q3',y:7468},{label:'19Q4',y:7858},{label:'20Q1',y:8845},{label:'20Q2',y:6617},{label:'20Q3',y:8151},{label:'20Q4',y:7973},{label:'21Q1',y:7899},{label:'21Q2',y:7256},{label:'21Q3',y:6077},{label:'21Q4',y:7773},{label:'22Q1',y:7174},{label:'22Q2',y:6818},{label:'22Q3',y:6516},{label:'22Q4',y:7411},{label:'23Q1',y:7263},{name:'Target',color:'#CC6',label:'23Q2', y:6500}];
+*/
+    gfx20.options.data[0].dataPoints=[{label:'18Q1',y:9111},{label:'18Q2',y:8678},{label:'18Q3',y:6263},{label:'18Q4',y:6176},{label:'19Q1',y:7358},{label:'19Q2',y:8972},{label:'19Q3',y:7468},{label:'19Q4',y:7858},{label:'20Q1',y:8845},{label:'20Q2',y:6617},{label:'20Q3',y:8151},{label:'20Q4',y:7973},{label:'21Q1',y:7899},{label:'21Q2',y:7256},{label:'21Q3',y:6077},{label:'21Q4',y:7773},{label:'22Q1',y:7174},{label:'22Q2',y:6818},{label:'22Q3',y:6516},{label:'22Q4',y:7411},{label:'23Q1',y:7261},{label:'23Q2',y:7065},{name:'Target',color:'#CC6',label:'23Q3', y:6500}];
     gfx20.render();
     gfx21.options.data[0].dataPoints=gfx21_d1;
     gfx21.options.data[1].dataPoints=gfx21_d2;
@@ -205,7 +205,7 @@ function autoScrollPage(){
 function scrollPage(){
   W=scrW();
   for(var i=0;i<p.length;i++){sPos(p[i],[(i-p_idx)*W,0]);}
-  sPos(ctl.s,[4+30*p_idx,4]); 
+  sPos(ctl.s,[7+40*p_idx,7]); 
   }
 
 function gfxBlk(){
@@ -232,18 +232,6 @@ function gfxPos(o,parent,posX,posY){
 
 
 function redraw(){  
-  gfxPos(g08,p[0],0,0);
-  gfxPos(g09,p[0],1,0);
-  gfxPos(g10,p[0],2,0);
-  gfxPos(g11,p[0],3,0);
-  gfxPos(g12,p[0],0,1);
-  gfxPos(g13,p[0],1,1);
-  gfxPos(g14,p[0],2,1);
-  gfxPos(g15,p[0],3,1);
-  gfxPos(g16,p[0],0,2);
-  gfxPos(g17,p[0],1,2);
-  gfxPos(g18,p[0],2,2);
-  gfxPos(g19,p[0],3,2);
 
   gfxPos(g01,p[1],0,0);
   gfxPos(g03,p[1],0,1);
@@ -258,17 +246,17 @@ function redraw(){
 
   gfxPos(g27,p[2],0,0);
 
-  gfxPos(g30,p[3],0,0);
-  gfxPos(g21,p[3],1,0);
-  gfxPos(g22,p[3],2,0);
-  gfxPos(g23,p[3],2,1);
-  gfxPos(g24,p[3],0,1);
-  gfxPos(g25,p[3],1,1);
-  gfxPos(g26,p[3],3,0);
-  gfxPos(g02,p[3],3,1);
+  gfxPos(g30,p[4],0,0);
+  gfxPos(g21,p[4],1,0);
+  gfxPos(g22,p[4],2,0);
+  gfxPos(g23,p[4],2,1);
+  gfxPos(g24,p[4],0,1);
+  gfxPos(g25,p[4],1,1);
+  gfxPos(g26,p[4],3,0);
+  gfxPos(g02,p[4],3,1);
 
-  gfxPos(g32,p[4],0,0);
-  gfxPos(g33,p[4],0.1,0.15);
+  gfxPos(g32,p[5],0,0);
+  gfxPos(g33,p[5],0.1,0.15);
   }
 
 window.onresize=function(){
@@ -291,7 +279,7 @@ main.l2 = new xDiv();
   main.tm=new xLab();sPar(main.tm,main);sFtC(main.tm,'#666');
   main.eRes=function(){
     W=scrW(); H=scrH();
-    move(ctl,[W/2-p.length*15,5,p.length*30,30]);
+    move(ctl,[W/1.8-p.length*15,15,p.length*40,40]);
     for(var i=0;i<p.length;i++){move(p[i],[(i-p_idx)*W,0,W,H]);}
     move(main.l1,[0.6*W,0.3*H,0.8*W,0.2*H]);
     move(main.l2,[0.6*W,0.5*H,0.8*W,0.2*H]);
@@ -312,8 +300,7 @@ main.l2 = new xDiv();
       }
     });
   p[0] = new pageModel(0);
-    sTxt(p[0].t1,"CONDE MATERIALS KPI - PRODUCTION CONTROL");
-    sTxt(p[0].t2,"ASSEMBLY PRODUCTION");
+    p[0].frm=document.createElement('iframe');move(p[0].frm,[0,0,scrW(),scrH()]);sOvf(p[0].frm,'hidden');sBrW(p[0].frm,[0]);sPar(p[0].frm,p[0]);p[0].frm.src='assembly.htm';
   p[1] = new pageModel(1);
     sTxt(p[1].t1,"CONDE MATERIALS KPI - PRODUCTION CONTROL");
     sTxt(p[1].t2,"MACHINING");
@@ -321,28 +308,30 @@ main.l2 = new xDiv();
     sTxt(p[2].t1,"CONDE MATERIALS KPI - PRODUCTION CONTROL");
     sTxt(p[2].t2,"MACHINING CAPACITY");
   p[3] = new pageModel(3);
-    sTxt(p[3].t1,"CONDE MATERIALS KPI - PLANNING");
+    p[3].frm=document.createElement('iframe');move(p[3].frm,[0,0,scrW(),scrH()]);sOvf(p[3].frm,'hidden');sBrW(p[3].frm,[0]);sPar(p[3].frm,p[3]);p[3].frm.src='standardhours.htm';
   p[4] = new pageModel(4);
+    sTxt(p[3].t1,"CONDE MATERIALS KPI - PLANNING");
+  p[5] = new pageModel(4);
     sTxt(p[4].t1,"CONDE MATERIALS KPI - SHIPPING");
     sTxt(p[4].t2,"QUARTER SHIPMENT");
 
 
   sBrC(ctl,['#fff']);sBrW(ctl,[2]); sBrR(ctl,[100]);sBrC(ctl,['#8a9']);
-  move(ctl,[scrW()/2-p.length*15,5,p.length*30,30]);
+  move(ctl,[scrW()/1.8-p.length*15,15,p.length*30,30]);
   ctl.p=[];
   for(var i=0;i<p.length;i++){
     ctl.p[i]=new xDiv();
     sBrR(ctl.p[i],[100]);sBkC(ctl.p[i],['#8a9']);
     sPar(ctl.p[i],ctl);
-    move(ctl.p[i],[8+30*i,8,10,10]);
+    move(ctl.p[i],[10+40*i,10,15,15]);
     ctl.p[i].idx=i;
     sThE(ctl.p[i], function(evt){ p_idx=this.idx;scrollPage();autoplay=0; });
     }
   ctl.s=new xDiv();
-  sBrW(ctl.s,[2]);sBrR(ctl.s,[100]);sBrC(ctl.s,['#8a9']);
+  sBrW(ctl.s,[2]);sBrR(ctl.s,[100]);sBrC(ctl.s,['#8a8']);
   sTrx(ctl.s, 'all .5s');
   sPar(ctl.s,ctl);
-  move(ctl.s,[4+30*0,4,18,18]);
+  move(ctl.s,[7+40*0,7,21,21]);
   sPar(ctl,0);
   tout = setTimeout(autoScrollPage,disptime);
 
@@ -564,352 +553,6 @@ main.l2 = new xDiv();
     { type: "bar", name: "Quarter Completion", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
     ]
   });  
-  g08 = new gfxBlk(); g08.id="g08"
-  gfx08 = new CanvasJS.Chart(g08, {
-  animationEnabled: true,
-  animationDuration: 1000,
-  title: {text: "CAMFLEX WEEK PRODUCTION", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend:{horizontalAlign:'center',verticalAlign:'bottom',
-  labelFontFamily: 'Arial',
-  fontColor:'#eee'},
-  axisY:{
-    title: "Quantity",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -32,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true, content: toolTipContent6},
-  data: [              
-    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
-    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
-    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
-    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
-    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name:"Target",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
-    ]
-  });
-  g09 = new gfxBlk(); g09.id="g09"
-  gfx09 = new CanvasJS.Chart(g09, {
-  animationEnabled: true,
-  animationDuration: 1000,
-  title: {text: "VARIPAK WEEK PRODUCTION", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend:{horizontalAlign:'center',verticalAlign:'bottom',fontColor:'#eee'},
-  axisY:{
-    title: "Quantity",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -32,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true, content: toolTipContent6},
-  data: [              
-    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
-    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
-    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
-    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
-    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name:"Target",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
-    ]
-  });
-  g10 = new gfxBlk(); g10.id="g10"
-  gfx10 = new CanvasJS.Chart(g10, {
-  animationEnabled: true,
-  animationDuration: 1000,
-  title: {text: "GLOBES WEEK PRODUCTION", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend:{horizontalAlign:'center',verticalAlign:'bottom',
-  labelFontFamily: 'Arial',
-  fontColor:'#eee'},
-  axisY:{
-    title: "Quantity",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -32,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true, content: toolTipContent6},
-  data: [              
-    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
-    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
-    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
-    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
-    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name:"Target",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
-    ]
-  });
-  g11 = new gfxBlk(); g11.id="g11"
-  gfx11 = new CanvasJS.Chart(g11, {
-  animationEnabled: true,
-  animationDuration: 1000,
-  title: {text: "LEVELS WEEK PRODUCTION", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend:{horizontalAlign:'center',verticalAlign:'bottom',
-  labelFontFamily: 'Arial',
-  fontColor:'#eee'},
-  axisY:{
-    title: "Quantity",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -32,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true, content: toolTipContent6},
-  data: [              
-    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
-    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
-    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
-    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
-    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name:"Target",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
-    ]
-  });
-  g12 = new gfxBlk(); g12.id="g12"
-  gfx12 = new CanvasJS.Chart(g12, {
-  animationEnabled: true,
-  animationDuration: 1000,
-  title: {text: "CAMFLEX QUARTER TARGET", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend: {
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#eee"
-    },
-  axisY:{
-    title: "Quantity",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -32,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true},
-  data: [              
-    { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
-    { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
-    ]
-  	});
-  g13 = new gfxBlk(); g13.id="g13"
-  gfx13 = new CanvasJS.Chart(g13, {
-  animationEnabled: true,
-  animationDuration: 1000,
-  title: {text: "VARIPAK QUARTER TARGET", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend: {
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#eee"
-    },
-  axisY:{
-    title: "Quantity",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -32,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true},
-  data: [              
-    { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
-    { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
-    ]
-  	});
-  g14 = new gfxBlk(); g14.id="g14"
-  gfx14 = new CanvasJS.Chart(g14, {
-  animationEnabled: true,
-  animationDuration: 1000,
-  title: {text: "GLOBES QUARTER TARGET", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend: {
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#eee"
-    },
-  axisY:{
-    title: "Quantity",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -32,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true},
-  data: [              
-    { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
-    { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
-    ]
-  });  
-  g15 = new gfxBlk(); g15.id="g15"
-  gfx15 = new CanvasJS.Chart(g15, {
-  animationEnabled: true,
-  animationDuration: 1000,
-  title: {text: "LEVELS QUARTER TARGET", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend: {
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#eee"
-    },
-  axisY:{
-    title: "Quantity",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -32,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true},
-  data: [              
-    { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
-    { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] }
-    ]
-  }); 
-
-
-//____________________________________________________________________________________________________________________________
-
-  g16 = new gfxBlk(); g16.id="g16"
-  gfx16 = new CanvasJS.Chart(g16, {
-  animationEnabled: true,
-  animationDuration: 1000,
-  title: {text: "CAMFLEX QUARTER PRODUCTION", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  axisY:{
-    title: "Quantity",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    minimum:0,
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -66,
-    labelFontFamily: 'Arial',
-    labelFontSize: 10,
-    },
-  toolTip: {shared: true},
-  data: [              
-    { type: "column", name: "Completed",  color:"#8b9", dataPoints: [] },
-    ]
-  }); 
-  g17 = new gfxBlk(); g17.id="g17"
-  gfx17 = new CanvasJS.Chart(g17, {
-  animationEnabled: true,
-  animationDuration: 1000,
-  title: {text: "VARIPAK QUARTER PRODUCTION", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  axisY:{
-    title: "Quantity",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    minimum:0,
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -66,
-    labelFontFamily: 'Arial',
-    labelFontSize: 10,
-    },
-  toolTip: {shared: true},
-  data: [              
-    { type: "column", name: "Completed",  color:"#8b9", dataPoints: [] },
-     ]
-  }); 
-  g18 = new gfxBlk(); g18.id="g18"
-  gfx18 = new CanvasJS.Chart(g18, {
-  animationEnabled: true,
-  animationDuration: 1000,
-  title: {text: "GLOBES QUARTER PRODUCTION", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  axisY:{
-    title: "Quantity",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    minimum:0,
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -66,
-    labelFontFamily: 'Arial',
-    labelFontSize: 10,
-    },
-  toolTip: {shared: true},
-  data: [              
-    { type: "column", name: "Completed",  color:"#8b9", dataPoints: [] },
-     ]
-  });
-  g19 = new gfxBlk(); g19.id="g19"
-  gfx19 = new CanvasJS.Chart(g19, {
-  animationEnabled: true,
-  animationDuration: 1000,
-  title: {text: "LEVELS QUARTER PRODUCTION", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  axisY:{
-    title: "Quantity",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    minimum:0,
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -66,
-    labelFontFamily: 'Arial',
-    labelFontSize: 10,
-    },
-  toolTip: {shared: true},
-  data: [              
-    { type: "column", name: "Completed",  color:"#8b9", dataPoints: [] },
-     ]
-  });
 
 
   g20 = new gfxBlk(); g20.id="g20"
@@ -1396,7 +1039,6 @@ main.l2 = new xDiv();
   if(req){
     p_idx=parseInt(req);
     sVis(ctl,0);
-    //scrollPage();autoplay=0;
     }
 
   loadData(); 
