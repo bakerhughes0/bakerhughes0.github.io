@@ -9,7 +9,7 @@ window.onload=function(){
   i.onload=function(){window.onresize();}
   window.onresize=function(){
     if(i.naturalWidth>0){ //image is now loaded
-      if(i.naturalWidth<100) {window.top.postMessage('removethisimage', '*')}
+      if(i.naturalHeight<40) {window.top.postMessage('removethisimage', '*')}
      // r = i.naturalWidth/i.naturalHeight;
       scaleW = (.8*scrW()) / i.naturalWidth;
       scaleH = (.8*scrH()) / i.naturalHeight;
