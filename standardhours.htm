@@ -11,7 +11,6 @@ var target_painting = 1400;
 var target_standard = 2300;
 var target_globes = 800;
 var target_levels = 950;
-var target_gscm = 7000+750+1400+2300+800+950;
 
 //23Q3
 var target_globes = 850;
@@ -19,7 +18,7 @@ var target_levels = 1350;
 var target_standard = 2150;
 var target_painting = 1164;
 
-var target_gscm = 7000+750+1400+2300+800+950;
+var target_gscm = target_machining +target_welding+target_painting+target_standard+target_globes+target_levels;
 
 function loadData(){
   var d = new Date();
