@@ -234,7 +234,7 @@ main.l2 = new xDiv();
       }
     });
   p[0] = new pageModel(0);
-    p[0].frm=document.createElement('iframe');move(p[0].frm,[0,0,scrW(),scrH()]);sOvf(p[0].frm,'hidden');sBrW(p[0].frm,[0]);sPar(p[0].frm,p[0]);p[0].frm.src='assembly.htm';
+    p[0].frm=document.createElement('iframe');move(p[0].frm,[0,0,scrW(),scrH()]);sOvf(p[0].frm,'hidden');sBrW(p[0].frm,[0]);sPar(p[0].frm,p[0]);p[0].frm.src='assembly.htm?x='+rnd();
   p[1] = new pageModel(1);
     sTxt(p[1].t1,"CONDE MATERIALS KPI - PRODUCTION CONTROL");
     sTxt(p[1].t2,"MACHINING");
@@ -242,11 +242,11 @@ main.l2 = new xDiv();
     sTxt(p[2].t1,"CONDE MATERIALS KPI - PRODUCTION CONTROL");
     sTxt(p[2].t2,"MACHINING CAPACITY");
   p[3] = new pageModel(3);
-    p[3].frm=document.createElement('iframe');move(p[3].frm,[0,0,scrW(),scrH()]);sOvf(p[3].frm,'hidden');sBrW(p[3].frm,[0]);sPar(p[3].frm,p[3]);p[3].frm.src='standardhours.htm';
+    p[3].frm=document.createElement('iframe');move(p[3].frm,[0,0,scrW(),scrH()]);sOvf(p[3].frm,'hidden');sBrW(p[3].frm,[0]);sPar(p[3].frm,p[3]);p[3].frm.src='standardhours.htm?x='+rnd();
   p[4] = new pageModel(4);
     sTxt(p[4].t1,"CONDE MATERIALS KPI - PLANNING");
   p[5] = new pageModel(4);
-    p[5].frm=document.createElement('iframe');move(p[5].frm,[0,0,scrW(),scrH()]);sOvf(p[5].frm,'hidden');sBrW(p[5].frm,[0]);sPar(p[5].frm,p[5]);p[5].frm.src='shipping.htm';
+    p[5].frm=document.createElement('iframe');move(p[5].frm,[0,0,scrW(),scrH()]);sOvf(p[5].frm,'hidden');sBrW(p[5].frm,[0]);sPar(p[5].frm,p[5]);p[5].frm.src='shipping.htm?x='+rnd();
 
   sBrC(ctl,['#fff']);sBrW(ctl,[2]); sBrR(ctl,[100]);sBrC(ctl,['#8a9']);
   move(ctl,[scrW()/1.8-p.length*15,15,p.length*30,30]);
