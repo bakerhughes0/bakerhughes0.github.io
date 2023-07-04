@@ -39,6 +39,8 @@ function loadData(){
       gfx39.options.data[n].dataPoints=[];
       gfx40.options.data[n].dataPoints=[];
       }
+    var thisWeek = isoWeek(new Date()).slice(4,7);
+    
     for(var n=0, cum=0;n<g34_0.length;n++){
       g34_0[n]=g34_0[n].slice(2,5); //remove year in labels
       gfx34.options.data[0].dataPoints.push({label:g34_0[n], y:g34_1[n]});
@@ -47,7 +49,7 @@ function loadData(){
       gfx34.options.data[3].dataPoints.push({y:g34_4[n]});
       gfx34.options.data[4].dataPoints.push({y:g34_5[n]});
       cum+=g34_1[n]+g34_2[n]+g34_3[n]+g34_4[n]+g34_5[n];
-      gfx34.options.data[5].dataPoints.push({y:cum});
+      if(g34_0[n]<=thisWeek){ gfx34.options.data[5].dataPoints.push({y:cum}); }
       }
     var target = target_machining;
     gfx34.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
@@ -59,7 +61,7 @@ function loadData(){
       gfx35.options.data[3].dataPoints.push({y:g35_4[n]});
       gfx35.options.data[4].dataPoints.push({y:g35_5[n]});
       cum+=g35_1[n]+g35_2[n]+g35_3[n]+g35_4[n]+g35_5[n];
-      gfx35.options.data[5].dataPoints.push({y:cum});
+      if(g34_0[n]<=thisWeek){ gfx35.options.data[5].dataPoints.push({y:cum}); }
       }
     var target = target_welding;
     gfx35.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
@@ -71,7 +73,7 @@ function loadData(){
       gfx36.options.data[3].dataPoints.push({y:g36_4[n]});
       gfx36.options.data[4].dataPoints.push({y:g36_5[n]});
       cum+=g36_1[n]+g36_2[n]+g36_3[n]+g36_4[n]+g36_5[n];
-      gfx36.options.data[5].dataPoints.push({y:cum});
+      if(g34_0[n]<=thisWeek){ gfx36.options.data[5].dataPoints.push({y:cum}); }
       }
     var target = target_painting;
     gfx36.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
@@ -83,7 +85,7 @@ function loadData(){
       gfx37.options.data[3].dataPoints.push({y:g37_4[n]});
       gfx37.options.data[4].dataPoints.push({y:g37_5[n]});
       cum+=g37_1[n]+g37_2[n]+g37_3[n]+g37_4[n]+g37_5[n];
-      gfx37.options.data[5].dataPoints.push({y:cum});
+      if(g34_0[n]<=thisWeek){ gfx37.options.data[5].dataPoints.push({y:cum}); }
       }
     var target = target_standard;
     gfx37.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
@@ -95,7 +97,7 @@ function loadData(){
       gfx38.options.data[3].dataPoints.push({y:g38_4[n]});
       gfx38.options.data[4].dataPoints.push({y:g38_5[n]});
       cum+=g38_1[n]+g38_2[n]+g38_3[n]+g38_4[n]+g38_5[n];
-      gfx38.options.data[5].dataPoints.push({y:cum});
+      if(g34_0[n]<=thisWeek){ gfx38.options.data[5].dataPoints.push({y:cum}); }
       }
     var target = target_globes;
     gfx38.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
@@ -107,7 +109,7 @@ function loadData(){
       gfx39.options.data[3].dataPoints.push({y:g39_4[n]});
       gfx39.options.data[4].dataPoints.push({y:g39_5[n]});
       cum+=g39_1[n]+g39_2[n]+g39_3[n]+g39_4[n]+g39_5[n];
-      gfx39.options.data[5].dataPoints.push({y:cum});
+      if(g34_0[n]<=thisWeek){ gfx39.options.data[5].dataPoints.push({y:cum}); }
       }
     var target = target_levels;
     gfx39.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
@@ -119,7 +121,7 @@ function loadData(){
       gfx40.options.data[3].dataPoints.push({y:g34_4[n]+g35_4[n]+g36_4[n]+g37_4[n]+g38_4[n]+g39_4[n]+g40_4[n]});
       gfx40.options.data[4].dataPoints.push({y:g34_5[n]+g35_5[n]+g36_5[n]+g37_5[n]+g38_5[n]+g39_5[n]+g40_5[n]});
       cum+=g34_1[n]+g35_1[n]+g36_1[n]+g37_1[n]+g38_1[n]+g39_1[n]+g40_1[n]+g34_2[n]+g35_2[n]+g36_2[n]+g37_2[n]+g38_2[n]+g39_2[n]+g40_2[n]+g34_3[n]+g35_3[n]+g36_3[n]+g37_3[n]+g38_3[n]+g39_3[n]+g40_3[n]+g34_4[n]+g35_4[n]+g36_4[n]+g37_4[n]+g38_4[n]+g39_4[n]+g40_4[n]+g34_5[n]+g35_5[n]+g36_5[n]+g37_5[n]+g38_5[n]+g39_5[n]+g40_5[n];
-      gfx40.options.data[5].dataPoints.push({y:cum});
+      if(g34_0[n]<=thisWeek){ gfx40.options.data[5].dataPoints.push({y:cum}); }
       }
     var target = target_gscm;
     gfx40.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
