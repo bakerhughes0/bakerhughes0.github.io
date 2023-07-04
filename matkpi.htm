@@ -142,7 +142,7 @@ function autoScrollPage(){
     p_idx++;
     if(p_idx>p.length-1) p_idx=0;
     for(var i=0;i<p.length;i++){move(p[i],[(i-p_idx)*W,0,W,H]);}
-    sPos(ctl.s,[4+30*p_idx,4]);
+    sPos(ctl.s,[7+40*p_idx,7]);
     }
   clearTimeout(tout);
   tout = setTimeout(autoScrollPage,disptime);
@@ -151,7 +151,7 @@ function autoScrollPage(){
 function scrollPage(){
   W=scrW();
   for(var i=0;i<p.length;i++){sPos(p[i],[(i-p_idx)*W,0]);}
-  sPos(ctl.s,[7+40*p_idx,5]); 
+  sPos(ctl.s,[7+40*p_idx,7]); 
   }
 
 function gfxBlk(){
