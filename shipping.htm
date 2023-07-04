@@ -8,8 +8,9 @@
 
 window.onload=function(){
 sBkL(document.body,100,'#243 30%, #222 100%');
-var tit=new xLab();sPar(tit,0);sFtC(tit,'#ccc');move(tit,[10,10,800,40]);
-var tit2=new xLab();sPar(tit2,0);sFtC(tit2,'#ccc');move(tit2,[scrW()-210,10,200,40]);sFtA(tit2,'right');
+var t1=new xLab();sPar(t1,0);sFtC(t1,'#ccc');move(t1,[10,10,800,30]);
+var t2=new xLab();sPar(t2,0);sFtC(t2,'#ccc');move(t2,[scrW()-210,10,200,30]);sFtA(t2,'right');
+
 
 function gfxBlk(){
   var o = new xDiv();
@@ -124,23 +125,25 @@ function loaddata(){
   js.onload = function(){ 
     var dep=qs('dep');
     if(dep=='usinage'){
-      sTxt(tit, 'CCC Usinage - Expéditions du trimestre');
+      sTxt(t1, 'CCC Usinage - Expéditions du trimestre');
       }
     else if(dep=='peinture'){
-      sTxt(tit, 'CCC Peinture - Expéditions du trimestre');
+      sTxt(t1, 'CCC Peinture - Expéditions du trimestre');
       }
     else if(dep=='picking'){
-      sTxt(tit, 'CCC Picking - Expéditions du trimestre');
+      sTxt(t1, 'CCC Picking - Expéditions du trimestre');
       }
     else if(dep=='standard'){
-      sTxt(tit, 'CCC Assemblage Standard - Expéditions du trimestre');
+      sTxt(t1, 'CCC Assemblage Standard - Expéditions du trimestre');
       }
     else if(dep=='conventionnel'){
-      sTxt(tit, 'CCC Assemblage Conventionnel - Expéditions du trimestre');
+      sTxt(t1, 'CCC Assemblage Conventionnel - Expéditions du trimestre');
       }
     else {
-      sTxt(tit, 'CONDE MATERIALS KPI - SHIPPING');
-      gfx33.options.title.text = "This Week"
+      sTxt(t1, 'CONDE MATERIALS KPI - SHIPPING');
+      gfx32.options.data[0].name = "Target";
+      gfx33.options.title.text = "THIS WEEK";
+      gfx33.options.data[0].name = "Target";
       }
     gfx32.options.data[0].dataPoints=gfx32_d1;
     gfx32.options.data[1].dataPoints=gfx32_d2;
@@ -150,7 +153,7 @@ function loaddata(){
     gfx33.options.data[1].dataPoints=gfx33_d2;
     gfx33.options.data[2].dataPoints=gfx33_d3;
     gfx33.render();
-    sTxt(tit2,data.q_name)
+    sTxt(t2,data.q_name)
     }
   document.head.appendChild(js);    
   };

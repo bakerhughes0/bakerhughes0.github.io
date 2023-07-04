@@ -96,15 +96,6 @@ function loadData(){
     gfx31.options.data[0].dataPoints=gfx31_d1;
     gfx31.options.data[1].dataPoints=gfx31_d2;
     gfx31.render();
-    gfx32.options.data[0].dataPoints=gfx32_d1;
-    gfx32.options.data[1].dataPoints=gfx32_d2;
-    gfx32.options.data[2].dataPoints=gfx32_d3;
-    gfx32.render();
-    gfx33.options.data[0].dataPoints=gfx33_d1;
-    gfx33.options.data[1].dataPoints=gfx33_d2;
-    gfx33.options.data[2].dataPoints=gfx33_d3;
-    gfx33.render();
-
     sTxt(main.tm,'Update : ' + tm);
     }
   document.head.appendChild(js);    
@@ -167,7 +158,7 @@ function gfxBlk(){
 function gfxPos(o,parent,posX,posY){
   W=scrW(); H=scrH();
   sPar(o,parent);
-  if(o==g27 || o==g32){
+  if(o==g27 ){
     move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.30),W*0.98,H*0.89]);
     }else if(o==g28 || o==g07){
     move(o,[W*(0.01+posX*0.2475),H*(0.07+posY*0.30),W*0.2375,H*0.59]);
@@ -200,9 +191,6 @@ function redraw(){
   gfxPos(g25,p[4],1,1);
   gfxPos(g26,p[4],3,0);
   gfxPos(g02,p[4],3,1);
-
-  gfxPos(g32,p[5],0,0);
-  gfxPos(g33,p[5],0.1,0.15);
   }
 
 window.onresize=function(){
@@ -256,11 +244,9 @@ main.l2 = new xDiv();
   p[3] = new pageModel(3);
     p[3].frm=document.createElement('iframe');move(p[3].frm,[0,0,scrW(),scrH()]);sOvf(p[3].frm,'hidden');sBrW(p[3].frm,[0]);sPar(p[3].frm,p[3]);p[3].frm.src='standardhours.htm';
   p[4] = new pageModel(4);
-    sTxt(p[3].t1,"CONDE MATERIALS KPI - PLANNING");
+    sTxt(p[4].t1,"CONDE MATERIALS KPI - PLANNING");
   p[5] = new pageModel(4);
-    sTxt(p[4].t1,"CONDE MATERIALS KPI - SHIPPING");
-    sTxt(p[4].t2,"QUARTER SHIPMENT");
-
+    p[5].frm=document.createElement('iframe');move(p[5].frm,[0,0,scrW(),scrH()]);sOvf(p[5].frm,'hidden');sBrW(p[5].frm,[0]);sPar(p[5].frm,p[5]);p[5].frm.src='shipping.htm';
 
   sBrC(ctl,['#fff']);sBrW(ctl,[2]); sBrR(ctl,[100]);sBrC(ctl,['#8a9']);
   move(ctl,[scrW()/1.8-p.length*15,15,p.length*30,30]);
@@ -908,78 +894,6 @@ main.l2 = new xDiv();
     ]
   });
 
-//____________________________________________________________________________________________________________________________
-
-  g32 = new gfxBlk(); g32.id="g32"
-  gfx32 = new CanvasJS.Chart(g32, {
-  animationEnabled: true,
-  animationDuration: 2500,
-  //title: {text: "SHIPMENT", fontColor:"#ddd",fontFamily: 'Arial',fontSize: 22,},
-  backgroundColor: null,
-  legend: {
-    fontSize: 12,
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#ddd"
-    },
-  axisY2:{
-    title: "USD",
-    valueFormatString: "# ### ##0",
-    titleFontColor: "#ddd",
-    titleFontSize: 15,
-    labelFontColor: "#ddd",
-    labelFontFamily: 'Arial',
-    labelFontSize: 12,
-    },
-  axisX:{
-    labelFontColor: "#ddd",
-    labelFontSize: 12,
-
-    interval: 1,
-    labelAngle: -36,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true, content: toolTipContent32},
-  data: [              
-    { type: "line", name: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [], axisYType: "secondary", },
-    { type: "stackedColumn", name: "Public", color: "#8b9", showInLegend: true, dataPoints: [], axisYType: "secondary", },
-    { type: "stackedColumn", name: "Assocos", color: "#586", showInLegend: true, dataPoints: [], axisYType: "secondary", },
-    ]
-  });
-
-  g33 = new gfxBlk(); g33.id="g33"
-  gfx33 = new CanvasJS.Chart(g33, {
-  animationEnabled: true,
-  animationDuration: 2500,
-  title: {text: "WEEK", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend: {
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#ddd"
-    },
-  axisY:{
-    title: "USD",
-    valueFormatString: "# ### ##0",
-    titleFontColor: "#ddd",
-    labelFontColor: "#ddd",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#ddd",
-    interval: 1,
-    labelAngle: -36,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true, content: toolTipContent32},
-  data: [              
-    { type: "line", name: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints:[], showInLegend:false},
-    { type: "stackedColumn", name: "Public", color: "#8b9", showInLegend: true, dataPoints: [], showInLegend:false},
-    { type: "stackedColumn", name: "Assocos", color: "#586", showInLegend: true, dataPoints: [], showInLegend:false},
-    ]
-  });
 
   var req = qs('p');
   if(req){
