@@ -1,3 +1,8 @@
+
+
+c_proj='rgba(230,230,120,.6)';
+c_tip='rgba(50,110,90,.9)';
+
 function qs(variable) {
   var vars = window.location.search.substring(1).toLowerCase().split('&');
   for (var i = 0; i < vars.length; i++) {
@@ -49,13 +54,13 @@ function toolTipContent6(e) {
 	for (var i = 0; i < e.entries.length; i++){
 
 		var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+e.entries[i].dataPoint.y+"</strong><br/>";
-	  if(e.entries[i].dataSeries.name!='Target' && e.entries[i].dataSeries.name!='Cible' && e.entries[i].dataSeries.name!='Capacity'){	
+	  if(!['Target', 'Cible', 'Capacity', 'Projection'].includes(e.entries[i].dataSeries.name)){	
             total = e.entries[i].dataPoint.y + total;
             }
 		str = str.concat(str1);
 
 	  }
-	str2 = "<span style = \"color:DodgerBlue;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
+	str2 = "<span style = \"color:Black;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
 	total = Math.round(total * 100) / 100;
 	str3 = "<span style = \"color:Tomato\">Total:</span><strong> "+total+"</strong><br/>";
 	return (str2.concat(str)).concat(str3);
