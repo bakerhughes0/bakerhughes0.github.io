@@ -1,6 +1,4 @@
-
-
-c_proj='rgba(230,230,120,.6)';
+c_proj='rgba(120,230,220,.8)';
 c_tip='rgba(50,110,90,.9)';
 
 function qs(variable) {
