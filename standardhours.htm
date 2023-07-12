@@ -298,23 +298,21 @@ function toolTipContentWQ(e) {
     for (var i = 0; i < e.entries.length; i++){
         total += e.entries[i].dataPoint.y
 
-        var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+e.entries[i].dataPoint.y+"</strong><br/>";
+        var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtRnd2(e.entries[i].dataPoint.y)+"</strong><br/>";
         str = str.concat(str1);
         if(i==4){
-            total = Math.round(total * 100) / 100;
-            var  str1 = "<span style= \"color:'#222'\"> "+'Week Total'+"</span>: <strong>"+total+"</strong><br/>";
+            var  str1 = "<span style= \"color:'#222'\"> "+'Week Total'+"</span>: <strong>"+fmtRnd2(total)+"</strong><br/>";
             str = str.concat(str1);
             }
         }
 	str2 = "<span style = \"color:Black;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
-	total = Math.round(total * 100) / 100;
 	return (str2.concat(str));
   } 
- 
-function fmtCur2(num) {
- var a=parseFloat(num).toFixed(0);
+function fmtRnd2(num) {
+ var a=Math.round(num * 100) / 100
  return a.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
  }
+
 </script>
 </head>
 <body >
