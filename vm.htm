@@ -267,7 +267,7 @@ function draw(){
       fillRect(.006*W,.83*H + .032*H*x,.01*W,.01*W);
       }    
     }
-  if(lnk){move(lnk,[W*0.485,H*.01,W*.02,W*.02]);sPar(lnk, 0);};
+  if(typeof lnk != 'undefined'){move(lnk,[W*0.485,H*.01,W*.02,W*.02]);sPar(lnk, 0);};
   }
 
 
@@ -364,7 +364,7 @@ window.onload=function(){
   loadData();
   document.body.appendChild(o)
   o.addEventListener("mousemove", function(evt) {
-    lnk.val=0;
+    if(typeof lnk != 'undefined') {lnk.val=0;}
     var rect = o.getBoundingClientRect();
     var x = evt.clientX - rect.left, y = evt.clientY - rect.top;
     if(x>.942*o.width && x < .982*o.width && y > .09*o.height &&   y < .954*o.height){ 
