@@ -145,6 +145,7 @@ window.onload=function(){
     labelAngle: -90},{title: "Standard hours", titleFontColor: "#eee", titleFontSize:12, labelFontColor: "#175", labelFontFamily: 'Arial', labelAngle: -90}];
   var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -72, labelFontFamily: 'Arial'}
   var leg_1 = {horizontalAlign: "center", verticalAlign: "bottom", labelFontFamily: 'Arial', fontColor: "#ddd"}
+  var ttip1 = {shared: true, content: toolTipContentWQ};
 
   gfx34 = new CanvasJS.Chart(g[0], {
   animationEnabled: true,
@@ -153,14 +154,14 @@ window.onload=function(){
   backgroundColor: null,
   axisY:axeY_1,
   axisX:axeX_1,
-  toolTip: {shared: true},
+  toolTip: ttip1,
   data: [              
     { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
     { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1 },
     { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
 
     ]
@@ -172,14 +173,14 @@ window.onload=function(){
   backgroundColor: null,
   axisY:axeY_1,
   axisX:axeX_1,
-  toolTip: {shared: true},
+  toolTip: ttip1,
   data: [              
     { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
     { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1 },
     { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
     ]
   }); 
@@ -190,14 +191,14 @@ window.onload=function(){
   backgroundColor: null,
   axisY:axeY_1,
   axisX:axeX_1,
-  toolTip: {shared: true},
+  toolTip: ttip1,
   data: [              
     { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
     { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1 },
     { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
     ]
   }); 
@@ -208,14 +209,14 @@ window.onload=function(){
   backgroundColor: null,
   axisY:axeY_1,
   axisX:axeX_1,
-  toolTip: {shared: true},
+  toolTip: ttip1,
   data: [              
     { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
     { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1 },
     { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
     ]
   }); 
@@ -226,14 +227,14 @@ window.onload=function(){
   backgroundColor: null,
   axisY:axeY_1,
   axisX:axeX_1,
-  toolTip: {shared: true},
+  toolTip: ttip1,
   data: [              
     { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
     { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1 },
     { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
     ]
   }); 
@@ -244,14 +245,14 @@ window.onload=function(){
   backgroundColor: null,
   axisY:axeY_1,
   axisX:axeX_1,
-  toolTip: {shared: true},
+  toolTip: ttip1,
   data: [              
     { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
     { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1 },
     { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
     ]
   }); 
@@ -263,14 +264,14 @@ window.onload=function(){
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
-  toolTip: {shared: true},
+  toolTip: ttip1,
   data: [              
     { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
     { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Completed", color: "#076",  dataPoints: [], axisYIndex: 1,showInLegend:true, },
+    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1,showInLegend:true, },
     { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1,showInLegend:true, },
     ]
   }); 
@@ -289,6 +290,31 @@ window.onload=function(){
 
   loadData();
   }
+
+function toolTipContentWQ(e) {
+    var str = "";
+    var total = 0;
+    var str2;
+    for (var i = 0; i < e.entries.length; i++){
+        total += e.entries[i].dataPoint.y
+
+        var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+e.entries[i].dataPoint.y+"</strong><br/>";
+        str = str.concat(str1);
+        if(i==4){
+            total = Math.round(total * 100) / 100;
+            var  str1 = "<span style= \"color:'#222'\"> "+'Week Total'+"</span>: <strong>"+total+"</strong><br/>";
+            str = str.concat(str1);
+            }
+        }
+	str2 = "<span style = \"color:Black;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
+	total = Math.round(total * 100) / 100;
+	return (str2.concat(str));
+  } 
+ 
+function fmtCur2(num) {
+ var a=parseFloat(num).toFixed(0);
+ return a.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
+ }
 </script>
 </head>
 <body >
