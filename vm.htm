@@ -357,13 +357,14 @@ window.onload=function(){
   if(wc[0]=='0458'){lnk = new xTmr("459");lnk.eClk=function(){window.location='vm.htm?0459';}}
   if(wc[0]=='0459'){lnk = new xTmr("421");lnk.eClk=function(){window.location='vm.htm?0421';}}
 
- o=document.createElement('canvas');
+  o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
 
 
   loadData();
   document.body.appendChild(o)
   o.addEventListener("mousemove", function(evt) {
+    lnk.val=0;
     var rect = o.getBoundingClientRect();
     var x = evt.clientX - rect.left, y = evt.clientY - rect.top;
     if(x>.942*o.width && x < .982*o.width && y > .09*o.height &&   y < .954*o.height){ 
