@@ -1,0 +1,370 @@
+<html>
+<head>
+<script type=text/javascript src=js/func.js?001></script>
+<script type=text/javascript src=js/canvasjs.min.js?007></script>
+<script type=text/javascript src=module.js?002></script>
+<script type=text/javascript>
+
+function refreshall(){
+  gfx0.render();gfx1.render();gfx2.render();gfx3.render();
+  gfx4.render();gfx5.render();gfx6.render();gfx7.render();
+  gfx8.render();gfx9.render();gfx10.render();gfx11.render();
+  }
+
+function loadData(){
+  var d = new Date();
+  var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
+  var js = document.createElement('script');
+  js.type='text/javascript';
+  js.src="kpi.js" + "?d=" + sd;
+  var weektoshow = 20;
+  document.head.appendChild(js);    
+  js.onload = function(){ 
+    gfx0.options.data[0].dataPoints=[];
+    gfx0.options.data[1].dataPoints=[];
+    for(var n=0; n<npc.dates.length; n++){
+      gfx0.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.engr[n][0]})
+      gfx0.options.data[1].dataPoints.push({y:npc.engr[n][1]})
+      }
+    for(var i=0;i<5; i++){
+      gfx1.options.data[i].dataPoints=[];
+      for(var n=0; n<npc.dates.length; n++){
+        if(i==0){
+          gfx1.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.engr_ovd[n][i]});
+          }else{
+          gfx1.options.data[i].dataPoints.push({y:npc.engr_ovd[n][i]});
+          }
+        }
+      }
+    gfx2.options.data[0].dataPoints=[];
+    gfx2.options.data[1].dataPoints=[];
+    for(var n=0; n<npc.dates.length; n++){
+      gfx2.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.rwkeng[n][0]})
+      gfx2.options.data[1].dataPoints.push({y:npc.rwkeng[n][1]})
+      }
+    for(var i=0;i<5; i++){
+      gfx3.options.data[i].dataPoints=[];
+      for(var n=0; n<npc.dates.length; n++){
+        if(i==0){
+          gfx3.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.rwkeng_ovd[n][i]});
+          }else{
+          gfx3.options.data[i].dataPoints.push({y:npc.rwkeng_ovd[n][i]});
+          }
+        }
+      }
+    gfx4.options.data[0].dataPoints=[];
+    gfx4.options.data[1].dataPoints=[];
+    for(var n=0; n<npc.dates.length; n++){
+      gfx4.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.plng[n][0]})
+      gfx4.options.data[1].dataPoints.push({y:npc.plng[n][1]})
+      }
+    for(var i=0;i<5; i++){
+      gfx5.options.data[i].dataPoints=[];
+      for(var n=0; n<npc.dates.length; n++){
+        if(i==0){
+          gfx5.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.plng_ovd[n][i]});
+          }else{
+          gfx5.options.data[i].dataPoints.push({y:npc.plng_ovd[n][i]});
+          }
+        }
+      }
+    gfx6.options.data[0].dataPoints=[];
+    gfx6.options.data[1].dataPoints=[];
+    for(var n=0; n<npc.dates.length; n++){
+      gfx6.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.me[n][0]})
+      gfx6.options.data[1].dataPoints.push({y:npc.me[n][1]})
+      }
+    for(var i=0;i<5; i++){
+      gfx7.options.data[i].dataPoints=[];
+      for(var n=0; n<npc.dates.length; n++){
+        if(i==0){
+          gfx7.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.me_ovd[n][i]});
+          }else{
+          gfx7.options.data[i].dataPoints.push({y:npc.me_ovd[n][i]});
+          }
+        }
+      }
+    gfx8.options.data[0].dataPoints=[];
+    gfx8.options.data[1].dataPoints=[];
+    for(var n=0; n<npc.dates.length; n++){
+      gfx8.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.proc[n][0]})
+      gfx8.options.data[1].dataPoints.push({y:npc.proc[n][1]})
+      }
+    for(var i=0;i<5; i++){
+      gfx9.options.data[i].dataPoints=[];
+      for(var n=0; n<npc.dates.length; n++){
+        if(i==0){
+          gfx9.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.proc_ovd[n][i]});
+          }else{
+          gfx9.options.data[i].dataPoints.push({y:npc.proc_ovd[n][i]});
+          }
+        }
+      }
+    gfx10.options.data[0].dataPoints=[];
+    gfx10.options.data[1].dataPoints=[];
+    for(var n=0; n<npc.dates.length; n++){
+      gfx10.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.cost[n][0]})
+      gfx10.options.data[1].dataPoints.push({y:npc.cost[n][1]})
+      }
+    for(var i=0;i<5; i++){
+      gfx11.options.data[i].dataPoints=[];
+      for(var n=0; n<npc.dates.length; n++){
+        if(i==0){
+          gfx11.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.cost_ovd[n][i]});
+          }else{
+          gfx11.options.data[i].dataPoints.push({y:npc.cost_ovd[n][i]});
+          }
+        }
+      }
+    refreshall();
+    sTxt(timstp,'Update : ' + tm);
+    }
+  setTimeout(loadData, 60000);
+  }
+
+window.onload=function(){
+  var bg = new background();
+  t1=new xLab();sFtC(t1,'#ccc');sPar(t1,0);
+  t2=new xLab();sFtC(t2,'#ccc');sPar(t2,0);sFtA(t2,'right');
+  sTxt(t1,"CONDE MATERIALS KPI - NEW PARTS CREATION");
+  sTxt(t2,"NPC STATUS");
+  timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
+  var g = [];
+  for(var n=0; n<12; n++){g[n] = new gfxbox();}
+  var axeY_1 = {title: "Materials", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0}
+  var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -32, labelFontFamily: 'Arial'}
+  var axeX_2 = {labelFontColor: "#eee", interval: 1, labelAngle: -66, labelFontFamily: 'Arial', labelFontSize: 10}
+  var leg_1 = {horizontalAlign: "center", verticalAlign: "bottom", labelFontFamily: 'Arial', fontColor: "#eee"}
+  var ttip1 = {shared: true, backgroundColor: '#cdc', borderColor:'grey', content: toolTipContentX};
+  gfx0 = new CanvasJS.Chart(g[0], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "ENGINEERING", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "Overdue", color: "#b33", dataPoints: [], showInLegend: true },
+    ]
+  });
+  gfx1 = new CanvasJS.Chart(g[1], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "ENGINEERING OVD AGE", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "< 1w", color: "#BA5", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 2w", color: "#B84", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 4w", color: "#B63",  dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 8w", color: "#B42", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "> 8w", color: "#B21",  dataPoints: [], showInLegend: true },
+    ]
+  });
+
+  gfx2 = new CanvasJS.Chart(g[2], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "ENG. REWORK", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "Overdue", color: "#b33", dataPoints: [], showInLegend: true },
+    ]
+  });
+  gfx3 = new CanvasJS.Chart(g[3], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "ENG. REWORK OVD AGE", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "< 1w", color: "#BA5", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 2w", color: "#B84", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 4w", color: "#B63",  dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 8w", color: "#B42", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "> 8w", color: "#B21",  dataPoints: [], showInLegend: true },
+    ]
+  });
+
+  gfx4 = new CanvasJS.Chart(g[4], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "PLANNING", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "Overdue", color: "#b33", dataPoints: [], showInLegend: true },
+    ]
+  });
+  gfx5 = new CanvasJS.Chart(g[5], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "PLANNING OVD AGE", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "< 1w", color: "#BA5", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 2w", color: "#B84", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 4w", color: "#B63",  dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 8w", color: "#B42", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "> 8w", color: "#B21",  dataPoints: [], showInLegend: true },
+    ]
+  });
+
+  gfx6 = new CanvasJS.Chart(g[6], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "MANUFACT. ENG.", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "Overdue", color: "#b33", dataPoints: [], showInLegend: true },
+    ]
+  });
+  gfx7 = new CanvasJS.Chart(g[7], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "MANUFACT. ENG. OVD AGE", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "< 1w", color: "#BA5", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 2w", color: "#B84", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 4w", color: "#B63",  dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 8w", color: "#B42", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "> 8w", color: "#B21",  dataPoints: [], showInLegend: true },
+    ]
+  });
+
+  gfx8 = new CanvasJS.Chart(g[8], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "PROCUREMENT", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "Overdue", color: "#b33", dataPoints: [], showInLegend: true },
+    ]
+  });
+  gfx9 = new CanvasJS.Chart(g[9], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "PROCUREMENT OVD AGE", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "< 1w", color: "#BA5", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 2w", color: "#B84", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 4w", color: "#B63",  dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 8w", color: "#B42", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "> 8w", color: "#B21",  dataPoints: [], showInLegend: true },
+    ]
+  });
+  gfx10 = new CanvasJS.Chart(g[10], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "COSTING", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "Overdue", color: "#b33", dataPoints: [], showInLegend: true },
+    ]
+  });
+  gfx11 = new CanvasJS.Chart(g[11], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "COSTING OVD AGE", fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "< 1w", color: "#BA5", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 2w", color: "#B84", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 4w", color: "#B63",  dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 8w", color: "#B42", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "> 8w", color: "#B21",  dataPoints: [], showInLegend: true },
+    ]
+  });
+
+  window.onresize=function(){
+    movep(bg,[0,0,1,1]);
+    movep(t1,[.01, .01, .98, .045]);
+    movep(t2,[.01, .01, .98, .045]);
+    movep(timstp,[.01, .97, 1, .03]);
+    for(var n=0; n<12; n++){
+      x = n % 4;
+      y = Math.floor(n/4);
+      movep(g[n],[.01+x*.2475, .07+y*.3, .2375, .29]);
+      refreshall();
+      }
+    };window.onresize();
+
+  loadData();
+  }
+
+function fmtCur2(num) {
+ var a=parseFloat(num).toFixed(0);
+ return a.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
+ }
+
+function toolTipContentX(e) {
+  var str = "";
+  var total = 0;
+  var str2, str3;
+  for (var i = 0; i < e.entries.length; i++){
+    var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtCur2(e.entries[i].dataPoint.y)+"</strong><br/>";
+    if(e.entries[i].dataSeries.name!='Target' && e.entries[i].dataSeries.name!='Capacity'){ total += e.entries[i].dataPoint.y;}
+    str = str.concat(str1);
+    }
+  str2 = "<span style = \"color:#050;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
+  total = Math.round(total * 100) / 100;
+  str3 = "<span style = \"color:#050\">Total:</span><strong> "+fmtCur2(total)+"</strong><br/>";
+  return (str2.concat(str)).concat(str3);
+  } 
+
+</script>
+</head>
+<body >
+</body>
+</html>
