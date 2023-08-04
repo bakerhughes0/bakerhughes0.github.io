@@ -5,6 +5,11 @@
 <script type=text/javascript src=module.js?002></script>
 <script type=text/javascript>
 
+function refreshall(){
+  gfx08.render();gfx09.render();gfx10.render();gfx11.render();
+  gfx12.render();gfx13.render();gfx14.render();gfx15.render();
+  gfx16.render();gfx17.render();gfx18.render();gfx19.render();
+  }
 function loadData(){
   var d = new Date();
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds();
@@ -328,6 +333,7 @@ window.onload=function(){
       y = Math.floor(n/4);
       movep(g[n],[.01+x*.2475, .07+y*.3, .2375, .29]);
       }
+    refreshall();
     };window.onresize();
 
   loadData();
