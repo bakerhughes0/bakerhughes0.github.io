@@ -48,10 +48,9 @@ window.onload=function(){
   sTxt(t2,"");
   timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
   var g = [];
-  for(var n=0; n<12; n++){g[n] = new gfxbox();}
-  var axeY_1 = {title: "Materials", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0}
+  for(var n=0; n<2; n++){g[n] = new gfxbox();}
+  var axeY_1 = {title: "Orders", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0}
   var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -32, labelFontFamily: 'Arial'}
-  var axeX_2 = {labelFontColor: "#eee", interval: 1, labelAngle: -66, labelFontFamily: 'Arial', labelFontSize: 10}
   var leg_1 = {horizontalAlign: "center", verticalAlign: "bottom", labelFontFamily: 'Arial', fontColor: "#eee"}
   var ttip1 = {shared: true, backgroundColor: '#cdc', borderColor:'grey', content: toolTipContentX};
   gfx0 = new CanvasJS.Chart(g[0], {
