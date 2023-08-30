@@ -7,6 +7,7 @@
 
 function refreshall(){
   gfx0.render();gfx1.render();
+  gfx4.render();
   }
 
 function loadData(){
@@ -34,6 +35,13 @@ function loadData(){
           }
         }
       }
+    gfx4.options.data[0].dataPoints=[];
+    gfx4.options.data[1].dataPoints=[];
+    for(var n=0; n<proc.dates.length; n++){
+      gfx4.options.data[0].dataPoints.push({label:proc.dates[n], y:proc.procpr_sc[n][0]})
+      gfx4.options.data[1].dataPoints.push({y:proc.procpr_sc[n][1]})
+      }
+
     refreshall();
     sTxt(timstp,'Update : ' + tm);
     }
@@ -48,7 +56,7 @@ window.onload=function(){
   sTxt(t2,"");
   timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
   var g = [];
-  for(var n=0; n<2; n++){g[n] = new gfxbox();}
+  for(var n=0; n<5; n++){g[n] = new gfxbox();}
   var axeY_1 = {title: "Materials", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0}
   var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -32, labelFontFamily: 'Arial'}
   var leg_1 = {horizontalAlign: "center", verticalAlign: "bottom", labelFontFamily: 'Arial', fontColor: "#eee"}
@@ -71,8 +79,7 @@ window.onload=function(){
   animationEnabled: true,
   animationDuration: 500,
   title: {text: "PURCHASE REQUISITIONS", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
-
-subtitles:[{text: "Overdue Age", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'}		],
+  subtitles:[{text: "Overdue Age", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'}		],
   backgroundColor: null,
   legend:leg_1,
   axisY:axeY_1,
@@ -86,11 +93,11 @@ subtitles:[{text: "Overdue Age", fontSize:16, fontColor:"#ddd",fontFamily: 'Aria
     { type: "stackedColumn", name: "> 8w", color: "#A31",  dataPoints: [], showInLegend: true },
     ]
   });
-
+/*
   gfx2 = new CanvasJS.Chart(g[2], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "ENG. REWORK", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "PURCHASE REQUISITIONS", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
   legend:leg_1,
   axisY:axeY_1,
@@ -101,13 +108,47 @@ subtitles:[{text: "Overdue Age", fontSize:16, fontColor:"#ddd",fontFamily: 'Aria
     { type: "stackedColumn", name: "Overdue", color: "#b33", dataPoints: [], showInLegend: true },
     ]
   });
+  gfx3 = new CanvasJS.Chart(g[3], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "PURCHASE REQUISITIONS", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles:[{text: "Overdue Age", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'}		],
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "< 1w", color: "#895", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 2w", color: "#B95", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 4w", color: "#A74",  dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 8w", color: "#B52", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "> 8w", color: "#A31",  dataPoints: [], showInLegend: true },
+    ]
+  });
+*/
+  gfx4 = new CanvasJS.Chart(g[4], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "PROCUREMENT TIMEFRAME", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "Sufficient", color: "#8B8", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "Too short", color: "#b70", dataPoints: [], showInLegend: true },
+    ]
+  });
+
 
   window.onresize=function(){
     movep(bg,[0,0,1,1]);
     movep(t1,[.01, .01, .98, .045]);
     movep(t2,[.01, .01, .98, .045]);
     movep(timstp,[.01, .97, 1, .03]);
-    for(var n=0; n<2; n++){
+    for(var n=0; n<5; n++){
       x = n % 4;
       y = Math.floor(n/4);
       movep(g[n],[.01+x*.2475, .07+y*.3, .2375, .29]);
