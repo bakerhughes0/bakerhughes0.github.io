@@ -2,7 +2,7 @@
 <head>
 <script type=text/javascript src=js/func.js?001></script>
 <script type=text/javascript src=js/canvasjs.min.js?007></script>
-<script type=text/javascript src=module.js?002></script>
+<script type=text/javascript src=module.js?003></script>
 <script type=text/javascript>
 
 function refreshall(){
@@ -11,6 +11,7 @@ function refreshall(){
   gfx16.render();gfx17.render();gfx18.render();gfx19.render();
   }
 function loadData(){
+  var thisWeek = isoWeek(new Date()).slice(2,7);
   var d = new Date();
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
   var js = document.createElement('script');
@@ -28,7 +29,7 @@ function loadData(){
     gfx08_est=[];
     for(var n=0;n<incprd.cfx.length;n++){
       for(var x=0;x<5;x++){ if(!(gfx08.options.data[x].dataPoints[n]==undefined)) { incprd.cfx[n] += gfx08.options.data[x].dataPoints[n].y;}}
-      gfx08_est.push({y: incprd.cfx[n]});
+      if(gfx08.options.data[5].dataPoints[n].label >= thisWeek){ gfx08_est.push({y: incprd.cfx[n]});} else {gfx08_est.push({y:null});}
       }
     gfx08.options.data[6].dataPoints=gfx08_est;
     gfx08.render();
@@ -41,7 +42,7 @@ function loadData(){
     gfx09_est=[];
     for(var n=0;n<incprd.vpk.length;n++){
       for(var x=0;x<5;x++){ if(!(gfx09.options.data[x].dataPoints[n]==undefined)) { incprd.vpk[n] += gfx09.options.data[x].dataPoints[n].y;}}
-      gfx09_est.push({y: incprd.vpk[n]});
+      if(gfx08.options.data[5].dataPoints[n].label >= thisWeek){ gfx09_est.push({y: incprd.vpk[n]});} else {gfx09_est.push({y:null});}
       }
     gfx09.options.data[6].dataPoints=gfx09_est;
     gfx09.render();
@@ -54,7 +55,7 @@ function loadData(){
     gfx10_est=[];
     for(var n=0;n<incprd.glb.length;n++){
       for(var x=0;x<5;x++){ if(!(gfx10.options.data[x].dataPoints[n]==undefined)) { incprd.glb[n] += gfx10.options.data[x].dataPoints[n].y;}}
-      gfx10_est.push({y: incprd.glb[n]});
+      if(gfx08.options.data[5].dataPoints[n].label >= thisWeek){ gfx10_est.push({y: incprd.glb[n]});} else {gfx10_est.push({y:null});}
       }
     gfx10.options.data[6].dataPoints=gfx10_est;
     gfx10.render();
@@ -67,7 +68,7 @@ function loadData(){
     gfx11_est=[];
     for(var n=0;n<incprd.lev.length;n++){
       for(var x=0;x<5;x++){ if(!(gfx11.options.data[x].dataPoints[n]==undefined)) { incprd.lev[n] += gfx11.options.data[x].dataPoints[n].y;}}
-      gfx11_est.push({y: incprd.lev[n]});
+      if(gfx08.options.data[5].dataPoints[n].label >= thisWeek){ gfx11_est.push({y: incprd.lev[n]});} else {gfx11_est.push({y:null});}
       }
     gfx11.options.data[6].dataPoints=gfx11_est;
     gfx11.render();
@@ -76,7 +77,7 @@ function loadData(){
     gfx12_est=[];
     for(var n=0, cum=0;n<incprd.cfx.length;n++){
         cum+=incprd.cfx[n];
-        gfx12_est.push({y: cum});
+        if(gfx12.options.data[0].dataPoints[n].label >= thisWeek){ gfx12_est.push({y: cum});} else {gfx12_est.push({y:null});}
         }
     gfx12.options.data[2].dataPoints=gfx12_est;
     gfx12.render();
@@ -85,7 +86,7 @@ function loadData(){
     gfx13_est=[];
     for(var n=0, cum=0;n<incprd.vpk.length;n++){
         cum+=incprd.vpk[n];
-        gfx13_est.push({y: cum});
+        if(gfx12.options.data[0].dataPoints[n].label >= thisWeek){ gfx13_est.push({y: cum});} else {gfx13_est.push({y:null});}
         }
     gfx13.options.data[2].dataPoints=gfx13_est;
     gfx13.render();
@@ -94,7 +95,7 @@ function loadData(){
     gfx14_est=[];
     for(var n=0, cum=0;n<incprd.glb.length;n++){
         cum+=incprd.glb[n];
-        gfx14_est.push({y:cum});
+        if(gfx12.options.data[0].dataPoints[n].label >= thisWeek){ gfx14_est.push({y: cum});} else {gfx14_est.push({y:null});}
         }
     gfx14.options.data[2].dataPoints=gfx14_est;
     gfx14.render();
@@ -103,7 +104,7 @@ function loadData(){
     gfx15_est=[];
     for(var n=0, cum=0;n<incprd.lev.length;n++){
         cum+=incprd.lev[n];
-        gfx15_est.push({y:cum});
+        if(gfx12.options.data[0].dataPoints[n].label >= thisWeek){ gfx15_est.push({y: cum});} else {gfx15_est.push({y:null});}
         }
     gfx15.options.data[2].dataPoints=gfx15_est;
     gfx15.render();
@@ -151,8 +152,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name:"Target",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
-    { type: "line", name:"Projection", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
+    { type: "line", name:"Initial plan",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
+    { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
   });
   gfx09 = new CanvasJS.Chart(g[1], {
@@ -170,8 +171,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name:"Target",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
-    { type: "line", name:"Projection", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
+    { type: "line", name:"Initial plan",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
+    { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
   });
   gfx10 = new CanvasJS.Chart(g[2], {
@@ -189,8 +190,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name:"Target",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
-    { type: "line", name:"Projection", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
+    { type: "line", name:"Initial plan",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
+    { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
   });
   gfx11 = new CanvasJS.Chart(g[3], {
@@ -208,8 +209,8 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name:"Target",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
-    { type: "line", name:"Projection", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
+    { type: "line", name:"Initial plan",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
+    { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
   });
 
@@ -223,9 +224,9 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip: tTip2,
   data: [              
-    { type: "line", name:"Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
+    { type: "line", name:"Initial plan", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
     { type: "line", name:"Completed", color:"#8b9", showInLegend: true, dataPoints: [] },
-    { type: "line", name:"Projection", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
+    { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
   });
   gfx13 = new CanvasJS.Chart(g[5], {
@@ -238,9 +239,9 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip: tTip2,
   data: [              
-    { type: "line", name:"Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
+    { type: "line", name:"Initial plan", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
     { type: "line", name:"Completed", color:"#8b9", showInLegend: true, dataPoints: [] },
-    { type: "line", name:"Projection", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
+    { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
   });
   gfx14 = new CanvasJS.Chart(g[6], {
@@ -253,9 +254,9 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip: tTip2,
   data: [              
-    { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
+    { type: "line", name: "Initial plan", legendText: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
     { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] },
-    { type: "line", name:"Projection", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
+    { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
   });  
   gfx15 = new CanvasJS.Chart(g[7], {
@@ -268,9 +269,9 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip: tTip2,
   data: [              
-    { type: "line", name: "Target", legendText: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
+    { type: "line", name: "Initial plan", legendText: "Target", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
     { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] },
-    { type: "line", name:"Projection", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
+    { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
   });
 

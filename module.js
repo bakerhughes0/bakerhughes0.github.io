@@ -52,7 +52,7 @@ function toolTipContent6(e) {
 	for (var i = 0; i < e.entries.length; i++){
 
 		var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+e.entries[i].dataPoint.y+"</strong><br/>";
-	  if(!['Target', 'Cible', 'Capacity', 'Projection'].includes(e.entries[i].dataSeries.name)){	
+	  if(!['Target', 'Cible', 'Capacity', 'Projection', 'Initial plan', 'Planned'].includes(e.entries[i].dataSeries.name)){	
             total = e.entries[i].dataPoint.y + total;
             }
 		str = str.concat(str1);
