@@ -2,11 +2,11 @@
 <head>
 <script type=text/javascript src=js/func.js?001></script>
 <script type=text/javascript src=js/canvasjs.min.js?007></script>
-<script type=text/javascript src=module.js?002></script>
+<script type=text/javascript src=module.js?003></script>
 <script type=text/javascript>
 
 function refreshall(){
-  gfx0.render();gfx1.render();
+  gfx0.render();gfx1.render();gfx2.render();gfx3.render();
   gfx4.render();
   }
 
@@ -35,6 +35,23 @@ function loadData(){
           }
         }
       }
+    gfx2.options.data[0].dataPoints=[];
+    gfx2.options.data[1].dataPoints=[];
+    for(var n=0; n<proc.dates.length; n++){
+      gfx2.options.data[0].dataPoints.push({label:proc.dates[n], y:proc.procprnuc[n][0]})
+      gfx2.options.data[1].dataPoints.push({y:proc.procprnuc[n][1]})
+      }
+    for(var i=0;i<5; i++){
+      gfx3.options.data[i].dataPoints=[];
+      for(var n=0; n<proc.dates.length; n++){
+        if(i==0){
+          gfx3.options.data[i].dataPoints.push({label:proc.dates[n], y:proc.procprnuc_ovd[n][i]});
+          }else{
+          gfx3.options.data[i].dataPoints.push({y:proc.procprnuc_ovd[n][i]});
+          }
+        }
+      }
+
     gfx4.options.data[0].dataPoints=[];
     gfx4.options.data[1].dataPoints=[];
     for(var n=0; n<proc.dates.length; n++){
@@ -93,11 +110,12 @@ window.onload=function(){
     { type: "stackedColumn", name: "> 8w", color: "#A31",  dataPoints: [], showInLegend: true },
     ]
   });
-/*
+
   gfx2 = new CanvasJS.Chart(g[2], {
   animationEnabled: true,
   animationDuration: 500,
   title: {text: "PURCHASE REQUISITIONS", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles:[{text: "NUCLEAR", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'}],
   backgroundColor: null,
   legend:leg_1,
   axisY:axeY_1,
@@ -112,7 +130,7 @@ window.onload=function(){
   animationEnabled: true,
   animationDuration: 500,
   title: {text: "PURCHASE REQUISITIONS", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
-  subtitles:[{text: "Overdue Age", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'}		],
+  subtitles:[{text: "NUCLEAR - OVERDUE AGE", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'}	],
   backgroundColor: null,
   legend:leg_1,
   axisY:axeY_1,
@@ -126,7 +144,7 @@ window.onload=function(){
     { type: "stackedColumn", name: "> 8w", color: "#A31",  dataPoints: [], showInLegend: true },
     ]
   });
-*/
+
   gfx4 = new CanvasJS.Chart(g[4], {
   animationEnabled: true,
   animationDuration: 500,
@@ -139,7 +157,7 @@ window.onload=function(){
   toolTip:ttip1,
   data: [              
     { type: "stackedColumn", name: "Sufficient", color: "#8B8", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "Too short", color: "#b70", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "Too short", color: "#b62", dataPoints: [], showInLegend: true },
     ]
   });
 
