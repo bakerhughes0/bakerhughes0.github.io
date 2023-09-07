@@ -1,0 +1,308 @@
+<html>
+<head>
+<script type=text/javascript src=js/func.js?001></script>
+<script type=text/javascript src=js/canvasjs.min.js?007></script>
+<script type=text/javascript src=module.js?003></script>
+<script type=text/javascript src=kpi_data1.js?v=1></script>
+
+<script type=text/javascript>
+
+function refreshall(){
+  gfx0.render();gfx1.render();gfx2.render();gfx3.render();gfx4.render();
+  gfx5.render();
+  }
+
+function loadData(){
+  var d = new Date();
+  var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
+  var js = document.createElement('script');
+  js.type='text/javascript';
+  js.src="kpi.js" + "?d=" + sd;
+  document.head.appendChild(js);    
+  js.onload = function(){
+    xlabels = calcLabels();
+    gfx0.options.data[0].dataPoints=[];
+    gfx0.options.data[1].dataPoints=[];
+    var aIndex=-1;
+    for(var n=0; n<gfx08_d1.length; n++){
+      if(gfx08_d1[n].label==thisWeek){
+        aIndex=n;
+        break;
+        }
+      }
+    if(aIndex>-1){
+      var aData=[gfx08_d1[aIndex].y, gfx08_d2[aIndex].y, gfx08_d3[aIndex].y, gfx08_d4[aIndex].y, gfx08_d5[aIndex].y];
+      for(var n=0; n<aData.length; n++){
+        if(aData[n]==0){aData[n]=null;}
+        gfx0.options.data[0].dataPoints.push({label:xlabels[n], y:aData[n]});
+        gfx0.options.data[1].dataPoints.push({y:null});
+        }
+      gfx0.options.data[0].dataPoints.push({ label: "Week Total", isIntermediateSum: true, color: "#586"})
+      gfx0.options.data[1].dataPoints.push({y:null});
+      gfx0.options.data[1].dataPoints.push({ label: "LOB week plan", y:LOB.cfx[aIndex]})
+      }
+
+    gfx1.options.data[0].dataPoints=[];
+    gfx1.options.data[1].dataPoints=[];
+    var aIndex=-1;
+    for(var n=0; n<gfx09_d1.length; n++){
+      if(gfx09_d1[n].label==thisWeek){
+        aIndex=n;
+        break;
+        }
+      }
+    if(aIndex>-1){
+      var aData=[gfx09_d1[aIndex].y, gfx09_d2[aIndex].y, gfx09_d3[aIndex].y, gfx09_d4[aIndex].y, gfx09_d5[aIndex].y];
+      for(var n=0; n<aData.length; n++){
+        if(aData[n]==0){aData[n]=null;}
+        gfx1.options.data[0].dataPoints.push({label:xlabels[n], y:aData[n]});
+        gfx1.options.data[1].dataPoints.push({y:null});
+        }
+      gfx1.options.data[0].dataPoints.push({ label: "Week Total", isIntermediateSum: true, color: "#586"})
+      gfx1.options.data[1].dataPoints.push({y:null});
+      gfx1.options.data[1].dataPoints.push({ label: "LOB week plan", y:LOB.vpk[aIndex]})
+      }
+
+    gfx2.options.data[0].dataPoints=[];
+    gfx2.options.data[1].dataPoints=[];
+    var aIndex=-1;
+    for(var n=0; n<gfx10a_d1.length; n++){
+      if(gfx10a_d1[n].label==thisWeek){
+        aIndex=n;
+        break;
+        }
+      }
+    if(aIndex>-1){
+      var aData=[gfx10a_d1[aIndex].y, gfx10a_d2[aIndex].y, gfx10a_d3[aIndex].y, gfx10a_d4[aIndex].y, gfx10a_d5[aIndex].y];
+      for(var n=0; n<aData.length; n++){
+        if(aData[n]==0){aData[n]=null;}
+        gfx2.options.data[0].dataPoints.push({label:xlabels[n], y:aData[n]});
+        gfx2.options.data[1].dataPoints.push({y:null});
+        }
+      gfx2.options.data[0].dataPoints.push({ label: "Week Total", isIntermediateSum: true, color: "#586"})
+      gfx2.options.data[1].dataPoints.push({y:null});
+      //gfx3.options.data[1].dataPoints.push({ label: "LOB week plan", y:LOB.glbcal[aIndex]})
+      }
+
+    gfx3.options.data[0].dataPoints=[];
+    gfx3.options.data[1].dataPoints=[];
+    var aIndex=-1;
+    for(var n=0; n<gfx10_d1.length; n++){
+      if(gfx10_d1[n].label==thisWeek){
+        aIndex=n;
+        break;
+        }
+      }
+    if(aIndex>-1){
+      var aData=[gfx10_d1[aIndex].y, gfx10_d2[aIndex].y, gfx10_d3[aIndex].y, gfx10_d4[aIndex].y, gfx10_d5[aIndex].y];
+      for(var n=0; n<aData.length; n++){
+        if(aData[n]==0){aData[n]=null;}
+        gfx3.options.data[0].dataPoints.push({label:xlabels[n], y:aData[n]});
+        gfx3.options.data[1].dataPoints.push({y:null});
+        }
+      gfx3.options.data[0].dataPoints.push({ label: "Week Total", isIntermediateSum: true, color: "#586"})
+      gfx3.options.data[1].dataPoints.push({y:null});
+      gfx3.options.data[1].dataPoints.push({ label: "LOB week plan", y:LOB.glbcal[aIndex]})
+      }
+
+    gfx4.options.data[0].dataPoints=[];
+    gfx4.options.data[1].dataPoints=[];
+    var aIndex=-1;
+    for(var n=0; n<gfx11_d1.length; n++){
+      if(gfx11_d1[n].label==thisWeek){
+        aIndex=n;
+        break;
+        }
+      }
+    if(aIndex>-1){
+      var aData=[gfx11_d1[aIndex].y, gfx11_d2[aIndex].y, gfx11_d3[aIndex].y, gfx11_d4[aIndex].y, gfx11_d5[aIndex].y];
+      for(var n=0; n<aData.length; n++){
+        if(aData[n]==0){aData[n]=null;}
+        gfx4.options.data[0].dataPoints.push({label:xlabels[n], y:aData[n]});
+        gfx4.options.data[1].dataPoints.push({y:null});
+        }
+      gfx4.options.data[0].dataPoints.push({ label: "Week Total", isIntermediateSum: true, color: "#586"})
+      gfx4.options.data[1].dataPoints.push({y:null});
+      gfx4.options.data[1].dataPoints.push({ label: "LOB week plan", y:LOB.lvl[aIndex]})
+      }
+
+
+    gfx5.options.data[0].dataPoints=[];
+    gfx5.options.data[1].dataPoints=[];
+    gfx5.options.data[2].dataPoints=[];
+    for(var n=0; n<qmlot.x.length; n++){
+      gfx5.options.data[0].dataPoints.push({label: qmlot.x[n], y: qmlot.n[n]});
+      gfx5.options.data[1].dataPoints.push({y: qmlot.p[n]});
+      gfx5.options.data[2].dataPoints.push({y: qmlot.c[n]});
+      }
+
+    refreshall();
+    sTxt(timstp,'Update : ' + tm);
+    }
+  setTimeout(loadData, 60000);
+  }
+
+window.onload=function(){
+  today = new Date();
+//  today.setDate(today.getDate() - 7);
+  thisWeek = isoWeek(today).slice(2,7);
+  var bg = new background();
+  t1=new xLab();sFtC(t1,'#ccc');sPar(t1,0);
+  t2=new xLab();sFtC(t2,'#ccc');sPar(t2,0);sFtA(t2,'right');
+  sTxt(t1,"CONDE MATERIALS KPI - DAILY PRODUCTION");
+  sTxt(t2,"WEEK "+thisWeek);
+  timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
+  var g = [];
+  for(var n=0; n<6; n++){g[n] = new gfxbox();}
+  var axeY_1 = {title: "Products", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0}
+  var axeY_2 = {title: "# count", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0}
+  var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -32, labelFontFamily: 'Arial'}
+  var axeX_2 = {labelFontColor: "#eee", interval: 1, labelAngle: -40, labelFontFamily: 'Arial'}
+  var leg_1 = {horizontalAlign: "center", verticalAlign: "bottom", labelFontFamily: 'Arial', fontColor: "#eee"}
+  var ttip1 = {shared: true, backgroundColor: '#cdc', borderColor:'grey'};
+  var ttip2 = {shared: true, backgroundColor: '#cdc', borderColor:'grey', content:toolTipContentX};
+
+  gfx0 = new CanvasJS.Chart(g[0], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "CAMFLEX", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  dataPointWidth: 20,
+  data: [              
+    { type: "waterfall", name: "Products", color: "#8B8", dataPoints: [], indexLabel: "{y}",indexLabelFontColor: "#efe" },
+    { type: "column",color: "#CC6",dataPoints:[], indexLabel: "{y}",indexLabelFontColor: "#efe"},
+    ]
+  });
+  gfx1 = new CanvasJS.Chart(g[1], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "VARIPAK", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  dataPointWidth: 20,
+  data: [              
+    { type: "waterfall", name: "Products", color: "#8B8", dataPoints: [], indexLabel: "{y}",indexLabelFontColor: "#efe" },
+    { type: "column",color: "#CC6",dataPoints:[], indexLabel: "{y}",indexLabelFontColor: "#efe"},
+    ]
+  });
+  gfx2 = new CanvasJS.Chart(g[2], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "GLOBES ASSEMBLY", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  dataPointWidth: 20,
+  data: [              
+    { type: "waterfall", name: "Products", color: "#8B8", dataPoints: [], indexLabel: "{y}",indexLabelFontColor: "#efe" },
+    { type: "column",color: "#CC6",dataPoints:[], indexLabel: "{y}",indexLabelFontColor: "#efe"},
+    ]
+  });
+  gfx3 = new CanvasJS.Chart(g[3], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "GLOBES CALIBRATION", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  dataPointWidth: 20,
+  data: [              
+    { type: "waterfall", name: "Products", color: "#8B8", dataPoints: [], indexLabel: "{y}",indexLabelFontColor: "#efe" },
+    { type: "column",color: "#CC6",dataPoints:[], indexLabel: "{y}",indexLabelFontColor: "#efe"},
+    ]
+  });
+  gfx4 = new CanvasJS.Chart(g[4], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "LEVELS", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  dataPointWidth: 20,
+  data: [              
+    { type: "waterfall", name: "Products", color: "#8B8", dataPoints: [], indexLabel: "{y}",indexLabelFontColor: "#efe" },
+    { type: "column",color: "#CC6",dataPoints:[], indexLabel: "{y}",indexLabelFontColor: "#efe"},
+    ]
+  });
+  gfx5 = new CanvasJS.Chart(g[5], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "QMLOT", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_2,
+  axisX:axeX_2,
+  toolTip:ttip1,
+
+  data: [              
+    { type: "stackedColumn", name: "New", color: "#aae", showInLegend:true, dataPoints: []},
+    { type: "stackedColumn", name: "Pending", color: "#da5", showInLegend:true, dataPoints: []},
+    { type: "stackedColumn", name: "Done", color: "#8C8", showInLegend:true, dataPoints: []},
+    ]
+  });
+
+  window.onresize=function(){
+    movep(bg,[0,0,1,1]);
+    movep(t1,[.01, .01, .98, .045]);
+    movep(t2,[.01, .01, .98, .045]);
+    movep(timstp,[.01, .97, 1, .03]);
+    for(var n=0; n<g.length; n++){
+      x = n % 5;
+      y = Math.floor(n/5);
+      movep(g[n],[.01+x*(.01+.188), .07+y*.455, .188, .43]);
+      refreshall();
+      }
+    };window.onresize();
+
+  loadData();
+  }
+
+function fmtCur2(num) {
+ var a=parseFloat(num).toFixed(0);
+ return a.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
+ }
+
+function toolTipContentX(e) {
+  var str = "";
+  var total = 0;
+  var str2, str3;
+  for (var i = 0; i < e.entries.length; i++){
+    var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtCur2(e.entries[i].dataPoint.y)+"</strong><br/>";
+    if(e.entries[i].dataSeries.name!='Target' && e.entries[i].dataSeries.name!='Capacity'){ total += e.entries[i].dataPoint.y;}
+    str = str.concat(str1);
+    }
+  str2 = "<span style = \"color:#050;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
+  total = Math.round(total * 100) / 100;
+  str3 = "<span style = \"color:#050\">Total:</span><strong> "+fmtCur2(total)+"</strong><br/>";
+  return (str2.concat(str)).concat(str3);
+  } 
+
+function calcLabels(){
+  var d = today;
+  d.setDate(today.getDate() - d.getDay() +1);
+  var ret = []
+  for(var n=0; n<5; n++){
+    ret.push(isoDate(d));
+    d.setDate(d.getDate()+1);
+    }
+  return ret;
+  }
+
+</script>
+</head>
+<body >
+</body>
+</html>
