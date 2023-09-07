@@ -9,7 +9,7 @@
 
 function refreshall(){
   gfx0.render();gfx1.render();gfx2.render();gfx3.render();gfx4.render();
-  gfx5.render();
+  gfx5.render();gfx6.render();
   }
 
 function loadData(){
@@ -126,7 +126,6 @@ function loadData(){
       gfx4.options.data[1].dataPoints.push({ label: "LOB week plan", y:LOB.lvl[aIndex]})
       }
 
-
     gfx5.options.data[0].dataPoints=[];
     gfx5.options.data[1].dataPoints=[];
     gfx5.options.data[2].dataPoints=[];
@@ -134,6 +133,16 @@ function loadData(){
       gfx5.options.data[0].dataPoints.push({label: qmlot.x[n], y: qmlot.n[n]});
       gfx5.options.data[1].dataPoints.push({y: qmlot.p[n]});
       gfx5.options.data[2].dataPoints.push({y: qmlot.c[n]});
+      }
+    gfx6.options.data[0].dataPoints=[];
+    gfx6.options.data[1].dataPoints=[];
+    gfx6.options.data[2].dataPoints=[];
+    for(var n=0; n<ncr.x.length; n++){
+      if(ncr.x[n]>'2023-09-07'){
+        gfx6.options.data[0].dataPoints.push({label: qmlot.x[n], y: ncr.n[n]});
+        gfx6.options.data[1].dataPoints.push({y: ncr.p[n]});
+        gfx6.options.data[2].dataPoints.push({y: ncr.c[n]});
+        }
       }
 
     refreshall();
@@ -144,7 +153,7 @@ function loadData(){
 
 window.onload=function(){
   today = new Date();
-//  today.setDate(today.getDate() - 7);
+  today.setHours(today.getHours() - 10);
   thisWeek = isoWeek(today).slice(2,7);
   var bg = new background();
   t1=new xLab();sFtC(t1,'#ccc');sPar(t1,0);
@@ -153,7 +162,7 @@ window.onload=function(){
   sTxt(t2,"WEEK "+thisWeek);
   timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
   var g = [];
-  for(var n=0; n<6; n++){g[n] = new gfxbox();}
+  for(var n=0; n<7; n++){g[n] = new gfxbox();}
   var axeY_1 = {title: "Products", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0}
   var axeY_2 = {title: "# count", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0}
   var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -32, labelFontFamily: 'Arial'}
@@ -246,7 +255,21 @@ window.onload=function(){
   axisY:axeY_2,
   axisX:axeX_2,
   toolTip:ttip1,
-
+  data: [              
+    { type: "stackedColumn", name: "New", color: "#aae", showInLegend:true, dataPoints: []},
+    { type: "stackedColumn", name: "Pending", color: "#da5", showInLegend:true, dataPoints: []},
+    { type: "stackedColumn", name: "Done", color: "#8C8", showInLegend:true, dataPoints: []},
+    ]
+  });
+  gfx6 = new CanvasJS.Chart(g[6], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "NCR", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_2,
+  axisX:axeX_2,
+  toolTip:ttip1,
   data: [              
     { type: "stackedColumn", name: "New", color: "#aae", showInLegend:true, dataPoints: []},
     { type: "stackedColumn", name: "Pending", color: "#da5", showInLegend:true, dataPoints: []},
