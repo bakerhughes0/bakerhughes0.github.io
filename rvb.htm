@@ -1,0 +1,288 @@
+
+<html>
+<head>
+<script type=text/javascript src=js/func.js?a=001></script>
+<script type=text/javascript>
+
+window.onload=function(){
+
+function combFilter(ctx, maxDelayTime){
+  var io = ctx.createGain();
+  io.gain.value=0.999;
+  io.delay = ctx.createDelay(maxDelayTime);
+  io.filter = ctx.createBiquadFilter();
+  io.filter.filterType = 'lowpass';
+  io.filter.Q.value = -3.0102999566398125;
+  io.feedback=ctx.createGain();
+  io.connect(io.delay).connect(io.filter).connect(io.feedback).connect(io);
+  return io;
+  }
+
+function stereoverb(ctx){
+  var o = ctx.createGain();
+  o.input = ctx.createGain();
+  o.output = ctx.createGain();
+  o.dry = ctx.createGain();
+  o.dry.gain.value = .1
+  o.wet = ctx.createGain();
+  o.wet.gain.value = 0.3;
+  o.split = ctx.createChannelSplitter(2);
+  o.merge = ctx.createChannelMerger(2);
+  o.input.connect(o.dry).connect(o.output);
+  o.input.connect(o.wet)
+  o.comb=[];
+  var dir= [0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1];
+  var reg = [0.035306122, 0.036666667, 0.033809524, 0.032244898, 0.028956916, 0.030748299, 0.026938776, 0.025306122,
+             0.035827664, 0.037188209, 0.034331066, 0.03276644, 0.029478458, 0.031269841, 0.027460317, 0.025827664]
+  for(var n=0; n<16; n++){
+    o.comb[n] = new combFilter(ctx, 0.038);
+    o.comb[n].delay.delayTime.value = reg[n];
+    o.comb[n].filter.frequency.value = 8000;
+    o.comb[n].feedback.gain.value = 0.98;
+    o.wet.connect(o.comb[n]).connect(o.merge,0,dir[n]);
+    //o.wet.connect(o.split).connect(o.comb[n],dir[n]).connect(o.merge,0,dir[n]);
+    }
+  o.ap=[];
+  var apreg = [225, 556, 441, 341];
+  for(var n=0; n<4; n++){
+    o.ap[n] = ctx.createBiquadFilter();
+    o.ap[n].filterType = 'allpass';
+    o.ap[n].Q.value = .5;
+    o.ap[n].frequency.value = apreg[n]*5;
+    }
+
+  //o.merge.connect(o.ap[0]).connect(o.ap[1]).connect(o.ap[2]).connect(o.ap[3]).connect(o.output);
+  o.merge.connect(o.output);
+  return o;
+  }
+
+function freeverb(ctx){
+  var o = ctx.createGain();
+  o.input = ctx.createGain();
+  o.output = ctx.createGain();
+  o.dry = ctx.createGain();
+  o.dry.gain.value = 1
+  o.wet = ctx.createGain();
+  o.wet.gain.value = .8;
+  o.merge = ctx.createChannelMerger(2);
+  o.input.connect(o.dry).connect(o.output);
+  o.ap=[];
+  var apreg = [225, 556, 441, 341];
+  for(var n=0; n<4; n++){
+    o.ap[n] = ctx.createBiquadFilter();
+    o.ap[n].filterType = 'allpass';
+    o.ap[n].Q.value = -3.0102999566398125;
+    o.ap[n].frequency.value = apreg[n];
+    }
+  o.comb=[];
+  var dir = [0,0,0,0,1,1,1,1];
+  var reg = [0.035306122, 0.036666667, 0.033809524, 0.032244898, 0.028956916, 0.030748299, 0.026938776, 0.025306122]
+  for(var n=0; n<8; n++){
+    o.comb[n] = new combFilter(ctx, 0.037);
+    o.comb[n].delay.delayTime.value = reg[n];
+    o.comb[n].filter.frequency.value = 5000;
+    o.comb[n].feedback.gain.value = 0.9;
+//    o.split.connect(o.comb[n],dir[n]).connect(o.merge,0,dir[n]);
+    o.input.connect(o.comb[n]).connect(o.merge,0,dir[n]);
+    }
+//  o.merge.connect(o.ap[0]).connect(o.ap[1]).connect(o.ap[2]).connect(o.ap[3]).connect(o.output)
+//  o.ap[0].connect(o.ap[1]).connect(o.ap[2]).connect(o.ap[3]).connect(o.output)
+  o.merge.connect(o.output)
+  return o;
+  }
+
+
+
+
+
+var start = new xBtn();sPar(start,0);
+move(start, [20,20,100,30]);sTxt(start,"start");
+start.eClk = function(){
+  audio = new AudioContext();
+  osc = audio.createOscillator();
+  osc.frequency.value=440 * Math.pow(2,(f.value-69)/12);
+  osc2 = audio.createOscillator();
+  osc2.frequency.value=440 * Math.pow(2,(f2.value-69)/12);
+  amp = audio.createGain();
+  amp.gain.value=.2*g.value/127;
+  amp2 = audio.createGain();
+  amp2.gain.value=800*g2.value/127;
+  pan = audio.createStereoPanner();
+  pan.pan.value=(p.value-64)/64;
+  osc.start(0);osc2.start(0);
+
+
+
+/*
+
+// Echo 
+echo_in = audio.createGain();
+split = audio.createChannelSplitter(2);
+merge = audio.createChannelMerger(2);
+dry = audio.createGain();
+wet = audio.createGain();
+echo_out = audio.createGain();
+dly = audio.createDelay(1);
+echo_in.connect(dry).connect(echo_out);
+echo_in.connect(split);
+split.connect(merge,0,1);
+split.connect(merge,1,0);
+merge.connect(dly).connect(wet).connect(echo_out);
+wet.connect(dly);
+dry.gain.value=.8;
+wet.gain.value=.7;
+dly.delayTime.value=.2*c.value/127;
+
+lfo = audio.createOscillator();
+lfo.frequency.value=0.2; lfo.start(0);
+lfog = audio.createGain();
+lfog.gain.value=0.003;
+
+lfo.connect(lfog).connect(dly.delayTime);
+*/
+rvb = new stereoverb(audio);
+
+
+  osc.connect(amp).connect(pan).connect(rvb.input);   rvb.output.connect(audio.destination);
+  osc2.connect(amp2).connect(osc.frequency);
+
+
+  }
+
+
+sBkC(document.body,'#333');
+ f = new knob();sPar(f,0);move(f,[20,70,60,60]);f.set(60);
+f.eChg=function(){ osc.frequency.value=440 * Math.pow(2,(this.value-69)/12);}
+
+ g = new knob();sPar(g,0);move(g,[100,70,60,60]);g.set(10);
+g.eChg=function(){ amp.gain.value=.2*g.value/127; }
+
+ f2 = new knob();sPar(f2,0);move(f2,[20,140,60,60]);f2.set(60);
+f2.eChg=function(){ osc2.frequency.value=440 * Math.pow(2,(f2.value-69)/12);}
+var g2 = new knob();sPar(g2,0);move(g2,[100,140,60,60]);g2.set(0);
+g2.eChg=function(){ amp2.gain.value=800*g2.value/127; }
+
+var p = new knob();sPar(p,0);move(p,[200,70,60,60]);p.set(64);
+p.eChg=function(){ pan.pan.value=(p.value-64)/64;}
+
+var c = new knob();sPar(c,0);move(c,[500,70,60,60]);c.set(10);
+c.eChg=function(){ 
+  for(var n=0; n<16; n++){
+    rvb.comb[n].feedback.gain.value = c.value/127;
+    }
+
+ }
+
+
+function operatorNode(ctx){
+  var o = new AudioWorkletNode(audio, 'operator', {numberOfOutputs : 1});
+  o.frequency = o.parameters.get('frequency');
+  o.gain = o.parameters.get('amplitude');
+  return o;
+  }
+
+var btn_noise = new xBtn();sPar(btn_noise,0);
+move(btn_noise, [150,20,100,30]);sTxt(btn_noise,"noise");
+btn_noise.eClk = function(){
+  audio = new AudioContext();
+  audio.audioWorklet.addModule("awp/awp_operator.js")
+  .then(function(){
+    op1 = new operatorNode(audio)
+    op2 = new operatorNode(audio)
+    
+    op1.frequency.value=3*261.6255/2;
+    op1.gain.value=0;
+    op2.frequency.value=3*261.6255;
+    op2.gain.value=0;
+    op2.gain.linearRampToValueAtTime(.04, audio.currentTime+0.0005)
+    op2.gain.linearRampToValueAtTime(0, audio.currentTime+0.3)
+
+    op1.gain.linearRampToValueAtTime(500, audio.currentTime+0.0005)
+    op1.gain.linearRampToValueAtTime(0, audio.currentTime+.25)
+
+    rvb = new stereoverb(audio);
+
+    op1.connect(op2.frequency)
+    op2.connect(rvb.input);  rvb.output.connect(audio.destination);
+    });
+  }
+
+
+
+function knob(){
+  var o = new xCan();
+  o.value=0;
+  sSiz(o,[200,200]);
+  var X,Y;
+  function draw(){
+    var s = gSiz(o); X=s[0]; Y=s[1];
+    o.width=X; o.height=Y;
+    with(o.ctx){
+      clearRect(0,0,X,Y);
+      var grd = createRadialGradient(X*.5, Y*.5, X*.5, X*.5, Y*.5, X*.4);
+      grd.addColorStop(0, '#666');
+      grd.addColorStop(1, '#111');
+      fillStyle=grd;
+      beginPath();
+      arc(X/2,Y/2,X/2,0,6.28,0);
+      fill();
+      var grd = createLinearGradient(0, Y, X, 0);
+      grd.addColorStop(0, 'rgba(0,0,0,.5)');
+      grd.addColorStop(1, 'rgba(255,255,255,.2)');
+      fillStyle=grd;
+      beginPath();
+      arc(X/2,Y/2,X/2,0,6.28,0);
+      fill();
+      fillStyle='#777';
+      beginPath();
+      arc(X*.51,Y*.47,X*.35,0,6.28,0);
+      fill();
+      fillStyle='#444';
+      beginPath();
+      arc(X*.5,Y*.5,X*.35,0,6.28,0);
+      fill();
+      var ang = 3.9-4.6*o.value/127;
+      strokeStyle="#ddd";
+      lineWidth=X*.06;
+      beginPath();
+      moveTo(X*.5+X*.08*Math.cos(ang),Y*.5-Y*.08*Math.sin(ang));
+      lineTo(X*.5+X*.34*Math.cos(ang),Y*.5-Y*.34*Math.sin(ang));
+      stroke();
+      }
+    }
+  o.set = function (n){
+    if(n<0){o.value=0;
+    }else if(n>127){o.value=127;
+    }else {if(n!=o.value){o.value=n;o.eChg();draw();}}
+    }
+  o.eChg = function(){};
+  o.eRes= draw;
+  md = function(e){
+    if(e.which==1){
+        y0 = e.pageY;
+        document.onmousemove = function(e) {
+          o.set(o.value + (y0-e.pageY));
+          y0 = e.pageY;
+          draw();
+          };
+      document.onmouseup = function() {document.onmousemove='';document.onmouseup=''};
+      }
+    }
+  o.addEventListener('mousedown', md, false);
+  draw();
+  sNoS(o);
+  sMoP(o,'pointer');
+  return o;
+  }
+
+
+
+
+
+
+}
+</script>
+</head>
+<body style="background-color:#111">
+</body>
+</html>
