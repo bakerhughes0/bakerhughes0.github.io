@@ -4,18 +4,19 @@ class awp_lowpass extends AudioWorkletProcessor {
     super();
     this.tmp = 0;
     this.smp = [];
-    for(var x=0; x<sampleRate; x++){
-      this.smp[x] =  Math.sin(2 * Math.PI * x / sampleRate);
+    for(this.x=0; this.x<sampleRate; this.x++){
+      this.smp[this.x] =  Math.sin(2 * Math.PI * this.x / sampleRate);
       }
     }
   static get parameterDescriptors () {return [
     { name: 'frequency', defaultValue: 2000, minValue: 0, maxValue: sampleRate * 0.5 }
     ]}
   process(inputs, outputs, parameters) {;
-    var f;
+    this.x = Math.exp(-this.smp[parseInt(parameters.frequency[0])]);
     for(var n=0; n<outputs[0][0].length; n++){
-      f = parameters.frequency.length>1 ? parameters.frequency[n] : parameters.frequency[0];
-      this.x = Math.exp(-this.smp[parseInt(f)]);
+      if(parameters.frequency.length>1){
+        this.x = Math.exp(-this.smp[parseInt(parameters.frequency[n])]);
+        }
       this.a0 = 1.0 - this.x;
       this.b1 = -this.x;
       outputs[0][0][n] = this.a0 * inputs[0][0][n] - this.b1 * this.tmp;
