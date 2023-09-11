@@ -167,9 +167,11 @@ p.eChg=function(){ pan.pan.value=(p.value-64)/64;}
 
 var c = new knob();sPar(c,0);move(c,[500,70,60,60]);c.set(10);
 c.eChg=function(){ 
-  for(var n=0; n<16; n++){
-    rvb.comb[n].feedback.gain.value = c.value/127;
-    }
+//  for(var n=0; n<16; n++){
+//    rvb.comb[n].feedback.gain.value = c.value/127;
+//    }
+flt.parameters.get('frequency').value = 10000 * c.value/127
+flt2.parameters.get('frequency').value = 10000 * c.value/127
 
  }
 
@@ -185,25 +187,35 @@ var btn_noise = new xBtn();sPar(btn_noise,0);
 move(btn_noise, [150,20,100,30]);sTxt(btn_noise,"noise");
 btn_noise.eClk = function(){
   audio = new AudioContext();
+  audio.audioWorklet.addModule("awp/awp_delayline.js")
+  audio.audioWorklet.addModule("awp/awp_lowpass.js")
+
   audio.audioWorklet.addModule("awp/awp_operator.js")
   .then(function(){
     op1 = new operatorNode(audio)
-    op2 = new operatorNode(audio)
-    
+    op2 = new AudioWorkletNode(audio, 'whitenoise', {numberOfOutputs : 1});
+    flt = new AudioWorkletNode(audio, 'lowpass', {numberOfOutputs : 1});
+    flt.parameters.get('frequency').value=200;
+    flt2 = new AudioWorkletNode(audio, 'lowpass', {numberOfOutputs : 1});
+    flt2.parameters.get('frequency').value=200;
+
     op1.frequency.value=3*261.6255/2;
-    op1.gain.value=0;
-    op2.frequency.value=3*261.6255;
-    op2.gain.value=0;
-    op2.gain.linearRampToValueAtTime(.04, audio.currentTime+0.0005)
-    op2.gain.linearRampToValueAtTime(0, audio.currentTime+0.3)
+    op1.gain.value=400;
+    //op2.frequency.value=3*261.6255;
+    op2.gain= op2.parameters.get('gain');
+    op2.gain.value=0.01;
+    //op2.gain.linearRampToValueAtTime(.04, audio.currentTime+0.0005)
+    //op2.gain.linearRampToValueAtTime(0, audio.currentTime+0.3)
 
-    op1.gain.linearRampToValueAtTime(500, audio.currentTime+0.0005)
-    op1.gain.linearRampToValueAtTime(0, audio.currentTime+.25)
+    //op1.gain.linearRampToValueAtTime(500, audio.currentTime+0.0005)
+    //op1.gain.linearRampToValueAtTime(0, audio.currentTime+.25)
 
-    rvb = new stereoverb(audio);
+    dly = new AudioWorkletNode(audio, 'delayline', {numberOfOutputs : 1});
+    dly.parameters.get('delaytime').value = .5;
+    //rvb = new stereoverb(audio);
 
-    op1.connect(op2.frequency)
-    op2.connect(rvb.input);  rvb.output.connect(audio.destination);
+    //op1.connect(op2.frequency)
+    op2.connect(flt).connect(flt2).connect(dly).connect(audio.destination);
     });
   }
 
