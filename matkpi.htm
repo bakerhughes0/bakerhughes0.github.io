@@ -183,14 +183,14 @@ function redraw(){
 
   gfxPos(g27,p[2],0,0);
 
-  gfxPos(g30,p[4],0,0);
-  gfxPos(g21,p[4],1,0);
-  gfxPos(g22,p[4],2,0);
-  gfxPos(g23,p[4],2,1);
-  gfxPos(g24,p[4],0,1);
-  gfxPos(g25,p[4],1,1);
-  gfxPos(g26,p[4],3,0);
-  gfxPos(g02,p[4],3,1);
+  gfxPos(g30,p[5],0,0);
+  gfxPos(g21,p[5],1,0);
+  gfxPos(g22,p[5],2,0);
+  gfxPos(g23,p[5],2,1);
+  gfxPos(g24,p[5],0,1);
+  gfxPos(g25,p[5],1,1);
+  gfxPos(g26,p[5],3,0);
+  gfxPos(g02,p[5],3,1);
   }
 
 window.onresize=function(){
@@ -246,15 +246,17 @@ main.l2 = new xDiv();
     sTxt(p[2].t1,"CONDE MATERIALS KPI - PRODUCTION CONTROL");
     sTxt(p[2].t2,"MACHINING CAPACITY");
   p[3] = new pageModel(3);
-    p[3].frm=document.createElement('iframe');move(p[3].frm,[0,0,scrW(),scrH()]);sOvf(p[3].frm,'hidden');sBrW(p[3].frm,[0]);sPar(p[3].frm,p[3]);p[3].frm.src='standardhours.htm?x='+rnd();
+    p[3].frm=document.createElement('iframe');move(p[3].frm,[0,0,scrW(),scrH()]);sOvf(p[3].frm,'hidden');sBrW(p[3].frm,[0]);sPar(p[3].frm,p[3]);p[3].frm.src='dailyproduction.htm?x='+rnd();
   p[4] = new pageModel(4);
-    sTxt(p[4].t1,"CONDE MATERIALS KPI - PLANNING");
-  p[5] = new pageModel(4);
-    p[5].frm=document.createElement('iframe');move(p[5].frm,[0,0,scrW(),scrH()]);sOvf(p[5].frm,'hidden');sBrW(p[5].frm,[0]);sPar(p[5].frm,p[5]);p[5].frm.src='npc.htm?x='+rnd();
-  p[6] = new pageModel(5);
-    p[6].frm=document.createElement('iframe');move(p[6].frm,[0,0,scrW(),scrH()]);sOvf(p[6].frm,'hidden');sBrW(p[6].frm,[0]);sPar(p[6].frm,p[6]);p[6].frm.src='procurement.htm?x='+rnd();
-  p[7] = new pageModel(6);
-    p[7].frm=document.createElement('iframe');move(p[7].frm,[0,0,scrW(),scrH()]);sOvf(p[7].frm,'hidden');sBrW(p[7].frm,[0]);sPar(p[7].frm,p[7]);p[7].frm.src='shipping.htm?x='+rnd();
+    p[4].frm=document.createElement('iframe');move(p[4].frm,[0,0,scrW(),scrH()]);sOvf(p[4].frm,'hidden');sBrW(p[4].frm,[0]);sPar(p[4].frm,p[4]);p[4].frm.src='standardhours.htm?x='+rnd();
+  p[5] = new pageModel(5);
+    sTxt(p[5].t1,"CONDE MATERIALS KPI - PLANNING");
+  p[6] = new pageModel(6);
+    p[6].frm=document.createElement('iframe');move(p[6].frm,[0,0,scrW(),scrH()]);sOvf(p[6].frm,'hidden');sBrW(p[6].frm,[0]);sPar(p[6].frm,p[6]);p[6].frm.src='npc.htm?x='+rnd();
+  p[7] = new pageModel(7);
+    p[7].frm=document.createElement('iframe');move(p[7].frm,[0,0,scrW(),scrH()]);sOvf(p[7].frm,'hidden');sBrW(p[7].frm,[0]);sPar(p[7].frm,p[7]);p[7].frm.src='procurement.htm?x='+rnd();
+  p[8] = new pageModel(8);
+    p[8].frm=document.createElement('iframe');move(p[8].frm,[0,0,scrW(),scrH()]);sOvf(p[8].frm,'hidden');sBrW(p[8].frm,[0]);sPar(p[8].frm,p[8]);p[8].frm.src='shipping.htm?x='+rnd();
 
   sBrC(ctl,['#fff']);sBrW(ctl,[2]); sBrR(ctl,[100]);sBrC(ctl,['#8a9']);
   move(ctl,[scrW()/1.8-p.length*15,15,p.length*30,30]);
