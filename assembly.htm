@@ -1,8 +1,10 @@
 <html>
 <head>
-<script type=text/javascript src=js/func.js?001></script>
-<script type=text/javascript src=js/canvasjs.min.js?007></script>
-<script type=text/javascript src=module.js?003></script>
+<script type=text/javascript src=js/func.js?v=001></script>
+<script type=text/javascript src=js/canvasjs.min.js?v=007></script>
+<script type=text/javascript src=module.js?v=003></script>
+<script type=text/javascript src=kpi_data1.js?v=2></script>
+
 <script type=text/javascript>
 
 function refreshall(){
@@ -25,7 +27,10 @@ function loadData(){
     gfx08.options.data[2].dataPoints=gfx08_d3;
     gfx08.options.data[3].dataPoints=gfx08_d4;
     gfx08.options.data[4].dataPoints=gfx08_d5;
-    gfx08.options.data[5].dataPoints=[{label:'23W27',y:26},{label:'23W28',y:13},{label:'23W29',y:47},{label:'23W30',y:45},{label:'23W31',y:25},{label:'23W32',y:36},{label:'23W33',y:51},{label:'23W34',y:34},{label:'23W35',y:56},{label:'23W36',y:41},{label:'23W37',y:49},{label:'23W38',y:35},{label:'23W39',y:1},].slice(0,gfx08_d4.length+weektoshow);
+    gfx08.options.data[5].dataPoints=[];
+    for(var n=0;n<LOB.week.length;n++){
+      gfx08.options.data[5].dataPoints.push({label:LOB.week[n], y:LOB.cfx[n]});
+      }
     gfx08_est=[];
     for(var n=0;n<incprd.cfx.length;n++){
       for(var x=0;x<5;x++){ if(!(gfx08.options.data[x].dataPoints[n]==undefined)) { incprd.cfx[n] += gfx08.options.data[x].dataPoints[n].y;}}
@@ -38,7 +43,10 @@ function loadData(){
     gfx09.options.data[2].dataPoints=gfx09_d3;
     gfx09.options.data[3].dataPoints=gfx09_d4;
     gfx09.options.data[4].dataPoints=gfx09_d5;
-    gfx09.options.data[5].dataPoints=[{label:'23W27',y:12},{label:'23W28',y:13},{label:'23W29',y:3},{label:'23W30',y:8},{label:'23W31',y:10},{label:'23W32',y:14},{label:'23W33',y:7},{label:'23W34',y:13},{label:'23W35',y:0},{label:'23W36',y:3},{label:'23W37',y:8},{label:'23W38',y:0},{label:'23W39',y:0},].slice(0,gfx09_d4.length+weektoshow);
+    gfx09.options.data[5].dataPoints=[];
+    for(var n=0;n<LOB.week.length;n++){
+      gfx09.options.data[5].dataPoints.push({label:LOB.week[n], y:LOB.vpk[n]});
+      }
     gfx09_est=[];
     for(var n=0;n<incprd.vpk.length;n++){
       for(var x=0;x<5;x++){ if(!(gfx09.options.data[x].dataPoints[n]==undefined)) { incprd.vpk[n] += gfx09.options.data[x].dataPoints[n].y;}}
@@ -51,7 +59,10 @@ function loadData(){
     gfx10.options.data[2].dataPoints=gfx10_d3;
     gfx10.options.data[3].dataPoints=gfx10_d4;
     gfx10.options.data[4].dataPoints=gfx10_d5;
-    gfx10.options.data[5].dataPoints=[{label:'23W27',y:3},{label:'23W28',y:6},{label:'23W29',y:12},{label:'23W30',y:9},{label:'23W31',y:4},{label:'23W32',y:13},{label:'23W33',y:8},{label:'23W34',y:20},{label:'23W35',y:12},{label:'23W36',y:5},{label:'23W37',y:9},{label:'23W38',y:5},{label:'23W39',y:4},].slice(0,gfx10_d4.length+weektoshow);
+    gfx10.options.data[5].dataPoints=[];
+    for(var n=0;n<LOB.week.length;n++){
+      gfx10.options.data[5].dataPoints.push({label:LOB.week[n], y:LOB.glbcal[n]});
+      }
     gfx10_est=[];
     for(var n=0;n<incprd.glb.length;n++){
       for(var x=0;x<5;x++){ if(!(gfx10.options.data[x].dataPoints[n]==undefined)) { incprd.glb[n] += gfx10.options.data[x].dataPoints[n].y;}}
@@ -64,7 +75,10 @@ function loadData(){
     gfx11.options.data[2].dataPoints=gfx11_d3;
     gfx11.options.data[3].dataPoints=gfx11_d4;
     gfx11.options.data[4].dataPoints=gfx11_d5;
-    gfx11.options.data[5].dataPoints=[{label:'23W27',y:11},{label:'23W28',y:14},{label:'23W29',y:26},{label:'23W30',y:30},{label:'23W31',y:30},{label:'23W32',y:20},{label:'23W33',y:14},{label:'23W34',y:21},{label:'23W35',y:8},{label:'23W36',y:22},{label:'23W37',y:21},{label:'23W38',y:9},{label:'23W39',y:4},].slice(0,gfx11_d4.length+weektoshow);
+    gfx11.options.data[5].dataPoints=[];
+    for(var n=0;n<LOB.week.length;n++){
+      gfx11.options.data[5].dataPoints.push({label:LOB.week[n], y:LOB.lvl[n]});
+      }
     gfx11_est=[];
     for(var n=0;n<incprd.lev.length;n++){
       for(var x=0;x<5;x++){ if(!(gfx11.options.data[x].dataPoints[n]==undefined)) { incprd.lev[n] += gfx11.options.data[x].dataPoints[n].y;}}
@@ -72,7 +86,10 @@ function loadData(){
       }
     gfx11.options.data[6].dataPoints=gfx11_est;
     gfx11.render();
-    gfx12.options.data[0].dataPoints=[{label:'23W27',y:26},{label:'23W28',y:39},{label:'23W29',y:86},{label:'23W30',y:131},{label:'23W31',y:156},{label:'23W32',y:192},{label:'23W33',y:243},{label:'23W34',y:277},{label:'23W35',y:333},{label:'23W36',y:374},{label:'23W37',y:423},{label:'23W38',y:458},{label:'23W39',y:459},].slice(0,gfx12_d2.length+weektoshow);
+    gfx12.options.data[0].dataPoints=[];
+    for(var n=0, cum=0;n<LOB.week.length;n++){
+      cum+=LOB.cfx[n]; gfx12.options.data[0].dataPoints.push({label:LOB.week[n], y:cum});
+      }
     gfx12.options.data[1].dataPoints=gfx12_d2;
     gfx12_est=[];
     for(var n=0, cum=0;n<incprd.cfx.length;n++){
@@ -81,7 +98,10 @@ function loadData(){
         }
     gfx12.options.data[2].dataPoints=gfx12_est;
     gfx12.render();
-    gfx13.options.data[0].dataPoints=[{label:'23W27',y:12},{label:'23W28',y:25},{label:'23W29',y:28},{label:'23W30',y:36},{label:'23W31',y:46},{label:'23W32',y:60},{label:'23W33',y:67},{label:'23W34',y:80},{label:'23W35',y:80},{label:'23W36',y:83},{label:'23W37',y:91},{label:'23W38',y:91},{label:'23W39',y:91},].slice(0,gfx13_d2.length+weektoshow);
+    gfx13.options.data[0].dataPoints=[];
+    for(var n=0, cum=0;n<LOB.week.length;n++){
+      cum+=LOB.vpk[n]; gfx13.options.data[0].dataPoints.push({label:LOB.week[n], y:cum});
+      }
     gfx13.options.data[1].dataPoints=gfx13_d2;
     gfx13_est=[];
     for(var n=0, cum=0;n<incprd.vpk.length;n++){
@@ -90,7 +110,10 @@ function loadData(){
         }
     gfx13.options.data[2].dataPoints=gfx13_est;
     gfx13.render();
-    gfx14.options.data[0].dataPoints=[{label:'23W27',y:3},{label:'23W28',y:9},{label:'23W29',y:21},{label:'23W30',y:30},{label:'23W31',y:34},{label:'23W32',y:47},{label:'23W33',y:55},{label:'23W34',y:75},{label:'23W35',y:87},{label:'23W36',y:92},{label:'23W37',y:101},{label:'23W38',y:106},{label:'23W39',y:110},].slice(0,gfx14_d2.length+weektoshow);
+    gfx14.options.data[0].dataPoints=[];
+    for(var n=0, cum=0;n<LOB.week.length;n++){
+      cum+=LOB.glbcal[n]; gfx14.options.data[0].dataPoints.push({label:LOB.week[n], y:cum});
+      }
     gfx14.options.data[1].dataPoints=gfx14_d2;
     gfx14_est=[];
     for(var n=0, cum=0;n<incprd.glb.length;n++){
@@ -99,7 +122,10 @@ function loadData(){
         }
     gfx14.options.data[2].dataPoints=gfx14_est;
     gfx14.render();
-    gfx15.options.data[0].dataPoints=[{label:'23W27',y:11},{label:'23W28',y:25},{label:'23W29',y:51},{label:'23W30',y:81},{label:'23W31',y:111},{label:'23W32',y:131},{label:'23W33',y:145},{label:'23W34',y:166},{label:'23W35',y:174},{label:'23W36',y:196},{label:'23W37',y:217},{label:'23W38',y:226},{label:'23W39',y:230},].slice(0,gfx15_d2.length+weektoshow);
+    gfx15.options.data[0].dataPoints=[];
+    for(var n=0, cum=0;n<LOB.week.length;n++){
+      cum+=LOB.lvl[n]; gfx15.options.data[0].dataPoints.push({label:LOB.week[n], y:cum});
+      }
     gfx15.options.data[1].dataPoints=gfx15_d2;
     gfx15_est=[];
     for(var n=0, cum=0;n<incprd.lev.length;n++){
@@ -108,13 +134,13 @@ function loadData(){
         }
     gfx15.options.data[2].dataPoints=gfx15_est;
     gfx15.render();
-    gfx16.options.data[0].dataPoints=[{label:'18Q1', y:470},{label:'18Q2', y:474},{label:'18Q3', y:425},{label:'18Q4', y:540},{label:'19Q1', y:727},{label:'19Q2', y:558},{label:'19Q3', y:588},{label:'19Q4', y:778},{label:'20Q1', y:837},{label:'20Q2', y:596},{label:'20Q3', y:677},{label:'20Q4', y:519},{label:'21Q1', y:423},{label:'21Q2', y:501},{label:'21Q3', y:606},{label:'21Q4', y:679},{label:'22Q1', y:572},{label:'22Q2', y:445},{label:'22Q3', y:532},{label:'22Q4', y:496},{label:'23Q1', y:546},{label:'23Q2', y:613},{name:"Target",color:"#cc6",label:'23Q3', y:459}];
+    gfx16.options.data[0].dataPoints=[{label:'18Q1', y:470},{label:'18Q2', y:474},{label:'18Q3', y:425},{label:'18Q4', y:540},{label:'19Q1', y:727},{label:'19Q2', y:558},{label:'19Q3', y:588},{label:'19Q4', y:778},{label:'20Q1', y:837},{label:'20Q2', y:596},{label:'20Q3', y:677},{label:'20Q4', y:519},{label:'21Q1', y:423},{label:'21Q2', y:501},{label:'21Q3', y:606},{label:'21Q4', y:679},{label:'22Q1', y:572},{label:'22Q2', y:445},{label:'22Q3', y:532},{label:'22Q4', y:496},{label:'23Q1', y:546},{label:'23Q2', y:613},{label:'23Q3', y:526},{name:"Target",color:"#cc6",label:'23Q4', y:533}];
     gfx16.render();
-    gfx17.options.data[0].dataPoints=[{label:'18Q1',y:189},{label:'18Q2',y:139},{label:'18Q3',y:133},{label:'18Q4',y:132},{label:'19Q1',y:138},{label:'19Q2',y:204},{label:'19Q3',y:181},{label:'19Q4',y:184},{label:'20Q1',y:211},{label:'20Q2',y:200},{label:'20Q3',y:281},{label:'20Q4',y:209},{label:'21Q1',y:254},{label:'21Q2',y:233},{label:'21Q3',y:163},{label:'21Q4',y:188},{label:'22Q1',y:126},{label:'22Q2',y:93},{label:'22Q3',y:136},{label:'22Q4',y:179},{label:'23Q1',y:170},{label:'23Q2',y:113},{name:"Target",color:"#cc6",label:'23Q3', y:91}];
+    gfx17.options.data[0].dataPoints=[{label:'18Q1',y:189},{label:'18Q2',y:139},{label:'18Q3',y:133},{label:'18Q4',y:132},{label:'19Q1',y:138},{label:'19Q2',y:204},{label:'19Q3',y:181},{label:'19Q4',y:184},{label:'20Q1',y:211},{label:'20Q2',y:200},{label:'20Q3',y:281},{label:'20Q4',y:209},{label:'21Q1',y:254},{label:'21Q2',y:233},{label:'21Q3',y:163},{label:'21Q4',y:188},{label:'22Q1',y:126},{label:'22Q2',y:93},{label:'22Q3',y:136},{label:'22Q4',y:179},{label:'23Q1',y:170},{label:'23Q2',y:113},{label:'23Q3',y:118},{name:"Target",color:"#cc6",label:'23Q4', y:91}];
     gfx17.render();
-    gfx18.options.data[0].dataPoints=[{label:'18Q1',y:592},{label:'18Q2',y:365},{label:'18Q3',y:295},{label:'18Q4',y:368},{label:'19Q1',y:364},{label:'19Q2',y:207},{label:'19Q3',y:321},{label:'19Q4',y:286},{label:'20Q1',y:543},{label:'20Q2',y:331},{label:'20Q3',y:359},{label:'20Q4',y:310},{label:'21Q1',y:212},{label:'21Q2',y:319},{label:'21Q3',y:469},{label:'21Q4',y:468},{label:'22Q1',y:408},{label:'22Q2',y:287},{label:'22Q3',y:141},{label:'22Q4',y:157},{label:'23Q1',y:142},{label:'23Q2',y:90},{name:"Target",color:"#cc6",label:'23Q3', y:110}];
+    gfx18.options.data[0].dataPoints=[{label:'18Q1',y:592},{label:'18Q2',y:365},{label:'18Q3',y:295},{label:'18Q4',y:368},{label:'19Q1',y:364},{label:'19Q2',y:207},{label:'19Q3',y:321},{label:'19Q4',y:286},{label:'20Q1',y:543},{label:'20Q2',y:331},{label:'20Q3',y:359},{label:'20Q4',y:310},{label:'21Q1',y:212},{label:'21Q2',y:319},{label:'21Q3',y:469},{label:'21Q4',y:468},{label:'22Q1',y:408},{label:'22Q2',y:287},{label:'22Q3',y:141},{label:'22Q4',y:157},{label:'23Q1',y:142},{label:'23Q2',y:90},{label:'23Q3',y:107},{name:"Target",color:"#cc6",label:'23Q4', y:182}];
     gfx18.render();
-    gfx19.options.data[0].dataPoints=[{label:'18Q1',y:320},{label:'18Q2',y:253},{label:'18Q3',y:246},{label:'18Q4',y:312},{label:'19Q1',y:272},{label:'19Q2',y:200},{label:'19Q3',y:603},{label:'19Q4',y:338},{label:'20Q1',y:212},{label:'20Q2',y:286},{label:'20Q3',y:248},{label:'20Q4',y:188},{label:'21Q1',y:312},{label:'21Q2',y:186},{label:'21Q3',y:184},{label:'21Q4',y:147},{label:'22Q1',y:152},{label:'22Q2',y:202},{label:'22Q3',y:172},{label:'22Q4',y:140},{label:'23Q1',y:209},{label:'23Q2',y:218},{name:"Target",color:"#cc6",label:'23Q3', y:230}];
+    gfx19.options.data[0].dataPoints=[{label:'18Q1',y:320},{label:'18Q2',y:253},{label:'18Q3',y:246},{label:'18Q4',y:312},{label:'19Q1',y:272},{label:'19Q2',y:200},{label:'19Q3',y:603},{label:'19Q4',y:338},{label:'20Q1',y:212},{label:'20Q2',y:286},{label:'20Q3',y:248},{label:'20Q4',y:188},{label:'21Q1',y:312},{label:'21Q2',y:186},{label:'21Q3',y:184},{label:'21Q4',y:147},{label:'22Q1',y:152},{label:'22Q2',y:202},{label:'22Q3',y:172},{label:'22Q4',y:140},{label:'23Q1',y:209},{label:'23Q2',y:218},{label:'23Q3',y:311},{name:"Target",color:"#cc6",label:'23Q4', y:227}];
     gfx19.render();
     sTxt(timstp,'Update : ' + tm);
     }
