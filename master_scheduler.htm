@@ -1,0 +1,115 @@
+<html>
+<head>
+<script type=text/javascript src=js/func.js?v=001></script>
+<script type=text/javascript src=js/canvasjs.min.js?v=007></script>
+<script type=text/javascript src=module.js?v=003></script>
+<script type=text/javascript>
+
+function refreshall(){
+  gfx0.render();
+  }
+
+function loadData(){
+  var d = new Date();
+  var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
+  var js = document.createElement('script');
+  js.type='text/javascript';
+  js.src="kpi.js" + "?d=" + sd;
+  var weektoshow = 20;
+  document.head.appendChild(js);    
+  js.onload = function(){
+    for(var n=0; n<3; n++){
+        gfx0.options.data[n].dataPoints=[];
+        }
+    min_pending = bklg_ana[0][1][1]
+    for(var n=0; n<bklg_ana.length; n++){
+      gfx0.options.data[0].dataPoints.push({label:bklg_ana[n][0], y:bklg_ana[n][1][1]})
+      gfx0.options.data[1].dataPoints.push({y:bklg_ana[n][1][0]})
+      gfx0.options.data[2].dataPoints.push({y:bklg_ana[n][1][2]})
+      if (bklg_ana[n][1][1] < min_pending) min_pending = bklg_ana[n][1][1];
+      }
+    gfx0.options.axisY.minimum=min_pending * .99;
+    refreshall();
+    sTxt(timstp,'Update : ' + tm);
+    }
+  setTimeout(loadData, 60000);
+  }
+
+window.onload=function(){
+  var bg = new background();
+  t1=new xLab();sFtC(t1,'#ccc');sPar(t1,0);
+  t2=new xLab();sFtC(t2,'#ccc');sPar(t2,0);sFtA(t2,'right');
+  sTxt(t1,"CONDE MATERIALS KPI - MASTER SCHEDULER");
+  sTxt(t2,"");
+  timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
+  var g = [];
+  for(var n=0; n<5; n++){g[n] = new gfxbox();}
+  var axeY_1 = {
+    title: "USD",
+    valueFormatString: "# ### ##0",
+    titleFontColor: "#ddd",
+    titleFontSize: 15,
+    labelFontColor: "#ddd",
+    labelFontFamily: 'Arial',
+    labelFontSize: 12,
+    }
+  var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -32, labelFontFamily: 'Arial'}
+  var leg_1 = {horizontalAlign: "center", verticalAlign: "bottom", labelFontFamily: 'Arial', fontColor: "#eee"}
+  var ttip1 = {shared: true, backgroundColor: '#cdc', borderColor:'grey', content: toolTipContentMS};
+  gfx0 = new CanvasJS.Chart(g[0], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "BACKLOG EVOLUTION", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedColumn", name: "Pending", color: "#da5", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "Booking", color: "#aae", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "Shipping", color: "#8C8", dataPoints: [], showInLegend: true },
+    ]
+  });
+
+  window.onresize=function(){
+    movep(bg,[0,0,1,1]);
+    movep(t1,[.01, .01, .98, .045]);
+    movep(t2,[.01, .01, .98, .045]);
+    movep(timstp,[.01, .97, 1, .03]);
+    for(var n=0; n<1; n++){
+      x = n % 4;
+      y = Math.floor(n/4);
+      movep(g[n],[.01+x*.2475, .07+y*.3, .2375, .29]);
+      refreshall();
+      }
+    };window.onresize();
+
+  loadData();
+  }
+
+function fmtCur2(num) {
+ var a=parseFloat(num).toFixed(0);
+ return a.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
+ }
+
+function toolTipContentMS(e) {
+  var str = "";
+  var total = 0;
+  var str2, str3;
+  for (var i = 0; i < e.entries.length; i++){
+    var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtCur2(e.entries[i].dataPoint.y)+"</strong><br/>";
+    if(e.entries[i].dataSeries.name!='Shipping' && e.entries[i].dataSeries.name!='Capacity'){ total += e.entries[i].dataPoint.y;}
+    str = str.concat(str1);
+    }
+  str2 = "<span style = \"color:#050;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
+  total = Math.round(total * 100) / 100;
+  str3 = "<span style = \"color:#050\">Total:</span><strong> "+fmtCur2(total)+"</strong><br/>";
+  return (str2.concat(str)).concat(str3);
+  } 
+
+</script>
+</head>
+<body >
+</body>
+</html>
