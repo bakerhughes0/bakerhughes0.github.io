@@ -6,7 +6,8 @@
 <script type=text/javascript>
 
 function refreshall(){
-  gfx0.render();
+  gfx0.render();gfx1.render();gfx2.render();
+
   }
 
 function loadData(){
@@ -29,6 +30,14 @@ function loadData(){
       if (bklg_ana[n][1][1] < min_pending) min_pending = bklg_ana[n][1][1];
       }
     gfx0.options.axisY.minimum=min_pending * .99;
+    gfx1.options.data[0].dataPoints=[];    
+    for(var n=0;n<com_10ovd.length; n++){
+      gfx1.options.data[0].dataPoints.push({label:com_10ovd[n][0], y:com_10ovd[n][1]})
+      }
+    gfx2.options.data[0].dataPoints=[];    
+    for(var n=0;n<nuc_10ovd.length; n++){
+      gfx2.options.data[0].dataPoints.push({label:nuc_10ovd[n][0], y:nuc_10ovd[n][1]})
+      }
     refreshall();
     sTxt(timstp,'Update : ' + tm);
     }
@@ -43,7 +52,7 @@ window.onload=function(){
   sTxt(t2,"");
   timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
   var g = [];
-  for(var n=0; n<5; n++){g[n] = new gfxbox();}
+  for(var n=0; n<3; n++){g[n] = new gfxbox();}
   var axeY_1 = {
     title: "USD",
     valueFormatString: "# ### ##0",
@@ -71,13 +80,95 @@ window.onload=function(){
     { type: "stackedColumn", name: "Shipping", color: "#8C8", dataPoints: [], showInLegend: true },
     ]
   });
+  gfx1 = new CanvasJS.Chart(g[1], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "TOP 10 OVERDUE", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles: [{text: "Commercial", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:{
+    title:"days",
+    titleFontColor: "#eee",
+    lineColor:'#aaa', lineThickness: 1,
+    gridColor:'#aaa', gridThickness: 1,
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    labelFontSize: 8,
+    titleFontFamily: 'Arial',
+    titleFontSize: 12,
+    minimum: 0
+    },
+  axisX:{
+    reversed: true,
+    lineColor:'#ccc', lineThickness: 1,
+    labelFontColor: "rgba(1,1,1,0)",
+    labelFontFamily: 'Arial',
+    interval: 1,
+
+labelMaxWidth: -1,
+    labelFontSize: 10,
+    },
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedBar",
+      
+	indexLabelPlacement: "inside",
+	indexLabelFontColor: "white",
+	indexLabelFontSize: 6,
+
+	toolTipContent: "<b>{label}</b>: {y}",
+	indexLabel: "{label}",
+	dataPoints: []}
+    ]
+  });
+
+  gfx2 = new CanvasJS.Chart(g[2], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "TOP 10 OVERDUE", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles: [{text: "Nuclear", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
+  backgroundColor: null,
+  legend:leg_1,
+  axisY:{
+    title:"days",
+    titleFontColor: "#eee",
+    lineColor:'#aaa', lineThickness: 1,
+    gridColor:'#aaa', gridThickness: 1,
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    labelFontSize: 8,
+    titleFontFamily: 'Arial',
+    titleFontSize: 12,
+    minimum: 0
+    },
+  axisX:{
+    reversed: true,
+    lineColor:'#ccc', lineThickness: 1,
+    labelFontColor: "rgba(1,1,1,0)",
+    labelFontFamily: 'Arial',
+    interval: 1,
+    labelMaxWidth: 0,
+    labelFontSize: 10,
+    },
+  toolTip:ttip1,
+  data: [              
+    { type: "stackedBar",
+	indexLabelPlacement: "inside",
+	indexLabelFontColor: "white",
+	indexLabelFontSize: 6,
+	toolTipContent: "<b>{label}</b>: {y}",
+	indexLabel: "{label}",
+	dataPoints: []}
+    ]
+  });
 
   window.onresize=function(){
     movep(bg,[0,0,1,1]);
     movep(t1,[.01, .01, .98, .045]);
     movep(t2,[.01, .01, .98, .045]);
     movep(timstp,[.01, .97, 1, .03]);
-    for(var n=0; n<1; n++){
+    for(var n=0; n<3; n++){
       x = n % 4;
       y = Math.floor(n/4);
       movep(g[n],[.01+x*.2475, .07+y*.3, .2375, .29]);
