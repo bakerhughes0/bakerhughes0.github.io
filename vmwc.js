@@ -1,4 +1,4 @@
-timestamp = new Date(2023,11,13,16,20,34);
+timestamp = new Date(2023,11,13,16,24,48);
 data = [
 ['0205',,2,32177578,'0030. TOURNER GRAIN DE PE','1 x GRAIN DE PE CMF 1"A 2"+O-RING',2.5,'1586378-1000 VENCOREX FRANCE',93,''],
 ['0205',,2,32177579,'0030. TOURNER GRAIN DE PE','1 x GRAIN DE PE CMF 1"A 2"+O-RING',2.5,'1586378-2000 VENCOREX FRANCE',93,''],
@@ -2216,6 +2216,16 @@ data = [
 ['1004',,3,32294917,'0080. RESSUAGE SUIVANT TS 9000 ET SC 002','OBTURATEUR CII 8" FACT. REDUIT',0.7,'',0,''],
 ['1004',,3,31171879,'0060. RESSUAGE DES ZONES USINEES........','TIGE DE CLAPET 1"x 3/4" Lg 508mm',0.05,'1199404-4000 ELECTRICITE DE FRANCE SA (E',0,''],
 ['1004',,2,32192524,'0050. RESSUAGE SUIVANT QLTY-3899','SIEGE CV0,05-0,025-0,004-0,010',0.1,'',19,''],
+['1008',1,2,31480663,'0020. CONTROLE DURETE','',0.2,'',581,''],
+['1008',1,2,31842057,'0010. Mise en conformitA© + Marquage','',0.071,'',321,''],
+['1008',1,2,31842702,'0010. Mise en conformitA© + Marquage','',0.107,'',321,''],
+['1008',1,2,31842705,'0010. Mise en conformitA© + Marquage','',0.112,'',321,''],
+['1008',1,2,31907782,'0010. Mise en conformitA© + Marquage','',0.265,'',279,''],
+['1008',1,2,31907786,'0010. Mise en conformitA© + Marquage','',0.605,'',279,''],
+['1008',1,2,31994488,'0010. Mise en conformitA© + Marquage','',0.005,'',222,''],
+['1008',1,2,32079538,'0010. Mise en conformitA© + Marquage','',0.021,'',167,''],
+['1008',1,2,32115326,'0010. Mise en conformitA© + Marquage','',0.9,'',142,''],
+['1008',1,2,32039964,'0010. Mise en conformitA© + Marquage','',1.5,'',191,''],
 ['1014',1,3,32251265,'9010. DOSSIER QUALITE C','Dn 12 CV5300 Flgss Cryo/SVI 2/',0,'1560294-6000 YOUSUN INTERNATIONAL CO,LTD',0,''],
 ['1014',1,3,32251322,'0290. DOSSIER QUALITE C','Dn 1 CV8,4 Flgd Cryo/SVI 2/',0,'1560294-3000 YOUSUN INTERNATIONAL CO,LTD',0,''],
 ['1014',1,3,32251329,'0290. DOSSIER QUALITE C','Dn 2 CV30 Flgd Cryo/SVI 2/',0,'1560294-9000 YOUSUN INTERNATIONAL CO,LTD',0,''],
