@@ -1,8 +1,8 @@
 <html>
 <head>
-<script type=text/javascript src=js/func.js?001></script>
-<script type=text/javascript src=js/canvasjs.min.js?007></script>
-<script type=text/javascript src=module.js?001></script>
+<script type=text/javascript src=js/func.js?v=001></script>
+<script type=text/javascript src=js/canvasjs.min.js?v=007></script>
+<script type=text/javascript src=module.js?v=001></script>
 
 <script type=text/javascript>
 
@@ -39,7 +39,7 @@ function loadData(){
     gfx05.render();
     gfx06.render();
     gfx07.render();
-    gfx20.options.data[0].dataPoints=[{label:'18Q1',y:9111},{label:'18Q2',y:8678},{label:'18Q3',y:6263},{label:'18Q4',y:6176},{label:'19Q1',y:7358},{label:'19Q2',y:8972},{label:'19Q3',y:7468},{label:'19Q4',y:7858},{label:'20Q1',y:8845},{label:'20Q2',y:6617},{label:'20Q3',y:8151},{label:'20Q4',y:7973},{label:'21Q1',y:7899},{label:'21Q2',y:7256},{label:'21Q3',y:6077},{label:'21Q4',y:7773},{label:'22Q1',y:7174},{label:'22Q2',y:6818},{label:'22Q3',y:6516},{label:'22Q4',y:7411},{label:'23Q1',y:7261},{label:'23Q2',y:7065},{name:'Target',color:'#CC6',label:'23Q3', y:6000}];
+    gfx20.options.data[0].dataPoints=[{label:'18Q1',y:9111},{label:'18Q2',y:8678},{label:'18Q3',y:6263},{label:'18Q4',y:6176},{label:'19Q1',y:7358},{label:'19Q2',y:8972},{label:'19Q3',y:7468},{label:'19Q4',y:7858},{label:'20Q1',y:8845},{label:'20Q2',y:6617},{label:'20Q3',y:8151},{label:'20Q4',y:7973},{label:'21Q1',y:7899},{label:'21Q2',y:7256},{label:'21Q3',y:6077},{label:'21Q4',y:7773},{label:'22Q1',y:7174},{label:'22Q2',y:6818},{label:'22Q3',y:6516},{label:'22Q4',y:7411},{label:'23Q1',y:7261},{label:'23Q2',y:7065},{label:'23Q3',y:5919},{name:'Target',color:'#CC6',label:'23Q4', y:6530}];
     gfx20.render();
     gfx21.options.data[0].dataPoints=gfx21_d1;
     gfx21.options.data[1].dataPoints=gfx21_d2;
@@ -211,7 +211,7 @@ window.onload=function(){
   main.l1 = new xDiv();
   sBrW(main.l1,[2]);sBrC(main.l1,['#8a9']);sBrR(main.l1,[9999]);sRot(main.l1,[0,0,20]);sPar(main.l1,main);
   sBkL(main.l1,92,'#222 0%, #243 40%, #243 60%, #222 100%');sOpa(main.l1,.5);  
-main.l2 = new xDiv();
+  main.l2 = new xDiv();
   sBrW(main.l2,[2]);sBrC(main.l2,['#8a9']);sBrR(main.l2,[9999]);sRot(main.l2,[0,0,-20]);sPar(main.l2,main);
   sBkL(main.l2,92,'#222 0%, #243 40%, #243 60%, #222 100%');sOpa(main.l2,.5);
   main.tm=new xLab();sPar(main.tm,main);sFtC(main.tm,'#666');
@@ -916,6 +916,7 @@ main.l2 = new xDiv();
   loadData(); 
   redraw(); 
 
+  create_snow()
   window.onresize();
   }
 
@@ -957,6 +958,77 @@ function toolTipContent32(e) {
   str3 = "<span style = \"color:Tomato\">Total:</span><strong> "+fmtCur2(total)+"</strong><br/>";
   return (str2.concat(str)).concat(str3);
   }   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var m, floc
+function create_snow(){
+  sOvf(document.body, 'hidden')
+  m=0;
+  floc=[]
+  for (var i=0;i<99;i++) {
+    var o=new xDiv();
+    initPos(o);
+    sPos(o,[Math.random()*scrW(),Math.random()*scrH()])
+    sPar(o,0)
+    floc.push(o);
+    }
+  anim();
+  }
+
+function initPos(o) {
+  o.lev=1+parseInt(Math.random()*7)
+  o.xdir=parseInt((Math.random()-.5)*o.lev)
+  sPos(o,[Math.random()*scrW(),0]);
+  sSiz(o,[2*o.lev,2*o.lev])
+  sBrR(o,[o.lev])
+  sBkR(o,[1.4*o.lev,1.41*o.lev],'rgba(250,250,250,'+(1-(o.lev/16))+'),rgba(250,250,250,0) 85%')
+  }
+
+function anim() {
+  for (var i=0;i<floc.length;i++) {
+    m+=.1;
+    var r=0;
+    var s=gPos(floc[i])
+    if (floc[i].lev>3) {
+      r=floc[i].lev*Math.cos(m/2000)/5
+      }else{
+    };
+    s[0]=s[0]+floc[i].xdir+r
+    s[1]+=floc[i].lev;
+    sPos(floc[i],s)
+    if (s[1]>scrH() || s[0]<-10 || s[0]>scrW()+10) {initPos(floc[i])}
+    }
+  setTimeout(anim,20);
+  }
+
+
 </script>
 </head>
 <body style="background-color:#243">
