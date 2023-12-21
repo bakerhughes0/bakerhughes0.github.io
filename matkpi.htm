@@ -207,6 +207,8 @@ touchX1=0; touchX2=0;
 window.onload=function(){
   document.title = "Materials KPI";  
   main=new xDiv();sOvf(main,'hidden');sPar(main,0);
+
+
   sBkL(main,100,'#243 30%, #222 100%');
   main.l1 = new xDiv();
   sBrW(main.l1,[2]);sBrC(main.l1,['#8a9']);sBrR(main.l1,[9999]);sRot(main.l1,[0,0,20]);sPar(main.l1,main);
@@ -237,6 +239,8 @@ window.onload=function(){
       scrollPage();autoplay=0;
       }
     });
+
+
   p[0] = new pageModel(0);
     p[0].frm=document.createElement('iframe');move(p[0].frm,[0,0,scrW(),scrH()]);sOvf(p[0].frm,'hidden');sBrW(p[0].frm,[0]);sPar(p[0].frm,p[0]);p[0].frm.src='assembly.htm?x='+rnd();
   p[1] = new pageModel(1);
@@ -276,6 +280,8 @@ window.onload=function(){
   move(ctl.s,[7+40*0,7,21,21]);
   sPar(ctl,0);
   tout = setTimeout(autoScrollPage,disptime);
+
+
 
   g01 = new gfxBlk(); g01.id="g01"
   gfx01 = new CanvasJS.Chart(g01, {
@@ -916,8 +922,11 @@ window.onload=function(){
   loadData(); 
   redraw(); 
 
-  create_snow()
+  create_pn();  
+  create_snow();
   window.onresize();
+
+
   }
 
 function toolTipContent6(e) {
@@ -979,7 +988,34 @@ function toolTipContent32(e) {
 
 
 
+var pn, x_pn, ofs_pn;
 
+function create_pn(){
+  x_pn=-600;ofs_pn=0;
+  pn = new xImg();sPar(pn,0);move(pn,[x_pn,10,300,150]);
+  pn.src='pn.png';sRot(pn,[0,180,0]);
+  sOpa(pn,.9);
+  anim_pn();
+  }
+
+function anim_pn(){
+  step=20;
+  var w=scrW(), h=scrH();
+  x_pn+=step
+  if(x_pn>w) {
+    x_pn=-600;
+    pn.rotz=0;
+    ofs_pn=rnd()*3.14;
+    }
+  y=-75+h/2
+  cos=Math.cos(ofs_pn+x_pn/w*6.28);
+  cos2=Math.cos(ofs_pn+1.6+x_pn/w*6.28);
+  y-=150*cos;
+  pn.rotz = 10-30*cos2
+  sRot(pn,[0,0,0]);
+  sPos(pn,[x_pn,y]);
+  setTimeout(anim_pn, 100);  
+  }
 
 
 
@@ -1025,8 +1061,10 @@ function anim() {
     sPos(floc[i],s)
     if (s[1]>scrH() || s[0]<-10 || s[0]>scrW()+10) {initPos(floc[i])}
     }
-  setTimeout(anim,20);
+  setTimeout(anim,30);
   }
+
+
 
 
 </script>
