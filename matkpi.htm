@@ -922,8 +922,6 @@ window.onload=function(){
   loadData(); 
   redraw(); 
 
-  create_pn();  
-  create_snow();
   window.onresize();
 
 
@@ -967,103 +965,6 @@ function toolTipContent32(e) {
   str3 = "<span style = \"color:Tomato\">Total:</span><strong> "+fmtCur2(total)+"</strong><br/>";
   return (str2.concat(str)).concat(str3);
   }   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var pn, x_pn, ofs_pn;
-
-function create_pn(){
-  x_pn=-600;ofs_pn=0;
-  pn = new xImg();sPar(pn,0);move(pn,[x_pn,10,300,150]);
-  pn.src='pn.png';sRot(pn,[0,180,0]);
-  sOpa(pn,.9);
-  anim_pn();
-  }
-
-function anim_pn(){
-  step=20;
-  var w=scrW(), h=scrH();
-  x_pn+=step
-  if(x_pn>w) {
-    x_pn=-600;
-    pn.rotz=0;
-    ofs_pn=rnd()*3.14;
-    }
-  y=-75+h/2
-  cos=Math.cos(ofs_pn+x_pn/w*6.28);
-  cos2=Math.cos(ofs_pn+1.6+x_pn/w*6.28);
-  y-=150*cos;
-  pn.rotz = 10-30*cos2
-  sRot(pn,[0,0,0]);
-  sPos(pn,[x_pn,y]);
-  setTimeout(anim_pn, 100);  
-  }
-
-
-
-
-
-
-
-var m, floc
-function create_snow(){
-  sOvf(document.body, 'hidden')
-  m=0;
-  floc=[]
-  for (var i=0;i<49;i++) {
-    var o=new xDiv();
-    initPos(o);
-    sPos(o,[Math.random()*scrW(),Math.random()*scrH()])
-    sPar(o,0)
-    floc.push(o);
-    }
-  anim();
-  }
-
-function initPos(o) {
-  o.lev=1+parseInt(Math.random()*7)
-  o.xdir=parseInt((Math.random()-.5)*o.lev)
-  sPos(o,[Math.random()*scrW(),0]);
-  sSiz(o,[2*o.lev,2*o.lev])
-  sBrR(o,[o.lev])
-  sBkR(o,[1.4*o.lev,1.41*o.lev],'rgba(250,250,250,'+(1-(o.lev/16))+'),rgba(250,250,250,0) 85%')
-  }
-
-function anim() {
-  for (var i=0;i<floc.length;i++) {
-    m+=.1;
-    var r=0;
-    var s=gPos(floc[i])
-    if (floc[i].lev>3) {
-      r=floc[i].lev*Math.cos(m/2000)/5
-      }else{
-    };
-    s[0]=s[0]+floc[i].xdir+r
-    s[1]+=floc[i].lev;
-    sPos(floc[i],s)
-    if (s[1]>scrH() || s[0]<-10 || s[0]>scrW()+10) {initPos(floc[i])}
-    }
-  setTimeout(anim,30);
-  }
-
 
 
 
