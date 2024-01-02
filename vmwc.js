@@ -1,4 +1,4 @@
-timestamp = new Date(2024,0,02,16,01,00);
+timestamp = new Date(2024,0,02,16,06,05);
 data = [
 ['0205',,2,32335299,'0040. TOURNER','1 x CLAPET 0.75"-2" 536H Cv19.5',2.5,'',4,''],
 ['0205',,2,32313610,'0040. TOURNER(FINITION #B)','1 x CLAPET 1.1/2" # B',1.5,'',7,''],
@@ -1933,6 +1933,7 @@ data = [
 ['1008',1,1,32356157,'0010. Mise en conformite + Marquage effa','011471498-104DC029 => 011471498-104D1063',0,'',0,''],
 ['1008',1,1,32356433,'0010. Mise en conformite + Marquage effa','400114128-567-0000 => 400114128-567-1557',0,'',0,''],
 ['1008',1,2,32356493,'0010. Mise en conformite + Marquage effa','',0,'',452,''],
+['1008',1,2,32356496,'0010. Mise en conformite + Marquage effa','',0.018,'',452,''],
 ['1014',,2,22460523,'0200. DOSSIER QUALITE','41K BW 150 MM CL 1500',0.5,'1125958-7000 DRESSER PRODUITS INDUSTRIEL',286,''],
 ['1014',,2,22402042,'0510. DOSSIER QUALITE','Plaque LODB 6"x8" Classe 300BW',0,'767077-30000 EDF - SCANLAD NORD OUEST (E',118,''],
 ['1014',,2,22511001,'0065. DOSSIER QUALITE','Plaque LODB 6"x8" Classe 300BW',0,'767077-32000 EDF - SCANLAD NORD OUEST (E',108,''],
