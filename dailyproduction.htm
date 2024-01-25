@@ -1,7 +1,7 @@
 <html>
 <head>
 <script type=text/javascript src=js/func.js?v=001></script>
-<script type=text/javascript src=js/canvasjs.min.js?007></script>
+<script type=text/javascript src=js/canvasjs.min.js?v=007></script>
 <script type=text/javascript src=module.js?v=003></script>
 <script type=text/javascript src=kpi_data1.js?v=2></script>
 
@@ -130,8 +130,8 @@ function loadData(){
     gfx5.options.data[1].dataPoints=[];
     gfx5.options.data[2].dataPoints=[];
     for(var n=0; n<qmlot.x.length; n++){
-      gfx5.options.data[0].dataPoints.push({label: qmlot.x[n], y: qmlot.n[n]});
-      gfx5.options.data[1].dataPoints.push({y: qmlot.p[n]});
+      gfx5.options.data[0].dataPoints.push({label: qmlot.x[n], y: qmlot.p[n]});
+      gfx5.options.data[1].dataPoints.push({y: qmlot.n[n]});
       gfx5.options.data[2].dataPoints.push({y: qmlot.c[n]});
       }
     gfx6.options.data[0].dataPoints=[];
@@ -139,8 +139,8 @@ function loadData(){
     gfx6.options.data[2].dataPoints=[];
     for(var n=0; n<ncr.x.length; n++){
       if(ncr.x[n]>'2023-10-11'){
-        gfx6.options.data[0].dataPoints.push({label: qmlot.x[n], y: ncr.n[n]});
-        gfx6.options.data[1].dataPoints.push({y: ncr.p[n]});
+        gfx6.options.data[0].dataPoints.push({label: qmlot.x[n], y: ncr.p[n]});
+        gfx6.options.data[1].dataPoints.push({y: ncr.n[n]});
         gfx6.options.data[2].dataPoints.push({y: ncr.c[n]});
         }
       }
@@ -256,8 +256,8 @@ window.onload=function(){
   axisX:axeX_2,
   toolTip:ttip1,
   data: [              
-    { type: "stackedColumn", name: "New", color: "#aae", showInLegend:true, dataPoints: []},
     { type: "stackedColumn", name: "Pending", color: "#da5", showInLegend:true, dataPoints: []},
+    { type: "stackedColumn", name: "New", color: "#aae", showInLegend:true, dataPoints: []},
     { type: "stackedColumn", name: "Done", color: "#8C8", showInLegend:true, dataPoints: []},
     ]
   });
@@ -271,8 +271,8 @@ window.onload=function(){
   axisX:axeX_2,
   toolTip:ttip1,
   data: [              
-    { type: "stackedColumn", name: "New", color: "#aae", showInLegend:true, dataPoints: []},
     { type: "stackedColumn", name: "Pending", color: "#da5", showInLegend:true, dataPoints: []},
+    { type: "stackedColumn", name: "New", color: "#aae", showInLegend:true, dataPoints: []},
     { type: "stackedColumn", name: "Done", color: "#8C8", showInLegend:true, dataPoints: []},
     ]
   });
