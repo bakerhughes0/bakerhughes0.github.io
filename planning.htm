@@ -1,0 +1,417 @@
+<html>
+<head>
+<script type=text/javascript src=js/func.js?v=001></script>
+<script type=text/javascript src=js/canvasjs.min.js?v=007></script>
+<script type=text/javascript src=module.js?v=003></script>
+<script type=text/javascript>
+
+function refreshall(){
+  gfx0.render();gfx1.render();gfx2.render();gfx3.render();
+  gfx4.render();gfx5.render();gfx6.render();gfx7.render();
+  gfx8.render();
+  }
+
+function loadData(){
+  var d = new Date();
+  var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
+  var js = document.createElement('script');
+  js.type='text/javascript';
+  js.src="kpi.js" + "?d=" + sd;
+  var weektoshow = 20;
+  document.head.appendChild(js);    
+  js.onload = function(){
+    sTxt(timstp,'Update : ' + tm);
+    gfx0.options.data[0].dataPoints=gfx30_d1;
+    gfx0.options.data[1].dataPoints=gfx30_d2;
+    gfx0.options.data[2].dataPoints=gfx30_d3;
+    gfx0.options.data[3].dataPoints=gfx30_d4;
+    gfx0.options.data[4].dataPoints=gfx30_d5;
+    gfx1.options.data[0].dataPoints=gfx21_d1;
+    gfx1.options.data[1].dataPoints=gfx21_d2;
+    gfx1.options.data[2].dataPoints=gfx21_d3;
+    gfx1.options.data[3].dataPoints=gfx21_d4;
+    gfx1.options.data[4].dataPoints=gfx21_d5;
+    gfx2.options.data[0].dataPoints=gfx22_d1;
+    gfx2.options.data[1].dataPoints=gfx22_d2;
+    gfx2.options.data[2].dataPoints=gfx22_d3;
+    gfx2.options.data[3].dataPoints=gfx22_d4;
+    gfx2.options.data[4].dataPoints=gfx22_d5;
+    gfx3.options.data[0].dataPoints=gfx26_d1;
+    gfx3.options.data[1].dataPoints=gfx26_d2;
+    gfx3.options.data[2].dataPoints=gfx26_d3;
+    gfx4.options.data[0].dataPoints=gfx24_d1;
+    gfx4.options.data[1].dataPoints=gfx24_d2;
+    gfx4.options.data[2].dataPoints=gfx24_d3;
+    gfx4.options.data[3].dataPoints=gfx24_d4;
+    gfx5.options.data[0].dataPoints=gfx25_d1;
+    gfx5.options.data[1].dataPoints=gfx25_d2;
+    gfx5.options.data[2].dataPoints=gfx25_d3;
+    gfx5.options.data[3].dataPoints=gfx25_d4;
+    gfx6.options.data[0].dataPoints=gfx23_d1;
+    gfx6.options.data[1].dataPoints=gfx23_d2;
+    gfx7.options.title.text='QUARTER '+data.q_name; 
+    gfx7.options.data[0].dataPoints=[{y:data.q_elapsed}];
+    gfx7.options.data[1].dataPoints=[{y:data.q_remaining}];
+    for(var n=0;n<5;n++){ gfx8.options.data[n].dataPoints=[]; }
+
+    for(var n=0, max=0; n<smadalign.w.length;n++){
+      gfx8.options.data[0].dataPoints.push({label:smadalign.w[n], y:smadalign.c[n]});
+      gfx8.options.data[1].dataPoints.push({y:smadalign.v[n]});
+      gfx8.options.data[2].dataPoints.push({y:smadalign.g[n]});
+      gfx8.options.data[3].dataPoints.push({y:smadalign.l[n]});
+      gfx8.options.data[4].dataPoints.push({y:smadalign.p[n]});
+      if(smadalign.c[n]+smadalign.v[n]+smadalign.g[n]+smadalign.l[n]+smadalign.p[n]>max) max=smadalign.c[n]+smadalign.v[n]+smadalign.g[n]+smadalign.l[n]+smadalign.p[n];
+      }
+    gfx8.options.axisY.maximum=max;
+    refreshall();
+    }
+  setTimeout(loadData, 60000);
+  
+  }
+
+window.onload=function(){
+  var bg = new background();
+  t1=new xLab();sFtC(t1,'#ccc');sPar(t1,0);
+  t2=new xLab();sFtC(t2,'#ccc');sPar(t2,0);sFtA(t2,'right');
+  sTxt(t1,"CONDE MATERIALS KPI - PLANNING");
+  sTxt(t2,"");
+  timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
+  var g = [];
+  for(var n=0; n<9; n++){g[n] = new gfxbox();}
+
+  gfx0 = new CanvasJS.Chart(g[0], {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "ENGINEERING OUTPUT", fontColor:"#ddd",fontFamily: 'Arial',fontSize:16},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Line Items",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69",  dataPoints: [] },
+    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888",  dataPoints: [] },
+    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900",  dataPoints: [] },
+    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C",  dataPoints: [] },
+    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#696",  dataPoints: [] },
+    ]
+  });
+
+  gfx1 = new CanvasJS.Chart(g[1], {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "SMAD IN THE PAST", fontColor:"#ddd",fontFamily: 'Arial',fontSize:16},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Line Items",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69",  dataPoints: [] },
+    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888",  dataPoints: [] },
+    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900",  dataPoints: [] },
+    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C",  dataPoints: [] },
+    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#696",  dataPoints: [] },
+    ]
+  });
+
+  gfx2 = new CanvasJS.Chart(g[2], {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "PMAD IN THE PAST", fontColor:"#ddd",fontFamily: 'Arial',fontSize:16},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Line Items",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69", dataPoints: [] },
+    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888", dataPoints: [] },
+    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900", dataPoints: [] },
+    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C", dataPoints: [] },
+    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#696", dataPoints: [] },
+    ]
+  }); 
+  gfx3 = new CanvasJS.Chart(g[3], {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "ORDER LINES SIM", fontColor:"#ddd",fontFamily: 'Arial',fontSize:16},
+  subtitles: [{text: "vs. PMAD", fontColor:"#ddd",fontFamily: 'Arial',fontSize:10}],
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Line Items",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    minimum:0,
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "stackedColumn", name: "<=0w", showInLegend: true,color:"#298A08",  dataPoints: [] },
+    { type: "stackedColumn", name: "1 to 4w", showInLegend: true,color:"#FE9A2E",  dataPoints: [] },
+    { type: "stackedColumn", name: ">4w", showInLegend: true,color:"#FF0000",  dataPoints: [] },
+    ]
+  });
+  gfx4 = new CanvasJS.Chart(g[4], {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "WO RELEASED", fontColor:"#ddd",fontFamily: 'Arial',fontSize:16},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Products Quantity",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true},
+  data: [              
+    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69", dataPoints: [] },
+    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888", dataPoints: [] },
+    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900", dataPoints: [] },
+    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C", dataPoints: [] },
+    ]
+  });  
+  gfx5 = new CanvasJS.Chart(g[5], {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "PLANNED ORDERS NOT CONVERTED", fontColor:"#ddd",fontFamily: 'Arial',fontSize:16},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#ddd"
+    },
+  axisY:{
+    title: "Planned Orders",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "stackedColumn", name: "P1.P1.SP", showInLegend: true,color:"#930",  dataPoints: [] },
+    { type: "stackedColumn", name: "P1.P1.RB", showInLegend: true,color:"#cc0",  dataPoints: [] },
+    { type: "stackedColumn", name: "P1.P1.P1", showInLegend: true,color:"#093",  dataPoints: [] },
+    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#903",  dataPoints: [] },
+    ]
+  });
+  gfx6 = new CanvasJS.Chart(g[6], {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "WORKORDERS TO CANCEL", fontColor:"#ddd",fontFamily: 'Arial',fontSize:16},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#ddd"
+    },
+  axisY:{
+    title: "Workorders",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "stackedColumn", name: "MTO", showInLegend: true, color:"#8b9",  dataPoints: [] },
+    { type: "stackedColumn", name: "MTS", showInLegend: true, color:"#586",  dataPoints: [] },
+    ]
+  });
+  gfx7 = new CanvasJS.Chart(g[7], {
+  animationEnabled: true,
+  animationDuration: 2500,
+  title: {text: "QUARTER", fontColor:"#ddd",fontFamily: 'Arial',fontSize:16},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#ddd"
+    },
+  axisX:{
+    lineColor:'#ccc', lineThickness: 1,
+    interval: null,
+    labelFontFamily: 'Arial',
+    },
+  axisY:{
+    suffix: "%", interval: 10,
+    lineColor:'#ccc', lineThickness: 1,
+    gridColor:'#ccc', gridThickness: 1,
+    labelFontFamily: 'Arial',
+    labelFontColor: "#eee",
+    },
+  toolTip: {enabled: true, content: '<b>{name}</b>: #percent %'},
+  data: [              
+    { type: "stackedBar100", showInLegend: true, name: "Elapsed", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "stackedBar100", showInLegend: true, name: "Remaining", indexLabelFontColor:'#eee', color:"#ddd", dataPoints: [] },
+    ]
+  });  
+  gfx8 = new CanvasJS.Chart(g[8], {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "SMAD ALIGNMENT", fontColor:"#ddd",fontFamily: 'Arial',fontSize:16},
+  subtitles: [{text: "vs. PMAD", fontColor:"#ddd",fontFamily: 'Arial',fontSize:10}],
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Line Items",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    },
+  axisX:{
+    title:'weeks', titleFontColor: "#eee",
+
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69",  dataPoints: [] },
+    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888",  dataPoints: [] },
+    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900",  dataPoints: [] },
+    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C",  dataPoints: [] },
+    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#696",  dataPoints: [] },
+    ]
+  });
+  window.onresize=function(){
+    movep(bg,[0,0,1,1]);
+    movep(t1,[.01, .01, .98, .045]);
+    movep(t2,[.01, .01, .98, .045]);
+    movep(timstp,[.01, .97, 1, .03]);
+    pos = [0, 1, 2, 7, 4, 5, 6, 8, 3];
+    for(var n=0; n<9; n++){
+      x = pos[n] % 4;
+      y = Math.floor(pos[n]/4);
+      movep(g[n],[.01+x*.2475, .07+y*.3, .2375, .29]);
+      refreshall();
+      }
+    };window.onresize();
+
+  loadData();
+  }
+
+function fmtCur2(num) {
+ var a=parseFloat(num).toFixed(0);
+ return a.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
+ }
+
+function toolTipContentMS(e) {
+  var str = "";
+  var total = 0;
+  var str2, str3;
+  for (var i = 0; i < e.entries.length; i++){
+    var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtCur2(e.entries[i].dataPoint.y)+"</strong><br/>";
+    if(e.entries[i].dataSeries.name!='Shipping' && e.entries[i].dataSeries.name!='Capacity'){ total += e.entries[i].dataPoint.y;}
+    str = str.concat(str1);
+    }
+  str2 = "<span style = \"color:#050;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
+  total = Math.round(total * 100) / 100;
+  str3 = "<span style = \"color:#050\">Total:</span><strong> "+fmtCur2(total)+"</strong><br/>";
+  return (str2.concat(str)).concat(str3);
+  } 
+
+</script>
+</head>
+<body >
+</body>
+</html>

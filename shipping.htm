@@ -1,16 +1,32 @@
 <html>
 <head>
-<script type=text/javascript src=js/func.js?001></script>
-<script type=text/javascript src=js/canvasjs.min.js?007></script>
+<script type=text/javascript src=js/func.js?v=001></script>
+<script type=text/javascript src=js/canvasjs.min.js?v=007></script>
+<script type=text/javascript src=module.js?v=003></script>
 <script type=text/javascript>
 
-
+function isoWeek(o) {
+var d;
+switch (typeof(o)) {
+  case 'number':
+    o=new Date(1900,0,o-1);
+  case 'string':
+    if (isDate(o)){d=new Date(o)}else{return ''};
+    break;
+  case 'object':
+    d=o;
+    break;
+  default:
+  return '';
+  };
+return strNum(d.getFullYear()-2000,2)+'W'+strNum(weekNum(d),2);
+};
 
 window.onload=function(){
-sBkL(document.body,100,'#243 30%, #222 100%');
+var bg = new background();
 var t1=new xLab();sPar(t1,0);sFtC(t1,'#ccc');move(t1,[10,10,800,30]);
 var t2=new xLab();sPar(t2,0);sFtC(t2,'#ccc');move(t2,[scrW()-210,10,200,30]);sFtA(t2,'right');
-
+timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
 
 function gfxBlk(){
   var o = new xDiv();
@@ -33,7 +49,7 @@ function toolTipContent32(e) {
   var str2, str3;
   for (var i = 0; i < e.entries.length; i++){
     var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtCur2(e.entries[i].dataPoint.y)+"</strong><br/>";
-    if(e.entries[i].dataSeries.name!='Target' && e.entries[i].dataSeries.name!='Capacity' && e.entries[i].dataSeries.name!='Cible'){ total += e.entries[i].dataPoint.y;}
+    if(e.entries[i].dataSeries.name!='Projection' && e.entries[i].dataSeries.name!='Capacity' && e.entries[i].dataSeries.name!='Cible'){ total += e.entries[i].dataPoint.y;}
     str = str.concat(str1);
     }
   str2 = "<span style = \"color:DodgerBlue;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
@@ -47,6 +63,7 @@ function toolTipContent32(e) {
   animationEnabled: true,
   animationDuration: 500,
   backgroundColor: null,
+  dataPointMaxWidth: 10,
   legend: {
     fontSize: 12,
     horizontalAlign: "center",
@@ -55,7 +72,7 @@ function toolTipContent32(e) {
     fontColor: "#ddd"
     },
   axisY2:{
-    title: "Dollars US",
+    title: "USD",
     valueFormatString: "# ### ##0",
     titleFontColor: "#ddd",
     titleFontSize: 15,
@@ -68,98 +85,170 @@ function toolTipContent32(e) {
     labelFontSize: 12,
 
     interval: 1,
-    labelAngle: -36,
+    labelAngle: -45,
     labelFontFamily: 'Arial',
     },
   toolTip: {shared: true, content: toolTipContent32},
-
   data: [              
-    { type: "line", name: "Cible", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [], axisYType: "secondary", },
     { type: "stackedColumn", name: "Public", color: "#8b9", showInLegend: true, dataPoints: [], axisYType: "secondary", },
     { type: "stackedColumn", name: "Assocos", color: "#586", showInLegend: true, dataPoints: [], axisYType: "secondary", },
+    { type: "line", markerSize: 4, name:"Projection", lineDashType: "dot", color: "#888", showInLegend: true, dataPoints: [], axisYType: "secondary", },
     ]
   });
   g33 = new gfxBlk(); g33.id="g33"
   gfx33 = new CanvasJS.Chart(g33, {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "Semaine courante", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: isoWeek(new Date()), fontColor:"#ddd",fontFamily: 'Arial',fontSize:16},
+  dataPointMaxWidth: 10,
   backgroundColor: null,
+  axisY:{
+    title: "USD",
+    valueFormatString: "# ### ##0",
+    titleFontColor: "#ddd",
+    labelFontColor: "#ddd",
+    labelFontFamily: 'Arial',
+    titleFontSize: 15,
+    labelFontSize: 12,
+    minimum:0,
+    },
+  axisX:{
+    labelFontColor: "#ddd",
+    interval: 1,
+    labelAngle: -45,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true, content: toolTipContent32},
+  data: [              
+    { type: "stackedColumn", name: "Public", color: "#8b9", showInLegend: false, dataPoints: []},
+    { type: "stackedColumn", name: "Assocos", color: "#586", showInLegend: false, dataPoints: []},
+    { type: "line", markerSize: 4, name:"Projection", lineDashType: "dot", color: "#888", showInLegend: true, dataPoints:[], showInLegend:false},
+    ]
+  });
+
+  g34 = new gfxBlk(); g34.id="g34"
+  gfx34 = new CanvasJS.Chart(g34, {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: isoWeek(new Date())+' TOP10 TO SHIP', fontColor:"#ddd",fontFamily: 'Arial',fontSize:16},
+  backgroundColor: null,
+  dataPointMaxWidth: 8,
+  toolTip: {shared: true, content: toolTipContent32},
   legend: {
+    fontSize: 12,
     horizontalAlign: "center",
     verticalAlign: "bottom",
     labelFontFamily: 'Arial',
     fontColor: "#ddd"
     },
+  axisX:{
+    interval: 1,
+    reversed: true,
+    labelMaxWidth: 0, labelWrap: false, labelFontColor: 'rgba(0,0,0,0)',
+    },
   axisY:{
-    title: "Dollars US",
+    title: "USD",
     valueFormatString: "# ### ##0",
     titleFontColor: "#ddd",
     labelFontColor: "#ddd",
     labelFontFamily: 'Arial',
+    titleFontSize: 12,
+    labelFontSize: 12,
+    minimum:0,
     },
-  axisX:{
-    labelFontColor: "#ddd",
-    interval: 1,
-    labelAngle: -36,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true, content: toolTipContent32},
-  data: [              
-    { type: "line", name: "Cible", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints:[], showInLegend:false},
-    { type: "stackedColumn", name: "Public", color: "#8b9", showInLegend: true, dataPoints: [], showInLegend:false},
-    { type: "stackedColumn", name: "Assocos", color: "#586", showInLegend: true, dataPoints: [], showInLegend:false},
+  data: [        
+    {type: "stackedBar", name:'In Production',
+     color: "#c90", dataPoints: [], showInLegend:true},
+    {type: "stackedBar", name:'Completed',
+     indexLabel: "{label}", indexLabelFontStyle: 'bold', indexLabelPlacement: "outside", indexLabelWrap: false, indexLabelFontColor: "#ddd",
+     color: "#8b9", dataPoints: [], showInLegend:true},
     ]
   });
-sPar(g32,0);
-move(g32,[20,68,scrW()-40,scrH()-90]);
-sPar(g33,0);
-move(g33,[scrW()*.03,scrH()*.15,scrW()*.26,scrW()*.18]);
+
+sPar(g32,0);sPar(g33,0);sPar(g34,0);
+
 
 function loaddata(){
   var d = new Date();
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
+  var today=isoDate(d), currentWeek=isoWeek(d);
   var js = document.createElement('script');
   js.type='text/javascript';
   js.src="kpi.js" + "?d=" + sd;
   js.onload = function(){ 
-    var dep=qs('dep');
-    if(dep=='usinage'){
-      sTxt(t1, 'CCC Usinage - Expéditions du trimestre');
+    sTxt(t1, 'CONDE MATERIALS KPI - SHIPPING');
+    for(var n=0;qship.dates[n]<today;n++){}
+    daysleft=qship.dates.length-n;
+    var daysservices = shppar.qsrev / daysleft;
+    var max=0;
+    for(var n=0;n<3;n++){gfx32.options.data[n].dataPoints=[];}
+    for(var n=0, cum=0;n<qship.dates.length;n++){
+      cum+=qship.Pamount[n];
+      gfx32.options.data[0].dataPoints.push(qship.dates[n]<=today ? {label:qship.dates[n],y:cum} : {label:qship.dates[n],y:null});
       }
-    else if(dep=='peinture'){
-      sTxt(t1, 'CCC Peinture - Expéditions du trimestre');
+    for(var n=0, cum2=0;n<qship.dates.length;n++){
+      cum2+=qship.Aamount[n];
+      gfx32.options.data[1].dataPoints.push(qship.dates[n]<=today ? {y:cum2} : {y:null});
       }
-    else if(dep=='picking'){
-      sTxt(t1, 'CCC Picking - Expéditions du trimestre');
+    if(cum+cum2>max) max=cum+cum2;
+    for(var n=0, cum=0;n<qship.dates.length;n++){
+      cum+=qship.prev[n]+qship.Pamount[n]+qship.Aamount[n]+daysservices;
+      if(qship.dates[n]<today){
+        gfx32.options.data[2].dataPoints.push({y:null});
+        }else{
+        gfx32.options.data[2].dataPoints.push({label:qship.dates[n],y:cum});
+        }
       }
-    else if(dep=='standard'){
-      sTxt(t1, 'CCC Assemblage Standard - Expéditions du trimestre');
-      }
-    else if(dep=='conventionnel'){
-      sTxt(t1, 'CCC Assemblage Conventionnel - Expéditions du trimestre');
-      }
-    else {
-      sTxt(t1, 'CONDE MATERIALS KPI - SHIPPING');
-      gfx32.options.data[0].name = "Target";
-      gfx33.options.title.text = "THIS WEEK";
-      gfx33.options.data[0].name = "Target";
-      }
-    gfx32.options.data[0].dataPoints=gfx32_d1;
-    gfx32.options.data[1].dataPoints=gfx32_d2;
-    gfx32.options.data[2].dataPoints=gfx32_d3;
+    if(cum>max) max=cum;
+    gfx32.options.axisY2.maximum=max;
     gfx32.render();
-    gfx33.options.data[0].dataPoints=gfx33_d1;
-    gfx33.options.data[1].dataPoints=gfx33_d2;
-    gfx33.options.data[2].dataPoints=gfx33_d3;
+
+    var max=0
+    for(var n=0;n<3;n++){gfx33.options.data[n].dataPoints=[];}
+    for(var n=0, cum=0;n<qship.dates.length;n++){
+      if(isoWeek(new Date(qship.dates[n]))==currentWeek){
+        cum+=qship.Pamount[n];
+        gfx33.options.data[0].dataPoints.push(qship.dates[n]<=today ? {label:qship.dates[n],y:cum} : {label:qship.dates[n],y:null});
+        }
+      }
+    for(var n=0, cum2=0;n<qship.dates.length;n++){
+      if(isoWeek(new Date(qship.dates[n]))==currentWeek){
+        cum2+=qship.Aamount[n];
+        gfx33.options.data[1].dataPoints.push(qship.dates[n]<=today ? {label:qship.dates[n],y:cum2} : {label:qship.dates[n],y:null});
+        }
+      }
+    if(cum+cum2>max) max=cum+cum2;
+    for(var n=0, cum=0;n<qship.dates.length;n++){
+      if(isoWeek(new Date(qship.dates[n]))==currentWeek){
+        cum+=qship.prev[n]+qship.Pamount[n]+qship.Aamount[n]+daysservices;
+        if(qship.dates[n]<today){
+          gfx33.options.data[2].dataPoints.push({y:null});
+          }else{
+          gfx33.options.data[2].dataPoints.push({label:qship.dates[n],y:cum});
+          }
+        }
+      }
+    if(cum>max) max=cum;
+    gfx33.options.axisY.maximum=max;
     gfx33.render();
+
+    gfx34.options.data[0].dataPoints=[];
+    var max=0;
+    for(var n=0;n<wship.cust.length;n++){
+      gfx34.options.data[0].dataPoints.push({label:wship.cust[n],y:wship.wip[n]});
+      gfx34.options.data[1].dataPoints.push({label:wship.cust[n],y:wship.shp[n]});
+      if(wship.shp[n]+wship.wip[n]>max) max=wship.shp[n]+wship.wip[n];
+      }
+    gfx34.options.axisY.maximum=max*3;
+    gfx34.render();
+
     sTxt(t2,data.q_name)
+    sTxt(timstp,'Update : ' + tm);
     }
-  document.head.appendChild(js);    
+  document.head.appendChild(js);  
+  setTimeout(loadData, 60000); 
   };
 
-  loaddata();
-  }
 
 function qs(variable) {
   var vars = window.location.search.substring(1).toLowerCase().split('&');
@@ -167,6 +256,20 @@ function qs(variable) {
     var pair = vars[i].split('=');
     if (decodeURIComponent(pair[0]) == variable) return decodeURIComponent(pair[1]);
     }
+  }
+
+  window.onresize=function(){
+    movep(bg,[0,0,1,1]);
+    movep(t1,[.01, .01, .98, .045]);
+    movep(t2,[.01, .01, .98, .045]);
+    movep(timstp,[.01, .97, 1, .03]);
+    movep(g32,[.01, .06, .98, .9]);
+    movep(g33,[.02,.08,.16,.4]);
+    movep(g34,[.179,.08,.30,.4]);
+
+    };window.onresize();
+
+  loaddata();
   }
 
 

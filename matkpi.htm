@@ -17,9 +17,6 @@ function loadData(){
   js.onload = function(){ 
     gfx01.options.data[0].dataPoints=gfx01_d1;
     gfx01.options.data[1].dataPoints=gfx01_d2;
-    gfx02.options.title.text='QUARTER '+data.q_name; 
-    gfx02.options.data[0].dataPoints=[{y:data.q_elapsed}];
-    gfx02.options.data[1].dataPoints=[{y:data.q_remaining}];
     gfx03.options.data[0].dataPoints=gfx03_d1;
     gfx03.options.data[1].dataPoints=gfx03_d2;
     gfx04.options.data[0].dataPoints=gfx04_d1;
@@ -33,7 +30,6 @@ function loadData(){
     gfx06.options.data[4].dataPoints=gfx06_d5;
     gfx07.options.data[0].dataPoints=gfx07_d1.reverse();
     gfx01.render();    
-    gfx02.render();
     gfx03.render();
     gfx04.render();
     gfx05.render();
@@ -41,36 +37,6 @@ function loadData(){
     gfx07.render();
     gfx20.options.data[0].dataPoints=[{label:'18Q1',y:9111},{label:'18Q2',y:8678},{label:'18Q3',y:6263},{label:'18Q4',y:6176},{label:'19Q1',y:7358},{label:'19Q2',y:8972},{label:'19Q3',y:7468},{label:'19Q4',y:7858},{label:'20Q1',y:8845},{label:'20Q2',y:6617},{label:'20Q3',y:8151},{label:'20Q4',y:7973},{label:'21Q1',y:7899},{label:'21Q2',y:7256},{label:'21Q3',y:6077},{label:'21Q4',y:7773},{label:'22Q1',y:7174},{label:'22Q2',y:6818},{label:'22Q3',y:6516},{label:'22Q4',y:7411},{label:'23Q1',y:7261},{label:'23Q2',y:7065},{label:'23Q3',y:5919},{label:'23Q4',y:6433},{name:'Target',color:'#CC6',label:'24Q1', y:6500}];
     gfx20.render();
-    gfx21.options.data[0].dataPoints=gfx21_d1;
-    gfx21.options.data[1].dataPoints=gfx21_d2;
-    gfx21.options.data[2].dataPoints=gfx21_d3;
-    gfx21.options.data[3].dataPoints=gfx21_d4;
-    gfx21.options.data[4].dataPoints=gfx21_d5;
-    gfx21.render();
-    gfx22.options.data[0].dataPoints=gfx22_d1;
-    gfx22.options.data[1].dataPoints=gfx22_d2;
-    gfx22.options.data[2].dataPoints=gfx22_d3;
-    gfx22.options.data[3].dataPoints=gfx22_d4;
-    gfx22.options.data[4].dataPoints=gfx22_d5;
-    gfx22.render();
-    gfx23.options.data[0].dataPoints=gfx23_d1;
-    gfx23.options.data[1].dataPoints=gfx23_d2;
-    gfx23.render();
-    gfx24.options.data[0].dataPoints=gfx24_d1;
-    gfx24.options.data[1].dataPoints=gfx24_d2;
-    gfx24.options.data[2].dataPoints=gfx24_d3;
-    gfx24.options.data[3].dataPoints=gfx24_d4;
-    //gfx24.options.data[4].dataPoints=gfx24_d5;
-    gfx24.render();
-    gfx25.options.data[0].dataPoints=gfx25_d1;
-    gfx25.options.data[1].dataPoints=gfx25_d2;
-    gfx25.options.data[2].dataPoints=gfx25_d3;
-    gfx25.options.data[3].dataPoints=gfx25_d4;
-    gfx25.render();
-    gfx26.options.data[0].dataPoints=gfx26_d1;
-    gfx26.options.data[1].dataPoints=gfx26_d2;
-    gfx26.options.data[2].dataPoints=gfx26_d3;
-    gfx26.render();
     gfx27.options.data[0].dataPoints=gfx27_d1.reverse();
     gfx27.options.data[1].dataPoints=gfx27_d2.reverse();
     gfx27.options.data[2].dataPoints=gfx27_d3.reverse();
@@ -87,12 +53,6 @@ function loadData(){
     gfx28.render();
     gfx29.options.data[0].dataPoints=gfx29_d1;
     gfx29.render();
-    gfx30.options.data[0].dataPoints=gfx30_d1;
-    gfx30.options.data[1].dataPoints=gfx30_d2;
-    gfx30.options.data[2].dataPoints=gfx30_d3;
-    gfx30.options.data[3].dataPoints=gfx30_d4;
-    gfx30.options.data[4].dataPoints=gfx30_d5;
-    gfx30.render();
     gfx31.options.data[0].dataPoints=gfx31_d1;
     gfx31.options.data[1].dataPoints=gfx31_d2;
     gfx31.render();
@@ -183,14 +143,6 @@ function redraw(){
 
   gfxPos(g27,p[2],0,0);
 
-  gfxPos(g30,p[5],0,0);
-  gfxPos(g21,p[5],1,0);
-  gfxPos(g22,p[5],2,0);
-  gfxPos(g23,p[5],2,1);
-  gfxPos(g24,p[5],0,1);
-  gfxPos(g25,p[5],1,1);
-  gfxPos(g26,p[5],3,0);
-  gfxPos(g02,p[5],3,1);
   }
 
 window.onresize=function(){
@@ -254,7 +206,7 @@ window.onload=function(){
   p[4] = new pageModel(4);
     p[4].frm=document.createElement('iframe');move(p[4].frm,[0,0,scrW(),scrH()]);sOvf(p[4].frm,'hidden');sBrW(p[4].frm,[0]);sPar(p[4].frm,p[4]);p[4].frm.src='standardhours.htm?x='+rnd();
   p[5] = new pageModel(5);
-    sTxt(p[5].t1,"CONDE MATERIALS KPI - PLANNING");
+    p[5].frm=document.createElement('iframe');move(p[5].frm,[0,0,scrW(),scrH()]);sOvf(p[0].frm,'hidden');sBrW(p[5].frm,[0]);sPar(p[5].frm,p[5]);p[5].frm.src='planning.htm?x='+rnd();
   p[6] = new pageModel(6);
     p[6].frm=document.createElement('iframe');move(p[6].frm,[0,0,scrW(),scrH()]);sOvf(p[6].frm,'hidden');sBrW(p[6].frm,[0]);sPar(p[6].frm,p[6]);p[6].frm.src='npc.htm?x='+rnd();
   p[7] = new pageModel(7);
@@ -313,36 +265,7 @@ window.onload=function(){
     { type: "stackedColumn", name: "Overdue", color: "#b33", showInLegend: true, dataPoints: [] }
     ]
   });
-  g02 = new gfxBlk(); g02.id="g02"
-  gfx02 = new CanvasJS.Chart(g02, {
-  animationEnabled: true,
-  animationDuration: 2500,
-  title: {text: "QUARTER", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend: {
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#ddd"
-    },
-  axisX:{
-    lineColor:'#ccc', lineThickness: 1,
-    interval: null,
-    labelFontFamily: 'Arial',
-    },
-  axisY:{
-    suffix: "%", interval: 10,
-    lineColor:'#ccc', lineThickness: 1,
-    gridColor:'#ccc', gridThickness: 1,
-    labelFontFamily: 'Arial',
-    labelFontColor: "#eee",
-    },
-  toolTip: {enabled: true, content: '<b>{name}</b>: #percent %'},
-  data: [              
-    { type: "stackedBar100",  showInLegend: true, name: "Elapsed", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
-    { type: "stackedBar100",  showInLegend: true, name: "Remaining", indexLabelFontColor:'#eee', color:"#ddd", dataPoints: [] },
-    ]
-  });  
+ 
   g03 = new gfxBlk(); g03.id="g03"
   gfx03 = new CanvasJS.Chart(g03, {
   animationEnabled: true,
@@ -530,233 +453,7 @@ window.onload=function(){
     ]
   }); 
  
-  g30 = new gfxBlk(); g30.id="g30"
-  gfx30 = new CanvasJS.Chart(g30, {
-  animationEnabled: true,
-  animationDuration: 1500,
-  title: {text: "ENGINEERING OUTPUT", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend: {
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#eee"
-    },
-  axisY:{
-    title: "Line Items",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -36,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true, content: toolTipContent6},
-  data: [              
-    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69",  dataPoints: [] },
-    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888",  dataPoints: [] },
-    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900",  dataPoints: [] },
-    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C",  dataPoints: [] },
-    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#696",  dataPoints: [] },
-    ]
-  });
 
-  g21 = new gfxBlk(); g21.id="g21"
-  gfx21 = new CanvasJS.Chart(g21, {
-  animationEnabled: true,
-  animationDuration: 1500,
-  title: {text: "SMAD IN THE PAST", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend: {
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#eee"
-    },
-  axisY:{
-    title: "Line Items",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -36,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true, content: toolTipContent6},
-  data: [              
-    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69",  dataPoints: [] },
-    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888",  dataPoints: [] },
-    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900",  dataPoints: [] },
-    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C",  dataPoints: [] },
-    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#696",  dataPoints: [] },
-    ]
-  }); 
-  g22 = new gfxBlk(); g22.id="g22"
-  gfx22 = new CanvasJS.Chart(g22, {
-  animationEnabled: true,
-  animationDuration: 1500,
-  title: {text: "PMAD IN THE PAST", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend: {
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#eee"
-    },
-  axisY:{
-    title: "Line Items",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -36,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true, content: toolTipContent6},
-  data: [              
-    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69", dataPoints: [] },
-    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888", dataPoints: [] },
-    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900", dataPoints: [] },
-    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C", dataPoints: [] },
-    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#696", dataPoints: [] },
-    ]
-  }); 
-  g23 = new gfxBlk(); g23.id="g23"
-  gfx23 = new CanvasJS.Chart(g23, {
-  animationEnabled: true,
-  animationDuration: 1500,
-  title: {text: "WORKORDERS TO CANCEL", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend: {
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#ddd"
-    },
-  axisY:{
-    title: "Workorders",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -36,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true, content: toolTipContent6},
-  data: [              
-    { type: "stackedColumn", name: "MTO", showInLegend: true, color:"#8b9",  dataPoints: [] },
-    { type: "stackedColumn", name: "MTS", showInLegend: true, color:"#586",  dataPoints: [] },
-    ]
-  });
-  g24 = new gfxBlk(); g24.id="g24"
-  gfx24 = new CanvasJS.Chart(g24, {
-  animationEnabled: true,
-  animationDuration: 1500,
-  title: {text: "WO RELEASED", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend: {
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#eee"
-    },
-  axisY:{
-    title: "Products Quantity",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -36,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true},
-  data: [              
-    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69", dataPoints: [] },
-    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888", dataPoints: [] },
-    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900", dataPoints: [] },
-    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C", dataPoints: [] },
-//    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#696", dataPoints: [] },
-    ]
-  });  
-  g25 = new gfxBlk(); g25.id="g25"
-  gfx25 = new CanvasJS.Chart(g25, {
-  animationEnabled: true,
-  animationDuration: 1500,
-  title: {text: "PLANNED ORDERS NOT CONVERTED", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend: {
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#ddd"
-    },
-  axisY:{
-    title: "Planned Orders",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -36,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true, content: toolTipContent6},
-  data: [              
-    { type: "stackedColumn", name: "P1.P1.SP", showInLegend: true,color:"#930",  dataPoints: [] },
-    { type: "stackedColumn", name: "P1.P1.RB", showInLegend: true,color:"#cc0",  dataPoints: [] },
-    { type: "stackedColumn", name: "P1.P1.P1", showInLegend: true,color:"#093",  dataPoints: [] },
-    { type: "stackedColumn", name: "Others", showInLegend: true,color:"#903",  dataPoints: [] },
-    ]
-  });
-  g26 = new gfxBlk(); g26.id="g26"
-  gfx26 = new CanvasJS.Chart(g26, {
-  animationEnabled: true,
-  animationDuration: 1500,
-  title: {text: "ORDER LINES SIM", fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  legend: {
-    horizontalAlign: "center",
-    verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
-    fontColor: "#eee"
-    },
-  axisY:{
-    title: "Line Items",
-    titleFontColor: "#eee",
-    labelFontColor: "#eee",
-    labelFontFamily: 'Arial',
-    minimum:0,
-    },
-  axisX:{
-    labelFontColor: "#eee",
-    interval: 1,
-    labelAngle: -36,
-    labelFontFamily: 'Arial',
-    },
-  toolTip: {shared: true},
-  data: [              
-    { type: "stackedColumn", name: "<=0w", showInLegend: true,color:"#298A08",  dataPoints: [] },
-    { type: "stackedColumn", name: "1 to 4w", showInLegend: true,color:"#FE9A2E",  dataPoints: [] },
-    { type: "stackedColumn", name: ">4w", showInLegend: true,color:"#FF0000",  dataPoints: [] },
-    ]
-  });
 
 //____________________________________________________________________________________________________________________________
 
