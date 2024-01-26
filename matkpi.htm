@@ -149,8 +149,12 @@ window.onresize=function(){
   move(main,[0,0,scrW(),scrH()]);
   move(p[0].frm,[0,0,scrW(),scrH()]);
 move(p[3].frm,[0,0,scrW(),scrH()]);
+move(p[4].frm,[0,0,scrW(),scrH()]);
 move(p[5].frm,[0,0,scrW(),scrH()]);
 move(p[6].frm,[0,0,scrW(),scrH()]);
+move(p[7].frm,[0,0,scrW(),scrH()]);
+move(p[8].frm,[0,0,scrW(),scrH()]);
+move(p[9].frm,[0,0,scrW(),scrH()]);
   redraw();
   }
 
@@ -206,13 +210,15 @@ window.onload=function(){
   p[4] = new pageModel(4);
     p[4].frm=document.createElement('iframe');move(p[4].frm,[0,0,scrW(),scrH()]);sOvf(p[4].frm,'hidden');sBrW(p[4].frm,[0]);sPar(p[4].frm,p[4]);p[4].frm.src='standardhours.htm?x='+rnd();
   p[5] = new pageModel(5);
-    p[5].frm=document.createElement('iframe');move(p[5].frm,[0,0,scrW(),scrH()]);sOvf(p[0].frm,'hidden');sBrW(p[5].frm,[0]);sPar(p[5].frm,p[5]);p[5].frm.src='planning.htm?x='+rnd();
+    p[5].frm=document.createElement('iframe');move(p[5].frm,[0,0,scrW(),scrH()]);sOvf(p[0].frm,'hidden');sBrW(p[5].frm,[0]);sPar(p[5].frm,p[5]);p[5].frm.src='master_scheduler.htm?x='+rnd();
   p[6] = new pageModel(6);
-    p[6].frm=document.createElement('iframe');move(p[6].frm,[0,0,scrW(),scrH()]);sOvf(p[6].frm,'hidden');sBrW(p[6].frm,[0]);sPar(p[6].frm,p[6]);p[6].frm.src='npc.htm?x='+rnd();
+    p[6].frm=document.createElement('iframe');move(p[6].frm,[0,0,scrW(),scrH()]);sOvf(p[6].frm,'hidden');sBrW(p[6].frm,[0]);sPar(p[6].frm,p[6]);p[6].frm.src='planning.htm?x='+rnd();
   p[7] = new pageModel(7);
-    p[7].frm=document.createElement('iframe');move(p[7].frm,[0,0,scrW(),scrH()]);sOvf(p[7].frm,'hidden');sBrW(p[7].frm,[0]);sPar(p[7].frm,p[7]);p[7].frm.src='procurement.htm?x='+rnd();
+    p[7].frm=document.createElement('iframe');move(p[7].frm,[0,0,scrW(),scrH()]);sOvf(p[7].frm,'hidden');sBrW(p[7].frm,[0]);sPar(p[7].frm,p[7]);p[7].frm.src='npc.htm?x='+rnd();
   p[8] = new pageModel(8);
-    p[8].frm=document.createElement('iframe');move(p[8].frm,[0,0,scrW(),scrH()]);sOvf(p[8].frm,'hidden');sBrW(p[8].frm,[0]);sPar(p[8].frm,p[8]);p[8].frm.src='shipping.htm?x='+rnd();
+    p[8].frm=document.createElement('iframe');move(p[8].frm,[0,0,scrW(),scrH()]);sOvf(p[8].frm,'hidden');sBrW(p[8].frm,[0]);sPar(p[8].frm,p[8]);p[8].frm.src='procurement.htm?x='+rnd();
+  p[9] = new pageModel(8);
+    p[9].frm=document.createElement('iframe');move(p[9].frm,[0,0,scrW(),scrH()]);sOvf(p[9].frm,'hidden');sBrW(p[9].frm,[0]);sPar(p[9].frm,p[9]);p[9].frm.src='shipping.htm?x='+rnd();
 
   sBrC(ctl,['#fff']);sBrW(ctl,[2]); sBrR(ctl,[100]);sBrC(ctl,['#8a9']);
   move(ctl,[scrW()/1.8-p.length*15,15,p.length*30,30]);

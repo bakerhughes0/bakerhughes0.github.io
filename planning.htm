@@ -53,7 +53,6 @@ function loadData(){
     gfx7.options.data[0].dataPoints=[{y:data.q_elapsed}];
     gfx7.options.data[1].dataPoints=[{y:data.q_remaining}];
     for(var n=0;n<5;n++){ gfx8.options.data[n].dataPoints=[]; }
-
     for(var n=0, max=0; n<smadalign.w.length;n++){
       gfx8.options.data[0].dataPoints.push({label:smadalign.w[n], y:smadalign.c[n]});
       gfx8.options.data[1].dataPoints.push({y:smadalign.v[n]});
@@ -66,7 +65,6 @@ function loadData(){
     refreshall();
     }
   setTimeout(loadData, 60000);
-  
   }
 
 window.onload=function(){
@@ -383,10 +381,9 @@ window.onload=function(){
       x = pos[n] % 4;
       y = Math.floor(pos[n]/4);
       movep(g[n],[.01+x*.2475, .07+y*.3, .2375, .29]);
-      refreshall();
       }
+    refreshall();
     };window.onresize();
-
   loadData();
   }
 

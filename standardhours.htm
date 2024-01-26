@@ -15,6 +15,11 @@ var target_standard = 2400;
 var target_painting = 1300;
 var target_gscm = target_machining +target_welding+target_painting+target_standard+target_globes+target_levels;
 
+function refreshall(){
+  gfx34.render();gfx35.render();gfx36.render();gfx37.render();
+  gfx38.render();gfx39.render();gfx40.render();
+  }
+
 function loadData(){
   var d = new Date();
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
@@ -34,7 +39,6 @@ function loadData(){
       gfx40.options.data[n].dataPoints=[];
       }
     var thisWeek = isoWeek(new Date()).slice(4,7);
-    
     for(var n=0, cum=0;n<g34_0.length;n++){
       g34_0[n]=g34_0[n].slice(2,5); //remove year in labels
       gfx34.options.data[0].dataPoints.push({label:g34_0[n], y:g34_1[n]});
@@ -47,7 +51,6 @@ function loadData(){
       }
     var target = target_machining;
     gfx34.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
-    gfx34.render();
     for(var n=0, cum=0;n<g34_0.length;n++){
       gfx35.options.data[0].dataPoints.push({label:g34_0[n], y:g35_1[n]});
       gfx35.options.data[1].dataPoints.push({y:g35_2[n]});
@@ -59,7 +62,6 @@ function loadData(){
       }
     var target = target_welding;
     gfx35.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
-    gfx35.render();
     for(var n=0, cum=0;n<g34_0.length;n++){
       gfx36.options.data[0].dataPoints.push({label:g34_0[n], y:g36_1[n]});
       gfx36.options.data[1].dataPoints.push({y:g36_2[n]});
@@ -71,7 +73,6 @@ function loadData(){
       }
     var target = target_painting;
     gfx36.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
-    gfx36.render();
     for(var n=0, cum=0;n<g34_0.length;n++){
       gfx37.options.data[0].dataPoints.push({label:g34_0[n], y:g37_1[n]});
       gfx37.options.data[1].dataPoints.push({y:g37_2[n]});
@@ -83,7 +84,6 @@ function loadData(){
       }
     var target = target_standard;
     gfx37.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
-    gfx37.render();
     for(var n=0, cum=0;n<g34_0.length;n++){
       gfx38.options.data[0].dataPoints.push({label:g34_0[n], y:g38_1[n]});
       gfx38.options.data[1].dataPoints.push({y:g38_2[n]});
@@ -95,7 +95,6 @@ function loadData(){
       }
     var target = target_globes;
     gfx38.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
-    gfx38.render();
     for(var n=0, cum=0;n<g34_0.length;n++){
       gfx39.options.data[0].dataPoints.push({label:g34_0[n], y:g39_1[n]});
       gfx39.options.data[1].dataPoints.push({y:g39_2[n]});
@@ -107,7 +106,6 @@ function loadData(){
       }
     var target = target_levels;
     gfx39.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
-    gfx39.render();
     for(var n=0, cum=0;n<g34_0.length;n++){
       gfx40.options.data[0].dataPoints.push({label:g34_0[n], y:g34_1[n]+g35_1[n]+g36_1[n]+g37_1[n]+g38_1[n]+g39_1[n]+g40_1[n]});
       gfx40.options.data[1].dataPoints.push({y:g34_2[n]+g35_2[n]+g36_2[n]+g37_2[n]+g38_2[n]+g39_2[n]+g40_2[n]});
@@ -119,8 +117,8 @@ function loadData(){
       }
     var target = target_gscm;
     gfx40.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
-    gfx40.render();
     sTxt(t2,data.q_name);
+    refreshall()
     }
   setTimeout(loadData, 60000);
   }
@@ -280,8 +278,8 @@ window.onload=function(){
       movep(g[n],[.01+x*.2475, .07+y*.452, .2375, .44]);
       if(n==6){movep(g[n],[.01+x*.2475, .07+y*.452, .485, .44]);}
       }
+    refreshall()
     };window.onresize();
-
   loadData();
   }
 

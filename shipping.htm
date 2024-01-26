@@ -5,6 +5,10 @@
 <script type=text/javascript src=module.js?v=003></script>
 <script type=text/javascript>
 
+function refreshall(){
+  gfx32.render();gfx33.render();gfx34.render();
+  }
+
 function isoWeek(o) {
 var d;
 switch (typeof(o)) {
@@ -21,12 +25,6 @@ switch (typeof(o)) {
   };
 return strNum(d.getFullYear()-2000,2)+'W'+strNum(weekNum(d),2);
 };
-
-window.onload=function(){
-var bg = new background();
-var t1=new xLab();sPar(t1,0);sFtC(t1,'#ccc');move(t1,[10,10,800,30]);
-var t2=new xLab();sPar(t2,0);sFtC(t2,'#ccc');move(t2,[scrW()-210,10,200,30]);sFtA(t2,'right');
-timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
 
 function gfxBlk(){
   var o = new xDiv();
@@ -57,6 +55,93 @@ function toolTipContent32(e) {
   str3 = "<span style = \"color:Tomato\">Total:</span><strong> "+fmtCur2(total)+"</strong><br/>";
   return (str2.concat(str)).concat(str3);
   }
+
+function loadData(){
+  var d = new Date();
+  var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
+  var today=isoDate(d), currentWeek=isoWeek(d);
+  var js = document.createElement('script');
+  js.type='text/javascript';
+  js.src="kpi.js" + "?d=" + sd;
+  document.head.appendChild(js);  
+  js.onload = function(){ 
+    sTxt(t1, 'CONDE MATERIALS KPI - SHIPPING');
+    for(var n=0;qship.dates[n]<today;n++){}
+    daysleft=qship.dates.length-n;
+    var daysservices = shppar.qsrev / daysleft;
+    var max=0;
+    for(var n=0;n<3;n++){gfx32.options.data[n].dataPoints=[];}
+    for(var n=0, cum=0;n<qship.dates.length;n++){
+      cum+=qship.Pamount[n];
+      gfx32.options.data[0].dataPoints.push(qship.dates[n]<=today ? {label:qship.dates[n],y:cum} : {label:qship.dates[n],y:null});
+      }
+    for(var n=0, cum2=0;n<qship.dates.length;n++){
+      cum2+=qship.Aamount[n];
+      gfx32.options.data[1].dataPoints.push(qship.dates[n]<=today ? {y:cum2} : {y:null});
+      }
+    if(cum+cum2>max) max=cum+cum2;
+    for(var n=0, cum=0;n<qship.dates.length;n++){
+      cum+=qship.prev[n]+qship.Pamount[n]+qship.Aamount[n]+daysservices;
+      if(qship.dates[n]<today){
+        gfx32.options.data[2].dataPoints.push({y:null});
+        }else{
+        gfx32.options.data[2].dataPoints.push({label:qship.dates[n],y:cum});
+        }
+      }
+    if(cum>max) max=cum;
+    gfx32.options.axisY2.maximum=max;
+
+    var max=0
+    for(var n=0;n<3;n++){gfx33.options.data[n].dataPoints=[];}
+    for(var n=0, cum=0;n<qship.dates.length;n++){
+      if(isoWeek(new Date(qship.dates[n]))==currentWeek){
+        cum+=qship.Pamount[n];
+        gfx33.options.data[0].dataPoints.push(qship.dates[n]<=today ? {label:qship.dates[n],y:cum} : {label:qship.dates[n],y:null});
+        }
+      }
+    for(var n=0, cum2=0;n<qship.dates.length;n++){
+      if(isoWeek(new Date(qship.dates[n]))==currentWeek){
+        cum2+=qship.Aamount[n];
+        gfx33.options.data[1].dataPoints.push(qship.dates[n]<=today ? {label:qship.dates[n],y:cum2} : {label:qship.dates[n],y:null});
+        }
+      }
+    if(cum+cum2>max) max=cum+cum2;
+    for(var n=0, cum=0;n<qship.dates.length;n++){
+      if(isoWeek(new Date(qship.dates[n]))==currentWeek){
+        cum+=qship.prev[n]+qship.Pamount[n]+qship.Aamount[n]+daysservices;
+        if(qship.dates[n]<today){
+          gfx33.options.data[2].dataPoints.push({y:null});
+          }else{
+          gfx33.options.data[2].dataPoints.push({label:qship.dates[n],y:cum});
+          }
+        }
+      }
+    if(cum>max) max=cum;
+    gfx33.options.axisY.maximum=max;
+
+    gfx34.options.data[0].dataPoints=[];
+    var max=0;
+    for(var n=0;n<wship.cust.length;n++){
+      gfx34.options.data[0].dataPoints.push({label:wship.cust[n],y:wship.wip[n]});
+      gfx34.options.data[1].dataPoints.push({label:wship.cust[n],y:wship.shp[n]});
+      if(wship.shp[n]+wship.wip[n]>max) max=wship.shp[n]+wship.wip[n];
+      }
+    gfx34.options.axisY.maximum=max*2;
+    sTxt(t2,data.q_name)
+    sTxt(timstp,'Update : ' + tm);
+    refreshall()
+    }
+  setTimeout(loadData, 60000); 
+  }; 
+
+
+
+
+window.onload=function(){
+  var bg = new background();
+  t1=new xLab();sPar(t1,0);sFtC(t1,'#ccc');move(t1,[10,10,800,30]);
+  t2=new xLab();sPar(t2,0);sFtC(t2,'#ccc');move(t2,[scrW()-210,10,200,30]);sFtA(t2,'right');
+  timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
 
   g32 = new gfxBlk(); g32.id="g32"
   gfx32 = new CanvasJS.Chart(g32, {
@@ -164,100 +249,7 @@ function toolTipContent32(e) {
      color: "#8b9", dataPoints: [], showInLegend:true},
     ]
   });
-
-sPar(g32,0);sPar(g33,0);sPar(g34,0);
-
-
-function loaddata(){
-  var d = new Date();
-  var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
-  var today=isoDate(d), currentWeek=isoWeek(d);
-  var js = document.createElement('script');
-  js.type='text/javascript';
-  js.src="kpi.js" + "?d=" + sd;
-  js.onload = function(){ 
-    sTxt(t1, 'CONDE MATERIALS KPI - SHIPPING');
-    for(var n=0;qship.dates[n]<today;n++){}
-    daysleft=qship.dates.length-n;
-    var daysservices = shppar.qsrev / daysleft;
-    var max=0;
-    for(var n=0;n<3;n++){gfx32.options.data[n].dataPoints=[];}
-    for(var n=0, cum=0;n<qship.dates.length;n++){
-      cum+=qship.Pamount[n];
-      gfx32.options.data[0].dataPoints.push(qship.dates[n]<=today ? {label:qship.dates[n],y:cum} : {label:qship.dates[n],y:null});
-      }
-    for(var n=0, cum2=0;n<qship.dates.length;n++){
-      cum2+=qship.Aamount[n];
-      gfx32.options.data[1].dataPoints.push(qship.dates[n]<=today ? {y:cum2} : {y:null});
-      }
-    if(cum+cum2>max) max=cum+cum2;
-    for(var n=0, cum=0;n<qship.dates.length;n++){
-      cum+=qship.prev[n]+qship.Pamount[n]+qship.Aamount[n]+daysservices;
-      if(qship.dates[n]<today){
-        gfx32.options.data[2].dataPoints.push({y:null});
-        }else{
-        gfx32.options.data[2].dataPoints.push({label:qship.dates[n],y:cum});
-        }
-      }
-    if(cum>max) max=cum;
-    gfx32.options.axisY2.maximum=max;
-    gfx32.render();
-
-    var max=0
-    for(var n=0;n<3;n++){gfx33.options.data[n].dataPoints=[];}
-    for(var n=0, cum=0;n<qship.dates.length;n++){
-      if(isoWeek(new Date(qship.dates[n]))==currentWeek){
-        cum+=qship.Pamount[n];
-        gfx33.options.data[0].dataPoints.push(qship.dates[n]<=today ? {label:qship.dates[n],y:cum} : {label:qship.dates[n],y:null});
-        }
-      }
-    for(var n=0, cum2=0;n<qship.dates.length;n++){
-      if(isoWeek(new Date(qship.dates[n]))==currentWeek){
-        cum2+=qship.Aamount[n];
-        gfx33.options.data[1].dataPoints.push(qship.dates[n]<=today ? {label:qship.dates[n],y:cum2} : {label:qship.dates[n],y:null});
-        }
-      }
-    if(cum+cum2>max) max=cum+cum2;
-    for(var n=0, cum=0;n<qship.dates.length;n++){
-      if(isoWeek(new Date(qship.dates[n]))==currentWeek){
-        cum+=qship.prev[n]+qship.Pamount[n]+qship.Aamount[n]+daysservices;
-        if(qship.dates[n]<today){
-          gfx33.options.data[2].dataPoints.push({y:null});
-          }else{
-          gfx33.options.data[2].dataPoints.push({label:qship.dates[n],y:cum});
-          }
-        }
-      }
-    if(cum>max) max=cum;
-    gfx33.options.axisY.maximum=max;
-    gfx33.render();
-
-    gfx34.options.data[0].dataPoints=[];
-    var max=0;
-    for(var n=0;n<wship.cust.length;n++){
-      gfx34.options.data[0].dataPoints.push({label:wship.cust[n],y:wship.wip[n]});
-      gfx34.options.data[1].dataPoints.push({label:wship.cust[n],y:wship.shp[n]});
-      if(wship.shp[n]+wship.wip[n]>max) max=wship.shp[n]+wship.wip[n];
-      }
-    gfx34.options.axisY.maximum=max*3;
-    gfx34.render();
-
-    sTxt(t2,data.q_name)
-    sTxt(timstp,'Update : ' + tm);
-    }
-  document.head.appendChild(js);  
-  setTimeout(loadData, 60000); 
-  };
-
-
-function qs(variable) {
-  var vars = window.location.search.substring(1).toLowerCase().split('&');
-  for (var i = 0; i < vars.length; i++) {
-    var pair = vars[i].split('=');
-    if (decodeURIComponent(pair[0]) == variable) return decodeURIComponent(pair[1]);
-    }
-  }
-
+  sPar(g32,0);sPar(g33,0);sPar(g34,0);
   window.onresize=function(){
     movep(bg,[0,0,1,1]);
     movep(t1,[.01, .01, .98, .045]);
@@ -266,12 +258,10 @@ function qs(variable) {
     movep(g32,[.01, .06, .98, .9]);
     movep(g33,[.02,.08,.16,.4]);
     movep(g34,[.179,.08,.30,.4]);
-
+    refreshall();
     };window.onresize();
-
-  loaddata();
+  loadData();
   }
-
 
 </script>
 </head>
