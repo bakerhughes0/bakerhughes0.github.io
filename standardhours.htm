@@ -7,12 +7,12 @@
 
 
 //23Q4
-var target_machining = 6500;
-var target_welding = 1000;
-var target_globes = 1550;
-var target_levels = 800;
-var target_standard = 2400;
-var target_painting = 1300;
+var target_machining = 7370;
+var target_welding = 1134;
+var target_globes = 1758;
+var target_levels = 907;
+var target_standard = 2052+669;
+var target_painting = 1474;
 var target_gscm = target_machining +target_welding+target_painting+target_standard+target_globes+target_levels;
 
 function refreshall(){
@@ -29,94 +29,133 @@ function loadData(){
   document.head.appendChild(js);    
   js.onload = function(){ 
     sTxt(timstp,'Update : ' + tm);
-    for(var n=0;n<6;n++){
+    for(var n=0;n<7;n++){
       gfx34.options.data[n].dataPoints=[];
       gfx35.options.data[n].dataPoints=[];
       gfx36.options.data[n].dataPoints=[];
       gfx37.options.data[n].dataPoints=[];
       gfx38.options.data[n].dataPoints=[];
       gfx39.options.data[n].dataPoints=[];
+      }
+    for(var n=0;n<12;n++){
       gfx40.options.data[n].dataPoints=[];
       }
+
     var thisWeek = isoWeek(new Date()).slice(4,7);
-    for(var n=0, cum=0;n<g34_0.length;n++){
+    for(var n=0, cum=0, cum2=0;n<g34_0.length;n++){
       g34_0[n]=g34_0[n].slice(2,5); //remove year in labels
-      gfx34.options.data[0].dataPoints.push({label:g34_0[n], y:g34_1[n]});
-      gfx34.options.data[1].dataPoints.push({y:g34_2[n]});
-      gfx34.options.data[2].dataPoints.push({y:g34_3[n]});
-      gfx34.options.data[3].dataPoints.push({y:g34_4[n]});
-      gfx34.options.data[4].dataPoints.push({y:g34_5[n]});
+      gfx34.options.data[0].dataPoints.push({label:g34_0[n], y:g34b_1[n]});
+      gfx34.options.data[1].dataPoints.push({y:g34b_2[n]});
+      gfx34.options.data[2].dataPoints.push({y:g34b_3[n]});
+      gfx34.options.data[3].dataPoints.push({y:g34b_4[n]});
+      gfx34.options.data[4].dataPoints.push({y:g34b_5[n]});
       cum+=g34_1[n]+g34_2[n]+g34_3[n]+g34_4[n]+g34_5[n];
-      if(g34_0[n]<=thisWeek){ gfx34.options.data[5].dataPoints.push({y:cum}); }
+      cum2+=g34b_1[n]+g34b_2[n]+g34b_3[n]+g34b_4[n]+g34b_5[n];
+      if(g34_0[n]<=thisWeek){ 
+        gfx34.options.data[5].dataPoints.push({y:cum2});
+        gfx34.options.data[6].dataPoints.push({y:cum});
+        }
       }
     var target = target_machining;
-    gfx34.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
-    for(var n=0, cum=0;n<g34_0.length;n++){
-      gfx35.options.data[0].dataPoints.push({label:g34_0[n], y:g35_1[n]});
-      gfx35.options.data[1].dataPoints.push({y:g35_2[n]});
-      gfx35.options.data[2].dataPoints.push({y:g35_3[n]});
-      gfx35.options.data[3].dataPoints.push({y:g35_4[n]});
-      gfx35.options.data[4].dataPoints.push({y:g35_5[n]});
+    gfx34.options.data[7].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
+    for(var n=0, cum=0, cum2=0;n<g34_0.length;n++){
+      gfx35.options.data[0].dataPoints.push({label:g34_0[n], y:g35b_1[n]});
+      gfx35.options.data[1].dataPoints.push({y:g35b_2[n]});
+      gfx35.options.data[2].dataPoints.push({y:g35b_3[n]});
+      gfx35.options.data[3].dataPoints.push({y:g35b_4[n]});
+      gfx35.options.data[4].dataPoints.push({y:g35b_5[n]});
       cum+=g35_1[n]+g35_2[n]+g35_3[n]+g35_4[n]+g35_5[n];
-      if(g34_0[n]<=thisWeek){ gfx35.options.data[5].dataPoints.push({y:cum}); }
+      cum2+=g35b_1[n]+g35b_2[n]+g35b_3[n]+g35b_4[n]+g35b_5[n];
+      if(g34_0[n]<=thisWeek){ 
+        gfx35.options.data[5].dataPoints.push({y:cum2});
+        gfx35.options.data[6].dataPoints.push({y:cum});
+        }
       }
     var target = target_welding;
-    gfx35.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
-    for(var n=0, cum=0;n<g34_0.length;n++){
-      gfx36.options.data[0].dataPoints.push({label:g34_0[n], y:g36_1[n]});
-      gfx36.options.data[1].dataPoints.push({y:g36_2[n]});
-      gfx36.options.data[2].dataPoints.push({y:g36_3[n]});
-      gfx36.options.data[3].dataPoints.push({y:g36_4[n]});
-      gfx36.options.data[4].dataPoints.push({y:g36_5[n]});
+    gfx35.options.data[7].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
+    for(var n=0, cum=0, cum2=0;n<g34_0.length;n++){
+      gfx36.options.data[0].dataPoints.push({label:g34_0[n], y:g36b_1[n]});
+      gfx36.options.data[1].dataPoints.push({y:g36b_2[n]});
+      gfx36.options.data[2].dataPoints.push({y:g36b_3[n]});
+      gfx36.options.data[3].dataPoints.push({y:g36b_4[n]});
+      gfx36.options.data[4].dataPoints.push({y:g36b_5[n]});
       cum+=g36_1[n]+g36_2[n]+g36_3[n]+g36_4[n]+g36_5[n];
-      if(g34_0[n]<=thisWeek){ gfx36.options.data[5].dataPoints.push({y:cum}); }
+      cum2+=g36b_1[n]+g36b_2[n]+g36b_3[n]+g36b_4[n]+g36b_5[n];
+      if(g34_0[n]<=thisWeek){ 
+        gfx36.options.data[5].dataPoints.push({y:cum2});
+        gfx36.options.data[6].dataPoints.push({y:cum});
+        }
       }
     var target = target_painting;
-    gfx36.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
-    for(var n=0, cum=0;n<g34_0.length;n++){
-      gfx37.options.data[0].dataPoints.push({label:g34_0[n], y:g37_1[n]});
-      gfx37.options.data[1].dataPoints.push({y:g37_2[n]});
-      gfx37.options.data[2].dataPoints.push({y:g37_3[n]});
-      gfx37.options.data[3].dataPoints.push({y:g37_4[n]});
-      gfx37.options.data[4].dataPoints.push({y:g37_5[n]});
+    gfx36.options.data[7].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
+    for(var n=0, cum=0, cum2=0;n<g34_0.length;n++){
+      gfx37.options.data[0].dataPoints.push({label:g34_0[n], y:g37b_1[n]});
+      gfx37.options.data[1].dataPoints.push({y:g37b_2[n]});
+      gfx37.options.data[2].dataPoints.push({y:g37b_3[n]});
+      gfx37.options.data[3].dataPoints.push({y:g37b_4[n]});
+      gfx37.options.data[4].dataPoints.push({y:g37b_5[n]});
       cum+=g37_1[n]+g37_2[n]+g37_3[n]+g37_4[n]+g37_5[n];
-      if(g34_0[n]<=thisWeek){ gfx37.options.data[5].dataPoints.push({y:cum}); }
+      cum2+=g37b_1[n]+g37b_2[n]+g37b_3[n]+g37b_4[n]+g37b_5[n];
+      if(g34_0[n]<=thisWeek){ 
+        gfx37.options.data[5].dataPoints.push({y:cum2});
+        gfx37.options.data[6].dataPoints.push({y:cum});
+        }
       }
     var target = target_standard;
-    gfx37.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
-    for(var n=0, cum=0;n<g34_0.length;n++){
-      gfx38.options.data[0].dataPoints.push({label:g34_0[n], y:g38_1[n]});
-      gfx38.options.data[1].dataPoints.push({y:g38_2[n]});
-      gfx38.options.data[2].dataPoints.push({y:g38_3[n]});
-      gfx38.options.data[3].dataPoints.push({y:g38_4[n]});
-      gfx38.options.data[4].dataPoints.push({y:g38_5[n]});
+    gfx37.options.data[7].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
+    for(var n=0, cum=0, cum2=0;n<g34_0.length;n++){
+      gfx38.options.data[0].dataPoints.push({label:g34_0[n], y:g38b_1[n]});
+      gfx38.options.data[1].dataPoints.push({y:g38b_2[n]});
+      gfx38.options.data[2].dataPoints.push({y:g38b_3[n]});
+      gfx38.options.data[3].dataPoints.push({y:g38b_4[n]});
+      gfx38.options.data[4].dataPoints.push({y:g38b_5[n]});
       cum+=g38_1[n]+g38_2[n]+g38_3[n]+g38_4[n]+g38_5[n];
-      if(g34_0[n]<=thisWeek){ gfx38.options.data[5].dataPoints.push({y:cum}); }
+      cum2+=g38b_1[n]+g38b_2[n]+g38b_3[n]+g38b_4[n]+g38b_5[n];
+      if(g34_0[n]<=thisWeek){ 
+        gfx38.options.data[5].dataPoints.push({y:cum2});
+        gfx38.options.data[6].dataPoints.push({y:cum});
+        }
       }
     var target = target_globes;
-    gfx38.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
-    for(var n=0, cum=0;n<g34_0.length;n++){
-      gfx39.options.data[0].dataPoints.push({label:g34_0[n], y:g39_1[n]});
-      gfx39.options.data[1].dataPoints.push({y:g39_2[n]});
-      gfx39.options.data[2].dataPoints.push({y:g39_3[n]});
-      gfx39.options.data[3].dataPoints.push({y:g39_4[n]});
-      gfx39.options.data[4].dataPoints.push({y:g39_5[n]});
+    gfx38.options.data[7].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
+    for(var n=0, cum=0, cum2=0;n<g34_0.length;n++){
+      gfx39.options.data[0].dataPoints.push({label:g34_0[n], y:g39b_1[n]});
+      gfx39.options.data[1].dataPoints.push({y:g39b_2[n]});
+      gfx39.options.data[2].dataPoints.push({y:g39b_3[n]});
+      gfx39.options.data[3].dataPoints.push({y:g39b_4[n]});
+      gfx39.options.data[4].dataPoints.push({y:g39b_5[n]});
       cum+=g39_1[n]+g39_2[n]+g39_3[n]+g39_4[n]+g39_5[n];
-      if(g34_0[n]<=thisWeek){ gfx39.options.data[5].dataPoints.push({y:cum}); }
+      cum2+=g39b_1[n]+g39b_2[n]+g39b_3[n]+g39b_4[n]+g39b_5[n];
+      if(g34_0[n]<=thisWeek){ 
+        gfx39.options.data[5].dataPoints.push({y:cum2});
+        gfx39.options.data[6].dataPoints.push({y:cum});
+        }
       }
     var target = target_levels;
-    gfx39.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
-    for(var n=0, cum=0;n<g34_0.length;n++){
-      gfx40.options.data[0].dataPoints.push({label:g34_0[n], y:g34_1[n]+g35_1[n]+g36_1[n]+g37_1[n]+g38_1[n]+g39_1[n]+g40_1[n]});
-      gfx40.options.data[1].dataPoints.push({y:g34_2[n]+g35_2[n]+g36_2[n]+g37_2[n]+g38_2[n]+g39_2[n]+g40_2[n]});
-      gfx40.options.data[2].dataPoints.push({y:g34_3[n]+g35_3[n]+g36_3[n]+g37_3[n]+g38_3[n]+g39_3[n]+g40_3[n]});
-      gfx40.options.data[3].dataPoints.push({y:g34_4[n]+g35_4[n]+g36_4[n]+g37_4[n]+g38_4[n]+g39_4[n]+g40_4[n]});
-      gfx40.options.data[4].dataPoints.push({y:g34_5[n]+g35_5[n]+g36_5[n]+g37_5[n]+g38_5[n]+g39_5[n]+g40_5[n]});
+    gfx39.options.data[7].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
+
+
+    for(var n=0, cum=0, cum2=0;n<g34_0.length;n++){
+      gfx40.options.data[0].dataPoints.push({label:g34_0[n], y:g34b_1[n]-g34_1[n]+g35b_1[n]-g35_1[n]+g36b_1[n]-g36_1[n]+g37b_1[n]-g37_1[n]+g38b_1[n]-g38_1[n]+g39b_1[n]-g39_1[n]+g40b_1[n]-g40_1[n]});
+      gfx40.options.data[1].dataPoints.push({y:g34_1[n]+g35_1[n]+g36_1[n]+g37_1[n]+g38_1[n]+g39_1[n]+g40_1[n]});
+      gfx40.options.data[2].dataPoints.push({label:g34_0[n], y:g34b_2[n]-g34_2[n]+g35b_2[n]-g35_2[n]+g36b_2[n]-g36_2[n]+g37b_2[n]-g37_2[n]+g38b_2[n]-g38_2[n]+g39b_2[n]-g39_2[n]+g40b_2[n]-g40_2[n]});
+      gfx40.options.data[3].dataPoints.push({y:g34_2[n]+g35_2[n]+g36_2[n]+g37_2[n]+g38_2[n]+g39_2[n]+g40_2[n]});
+      gfx40.options.data[4].dataPoints.push({label:g34_0[n], y:g34b_3[n]-g34_3[n]+g35b_3[n]-g35_3[n]+g36b_3[n]-g36_3[n]+g37b_3[n]-g37_3[n]+g38b_3[n]-g38_3[n]+g39b_3[n]-g39_3[n]+g40b_3[n]-g40_3[n]});
+      gfx40.options.data[5].dataPoints.push({y:g34_3[n]+g35_3[n]+g36_3[n]+g37_3[n]+g38_3[n]+g39_3[n]+g40_3[n]});
+      gfx40.options.data[6].dataPoints.push({label:g34_0[n], y:g34b_4[n]-g34_4[n]+g35b_4[n]-g35_4[n]+g36b_4[n]-g36_4[n]+g37b_4[n]-g37_4[n]+g38b_4[n]-g38_4[n]+g39b_4[n]-g39_4[n]+g40b_4[n]-g40_4[n]});
+      gfx40.options.data[7].dataPoints.push({y:g34_4[n]+g35_4[n]+g36_4[n]+g37_4[n]+g38_4[n]+g39_4[n]+g40_4[n]});
+      gfx40.options.data[8].dataPoints.push({label:g34_0[n], y:g34b_5[n]-g34_5[n]+g35b_5[n]-g35_5[n]+g36b_5[n]-g36_5[n]+g37b_5[n]-g37_5[n]+g38b_5[n]-g38_5[n]+g39b_5[n]-g39_5[n]+g40b_5[n]-g40_5[n]});
+      gfx40.options.data[9].dataPoints.push({y:g34_5[n]+g35_5[n]+g36_5[n]+g37_5[n]+g38_5[n]+g39_5[n]+g40_5[n]});
+
       cum+=g34_1[n]+g35_1[n]+g36_1[n]+g37_1[n]+g38_1[n]+g39_1[n]+g40_1[n]+g34_2[n]+g35_2[n]+g36_2[n]+g37_2[n]+g38_2[n]+g39_2[n]+g40_2[n]+g34_3[n]+g35_3[n]+g36_3[n]+g37_3[n]+g38_3[n]+g39_3[n]+g40_3[n]+g34_4[n]+g35_4[n]+g36_4[n]+g37_4[n]+g38_4[n]+g39_4[n]+g40_4[n]+g34_5[n]+g35_5[n]+g36_5[n]+g37_5[n]+g38_5[n]+g39_5[n]+g40_5[n];
-      if(g34_0[n]<=thisWeek){ gfx40.options.data[5].dataPoints.push({y:cum}); }
+      cum2+=g34b_1[n]+g35b_1[n]+g36b_1[n]+g37b_1[n]+g38b_1[n]+g39b_1[n]+g40b_1[n]+g34b_2[n]+g35b_2[n]+g36b_2[n]+g37b_2[n]+g38b_2[n]+g39b_2[n]+g40b_2[n]+g34b_3[n]+g35b_3[n]+g36b_3[n]+g37b_3[n]+g38b_3[n]+g39b_3[n]+g40b_3[n]+g34b_4[n]+g35b_4[n]+g36b_4[n]+g37b_4[n]+g38b_4[n]+g39b_4[n]+g40b_4[n]+g34b_5[n]+g35b_5[n]+g36b_5[n]+g37b_5[n]+g38b_5[n]+g39b_5[n]+g40b_5[n];
+      if(g34_0[n]<=thisWeek){ 
+        gfx40.options.data[10].dataPoints.push({y:cum2});
+        gfx40.options.data[11].dataPoints.push({y:cum});
+        }
       }
     var target = target_gscm;
-    gfx40.options.data[6].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
+    gfx40.options.data[12].dataPoints=[{x:0,y:target/g34_0.length},{x:g34_0.length-1,y:target}];
     sTxt(t2,data.q_name);
     refreshall()
     }
@@ -134,16 +173,18 @@ window.onload=function(){
   for(var n=0; n<7; n++){g[n] = new gfxbox();}
 
   var axeY_1 = [{  labelFontColor: "#eee", labelFontFamily: 'Arial',
-    labelAngle: -90},{title: "Standard hours", titleFontColor: "#eee", titleFontSize:12, labelFontColor: "#175", labelFontFamily: 'Arial', labelAngle: -90}];
+    labelAngle: -90},{title: "Hours", titleFontColor: "#eee", titleFontSize:12, labelFontColor: "#175", labelFontFamily: 'Arial', labelAngle: -90}];
   var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -72, labelFontFamily: 'Arial'}
   var leg_1 = {horizontalAlign: "center", verticalAlign: "bottom", labelFontFamily: 'Arial', fontColor: "#ddd"}
   var ttip1 = {shared: true, content: toolTipContentWQ};
+  var ttip2 = {shared: true, content: toolTipContentQ};
 
   gfx34 = new CanvasJS.Chart(g[0], {
   animationEnabled: true,
   animationDuration: 500,
   title: {text: "MACHINING", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   axisY:axeY_1,
   axisX:axeX_1,
   toolTip: ttip1,
@@ -153,9 +194,9 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1 },
-    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
-
+    { type: "line", name: "Cumulative Std.h", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", name:"Labor only", markerType:'null', color:"#8A6", dataPoints: [], axisYIndex: 1  },
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: [], axisYIndex: 1},
     ]
   }); 
   gfx35 = new CanvasJS.Chart(g[1], {
@@ -163,6 +204,7 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "WELDING", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   axisY:axeY_1,
   axisX:axeX_1,
   toolTip: ttip1,
@@ -172,8 +214,9 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1 },
-    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
+    { type: "line", name: "Cumulative Std.h", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", name:"Labor only", markerType:'null', color:"#8A6", dataPoints: [], axisYIndex: 1  },
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: [], axisYIndex: 1},
     ]
   }); 
   gfx36 = new CanvasJS.Chart(g[2], {
@@ -181,6 +224,7 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "PAINTING", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   axisY:axeY_1,
   axisX:axeX_1,
   toolTip: ttip1,
@@ -190,8 +234,9 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1 },
-    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
+    { type: "line", name: "Cumulative Std.h", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", name:"Labor only", markerType:'null', color:"#8A6", dataPoints: [], axisYIndex: 1  },
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: [], axisYIndex: 1},
     ]
   }); 
   gfx37 = new CanvasJS.Chart(g[3], {
@@ -199,6 +244,7 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "ASSEMBLY STANDARD", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   axisY:axeY_1,
   axisX:axeX_1,
   toolTip: ttip1,
@@ -208,8 +254,9 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1 },
-    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
+    { type: "line", name: "Cumulative Std.h", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", name:"Labor only", markerType:'null', color:"#8A6", dataPoints: [], axisYIndex: 1  },
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: [], axisYIndex: 1},
     ]
   }); 
   gfx38 = new CanvasJS.Chart(g[4], {
@@ -217,6 +264,7 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "ASSEMBLY GLOBES", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   axisY:axeY_1,
   axisX:axeX_1,
   toolTip: ttip1,
@@ -226,8 +274,9 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1 },
-    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
+    { type: "line", name: "Cumulative Std.h", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", name:"Labor only", markerType:'null', color:"#8A6", dataPoints: [], axisYIndex: 1  },
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: [], axisYIndex: 1},
     ]
   }); 
   gfx39 = new CanvasJS.Chart(g[5], {
@@ -235,6 +284,7 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "ASSEMBLY LEVELS", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   axisY:axeY_1,
   axisX:axeX_1,
   toolTip: ttip1,
@@ -244,8 +294,9 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1 },
-    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1},
+    { type: "line", name: "Cumulative Std.h", color: "#076",  dataPoints: [], axisYIndex: 1 },
+    { type: "line", name:"Labor only", markerType:'null', color:"#8A6", dataPoints: [], axisYIndex: 1  },
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: [], axisYIndex: 1},
     ]
   }); 
   gfx40 = new CanvasJS.Chart(g[6], {
@@ -253,18 +304,25 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "GSCM TOTAL", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
   backgroundColor: null,
+  dataPointMaxWidth: 24,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
-  toolTip: ttip1,
+  toolTip: ttip2,
   data: [              
-    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
-    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
-    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
-    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
-    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name: "Quarter Total", color: "#076",  dataPoints: [], axisYIndex: 1,showInLegend:true, },
-    { type: "line", lineDashType: "dash",markerType: "none", name: "Target", color: '#bb4',  dataPoints: [], axisYIndex: 1,showInLegend:true, },
+    { type: "stackedColumn", name: "Mon Setup", color: 'rgba(240,240,20,.7)', dataPoints: [] },
+    { type: "stackedColumn", name: "Mon Labour", color: "#8B9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue Setup", color: 'rgba(240,240,20,.7)', dataPoints: []},
+    { type: "stackedColumn", name: "Tue Labour", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed Setup", color: 'rgba(240,240,20,.7)',  dataPoints: []},
+    { type: "stackedColumn", name: "Wed Labour", color: "#8B9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu Setup", color: 'rgba(240,240,20,.7)', dataPoints: []},
+    { type: "stackedColumn", name: "Thu Labour", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri Setup", color: 'rgba(240,240,20,.7)',  dataPoints: []},
+    { type: "stackedColumn", name: "Fri Labour", color: "#8B9",  dataPoints: [] },
+    { type: "line", name: "Cumulative Std.h", color: "#076",  dataPoints: [], axisYIndex: 1,showInLegend:true },
+    { type: "line", name:"Labor only", markerType:'null', color:"#8A6", dataPoints: [], axisYIndex: 1,showInLegend:true  },
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: [], axisYIndex: 1,showInLegend:true},
     ]
   }); 
   window.onresize=function(){
@@ -293,6 +351,23 @@ function toolTipContentWQ(e) {
         var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtRnd2(e.entries[i].dataPoint.y)+"</strong><br/>";
         str = str.concat(str1);
         if(i==4){
+            var  str1 = "<span style= \"color:'#222'\"> "+'Week Total'+"</span>: <strong>"+fmtRnd2(total)+"</strong><br/>";
+            str = str.concat(str1);
+            }
+        }
+	str2 = "<span style = \"color:Black;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
+	return (str2.concat(str));
+  } 
+
+function toolTipContentQ(e) {
+    var str = "";
+    var total = 0;
+    var str2;
+    for (var i = 0; i < e.entries.length; i++){
+        total += e.entries[i].dataPoint.y
+        var  str1 = "<span style= \"color:'#000'\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtRnd2(e.entries[i].dataPoint.y)+"</strong><br/>";
+        str = str.concat(str1);
+        if(i==9){
             var  str1 = "<span style= \"color:'#222'\"> "+'Week Total'+"</span>: <strong>"+fmtRnd2(total)+"</strong><br/>";
             str = str.concat(str1);
             }

@@ -66,58 +66,47 @@ function loadData(){
   document.head.appendChild(js);  
   js.onload = function(){ 
     sTxt(t1, 'CONDE MATERIALS KPI - SHIPPING');
-    for(var n=0;qship.dates[n]<today;n++){}
-    daysleft=qship.dates.length-n;
-    var daysservices = shppar.qsrev / daysleft;
-    var max=0;
+    var max=0, daysleft=0;
+    var cumP=0, cumA=0, cumT=0;
     for(var n=0;n<3;n++){gfx32.options.data[n].dataPoints=[];}
-    for(var n=0, cum=0;n<qship.dates.length;n++){
-      cum+=qship.Pamount[n];
-      gfx32.options.data[0].dataPoints.push(qship.dates[n]<=today ? {label:qship.dates[n],y:cum} : {label:qship.dates[n],y:null});
+    for(var n=0;n<qship.dates.length;n++){
+      cumP+=qship.Pamount[n];
+      cumA+=qship.Aamount[n];
+      cumT+=qship.prev[n];
+      gfx32.options.data[0].dataPoints.push(qship.dates[n]<=today ? {label:qship.dates[n],y:cumP} : {label:qship.dates[n],y:null});
+      gfx32.options.data[1].dataPoints.push(qship.dates[n]<=today ? {y:cumA} : {y:null});
+      if(qship.dates[n]>=today) daysleft++;
       }
-    for(var n=0, cum2=0;n<qship.dates.length;n++){
-      cum2+=qship.Aamount[n];
-      gfx32.options.data[1].dataPoints.push(qship.dates[n]<=today ? {y:cum2} : {y:null});
+    if(cumP+cumA>max) max=cumP+cumA;
+    offset_per_day = (shppar.qtarg-(cumP+cumA+cumT))/(daysleft);
+    for(var n=0, cumT=cumP+cumA;n<qship.dates.length;n++){
+      cumT+=qship.prev[n]
+      if(qship.dates[n]>=today) cumT+= offset_per_day;
+      gfx32.options.data[2].dataPoints.push(qship.dates[n]<today ? {y:null} : {label:qship.dates[n],y:cumT});
       }
-    if(cum+cum2>max) max=cum+cum2;
-    for(var n=0, cum=0;n<qship.dates.length;n++){
-      cum+=qship.prev[n]+qship.Pamount[n]+qship.Aamount[n]+daysservices;
-      if(qship.dates[n]<today){
-        gfx32.options.data[2].dataPoints.push({y:null});
-        }else{
-        gfx32.options.data[2].dataPoints.push({label:qship.dates[n],y:cum});
-        }
-      }
-    if(cum>max) max=cum;
+    if(cumT>max) max=cumT;
     gfx32.options.axisY2.maximum=max;
 
-    var max=0
     for(var n=0;n<3;n++){gfx33.options.data[n].dataPoints=[];}
-    for(var n=0, cum=0;n<qship.dates.length;n++){
+    cumP=0,cumA=0,cumT=0;
+    for(var n=0; n<qship.dates.length;n++){
       if(isoWeek(new Date(qship.dates[n]))==currentWeek){
-        cum+=qship.Pamount[n];
-        gfx33.options.data[0].dataPoints.push(qship.dates[n]<=today ? {label:qship.dates[n],y:cum} : {label:qship.dates[n],y:null});
-        }
-      }
-    for(var n=0, cum2=0;n<qship.dates.length;n++){
-      if(isoWeek(new Date(qship.dates[n]))==currentWeek){
-        cum2+=qship.Aamount[n];
-        gfx33.options.data[1].dataPoints.push(qship.dates[n]<=today ? {label:qship.dates[n],y:cum2} : {label:qship.dates[n],y:null});
-        }
-      }
-    if(cum+cum2>max) max=cum+cum2;
-    for(var n=0, cum=0;n<qship.dates.length;n++){
-      if(isoWeek(new Date(qship.dates[n]))==currentWeek){
-        cum+=qship.prev[n]+qship.Pamount[n]+qship.Aamount[n]+daysservices;
-        if(qship.dates[n]<today){
-          gfx33.options.data[2].dataPoints.push({y:null});
+        cumP+=qship.Pamount[n];
+        cumA+=qship.Aamount[n];
+        cumT+=qship.prev[n];
+        if(qship.dates[n]<=today) {
+          gfx33.options.data[0].dataPoints.push({label:qship.dates[n],y:cumP});
+          gfx33.options.data[1].dataPoints.push({y:cumA});
           }else{
-          gfx33.options.data[2].dataPoints.push({label:qship.dates[n],y:cum});
+          gfx33.options.data[0].dataPoints.push({label:qship.dates[n],y:null});
           }
         }
       }
-    if(cum>max) max=cum;
-    gfx33.options.axisY.maximum=max;
+   var dayprev=(cumP+cumA+cumT)/5
+   for(var n=0, cumT=0; n<5;n++){
+     cumT+=dayprev;
+     gfx33.options.data[2].dataPoints.push({label:gfx33.options.data[0].dataPoints[n].label, y:cumT});
+     }
 
     gfx34.options.data[0].dataPoints=[];
     gfx34.options.data[1].dataPoints=[];
@@ -134,8 +123,6 @@ function loadData(){
     }
   setTimeout(loadData, 60000); 
   }; 
-
-
 
 
 window.onload=function(){
