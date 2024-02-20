@@ -7,7 +7,7 @@
 
 function refreshall(){
   gfx0.render();gfx1.render();gfx2.render();gfx3.render();
-
+  gfx4.render();
   gfx5.render();gfx6.render();gfx7.render();gfx8.render();
 
   }
@@ -83,6 +83,13 @@ function loadData(){
       gfx3.options.data[0].dataPoints.push({label:omeb.dates[n], y:omeb.ages[n][0]})
       for(var i=1;i<5;i++){
         gfx3.options.data[i].dataPoints.push({y:omeb.ages[n][i]})
+        }
+      }
+    for(var n=0;n<4;n++){ gfx4.options.data[n].dataPoints=[];} 
+    for(var n=0;n<prdovd.dates.length;n++){
+      gfx4.options.data[0].dataPoints.push({label:prdovd.dates[n], y:prdovd.ovd[n][0]})
+      for(var i=1;i<4;i++){
+        gfx4.options.data[i].dataPoints.push({label:prdovd.dates[n], y:prdovd.ovd[n][i]})
         }
       }
     refreshall();
@@ -231,6 +238,42 @@ window.onload=function(){
     ]
   });
 
+  gfx4 = new CanvasJS.Chart(g[4], {
+  animationEnabled: true,
+  animationDuration: 1500,
+  title: {text: "OVERDUE ITEMS", fontColor:"#ddd",fontFamily: 'Arial',fontSize:16},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee"
+    },
+  axisY:{
+    title: "Line Items",
+    titleFontColor: "#eee",
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    },
+  axisX:{
+    labelFontColor: "#eee",
+    interval: 1,
+    labelAngle: -36,
+    labelFontFamily: 'Arial',
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "stackedColumn", name: "Camflex", showInLegend: true,color:"#f69",  dataPoints: [] },
+    { type: "stackedColumn", name: "Varipak", showInLegend: true,color:"#888",  dataPoints: [] },
+    { type: "stackedColumn", name: "Globes", showInLegend: true,color:"#900",  dataPoints: [] },
+    { type: "stackedColumn", name: "Levels", showInLegend: true,color:"#00C",  dataPoints: [] },
+    ]
+  });
+
+
+
+
   gfx5 = new CanvasJS.Chart(g[5], {
   animationEnabled: true,
   animationDuration: 500,
@@ -297,7 +340,7 @@ window.onload=function(){
     movep(t1,[.01, .01, .98, .045]);
     movep(t2,[.01, .01, .98, .045]);
     movep(timstp,[.01, .97, 1, .03]);
-    pos = [0, 2, 3, 1, 7, 8,9,10,11];
+    pos = [0, 2, 3, 1, 4, 8,9,10,11];
     for(var n=0; n<9; n++){
       x = pos[n] % 4;
       y = Math.floor(pos[n]/4);

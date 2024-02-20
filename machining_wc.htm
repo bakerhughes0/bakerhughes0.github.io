@@ -1,0 +1,134 @@
+<html>
+<head>
+<script type=text/javascript src=js/func.js?v=001></script>
+<script type=text/javascript src=js/canvasjs.min.js?v=007></script>
+<script type=text/javascript src=module.js?v=003></script>
+<script type=text/javascript>
+
+function refreshall(){
+  gfx27.render();
+  }
+
+function gfxBlk(){
+  var o = new xDiv();
+  sBrW(o,[1]);
+  sBrC(o,['#486']);
+  sBrR(o,[8]);
+  sBkL(o,100,'#243 30%, #222 100%');
+  sOpa(o,.88);
+  return o;
+  }
+
+function fmtCur2(num) {
+ var a=parseFloat(num).toFixed(0);
+ return a.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
+ }
+
+function toolTipContent6(e) {
+  var str = "";
+  var total = 0;
+  var str2, str3;
+  for (var i = 0; i < e.entries.length; i++){
+    var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+e.entries[i].dataPoint.y+"</strong><br/>";
+    if(e.entries[i].dataSeries.name!='Target' && e.entries[i].dataSeries.name!='Capacity'){	
+      total = e.entries[i].dataPoint.y + total;
+      }
+    str = str.concat(str1);
+    }
+  str2 = "<span style = \"color:DodgerBlue;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
+  total = Math.round(total * 100) / 100;
+  str3 = "<span style = \"color:Tomato\">Total:</span><strong> "+total+"</strong><br/>";
+  return (str2.concat(str)).concat(str3);
+  } 
+
+function loadData(){
+  var d = new Date();
+  var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
+  var today=isoDate(d), currentWeek=isoWeek(d);
+  var js = document.createElement('script');
+  js.type='text/javascript';
+  js.src="kpi.js" + "?d=" + sd;
+  document.head.appendChild(js);  
+  js.onload = function(){ 
+    sTxt(t1, 'CONDE MATERIALS KPI - PRODUCTION CONTROL');
+    sTxt(t2, 'MACHINING CAPACITY')
+    sTxt(timstp,'Update : ' + tm);
+    gfx27.options.data[0].dataPoints=gfx27_d1.reverse();
+    gfx27.options.data[1].dataPoints=gfx27_d2.reverse();
+    gfx27.options.data[2].dataPoints=gfx27_d3.reverse();
+    gfx27.options.data[3].dataPoints=gfx27_d4.reverse();
+    gfx27.options.data[4].dataPoints=gfx27_d5.reverse();
+    gfx27.options.data[5].dataPoints=gfx27_d6.reverse();
+    refreshall()
+    }
+  setTimeout(loadData, 60000); 
+  }; 
+
+
+window.onload=function(){
+  var bg = new background();
+  t1=new xLab();sPar(t1,0);sFtC(t1,'#ccc');move(t1,[10,10,800,30]);
+  t2=new xLab();sPar(t2,0);sFtC(t2,'#ccc');move(t2,[scrW()-210,10,200,30]);sFtA(t2,'right');
+  timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
+
+  g27 = new gfxBlk(); g27.id="g27"
+  gfx27 = new CanvasJS.Chart(g27, {
+  animationEnabled: true,
+  animationDuration: 2500,
+  title: {text: "WORKCENTERS CAPACITIES / 6 WEEKS PLAN", fontColor:"#ddd",fontFamily: 'Arial',fontSize: 18,},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  legend: {
+    horizontalAlign: "center",
+    verticalAlign: "bottom",
+    labelFontFamily: 'Arial',
+    fontColor: "#eee",
+    },
+  axisX:{
+    lineColor:'#ccc', lineThickness: 1,
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    interval: 1,
+    labelFontSize: 10,
+    //labelAngle: -80,
+    },
+  axisY:{
+    title:"Standard hours",
+    titleFontColor: "#eee",
+    lineColor:'#ccc', lineThickness: 1,
+    gridColor:'#ccc', gridThickness: 1,
+    labelFontColor: "#eee",
+    labelFontFamily: 'Arial',
+    labelFontSize: 12,
+    titleFontFamily: 'Arial',
+    titleFontSize: 12,
+    minimum: 0
+    },
+  toolTip: {shared: true, content: toolTipContent6},
+  data: [              
+    { type: "stackedBar", name: "S", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "stackedBar", name: "S+1", indexLabelFontColor:'#eee', color:"#586", dataPoints: [] },
+    { type: "stackedBar", name: "S+2", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "stackedBar", name: "S+3", indexLabelFontColor:'#eee', color:"#586", dataPoints: [] },
+    { type: "stackedBar", name: "S+4", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "stackedBar", name: "S+5", indexLabelFontColor:'#eee', color:"#586", dataPoints: [] },
+    ]
+  }); 
+  sPar(g27,0);
+
+  window.onresize=function(){
+    movep(bg,[0,0,1,1]);
+    movep(t1,[.01, .01, .98, .045]);
+    movep(t2,[.01, .01, .98, .045]);
+    movep(timstp,[.01, .97, 1, .03]);
+    movep(g27,[.01, .06, .98, .9]);
+    refreshall();
+    };window.onresize();
+  loadData();
+  }
+
+</script>
+</head>
+<body>
+</body>
+</html>

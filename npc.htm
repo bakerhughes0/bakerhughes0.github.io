@@ -23,64 +23,64 @@ function loadData(){
     gfx0.options.data[0].dataPoints=[];
     gfx0.options.data[1].dataPoints=[];
     for(var n=0; n<npc.dates.length; n++){
-      gfx0.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.engr[n][0]})
-      gfx0.options.data[1].dataPoints.push({y:npc.engr[n][1]})
+      gfx0.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.memach[n][0]})
+      gfx0.options.data[1].dataPoints.push({y:npc.memach[n][1]})
       }
     for(var i=0;i<5; i++){
       gfx1.options.data[i].dataPoints=[];
       for(var n=0; n<npc.dates.length; n++){
         if(i==0){
-          gfx1.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.engr_ovd[n][i]});
+          gfx1.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.memach_ovd[n][i]});
           }else{
-          gfx1.options.data[i].dataPoints.push({y:npc.engr_ovd[n][i]});
+          gfx1.options.data[i].dataPoints.push({y:npc.memach_ovd[n][i]});
           }
         }
       }
     gfx2.options.data[0].dataPoints=[];
     gfx2.options.data[1].dataPoints=[];
     for(var n=0; n<npc.dates.length; n++){
-      gfx2.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.rwkeng[n][0]})
-      gfx2.options.data[1].dataPoints.push({y:npc.rwkeng[n][1]})
+      gfx2.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.meass[n][0]})
+      gfx2.options.data[1].dataPoints.push({y:npc.meass[n][1]})
       }
     for(var i=0;i<5; i++){
       gfx3.options.data[i].dataPoints=[];
       for(var n=0; n<npc.dates.length; n++){
         if(i==0){
-          gfx3.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.rwkeng_ovd[n][i]});
+          gfx3.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.meass_ovd[n][i]});
           }else{
-          gfx3.options.data[i].dataPoints.push({y:npc.rwkeng_ovd[n][i]});
+          gfx3.options.data[i].dataPoints.push({y:npc.meass_ovd[n][i]});
           }
         }
       }
     gfx4.options.data[0].dataPoints=[];
     gfx4.options.data[1].dataPoints=[];
     for(var n=0; n<npc.dates.length; n++){
-      gfx4.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.plng[n][0]})
-      gfx4.options.data[1].dataPoints.push({y:npc.plng[n][1]})
+      gfx4.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.memachE[n][0]})
+      gfx4.options.data[1].dataPoints.push({y:npc.memachE[n][1]})
       }
     for(var i=0;i<5; i++){
       gfx5.options.data[i].dataPoints=[];
       for(var n=0; n<npc.dates.length; n++){
         if(i==0){
-          gfx5.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.plng_ovd[n][i]});
+          gfx5.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.memachE_ovd[n][i]});
           }else{
-          gfx5.options.data[i].dataPoints.push({y:npc.plng_ovd[n][i]});
+          gfx5.options.data[i].dataPoints.push({y:npc.memachE_ovd[n][i]});
           }
         }
       }
     gfx6.options.data[0].dataPoints=[];
     gfx6.options.data[1].dataPoints=[];
     for(var n=0; n<npc.dates.length; n++){
-      gfx6.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.me[n][0]})
-      gfx6.options.data[1].dataPoints.push({y:npc.me[n][1]})
+      gfx6.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.meassE[n][0]})
+      gfx6.options.data[1].dataPoints.push({y:npc.meassE[n][1]})
       }
     for(var i=0;i<5; i++){
       gfx7.options.data[i].dataPoints=[];
       for(var n=0; n<npc.dates.length; n++){
         if(i==0){
-          gfx7.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.me_ovd[n][i]});
+          gfx7.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.meassE_ovd[n][i]});
           }else{
-          gfx7.options.data[i].dataPoints.push({y:npc.me_ovd[n][i]});
+          gfx7.options.data[i].dataPoints.push({y:npc.meassE_ovd[n][i]});
           }
         }
       }
@@ -139,8 +139,10 @@ window.onload=function(){
   gfx0 = new CanvasJS.Chart(g[0], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "ENGINEERING", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "MANUFACT ENG.", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles: [{text: "Machining", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
@@ -153,8 +155,10 @@ window.onload=function(){
   gfx1 = new CanvasJS.Chart(g[1], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "ENGINEERING OVD AGE", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "MANUFACT ENG. OVD AGE", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles: [{text: "Machining", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
@@ -171,8 +175,10 @@ window.onload=function(){
   gfx2 = new CanvasJS.Chart(g[2], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "ENG. REWORK", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "MANUFACT ENG.", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles: [{text: "Assembly", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
@@ -185,8 +191,10 @@ window.onload=function(){
   gfx3 = new CanvasJS.Chart(g[3], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "ENG. REWORK OVD AGE", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "MANUFACT ENG. OVD AGE", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles: [{text: "Assembly", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
@@ -203,8 +211,10 @@ window.onload=function(){
   gfx4 = new CanvasJS.Chart(g[4], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "PLANNING", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "MANUFACT ENG.", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles: [{text: "Machining - NPC-ENG", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
@@ -217,8 +227,10 @@ window.onload=function(){
   gfx5 = new CanvasJS.Chart(g[5], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "PLANNING OVD AGE", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "MANUFACT ENG. OVD AGE", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles: [{text: "Machining - NPC-ENG", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
@@ -235,8 +247,10 @@ window.onload=function(){
   gfx6 = new CanvasJS.Chart(g[6], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "MANUFACT. ENG.", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "MANUFACT ENG.", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles: [{text: "Assembly - NPC-ENG", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
@@ -249,8 +263,10 @@ window.onload=function(){
   gfx7 = new CanvasJS.Chart(g[7], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "MANUFACT. ENG. OVD AGE", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "MANUFACT ENG. OVD AGE", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles: [{text: "Assembly - NPC-ENG", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
@@ -267,8 +283,9 @@ window.onload=function(){
   gfx8 = new CanvasJS.Chart(g[8], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "PROCUREMENT", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "PROCUREMENT", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
@@ -281,8 +298,9 @@ window.onload=function(){
   gfx9 = new CanvasJS.Chart(g[9], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "PROCUREMENT OVD AGE", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "PROCUREMENT OVD AGE", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
@@ -298,8 +316,9 @@ window.onload=function(){
   gfx10 = new CanvasJS.Chart(g[10], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "COSTING", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "COSTING", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
+  dataPointMaxWidth: 16,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
@@ -312,7 +331,9 @@ window.onload=function(){
   gfx11 = new CanvasJS.Chart(g[11], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "COSTING OVD AGE", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "COSTING OVD AGE", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
   backgroundColor: null,
   legend:leg_1,
   axisY:axeY_1,

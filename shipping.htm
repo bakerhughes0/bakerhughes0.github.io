@@ -93,7 +93,8 @@ function loadData(){
       if(isoWeek(new Date(qship.dates[n]))==currentWeek){
         cumP+=qship.Pamount[n];
         cumA+=qship.Aamount[n];
-        cumT+=qship.prev[n];
+        //cumT+=qship.prev[n];
+        //cumT+=(shppar.wtarg/5);
         if(qship.dates[n]<=today) {
           gfx33.options.data[0].dataPoints.push({label:qship.dates[n],y:cumP});
           gfx33.options.data[1].dataPoints.push({y:cumA});
@@ -102,7 +103,7 @@ function loadData(){
           }
         }
       }
-   var dayprev=(cumP+cumA+cumT)/5
+   var dayprev=shppar.wtarg/5
    for(var n=0, cumT=0; n<5;n++){
      cumT+=dayprev;
      gfx33.options.data[2].dataPoints.push({label:gfx33.options.data[0].dataPoints[n].label, y:cumT});
