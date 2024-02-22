@@ -53,12 +53,19 @@ function loadData(){
     sTxt(t1, 'CONDE MATERIALS KPI - PRODUCTION CONTROL');
     sTxt(t2, 'MACHINING CAPACITY')
     sTxt(timstp,'Update : ' + tm);
-    gfx27.options.data[0].dataPoints=gfx27_d1.reverse();
-    gfx27.options.data[1].dataPoints=gfx27_d2.reverse();
-    gfx27.options.data[2].dataPoints=gfx27_d3.reverse();
-    gfx27.options.data[3].dataPoints=gfx27_d4.reverse();
-    gfx27.options.data[4].dataPoints=gfx27_d5.reverse();
-    gfx27.options.data[5].dataPoints=gfx27_d6.reverse();
+  for(var n=0; n<4;n++){ gfx27.options.data[n].dataPoints=[]; };
+  var max1=0, max2=0;
+  for(var n=0; n<wc1.names.length;n++){
+    gfx27.options.data[0].dataPoints.push({label:wc1.names[n], y:wc1.cap[n]});
+    gfx27.options.data[1].dataPoints.push({y:wc1.w[n]});
+    gfx27.options.data[2].dataPoints.push({y:wc1.onhand[n]});
+    gfx27.options.data[3].dataPoints.push({y:wc1.missing[n]});
+    if(wc1.cap[n]>max1) max1=wc1.cap[n];
+    if(wc1.w[n]+wc1.onhand[n]+wc1.missing[n]>max2) max2=wc1.w[n]+wc1.onhand[n]+wc1.missing[n];
+    if(max1>max2) max2=max1;
+    gfx27.options.axisY.maximum=max2
+    gfx27.options.axisY2.maximum=max2
+    }
     refreshall()
     }
   setTimeout(loadData, 60000); 
@@ -81,8 +88,9 @@ window.onload=function(){
   legend: {
     horizontalAlign: "center",
     verticalAlign: "bottom",
-    labelFontFamily: 'Arial',
+    fontFamily: 'Arial',
     fontColor: "#eee",
+    fontSize: 14,
     },
   axisX:{
     lineColor:'#ccc', lineThickness: 1,
@@ -90,7 +98,7 @@ window.onload=function(){
     labelFontFamily: 'Arial',
     interval: 1,
     labelFontSize: 10,
-    //labelAngle: -80,
+    labelAngle: -50,
     },
   axisY:{
     title:"Standard hours",
@@ -104,14 +112,19 @@ window.onload=function(){
     titleFontSize: 12,
     minimum: 0
     },
+  axisY2: {
+    tickThickness: 0,
+    lineThickness: 0,
+    labelFormatter: function(e) { return " "; },
+    minimum: 0,
+    },
   toolTip: {shared: true, content: toolTipContent6},
   data: [              
-    { type: "stackedBar", name: "S", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
-    { type: "stackedBar", name: "S+1", indexLabelFontColor:'#eee', color:"#586", dataPoints: [] },
-    { type: "stackedBar", name: "S+2", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
-    { type: "stackedBar", name: "S+3", indexLabelFontColor:'#eee', color:"#586", dataPoints: [] },
-    { type: "stackedBar", name: "S+4", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
-    { type: "stackedBar", name: "S+5", indexLabelFontColor:'#eee', color:"#586", dataPoints: [] },
+    { type: "stackedColumn", axisYType: "secondary", name: "Capacity", indexLabelFontColor:'#eee', color:"#ef8", showInLegend: true, dataPoints: [] },
+    { type: "stackedColumn",  name: "Workable", indexLabelFontColor:'#eee', color:"#8b0", showInLegend: true, dataPoints: [] },
+    { type: "stackedColumn", name: "On Hand", indexLabelFontColor:'#eee', color:"#4bc", showInLegend: true, dataPoints: [] },
+    { type: "stackedColumn", name: "Missing", color:'rgba(250,100,100,.5)', showInLegend: true, dataPoints: [] },
+
     ]
   }); 
   sPar(g27,0);

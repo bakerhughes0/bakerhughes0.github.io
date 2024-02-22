@@ -279,6 +279,7 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "SLOT PLAN CAMFLEX", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
+  dataPointMaxWidth: 3,
   legend:leg_1,
   axisY:axeY_2,
   axisX:axeX_2,
@@ -286,7 +287,7 @@ window.onload=function(){
   data: [              
     { type: "stackedColumn", name: "Plan", color: "#8b9", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "Engr", color: "#c84", dataPoints: [], showInLegend: true },
-    { type: "line", name: "Quarter Cumulative", color: "#efe", dataPoints: [], showInLegend: true, axisYIndex: 1 },
+    { type: "line", lineThickness:1, name: "Quarter Cumulative", color: "#efe", dataPoints: [], showInLegend: true, axisYIndex: 1 },
     ]
   });
   gfx6 = new CanvasJS.Chart(g[6], {
@@ -294,6 +295,7 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "SLOT PLAN VARIPAK", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
+  dataPointMaxWidth: 3,
   legend:leg_1,
   axisY:axeY_2,
   axisX:axeX_2,
@@ -301,7 +303,7 @@ window.onload=function(){
   data: [              
     { type: "stackedColumn", name: "Plan", color: "#8b9", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "Engr", color: "#c84", dataPoints: [], showInLegend: true },
-    { type: "line", name: "Quarter Cumulative", color: "#efe", dataPoints: [], showInLegend: true, axisYIndex: 1 },
+    { type: "line", lineThickness:1,name: "Quarter Cumulative", color: "#efe", dataPoints: [], showInLegend: true, axisYIndex: 1 },
     ]
   });
   gfx7 = new CanvasJS.Chart(g[7], {
@@ -309,6 +311,7 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "SLOT PLAN GLOBES", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
+  dataPointMaxWidth: 3,
   legend:leg_1,
   axisY:axeY_2,
   axisX:axeX_2,
@@ -316,7 +319,7 @@ window.onload=function(){
   data: [              
     { type: "stackedColumn", name: "Plan", color: "#8b9", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "Engr", color: "#c84", dataPoints: [], showInLegend: true },
-    { type: "line", name: "Quarter Cumulative", color: "#efe", dataPoints: [], showInLegend: true, axisYIndex: 1 },
+    { type: "line", lineThickness:1,name: "Quarter Cumulative", color: "#efe", dataPoints: [], showInLegend: true, axisYIndex: 1 },
     ]
   });
   gfx8 = new CanvasJS.Chart(g[8], {
@@ -324,6 +327,7 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "SLOT PLAN LEVELS", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
+  dataPointMaxWidth: 3,
   legend:leg_1,
   axisY:axeY_2,
   axisX:axeX_2,
@@ -331,7 +335,7 @@ window.onload=function(){
   data: [              
     { type: "stackedColumn", name: "Plan", color: "#8b9", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "Engr", color: "#c84", dataPoints: [], showInLegend: true },
-    { type: "line", name: "Quarter Cumulative", color: "#efe", dataPoints: [], showInLegend: true, axisYIndex: 1 },
+    { type: "line",lineThickness:1, name: "Quarter Cumulative", color: "#efe", dataPoints: [], showInLegend: true, axisYIndex: 1 },
     ]
   });
 
