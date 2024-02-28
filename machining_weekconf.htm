@@ -42,6 +42,7 @@ function toolTipContent6(e) {
   } 
 
 function loadData(){
+  var week = isoWeek(new Date).slice(2)
   var d = new Date();
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
   var today=isoDate(d), currentWeek=isoWeek(d);
@@ -51,21 +52,14 @@ function loadData(){
   document.head.appendChild(js);  
   js.onload = function(){ 
     sTxt(t1, 'CONDE MATERIALS KPI - PRODUCTION CONTROL');
-    sTxt(t2, 'MACHINING CAPACITY')
+    sTxt(t2, 'MACHINING '+week)
     sTxt(timstp,'Update : ' + tm);
-  for(var n=0; n<4;n++){ gfx27.options.data[n].dataPoints=[]; };
-  var max1=0, max2=0;
-  for(var n=0; n<wc1.names.length;n++){
-    gfx27.options.data[0].dataPoints.push({label:wc1.names[n], y:wc1.cap[n]});
-    gfx27.options.data[1].dataPoints.push({y:wc1.w[n]});
-    gfx27.options.data[2].dataPoints.push({y:wc1.onhand[n]});
-    gfx27.options.data[3].dataPoints.push({y:wc1.missing[n]});
-    if(wc1.cap[n]>max1) max1=wc1.cap[n];
-    if(wc1.w[n]+wc1.onhand[n]+wc1.missing[n]>max2) max2=wc1.w[n]+wc1.onhand[n]+wc1.missing[n];
-    if(max1>max2) max2=max1;
-    gfx27.options.axisY.maximum=max2
-    gfx27.options.axisY2.maximum=max2
-    }
+    for(var n=0;n<gfx28_d1.length; n++){ gfx28_d1[n].label = gfx28_d6[n].label; }
+    gfx27.options.data[0].dataPoints=gfx28_d1;
+    gfx27.options.data[1].dataPoints=gfx28_d2;
+    gfx27.options.data[2].dataPoints=gfx28_d3;
+    gfx27.options.data[3].dataPoints=gfx28_d4;
+    gfx27.options.data[4].dataPoints=gfx28_d5;
     refreshall()
     }
   setTimeout(loadData, 60000); 
@@ -82,7 +76,7 @@ window.onload=function(){
   gfx27 = new CanvasJS.Chart(g27, {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "WORKCENTERS CAPACITIES / 6 WEEKS PLAN", fontColor:"#ddd",fontFamily: 'Arial',fontSize: 18,},
+//  title: {text: "WORKCENTERS WEEK CONFIRMATION", link:'fontColor:"#ddd",fontFamily: 'Arial',fontSize: 18,},
   backgroundColor: null,
   dataPointMaxWidth: 16,
   legend: {
@@ -125,22 +119,16 @@ window.onload=function(){
     },
   toolTip: {shared: true, content: toolTipContent6},
   data: [              
-    { type: "stackedColumn", axisYType: "secondary", name: "Capacity", indexLabelFontColor:'#eee', color:"#ef8", showInLegend: true, dataPoints: [] },
-    { type: "stackedColumn",  name: "Workable", indexLabelFontColor:'#eee', color:"#8b0", showInLegend: true, dataPoints: [] },
-    { type: "stackedColumn", name: "On Hand", indexLabelFontColor:'#eee', color:"#4bc", showInLegend: true, dataPoints: [] },
-    { type: "stackedColumn", name: "Missing", color:'rgba(250,100,100,.5)', showInLegend: true, dataPoints: [], visible:false },
-
+    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
     ]
   }); 
   sPar(g27,0);
 
-  gfx27.options.data[1].click = function(e){ 
-    var dataSeries = e.dataSeries;
-    var dataPoint = e.dataPoint;
-    var dataPointIndex = e.dataPointIndex;
-    console.log(wc1.names[dataPointIndex].slice(-4))
-    window.open('/vm.htm?'+wc1.names[dataPointIndex].slice(-4),'_blank');  
-    };
+g27.addEventListener("click", function(){console.log("click");window.open('/machining.htm','_self');})
 
   window.onresize=function(){
     movep(bg,[0,0,1,1]);
