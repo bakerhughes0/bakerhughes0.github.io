@@ -1,4 +1,4 @@
-timestamp = new Date(2024,2,19,17,15,31);
+timestamp = new Date(2024,2,19,17,20,38);
 data = [
 ['0205',1,3,32412286,'0020. TOURNER','1 x PLAQUE DE DIAPHRAGME',0.75,'',0,''],
 ['0205',1,2,32412287,'0020. TOURNER','1 x TIGE DE DIAPHRAGME',0.45,'',40,''],
