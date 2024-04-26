@@ -7,12 +7,12 @@
 
 
 //23Q4
-var target_machining = 8250;
-var target_welding = 1270;
-var target_globes = 1967;
-var target_levels = 1016;
-var target_standard = 2298+749;
-var target_painting = 1650;
+var target_machining = 7955;
+var target_welding = 1165;
+var target_globes = 1803;
+var target_levels = 1485;
+var target_standard = 1803+1060;
+var target_painting = 2229;
 var target_gscm = target_machining +target_welding+target_painting+target_standard+target_globes+target_levels;
 
 function refreshall(){
@@ -173,7 +173,7 @@ window.onload=function(){
   for(var n=0; n<7; n++){g[n] = new gfxbox();}
 
   var axeY_1 = [{  labelFontColor: "#eee", labelFontFamily: 'Arial',
-    labelAngle: -90},{title: "Hours", titleFontColor: "#eee", titleFontSize:12, labelFontColor: "#175", labelFontFamily: 'Arial', labelAngle: -90}];
+    labelAngle: -90, minimum:0},{title: "Hours", titleFontColor: "#eee", titleFontSize:12, labelFontColor: "#175", labelFontFamily: 'Arial', labelAngle: -90, minimum:0}];
   var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -72, labelFontFamily: 'Arial'}
   var leg_1 = {horizontalAlign: "center", verticalAlign: "bottom", labelFontFamily: 'Arial', fontColor: "#ddd"}
   var ttip1 = {shared: true, content: toolTipContentWQ};
