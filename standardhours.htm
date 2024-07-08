@@ -7,12 +7,12 @@
 
 
 //23Q4
-var target_machining = 7955;
-var target_welding = 1165;
-var target_globes = 1803;
-var target_levels = 1485;
-var target_standard = 1803+1060;
-var target_painting = 2229;
+var target_machining = 6000;
+var target_welding = 1000;
+var target_globes = 1700;
+var target_levels = 1350;
+var target_standard = 2170+580;
+var target_painting = 2200;
 var target_gscm = target_machining +target_welding+target_painting+target_standard+target_globes+target_levels;
 
 function refreshall(){
@@ -376,8 +376,9 @@ function toolTipContentQ(e) {
 	return (str2.concat(str));
   } 
 function fmtRnd2(num) {
- var a=Math.round(num * 100) / 100
+ var a=Math.round(num * 1000) / 1000
  return a.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
+ //return num;
  }
 
 </script>
