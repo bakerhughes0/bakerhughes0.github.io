@@ -37,6 +37,15 @@ function loadData(){
       if(gfx08.options.data[5].dataPoints[n].label >= thisWeek){ gfx08_est.push({y: incprd.cfx[n]});} else {gfx08_est.push({y:null});}
       }
     gfx08.options.data[6].dataPoints=gfx08_est;
+    max = 0;
+    for(var n=0;n<gfx08_d1.length;n++){
+        max = Math.max(max, gfx08_d1[n].y+gfx08_d2[n].y+gfx08_d3[n].y+gfx08_d4[n].y+gfx08_d5[n].y);
+        max = Math.max(max, gfx08.options.data[5].dataPoints[n].y);
+        }
+    for(var n=0;n<gfx08_est.length;n++){
+        //max = Math.max(max, gfx08_est[n].y);
+        }
+    gfx08.options.axisY.maximum = max;
     gfx08.render();
     gfx09.options.data[0].dataPoints=gfx09_d1;
     gfx09.options.data[1].dataPoints=gfx09_d2;
@@ -53,6 +62,15 @@ function loadData(){
       if(gfx08.options.data[5].dataPoints[n].label >= thisWeek){ gfx09_est.push({y: incprd.vpk[n]});} else {gfx09_est.push({y:null});}
       }
     gfx09.options.data[6].dataPoints=gfx09_est;
+    max = 0;
+    for(var n=0;n<gfx09_d1.length;n++){
+        max = Math.max(max, gfx09_d1[n].y+gfx09_d2[n].y+gfx09_d3[n].y+gfx09_d4[n].y+gfx09_d5[n].y);
+        max = Math.max(max, gfx09.options.data[5].dataPoints[n].y);
+        }
+    for(var n=0;n<gfx09_est.length;n++){
+        //max = Math.max(max, gfx09_est[n].y);
+        }
+    gfx09.options.axisY.maximum = max;
     gfx09.render();
     gfx10.options.data[0].dataPoints=gfx10_d1;
     gfx10.options.data[1].dataPoints=gfx10_d2;
@@ -69,6 +87,15 @@ function loadData(){
       if(gfx08.options.data[5].dataPoints[n].label >= thisWeek){ gfx10_est.push({y: incprd.glb[n]});} else {gfx10_est.push({y:null});}
       }
     gfx10.options.data[6].dataPoints=gfx10_est;
+    max = 0;
+    for(var n=0;n<gfx10_d1.length;n++){
+        max = Math.max(max, gfx10_d1[n].y+gfx10_d2[n].y+gfx10_d3[n].y+gfx10_d4[n].y+gfx10_d5[n].y);
+        max = Math.max(max, gfx10.options.data[5].dataPoints[n].y);
+        }
+    for(var n=0;n<gfx10_est.length;n++){
+        //max = Math.max(max, gfx10_est[n].y);
+        }
+    gfx10.options.axisY.maximum = max;
     gfx10.render();
     gfx11.options.data[0].dataPoints=gfx11_d1;
     gfx11.options.data[1].dataPoints=gfx11_d2;
@@ -85,54 +112,99 @@ function loadData(){
       if(gfx08.options.data[5].dataPoints[n].label >= thisWeek){ gfx11_est.push({y: incprd.lev[n]});} else {gfx11_est.push({y:null});}
       }
     gfx11.options.data[6].dataPoints=gfx11_est;
+    max = 0;
+    for(var n=0;n<gfx11_d1.length;n++){
+        max = Math.max(max, gfx11_d1[n].y+gfx11_d2[n].y+gfx11_d3[n].y+gfx11_d4[n].y+gfx11_d5[n].y);
+        max = Math.max(max, gfx11.options.data[5].dataPoints[n].y);
+        }
+    for(var n=0;n<gfx10_est.length;n++){
+        //max = Math.max(max, gfx11_est[n].y);
+        }
+    gfx11.options.axisY.maximum = max;
     gfx11.render();
+
+
+
+    max = 0;
     gfx12.options.data[0].dataPoints=[];
     for(var n=0, cum=0;n<LOB.week.length;n++){
       cum+=LOB.cfx[n]; gfx12.options.data[0].dataPoints.push({label:LOB.week[n], y:cum});
+      max = Math.max(max, cum);
       }
     gfx12.options.data[1].dataPoints=gfx12_d2;
+    for(var n=0, cum=0;n<gfx12_d2.length;n++){
+        max = Math.max(max, gfx12_d2[n].y);
+        }
     gfx12_est=[];
     for(var n=0, cum=0;n<incprd.cfx.length;n++){
         cum+=incprd.cfx[n];
         if(gfx12.options.data[0].dataPoints[n].label >= thisWeek){ gfx12_est.push({y: cum});} else {gfx12_est.push({y:null});}
+        max = Math.max(max, cum);
         }
     gfx12.options.data[2].dataPoints=gfx12_est;
+    gfx12.options.axisY.maximum = max;
     gfx12.render();
+
+
+
+
+
+    max = 0;
     gfx13.options.data[0].dataPoints=[];
     for(var n=0, cum=0;n<LOB.week.length;n++){
       cum+=LOB.vpk[n]; gfx13.options.data[0].dataPoints.push({label:LOB.week[n], y:cum});
+      max = Math.max(max, cum);
       }
     gfx13.options.data[1].dataPoints=gfx13_d2;
+    for(var n=0, cum=0;n<gfx13_d2.length;n++){
+        max = Math.max(max, gfx13_d2[n].y);
+        }
     gfx13_est=[];
     for(var n=0, cum=0;n<incprd.vpk.length;n++){
         cum+=incprd.vpk[n];
         if(gfx12.options.data[0].dataPoints[n].label >= thisWeek){ gfx13_est.push({y: cum});} else {gfx13_est.push({y:null});}
+        max = Math.max(max, cum);
         }
     gfx13.options.data[2].dataPoints=gfx13_est;
+    gfx13.options.axisY.maximum = max;
     gfx13.render();
+    max = 0;
     gfx14.options.data[0].dataPoints=[];
     for(var n=0, cum=0;n<LOB.week.length;n++){
       cum+=LOB.glbcal[n]; gfx14.options.data[0].dataPoints.push({label:LOB.week[n], y:cum});
+      max = Math.max(max, cum);
       }
     gfx14.options.data[1].dataPoints=gfx14_d2;
+    for(var n=0, cum=0;n<gfx14_d2.length;n++){
+        max = Math.max(max, gfx14_d2[n].y);
+        }
     gfx14_est=[];
     for(var n=0, cum=0;n<incprd.glb.length;n++){
         cum+=incprd.glb[n];
         if(gfx12.options.data[0].dataPoints[n].label >= thisWeek){ gfx14_est.push({y: cum});} else {gfx14_est.push({y:null});}
+        max = Math.max(max, cum);
         }
     gfx14.options.data[2].dataPoints=gfx14_est;
+    gfx14.options.axisY.maximum = max;
     gfx14.render();
+    max = 0;
     gfx15.options.data[0].dataPoints=[];
     for(var n=0, cum=0;n<LOB.week.length;n++){
       cum+=LOB.lvl[n]; gfx15.options.data[0].dataPoints.push({label:LOB.week[n], y:cum});
+      max = Math.max(max, cum);
       }
     gfx15.options.data[1].dataPoints=gfx15_d2;
+    for(var n=0, cum=0;n<gfx15_d2.length;n++){
+        max = Math.max(max, gfx15_d2[n].y);
+        }
     gfx15_est=[];
     for(var n=0, cum=0;n<incprd.lev.length;n++){
         cum+=incprd.lev[n];
         if(gfx12.options.data[0].dataPoints[n].label >= thisWeek){ gfx15_est.push({y: cum});} else {gfx15_est.push({y:null});}
+        max = Math.max(max, cum);
         }
     gfx15.options.data[2].dataPoints=gfx15_est;
+    gfx15.options.axisY.maximum = max;
     gfx15.render();
     gfx16.options.data[0].dataPoints=[{label:'20Q1', y:837},{label:'20Q2', y:596},{label:'20Q3', y:677},{label:'20Q4', y:519},{label:'21Q1', y:423},{label:'21Q2', y:501},{label:'21Q3', y:606},{label:'21Q4', y:679},{label:'22Q1', y:572},{label:'22Q2', y:445},{label:'22Q3', y:532},{label:'22Q4', y:496},{label:'23Q1', y:546},{label:'23Q2', y:613},{label:'23Q3', y:526},{label:'23Q4', y:616},{label:'24Q1', y:587},{label:'24Q2', y:586},{name:"Target",color:"#cc6",label:'24Q3', y:584}];
     gfx16.render();
@@ -170,7 +242,7 @@ window.onload=function(){
   backgroundColor: null,
   dataPointMaxWidth: 14,
   legend:leg_1,
-  axisY:axeY_1,
+  axisY:{title: "Quantity", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0},
   axisX:axeX_1,
   toolTip: tTip1,
   data: [              
@@ -190,7 +262,7 @@ window.onload=function(){
   backgroundColor: null,
   dataPointMaxWidth: 14,
   legend:leg_1,
-  axisY:axeY_1,
+  axisY:{title: "Quantity", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0},
   axisX:axeX_1,
   toolTip: tTip1,
   data: [              
@@ -210,7 +282,7 @@ window.onload=function(){
   backgroundColor: null,
   dataPointMaxWidth: 14,
   legend:leg_1,
-  axisY:axeY_1,
+  axisY:{title: "Quantity", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0},
   axisX:axeX_1,
   toolTip: tTip1,
   data: [              
@@ -230,7 +302,7 @@ window.onload=function(){
   backgroundColor: null,
   dataPointMaxWidth: 14,
   legend:leg_1,
-  axisY:axeY_1,
+  axisY:{title: "Quantity", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0},
   axisX:axeX_1,
   toolTip: tTip1,
   data: [              
@@ -250,7 +322,7 @@ window.onload=function(){
   title: {text: "CAMFLEX QUARTER TARGET", fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
   legend: leg_1,
-  axisY:axeY_1,
+  axisY:{title: "Quantity", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0},
   axisX:axeX_1,
   toolTip: tTip2,
   data: [              
@@ -265,7 +337,7 @@ window.onload=function(){
   title: {text: "VARIPAK QUARTER TARGET", fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
   legend: leg_1,
-  axisY:axeY_1,
+  axisY:{title: "Quantity", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0},
   axisX:axeX_1,
   toolTip: tTip2,
   data: [              
@@ -280,7 +352,7 @@ window.onload=function(){
   title: {text: "GLOBES QUARTER TARGET", fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
   legend: leg_1,
-  axisY:axeY_1,
+  axisY:{title: "Quantity", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0},
   axisX:axeX_1,
   toolTip: tTip2,
   data: [              
@@ -295,7 +367,7 @@ window.onload=function(){
   title: {text: "LEVELS QUARTER TARGET", fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
   legend: leg_1,
-  axisY:axeY_1,
+  axisY:{title: "Quantity", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0},
   axisX:axeX_1,
   toolTip: tTip2,
   data: [              
