@@ -134,6 +134,7 @@ wclist = [
 '1406',
 '1407',
 '1408',
+'1430',
 'QMLOT'];
 
 wcnames = [
@@ -272,6 +273,7 @@ wcnames = [
 '1406. ARRET USINAGE',
 '1407. ARRET PEINTURE',
 '1408. ARRET POUR LE STANDARD',
+'1430. ARRET CQC',
 'QMLOT. INCOMING INSPECTION']
 
 function wcname(s){
