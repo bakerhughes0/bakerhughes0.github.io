@@ -40,12 +40,11 @@ function loadData(){
     max = 0;
     for(var n=0;n<gfx08_d1.length;n++){
         max = Math.max(max, gfx08_d1[n].y+gfx08_d2[n].y+gfx08_d3[n].y+gfx08_d4[n].y+gfx08_d5[n].y);
-        max = Math.max(max, gfx08.options.data[5].dataPoints[n].y);
         }
-    for(var n=0;n<gfx08_est.length;n++){
-        //max = Math.max(max, gfx08_est[n].y);
+    for(var n=0;n<LOB.week.length;n++){
+        max = Math.max(max, LOB.cfx[n]);
         }
-    gfx08.options.axisY.maximum = max;
+    gfx08.options.axisY.maximum = max*1.05;
     gfx08.render();
     gfx09.options.data[0].dataPoints=gfx09_d1;
     gfx09.options.data[1].dataPoints=gfx09_d2;
@@ -62,15 +61,15 @@ function loadData(){
       if(gfx08.options.data[5].dataPoints[n].label >= thisWeek){ gfx09_est.push({y: incprd.vpk[n]});} else {gfx09_est.push({y:null});}
       }
     gfx09.options.data[6].dataPoints=gfx09_est;
+
     max = 0;
     for(var n=0;n<gfx09_d1.length;n++){
         max = Math.max(max, gfx09_d1[n].y+gfx09_d2[n].y+gfx09_d3[n].y+gfx09_d4[n].y+gfx09_d5[n].y);
-        max = Math.max(max, gfx09.options.data[5].dataPoints[n].y);
         }
-    for(var n=0;n<gfx09_est.length;n++){
-        //max = Math.max(max, gfx09_est[n].y);
+    for(var n=0;n<LOB.week.length;n++){
+        max = Math.max(max, LOB.vpk[n]);
         }
-    gfx09.options.axisY.maximum = max;
+    gfx09.options.axisY.maximum = max*1.05;
     gfx09.render();
     gfx10.options.data[0].dataPoints=gfx10_d1;
     gfx10.options.data[1].dataPoints=gfx10_d2;
@@ -90,12 +89,11 @@ function loadData(){
     max = 0;
     for(var n=0;n<gfx10_d1.length;n++){
         max = Math.max(max, gfx10_d1[n].y+gfx10_d2[n].y+gfx10_d3[n].y+gfx10_d4[n].y+gfx10_d5[n].y);
-        max = Math.max(max, gfx10.options.data[5].dataPoints[n].y);
         }
-    for(var n=0;n<gfx10_est.length;n++){
-        //max = Math.max(max, gfx10_est[n].y);
+    for(var n=0;n<LOB.week.length;n++){
+        max = Math.max(max, LOB.glbcal[n]);
         }
-    gfx10.options.axisY.maximum = max;
+    gfx10.options.axisY.maximum = max*1.05;
     gfx10.render();
     gfx11.options.data[0].dataPoints=gfx11_d1;
     gfx11.options.data[1].dataPoints=gfx11_d2;
@@ -115,12 +113,11 @@ function loadData(){
     max = 0;
     for(var n=0;n<gfx11_d1.length;n++){
         max = Math.max(max, gfx11_d1[n].y+gfx11_d2[n].y+gfx11_d3[n].y+gfx11_d4[n].y+gfx11_d5[n].y);
-        max = Math.max(max, gfx11.options.data[5].dataPoints[n].y);
         }
-    for(var n=0;n<gfx10_est.length;n++){
-        //max = Math.max(max, gfx11_est[n].y);
+    for(var n=0;n<LOB.week.length;n++){
+        max = Math.max(max, LOB.lvl[n]);
         }
-    gfx11.options.axisY.maximum = max;
+    gfx11.options.axisY.maximum =max*1.05;
     gfx11.render();
 
 
