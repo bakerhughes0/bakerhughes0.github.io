@@ -1,4 +1,4 @@
-timestamp = new Date(2024,10,02,04,50,26);
+timestamp = new Date(2024,10,02,04,55,25);
 data = [
 ['0205',1,2,32654297,'0020. TOURNER','2 x RONDELLE DE RETENUE',0.9,'',113,''],
 ['0205',1,2,32719644,'0010. TOURNER (REUSINAGE)','2 x BAGUE SERRAGE 35K 6"(REUSINAGE',0.7,'',67,''],
@@ -677,9 +677,9 @@ data = [
 ['0422',,2,32655682,'0400. Contrôle conformite composants (P','28-28152 1" CF3M CL300 FLG S1',0.1,'1690819-2000',3,''],
 ['0422',,2,32655682,'0600. Assemblage Vanne (Valve Assembly)','28-28152 1" CF3M CL300 FLG S1',0.31,'1690819-2000',3,''],
 ['0422',,2,32655682,'1000. Equipement vanne suivant commande ','28-28152 1" CF3M CL300 FLG S1',1.11,'1690819-2000',3,''],
-['0422',,2,32811321,'0400. Contrôle conformite composants (P','28-28142 0.5" CF3M CL150 FLG S0',0.1,'1716941-1000',4,''],
-['0422',,2,32811321,'0600. Assemblage Vanne (Valve Assembly)','28-28142 0.5" CF3M CL150 FLG S0',0.31,'1716941-1000',4,''],
-['0422',,2,32811321,'1000. Equipement vanne suivant commande ','28-28142 0.5" CF3M CL150 FLG S0',0.96,'1716941-1000',4,''],
+['0422',,2,32811321,'0400. Contrôle conformite composants (P','28-28142 0.5" CF3M CL150 FLG S0',0.1,'1716941-1000',4,'L'],
+['0422',,2,32811321,'0600. Assemblage Vanne (Valve Assembly)','28-28142 0.5" CF3M CL150 FLG S0',0.31,'1716941-1000',4,'L'],
+['0422',,2,32811321,'1000. Equipement vanne suivant commande ','28-28142 0.5" CF3M CL150 FLG S0',0.96,'1716941-1000',4,'L'],
 ['0422',,2,32811322,'0400. Contrôle conformite composants (P','28-28142 0.5" CF3M CL150 FLG S0',0.1,'1716941-2000',4,''],
 ['0422',,2,32811322,'0600. Assemblage Vanne (Valve Assembly)','28-28142 0.5" CF3M CL150 FLG S0',0.31,'1716941-2000',4,''],
 ['0422',,2,32811322,'1000. Equipement vanne suivant commande ','28-28142 0.5" CF3M CL150 FLG S0',0.96,'1716941-2000',4,''],
