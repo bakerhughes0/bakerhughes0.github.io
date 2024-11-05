@@ -79,8 +79,8 @@ window.onload=function(){
 
   page = document.createElement('iframe');
   move(page,[0,0,scrW(),scrH()]);sOvf(page,'hidden');sBrW(page,[0]);sPar(page,0);
-  var pageinfo = ['ASSEMBLY', 'MACHINING', 'MACHINING CAPACITY', 'DAILY PRODUCTION', 'STANDARD HOURS', 'MASTER SCHEDULER', 'PLANNING', 'NPC', 'PROCUREMENT', 'SHIPPING']
-  var pagelink = ['assembly.htm', 'machining.htm', 'machining_wc.htm', 'dailyproduction.htm', 'standardhours.htm', 'master_scheduler.htm', 'planning.htm', 'npc.htm', 'procurement.htm', 'shipping.htm']
+  var pageinfo = ['ASSEMBLY', 'MACHINING', 'MACHINING CAPACITY', 'PICKING', 'DAILY PRODUCTION', 'STANDARD HOURS', 'MASTER SCHEDULER', 'PLANNING', 'NPC', 'PROCUREMENT', 'SHIPPING']
+  var pagelink = ['assembly.htm', 'machining.htm', 'machining_wc.htm', 'picking.htm', 'dailyproduction.htm', 'standardhours.htm', 'master_scheduler.htm', 'planning.htm', 'npc.htm', 'procurement.htm', 'shipping.htm']
   var pagectrl = new xDiv();
   sBrW(pagectrl,[2]); sBrR(pagectrl,[100]);sBrC(pagectrl,['#8a9']);
   move(pagectrl,[scrW()/1.7-pageinfo.length*15,10,pageinfo.length*40,40]);
