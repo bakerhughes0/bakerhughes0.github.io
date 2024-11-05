@@ -1,0 +1,320 @@
+<html>
+<head>
+<script type=text/javascript src=js/func.js?v=001></script>
+<script type=text/javascript src=js/canvasjs.min.js?v=007></script>
+<script type=text/javascript src=module.js?v=001></script>
+<script type=text/javascript src=kpi_data1.js?v=2></script>
+
+<script type=text/javascript>
+
+function refreshall(){
+  gfx0.render();gfx1.render();gfx2.render();gfx3.render();
+  gfx4.render();gfx5.render();gfx6.render();gfx7.render();
+  }
+
+function loadData(){
+  var d = new Date();
+  var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
+  var js = document.createElement('script');
+  js.type='text/javascript';
+  js.src="kpi.js" + "?d=" + sd;
+  document.head.appendChild(js);    
+  js.onload = function(){ 
+    sTxt(timstp,'Update : ' + tm);
+    for(var n=0;n<6;n++){
+      gfx0.options.data[n].dataPoints=[];
+      gfx1.options.data[n].dataPoints=[];
+      gfx2.options.data[n].dataPoints=[];
+      gfx3.options.data[n].dataPoints=[];
+      }
+    for(var n=0;n<2;n++){
+      gfx4.options.data[n].dataPoints=[];
+      gfx5.options.data[n].dataPoints=[];
+      gfx6.options.data[n].dataPoints=[];
+      gfx7.options.data[n].dataPoints=[];
+      }
+
+    var thisWeek = isoWeek(new Date()).slice(4,7);
+    
+    sTxt(t2,data.q_name);
+
+    for(var n=0, cum=0, tcum=0; n<pick.w.length;n++){
+        pick.w[n]=pick.w[n].slice(2,5); //remove year in labels
+        for(var d=0; d<5; d++){
+            if(d){
+                gfx0.options.data[d].dataPoints.push({y:pick.C[n][d]});
+                }else{
+                gfx0.options.data[d].dataPoints.push({label:pick.w[n], y:pick.C[n][d]});
+                }
+            cum+=pick.C[n][d];
+            }
+        tcum+=pickingLOB.cfx[n];
+        gfx0.options.data[5].dataPoints.push({y:pickingLOB.cfx[n]});
+        if(pick.w[n]<=thisWeek) {
+            gfx4.options.data[0].dataPoints.push({y:cum});
+            }
+        gfx4.options.data[1].dataPoints.push({label:pick.w[n], y:tcum});
+        }
+
+    for(var n=0, cum=0, tcum=0; n<pick.w.length;n++){
+        for(var d=0; d<5; d++){
+            if(d){
+                gfx1.options.data[d].dataPoints.push({y:pick.V[n][d]});
+                }else{
+                gfx1.options.data[d].dataPoints.push({label:pick.w[n], y:pick.V[n][d]});
+                }
+            cum+=pick.V[n][d];
+            }
+        tcum+=pickingLOB.vpk[n];
+        gfx1.options.data[5].dataPoints.push({y:pickingLOB.vpk[n]});
+        if(pick.w[n]<=thisWeek) {
+            gfx5.options.data[0].dataPoints.push({y:cum});
+            }
+        gfx5.options.data[1].dataPoints.push({label:pick.w[n], y:tcum});
+        }
+
+    for(var n=0, cum=0, tcum=0; n<pick.w.length;n++){
+        for(var d=0; d<5; d++){
+            if(d){
+                gfx2.options.data[d].dataPoints.push({y:pick.G[n][d]});
+                }else{
+                gfx2.options.data[d].dataPoints.push({label:pick.w[n], y:pick.G[n][d]});
+                }
+            cum+=pick.G[n][d];
+            }
+        tcum+=pickingLOB.glb[n];
+        gfx2.options.data[5].dataPoints.push({y:pickingLOB.glb[n]});
+        if(pick.w[n]<=thisWeek) {
+            gfx6.options.data[0].dataPoints.push({y:cum});
+            }
+        gfx6.options.data[1].dataPoints.push({label:pick.w[n], y:tcum});
+        }
+
+    for(var n=0, cum=0, tcum=0; n<pick.w.length;n++){
+        for(var d=0; d<5; d++){
+            if(d){
+                gfx3.options.data[d].dataPoints.push({y:pick.L[n][d]});
+                }else{
+                gfx3.options.data[d].dataPoints.push({label:pick.w[n], y:pick.L[n][d]});
+                }
+            cum+=pick.L[n][d];
+            }
+        tcum+=pickingLOB.lvl[n];
+        gfx3.options.data[5].dataPoints.push({y:pickingLOB.lvl[n]});
+        if(pick.w[n]<=thisWeek) {
+            gfx7.options.data[0].dataPoints.push({y:cum});
+            }
+        gfx7.options.data[1].dataPoints.push({label:pick.w[n], y:tcum});
+        }
+
+    refreshall()
+    }
+  setTimeout(loadData, 60000);
+  }
+
+window.onload=function(){
+  var bg = new background();
+  t1=new xLab();sFtC(t1,'#ccc');sPar(t1,0);
+  t2=new xLab();sFtC(t2,'#ccc');sPar(t2,0);sFtA(t2,'right');
+  sTxt(t1,"CONDE MATERIALS KPI - PICKING");
+  sTxt(t2,"");
+  timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
+  var g = [];
+  for(var n=0; n<8; n++){g[n] = new gfxbox();}
+
+  var axeY_1 = [{title: "Products", titleFontColor: "#eee", titleFontSize:12, labelFontColor: "#175", labelFontFamily: 'Arial', labelAngle: -90, minimum:0}];
+  var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -72, labelFontFamily: 'Arial'}
+  var leg_1 = {horizontalAlign: "center", verticalAlign: "bottom", labelFontFamily: 'Arial', fontColor: "#ddd"}
+  var ttip1 = {shared: true, content: toolTipContentWQ};
+  var ttip2 = {shared: true, content: toolTipContentQ};
+
+  gfx0 = new CanvasJS.Chart(g[0], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "CAMFLEX", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: ttip1,
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: [], axisYIndex: 1},
+    ]
+  }); 
+  gfx1 = new CanvasJS.Chart(g[1], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "VARIPAK", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: ttip1,
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: [], axisYIndex: 1},
+    ]
+  });
+  gfx2 = new CanvasJS.Chart(g[2], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "GLOBES", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: ttip1,
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: [], axisYIndex: 1},
+    ]
+  });
+  gfx3 = new CanvasJS.Chart(g[3], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "LEVELS", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: ttip1,
+  data: [              
+    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
+    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
+    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
+    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: [], axisYIndex: 1},
+    ]
+  });
+
+  gfx4 = new CanvasJS.Chart(g[4], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "CAMFLEX", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: ttip1,
+  data: [              
+    { type: "line", name: "Products", color: "#076",  dataPoints: []},
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: []},
+    ]
+  });
+  gfx5 = new CanvasJS.Chart(g[5], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "VARIPAK", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: ttip1,
+  data: [              
+    { type: "line", name: "Products", color: "#076",  dataPoints: []},
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: []},
+    ]
+  });
+  gfx6 = new CanvasJS.Chart(g[6], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "GLOBES", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: ttip1,
+  data: [              
+    { type: "line", name: "Products", color: "#076",  dataPoints: []},
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: []},
+    ]
+  });
+  gfx7 = new CanvasJS.Chart(g[7], {
+  animationEnabled: true,
+  animationDuration: 500,
+  title: {text: "LEVELS", fontColor:"#ddd", fontFamily:'arial', fontSize:18},
+  backgroundColor: null,
+  dataPointMaxWidth: 16,
+  axisY:axeY_1,
+  axisX:axeX_1,
+  toolTip: ttip1,
+  data: [              
+    { type: "line", name: "Products", color: "#076",  dataPoints: []},
+    { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#789", dataPoints: []},
+    ]
+  });
+
+  window.onresize=function(){
+    movep(bg,[0,0,1,1]);
+    movep(t1,[.01, .01, .98, .045]);
+    movep(t2,[.01, .01, .98, .045]);
+    movep(timstp,[.01, .97, 1, .03]);
+    for(var n=0; n<8; n++){
+      x = n % 4;
+      y = Math.floor(n/4);
+      movep(g[n],[.01+x*.2475, .07+y*.452, .2375, .44]);
+      }
+    refreshall()
+    };window.onresize();
+  loadData();
+  }
+
+function toolTipContentWQ(e) {
+    var str = "";
+    var total = 0;
+    var str2;
+    for (var i = 0; i < e.entries.length; i++){
+        total += e.entries[i].dataPoint.y
+
+        var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtRnd2(e.entries[i].dataPoint.y)+"</strong><br/>";
+        str = str.concat(str1);
+        if(i==4){
+            var  str1 = "<span style= \"color:'#222'\"> "+'Week Total'+"</span>: <strong>"+fmtRnd2(total)+"</strong><br/>";
+            str = str.concat(str1);
+            }
+        }
+	str2 = "<span style = \"color:Black;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
+	return (str2.concat(str));
+  } 
+
+function toolTipContentQ(e) {
+    var str = "";
+    var total = 0;
+    var str2;
+    for (var i = 0; i < e.entries.length; i++){
+        total += e.entries[i].dataPoint.y
+        var  str1 = "<span style= \"color:'#000'\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtRnd2(e.entries[i].dataPoint.y)+"</strong><br/>";
+        str = str.concat(str1);
+        if(i==9){
+            var  str1 = "<span style= \"color:'#222'\"> "+'Week Total'+"</span>: <strong>"+fmtRnd2(total)+"</strong><br/>";
+            str = str.concat(str1);
+            }
+        }
+	str2 = "<span style = \"color:Black;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
+	return (str2.concat(str));
+  } 
+function fmtRnd2(num) {
+ var a=Math.round(num * 1000) / 1000
+ return a.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
+ //return num;
+ }
+
+</script>
+</head>
+<body >
+</body>
+</html>
