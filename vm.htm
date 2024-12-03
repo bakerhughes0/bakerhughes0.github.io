@@ -10,7 +10,8 @@ var timestamp = new Date(2022,0,1);
 var data = [], showage = 0;
 var sum = [], sumh = [], yoff=0; 
 var tbox=[0,0,0,0], mouseOnTitle=0;
- 
+var clipboard = '';
+
 function draw(){
   mydata = [], fcol = '#eee', bcol = '#222';
   sum = [0,0,0,0];sumh = [0,0,0,0]; ret=0; reth = 0;
@@ -164,6 +165,7 @@ function draw(){
         textAlign = "right";
         if(mydata[ytbl]){fillText(mydata[ytbl][6].toString(), .769*W ,.108*H + .032*H*y);}
         fillStyle=bcol;
+if(mydata[ytbl][7].indexOf('1522452')>-1){ fillStyle='#172'; } // Order 1522452 demande C.Jaeck 2024-12-3
         fillRect(.772*W ,.09*H + .032*H*y,.17*W,.032*H);
         fillStyle=fcol;
         textAlign = "left";
@@ -362,6 +364,19 @@ window.onload=function(){
   o=document.createElement('canvas');
   o.ctx=o.getContext('2d');
 
+  o.addEventListener('contextmenu', function(ev) {
+    ev.preventDefault();
+    var rect = o.getBoundingClientRect();
+    var mouse_x = ev.clientX - rect.left;
+    var mouse_y = ev.clientY - rect.top;
+    if(mouse_x > .23*o.width && mouse_x < .292*o.width && mouse_y > .09 * o.height && mouse_y < .954 * o.height){
+      var y = Math.floor((mouse_y - 0.09 * o.height) / (.032*o.height));
+      ytbl=y-1+yoff;
+      sPos(ctxmenu,[ev.clientX-2,ev.clientY-2]);
+      clipboard = mydata[ytbl][3].toString();
+      sVis(ctxmenu, 1);
+      }
+    }, false);
 
   loadData();
   document.body.appendChild(o)
@@ -394,15 +409,26 @@ window.onload=function(){
       if(lnk){lnk.val=0};
       }
     }, false); 
+
+  var ctxmenu = new xDiv(); sPar(ctxmenu, 0); move(ctxmenu, [10,10,.3*o.width,.2*o.height]); sOvf(ctxmenu,'hidden'); ctxmenu.value='Copy';
+      sBkC(ctxmenu, '#eee'); sBrR(ctxmenu, [5]); sMoP(ctxmenu,'pointer'); sOpa(ctxmenu, .9); sVis(ctxmenu, 0);
+  var ctxlab = new xLab(); sPar(ctxlab, ctxmenu); sTxt(ctxlab, 'Copy'); move(ctxlab, [0,0,.3*o.width,.2*o.height]); sFtA(ctxlab, 'center');
+  var ctxhid = document.createElement('input');sPar(ctxhid, ctxmenu); move(ctxhid, [.3*o.width,0,.3*o.width,.2*o.height]);
+  
+  ctxmenu.onmouseout = function(){sPos(ctxmenu,[0,0]);sVis(ctxmenu, 0);}
+  ctxmenu.onclick = function(){
+      ctxhid.value = clipboard;
+      ctxhid.select();
+      document.execCommand("copy");
+      sPos(ctxmenu,[0,0]);
+      sVis(ctxmenu, 0);
+      }
   }
-window.onresize=function(){
-  draw(); 
-  }
+window.onresize=function(){ draw(); }
 
 document.onmousedown = function(){
   if(mouseOnTitle==1){window.location='wcsel.htm'};
   }
-
 
 document.onkeydown = checkKey;
 
