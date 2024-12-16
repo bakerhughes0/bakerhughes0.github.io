@@ -3,7 +3,7 @@
 <script type=text/javascript src=js/func.js?v=001></script>
 <script type=text/javascript src=js/canvasjs.min.js?v=007></script>
 <script type=text/javascript src=module.js?v=001></script>
-
+<script type=text/javascript src=js/widgets.js></script>
 <script type=text/javascript>
 
 setTimeout(function(){window.location+='';},3600000);
@@ -51,18 +51,12 @@ function gfxBlk(){
   return o;
   }
 
-window.onresize=function(){
-  move(main,[0,0,scrW(),scrH()]);
-  move(page,[0,0,scrW(),scrH()]);
-  }
 
 touchX1=0; touchX2=0;
 
 window.onload=function(){
   document.title = "Materials KPI";  
   main=new xDiv();sOvf(main,'hidden');sPar(main,0);
-
-
   sBkL(main,100,'#243 30%, #222 100%');
   main.l1 = new xDiv();
   sBrW(main.l1,[2]);sBrC(main.l1,['#8a9']);sBrR(main.l1,[9999]);sRot(main.l1,[0,0,20]);sPar(main.l1,main);
@@ -75,7 +69,10 @@ window.onload=function(){
     sPos(pagectrl,[W/1.8-pageinfo.length*15,5]);
     move(main.l1,[0.6*W,0.3*H,0.8*W,0.2*H]);
     move(main.l2,[0.6*W,0.5*H,0.8*W,0.2*H]);
+
     }
+
+
 
   page = document.createElement('iframe');
   move(page,[0,0,scrW(),scrH()]);sOvf(page,'hidden');sBrW(page,[0]);sPar(page,0);
@@ -102,6 +99,9 @@ window.onload=function(){
   sPar(pagectrl.s,pagectrl);
   move(pagectrl.s,[7+40*0,7,21,21]);
 
+
+
+
   function selectpage(i){
     move(pagectrl.s,[7+40*i,7,21,21]);
     sTrx(page, 'all .3s');
@@ -114,14 +114,24 @@ window.onload=function(){
     p_idx=parseInt(req);
     sVis(ctl,0);
     }
-  window.onresize();
 
 var inf = new xLab();sBkC(inf,'rgba(30,30,30,0)');sFtC(inf,'#dfe');sOpa(inf,0);sTrx(inf,'all .05s');sFtA(inf,'center');
 sPar(inf,0);
 move(inf,[gPos(pagectrl)[0]+gPos(pagectrl.p[0])[0],40,150,30]);
 
-
-
+  sOvf(document.body, 'hidden');
+  d = new Date()
+  if(d.getMonth()==11){
+    neige = new xSnow();
+    sPar(neige, 0);
+    move(neige, [0,0,1,1]);
+    }
+  window.onresize=function(){
+    move(main,[0,0,scrW(),scrH()]);
+    move(page,[0,0,scrW(),scrH()]);
+    if(typeof neige=='object') move(neige, [0,0,1,1]);
+    }
+  window.onresize();
   }
 
 
