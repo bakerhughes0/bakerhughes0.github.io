@@ -132,6 +132,48 @@ move(inf,[gPos(pagectrl)[0]+gPos(pagectrl.p[0])[0],40,150,30]);
     if(typeof neige=='object') move(neige, [0,0,1,1]);
     }
   window.onresize();
+
+
+
+
+
+
+var pn, x_pn, ofs_pn;
+
+function create_pn(){
+  x_pn=-600;ofs_pn=0;
+  pn = new xImg();sPar(pn,0);move(pn,[x_pn,10,300,150]);
+  pn.src='pn.png';sRot(pn,[0,180,0]);
+  sOpa(pn,.9);
+  anim_pn();
+  }
+
+function anim_pn(){
+  step=4;
+  var w=scrW(), h=scrH();
+  x_pn+=step
+  if(x_pn>w) {
+    x_pn=-600;
+    pn.rotz=0;
+    ofs_pn=rnd()*3.14;
+    }
+  y=-90+h/2
+  cos=Math.cos(ofs_pn+x_pn/w*6.28);
+  cos2=Math.cos(ofs_pn+1.6+x_pn/w*6.28);
+  y-=150*cos;
+  pn.rotz = 10-30*cos2
+  sRot(pn,[0,0,0]);
+  sPos(pn,[x_pn,y]);
+  requestAnimationFrame(anim_pn);  
+  }
+
+
+if(d.getMonth()==11 && d.getDate()>14){ create_pn();}
+
+
+
+
+
   }
 
 
