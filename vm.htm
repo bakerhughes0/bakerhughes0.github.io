@@ -165,7 +165,9 @@ function draw(){
         textAlign = "right";
         if(mydata[ytbl]){fillText(mydata[ytbl][6].toString(), .769*W ,.108*H + .032*H*y);}
         fillStyle=bcol;
+if(typeof(mydata[ytbl]) != 'undefined'){
 if(mydata[ytbl][7].indexOf('1522452')>-1){ fillStyle='#172'; } // Order 1522452 demande C.Jaeck 2024-12-3
+}
         fillRect(.772*W ,.09*H + .032*H*y,.17*W,.032*H);
         fillStyle=fcol;
         textAlign = "left";
