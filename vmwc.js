@@ -1,4 +1,4 @@
-timestamp = new Date(2025,2,05,12,10,28);
+timestamp = new Date(2025,2,05,12,20,26);
 data = [
 ['0205',1,2,32630857,'0030. TOURNER (CONNEXION)','2 x COUVERCLE INF 87/88-6 1/2" NPT',2.4,'',155,''],
 ['0205',1,2,32807369,'0010. TOURNER','50 x PLAQUE DE DIAPHRAGME',5.35,'',21,''],
@@ -2359,9 +2359,9 @@ data = [
 ['1008',1,3,32977638,'0010. Mise en conformité et effacer mar','001247605-178AC680 => 001247605-178A1552',0.5,'',0,''],
 ['1008',1,3,32977849,'0010. Mise en conformité et effacer mar','400120873-066DC680 => 400120873-066D1552',0.8,'',0,''],
 ['1008',1,3,32981271,'0010. Mise en conformité et effacer mar','971511069-028B1631=> 971511069-028B1552',5.5,'',0,''],
-['1008',1,2,32983285,'0010. Mise en conformité et effacer mar','2 x 400083657-29330000 => 400083657-826-',0.2,'REWORK',2,'R'],
-['1008',1,2,32983287,'0010. Mise en conformité et effacer mar','2 x 400072449-29330000 => 400072449-826-',0.02,'REWORK',2,'R'],
-['1008',1,2,32983289,'0010. Mise en conformité et effacer mar','21 x 400121080-2933N215 => 400121080-826',2.1,'REWORK',2,'R'],
+['1008',1,3,32983285,'0010. Mise en conformité et effacer mar','400083657-29330000 => 400083657-826-0000',0.2,'',0,''],
+['1008',1,3,32983287,'0010. Mise en conformité et effacer mar','400072449-29330000 => 400072449-826-0000',0.02,'',0,''],
+['1008',1,1,32983289,'0010. Mise en conformité et effacer mar','21 x 400121080-2933N215 => 400121080-826',2.1,'REWORK',0,'R'],
 ['1008',1,3,32983293,'0010. Mise en conformité et effacer mar','971511064-277A1631 => 971511064-277A1552',2.3,'',0,''],
 ['1014',1,2,32776941,'0070. REVUE DOCUMENTS SUIVANT QLTY','ENSEMBLE TRIM 28K CV0.025',0.1,'1011476-20000 FRAMATOME',7,''],
 ['1014',1,2,32841986,'0145. ATTENTE PV PEINTURE','12812',0,'1732875-4000 DRESSER INTERNATIONAL L.L.C',5,''],
