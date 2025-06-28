@@ -1,4 +1,4 @@
-timestamp = new Date('2025-06-28 12:45:19');
+timestamp = new Date('2025-06-28 12:50:22');
 data = [
 ["0205",1,2,33154719,"0010. TOURNER CAGE 21K","1 x CAGE LODB 21K 1\"1/2 CV3.5",2.15,"913787-11000 GE Steam Power Systems",3,""],
 ["0205",1,2,33160559,"0020. TOURNER","1 x BAGUE DE CHAPEAU CRYO 41005 VANNE",1.2,"",2,""],
@@ -1836,8 +1836,8 @@ data = [
 ["1003",1,2,32979435,"0010. CONTROLE DIMMENSIONEL ASMEE III","1 x CORPS DROIT FORGE 21K 6\" BW SCH40",0.15,"",120,""],
 ["1003",1,2,33130824,"0030. Examen visuel de la soudure \u00e0 100% + 15","1 x NCR 200227225 PN 720086835-999-NE26",0.002,"REWORK",15,"R"],
 ["1003",1,2,33005747,"0030. EXAMEN VISUEL DE LA SOUDURE A 100% + 15","1 x NCR 200223803",0.002,"REWORK",12,"R"],
-["1003",1,2,33102934,"0010. Relev\u00e9 des identifications ....","1 x NCR 200227936",0.002,"REWORK",35,"R"],
-["1003",1,2,33102934,"0020. Identification a Ajouter","1 x NCR 200227936",0.002,"REWORK",35,"R"],
+["1003",1,2,33102934,"0010. Relev\u00e9 des identifications ....","1 x NCR 200227936",0.002,"REWORK",36,"R"],
+["1003",1,2,33102934,"0020. Identification a Ajouter","1 x NCR 200227936",0.002,"REWORK",36,"R"],
 ["1003",1,2,33119752,"0010. Degraissage (Paul)","3 x NCR 200223441 Clapets 400081794-256-0000",0.004,"REWORK",23,"R"],
 ["1003",1,2,33119752,"0020. Controle des cotes avt Usinage faire PV","3 x NCR 200223441 Clapets 400081794-256-0000",0.004,"REWORK",23,"R"],
 ["1003",1,2,33130804,"0030. Examen visuel de la soudure \u00e0 100% + 15","1 x NCR 200227103 PN 720086832-999-NE26",0.002,"REWORK",12,"R"],
@@ -1899,7 +1899,7 @@ data = [
 ["1008",1,2,32900526,"0010. Mise en conformit\u00e9 \u00e9ffacer N\u00b0 + MARQUAGE","2 x 720056583-999-5399 => 721007532-999-5399",0.2,"REWORK",175,"R"],
 ["1008",1,2,32902934,"0010. Mise en conformit\u00e9 \u00e9ffacer N\u00b0 + MARQUAGE","1 x 978816357-999-C266 => 978816357-999-0000",0.1,"REWORK",172,"R"],
 ["1008",1,2,32924777,"0010. Mise en conformit\u00e9 et effacer marquage","1 x 400114127-162H1557 => 400114127-162H0000",0.1,"REWORK",157,"R"],
-["1008",1,2,32995704,"0010. Mise en conformit\u00e9 et effacer marquage","1 x 000047340-323-0000 => 000047340-300A0000",0.1,"REWORK",108,"R"],
+["1008",1,2,32995704,"0010. Mise en conformit\u00e9 et effacer marquage","1 x 000047340-323-0000 => 000047340-300A0000",0.1,"REWORK",109,"R"],
 ["1008",1,2,33014505,"0010. Mise en conformit\u00e9 et effacer marquage","0 x 120000DA2-3006N040 => 120000DA2-163S1063",0.09,"REWORK",94,"R"],
 ["1008",1,2,33014506,"0010. Mise en conformit\u00e9 et effacer marquage","1 x 150000DA2-3006N915 => 150000DA2-163S1063",0.145,"REWORK",94,"R"],
 ["1008",1,2,33014507,"0010. Mise en conformit\u00e9 et effacer marquage","1 x 075000DA2-3006N040 => 075000DA2-163S1063",0.14,"REWORK",94,"R"],
