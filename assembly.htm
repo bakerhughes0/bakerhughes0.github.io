@@ -13,205 +13,194 @@ function refreshall(){
   gfx16.render();gfx17.render();gfx18.render();gfx19.render();
   }
 function loadData(){
-  var thisWeek = isoWeek(new Date()).slice(2,7);
+  var thisWeek = isoWeek(new Date()).slice(4,7);
   var d = new Date();
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
   var js = document.createElement('script');
   js.type='text/javascript';
-  js.src="kpi.js" + "?d=" + sd;
-  var weektoshow = 20;
+  js.src="kpi2.js" + "?d=" + sd;
+
   document.head.appendChild(js);    
-  js.onload = function(){ 
-    gfx08.options.data[0].dataPoints=gfx08_d1;
-    gfx08.options.data[1].dataPoints=gfx08_d2;
-    gfx08.options.data[2].dataPoints=gfx08_d3;
-    gfx08.options.data[3].dataPoints=gfx08_d4;
-    gfx08.options.data[4].dataPoints=gfx08_d5;
-    gfx08.options.data[5].dataPoints=[];
-    for(var n=0;n<LOB.week.length;n++){
-      gfx08.options.data[5].dataPoints.push({label:LOB.week[n], y:LOB.cfx[n]});
-      }
-    gfx08_est=[];
-    for(var n=0;n<incprd.cfx.length;n++){
-      for(var x=0;x<5;x++){ if(!(gfx08.options.data[x].dataPoints[n]==undefined)) { incprd.cfx[n] += gfx08.options.data[x].dataPoints[n].y;}}
-      if(gfx08.options.data[5].dataPoints[n].label >= thisWeek){ gfx08_est.push({y: incprd.cfx[n]});} else {gfx08_est.push({y:null});}
-      }
-    gfx08.options.data[6].dataPoints=gfx08_est;
-    max = 0;
-    for(var n=0;n<gfx08_d1.length;n++){
-        max = Math.max(max, gfx08_d1[n].y+gfx08_d2[n].y+gfx08_d3[n].y+gfx08_d4[n].y+gfx08_d5[n].y);
-        }
-    for(var n=0;n<LOB.week.length;n++){
-        max = Math.max(max, LOB.cfx[n]);
-        }
-    gfx08.options.axisY.maximum = max*1.05;
-    gfx08.render();
-    gfx09.options.data[0].dataPoints=gfx09_d1;
-    gfx09.options.data[1].dataPoints=gfx09_d2;
-    gfx09.options.data[2].dataPoints=gfx09_d3;
-    gfx09.options.data[3].dataPoints=gfx09_d4;
-    gfx09.options.data[4].dataPoints=gfx09_d5;
-    gfx09.options.data[5].dataPoints=[];
-    for(var n=0;n<LOB.week.length;n++){
-      gfx09.options.data[5].dataPoints.push({label:LOB.week[n], y:LOB.vpk[n]});
-      }
-    gfx09_est=[];
-    for(var n=0;n<incprd.vpk.length;n++){
-      for(var x=0;x<5;x++){ if(!(gfx09.options.data[x].dataPoints[n]==undefined)) { incprd.vpk[n] += gfx09.options.data[x].dataPoints[n].y;}}
-      if(gfx08.options.data[5].dataPoints[n].label >= thisWeek){ gfx09_est.push({y: incprd.vpk[n]});} else {gfx09_est.push({y:null});}
-      }
-    gfx09.options.data[6].dataPoints=gfx09_est;
+  js.onload = function(){
+  for(var i=0;i<7;i++) {
+    gfx08.options.data[i].dataPoints=[];
+    gfx09.options.data[i].dataPoints=[];
+    gfx10.options.data[i].dataPoints=[];
+    gfx11.options.data[i].dataPoints=[];
+    }
 
-    max = 0;
-    for(var n=0;n<gfx09_d1.length;n++){
-        max = Math.max(max, gfx09_d1[n].y+gfx09_d2[n].y+gfx09_d3[n].y+gfx09_d4[n].y+gfx09_d5[n].y);
-        }
-    for(var n=0;n<LOB.week.length;n++){
-        max = Math.max(max, LOB.vpk[n]);
-        }
-    gfx09.options.axisY.maximum = max*1.05;
-    gfx09.render();
-    gfx10.options.data[0].dataPoints=gfx10_d1;
-    gfx10.options.data[1].dataPoints=gfx10_d2;
-    gfx10.options.data[2].dataPoints=gfx10_d3;
-    gfx10.options.data[3].dataPoints=gfx10_d4;
-    gfx10.options.data[4].dataPoints=gfx10_d5;
-    gfx10.options.data[5].dataPoints=[];
-    for(var n=0;n<LOB.week.length;n++){
-      gfx10.options.data[5].dataPoints.push({label:LOB.week[n], y:LOB.glbcal[n]});
+  var max = 0;
+  for(var w in qprod.CFX) {
+    var maxw = 0;
+    for(var i=0;i<5;i++) {      
+      gfx08.options.data[i].dataPoints.push({label:w, y:qprod.CFX[w][i]});
+      maxw += qprod.CFX[w][i];
       }
-    gfx10_est=[];
-    for(var n=0;n<incprd.glb.length;n++){
-      for(var x=0;x<5;x++){ if(!(gfx10.options.data[x].dataPoints[n]==undefined)) { incprd.glb[n] += gfx10.options.data[x].dataPoints[n].y;}}
-      if(gfx08.options.data[5].dataPoints[n].label >= thisWeek){ gfx10_est.push({y: incprd.glb[n]});} else {gfx10_est.push({y:null});}
+    max = Math.max(max,maxw);
+    }
+  for(var n=0;n<LOB.week.length;n++){
+    gfx08.options.data[5].dataPoints.push({label:LOB.week[n].substring(2), y:LOB.cfx[n]});
+    max = Math.max(max,LOB.cfx[n]);
+    }
+  for(var w in qincprod.CFX) {   
+    var est = 0;
+    for(var i=0;i<5;i++) {est += qincprod.CFX[w][i];}
+    if (w>=thisWeek) { gfx08.options.data[6].dataPoints.push({label:w, y:est}); }else{gfx08.options.data[6].dataPoints.push({label:w, y:null}); }
+    }
+  gfx08.options.axisY.maximum = max*1.05;
+
+  var max = 0;
+  for(var w in qprod.VPK) {
+    var maxw = 0;
+    for(var i=0;i<5;i++) {      
+      gfx09.options.data[i].dataPoints.push({label:w, y:qprod.VPK[w][i]});
+      maxw += qprod.VPK[w][i];
       }
-    gfx10.options.data[6].dataPoints=gfx10_est;
-    max = 0;
-    for(var n=0;n<gfx10_d1.length;n++){
-        max = Math.max(max, gfx10_d1[n].y+gfx10_d2[n].y+gfx10_d3[n].y+gfx10_d4[n].y+gfx10_d5[n].y);
-        }
-    for(var n=0;n<LOB.week.length;n++){
-        max = Math.max(max, LOB.glbcal[n]);
-        }
-    gfx10.options.axisY.maximum = max*1.05;
-    gfx10.render();
-    gfx11.options.data[0].dataPoints=gfx11_d1;
-    gfx11.options.data[1].dataPoints=gfx11_d2;
-    gfx11.options.data[2].dataPoints=gfx11_d3;
-    gfx11.options.data[3].dataPoints=gfx11_d4;
-    gfx11.options.data[4].dataPoints=gfx11_d5;
-    gfx11.options.data[5].dataPoints=[];
-    for(var n=0;n<LOB.week.length;n++){
-      gfx11.options.data[5].dataPoints.push({label:LOB.week[n], y:LOB.lvl[n]});
+    max = Math.max(max,maxw);
+    }
+  for(var n=0;n<LOB.week.length;n++){
+    gfx09.options.data[5].dataPoints.push({label:LOB.week[n].substring(2), y:LOB.vpk[n]});
+    max = Math.max(max,LOB.vpk[n]);
+    }
+  for(var w in qincprod.VPK) {   
+    var est = 0;
+    for(var i=0;i<5;i++) {est += qincprod.VPK[w][i];}
+    if (w>=thisWeek) { gfx09.options.data[6].dataPoints.push({label:w, y:est}); }else{gfx09.options.data[6].dataPoints.push({label:w, y:null}); }
+    }
+  gfx09.options.axisY.maximum = max*1.05;
+
+  var max = 0;
+  for(var w in qprod.GLB) {
+    var maxw = 0;
+    for(var i=0;i<5;i++) {      
+      gfx10.options.data[i].dataPoints.push({label:w, y:qprod.GLB[w][i]});
+      maxw += qprod.GLB[w][i];
       }
-    gfx11_est=[];
-    for(var n=0;n<incprd.lev.length;n++){
-      for(var x=0;x<5;x++){ if(!(gfx11.options.data[x].dataPoints[n]==undefined)) { incprd.lev[n] += gfx11.options.data[x].dataPoints[n].y;}}
-      if(gfx08.options.data[5].dataPoints[n].label >= thisWeek){ gfx11_est.push({y: incprd.lev[n]});} else {gfx11_est.push({y:null});}
+    max = Math.max(max,maxw);
+    }
+  for(var n=0;n<LOB.week.length;n++){
+    gfx10.options.data[5].dataPoints.push({label:LOB.week[n].substring(2), y:LOB.glbcal[n]});
+    max = Math.max(max,LOB.glbcal[n]);
+    }
+  for(var w in qincprod.GLB) {   
+    var est = 0;
+    for(var i=0;i<5;i++) {est += qincprod.GLB[w][i];}
+    if (w>=thisWeek) { gfx10.options.data[6].dataPoints.push({label:w, y:est}); }else{gfx10.options.data[6].dataPoints.push({label:w, y:null}); }
+    }
+  gfx10.options.axisY.maximum = max*1.05;
+
+  var max = 0;
+  for(var w in qprod.LVL) {
+    var maxw = 0;
+    for(var i=0;i<5;i++) {      
+      gfx11.options.data[i].dataPoints.push({label:w, y:qprod.LVL[w][i]});
+      maxw += qprod.LVL[w][i];
       }
-    gfx11.options.data[6].dataPoints=gfx11_est;
-    max = 0;
-    for(var n=0;n<gfx11_d1.length;n++){
-        max = Math.max(max, gfx11_d1[n].y+gfx11_d2[n].y+gfx11_d3[n].y+gfx11_d4[n].y+gfx11_d5[n].y);
-        }
-    for(var n=0;n<LOB.week.length;n++){
-        max = Math.max(max, LOB.lvl[n]);
-        }
-    gfx11.options.axisY.maximum =max*1.05;
-    gfx11.render();
+    max = Math.max(max,maxw);
+    }
+  for(var n=0;n<LOB.week.length;n++){
+    gfx11.options.data[5].dataPoints.push({label:LOB.week[n].substring(2), y:LOB.lvl[n]});
+    max = Math.max(max,LOB.lvl[n]);
+    }
+  for(var w in qincprod.LVL) {   
+    var est = 0;
+    for(var i=0;i<5;i++) {est += qincprod.LVL[w][i];}
+    if (w>=thisWeek) { gfx11.options.data[6].dataPoints.push({label:w, y:est}); }else{gfx11.options.data[6].dataPoints.push({label:w, y:null}); }
+    }
+  gfx11.options.axisY.maximum = max*1.05;
 
+  max = 0;
+  gfx12.options.data[0].dataPoints=[];
+  for(var n=0, cum=0;n<LOB.week.length;n++){
+    cum+=LOB.cfx[n]; gfx12.options.data[0].dataPoints.push({label:LOB.week[n].substring(2), y:cum});
+    max = Math.max(max, cum);
+    }
+  gfx12.options.data[1].dataPoints=[];
+  var cum = 0;
+  for(var w in qprod.CFX) {
+    for(var i=0;i<5;i++){ cum+= qprod.CFX[w][i];}
+    if (w<=thisWeek) { gfx12.options.data[1].dataPoints.push({label:w, y:cum}); }
+    max = Math.max(max, cum);
+    }
+  gfx12.options.data[2].dataPoints=[];
+  for(var w in qincprod.CFX) {
+    for(var i=0;i<5;i++){ cum+= qincprod.CFX[w][i];}
+    if (w>=thisWeek) { gfx12.options.data[2].dataPoints.push({label:w, y:cum}); }else{gfx12.options.data[2].dataPoints.push({label:w, y:null}); }
+    max = Math.max(max, cum);
+    }
+  gfx12.options.axisY.maximum = max;
 
+  max = 0;
+  gfx13.options.data[0].dataPoints=[];
+  for(var n=0, cum=0;n<LOB.week.length;n++){
+    cum+=LOB.vpk[n]; gfx13.options.data[0].dataPoints.push({label:LOB.week[n].substring(2), y:cum});
+    max = Math.max(max, cum);
+    }
+  gfx13.options.data[1].dataPoints=[];
+  var cum = 0;
+  for(var w in qprod.VPK) {
+    for(var i=0;i<5;i++){ cum+= qprod.VPK[w][i];}
+    if (w<=thisWeek) { gfx13.options.data[1].dataPoints.push({label:w, y:cum}); }
+    max = Math.max(max, cum);
+    }
+  gfx13.options.data[2].dataPoints=[];
+  for(var w in qincprod.VPK) {
+    for(var i=0;i<5;i++){ cum+= qincprod.VPK[w][i];}
+    if (w>=thisWeek) { gfx13.options.data[2].dataPoints.push({label:w, y:cum}); }else{gfx13.options.data[2].dataPoints.push({label:w, y:null}); }
+    max = Math.max(max, cum);
+    }
+  gfx13.options.axisY.maximum = max;
 
-    max = 0;
-    gfx12.options.data[0].dataPoints=[];
-    for(var n=0, cum=0;n<LOB.week.length;n++){
-      cum+=LOB.cfx[n]; gfx12.options.data[0].dataPoints.push({label:LOB.week[n], y:cum});
-      max = Math.max(max, cum);
-      }
-    gfx12.options.data[1].dataPoints=gfx12_d2;
-    for(var n=0, cum=0;n<gfx12_d2.length;n++){
-        max = Math.max(max, gfx12_d2[n].y);
-        }
-    gfx12_est=[];
-    for(var n=0, cum=0;n<incprd.cfx.length;n++){
-        cum+=incprd.cfx[n];
-        if(gfx12.options.data[0].dataPoints[n].label >= thisWeek){ gfx12_est.push({y: cum});} else {gfx12_est.push({y:null});}
-        max = Math.max(max, cum);
-        }
-    gfx12.options.data[2].dataPoints=gfx12_est;
-    gfx12.options.axisY.maximum = max;
-    gfx12.render();
+  max = 0;
+  gfx14.options.data[0].dataPoints=[];
+  for(var n=0, cum=0;n<LOB.week.length;n++){
+    cum+=LOB.glbcal[n]; gfx14.options.data[0].dataPoints.push({label:LOB.week[n].substring(2), y:cum});
+    max = Math.max(max, cum);
+    }
+  gfx14.options.data[1].dataPoints=[];
+  var cum = 0;
+  for(var w in qprod.GLB) {
+    for(var i=0;i<5;i++){ cum+= qprod.GLB[w][i];}
+    if (w<=thisWeek) { gfx14.options.data[1].dataPoints.push({label:w, y:cum}); }
+    max = Math.max(max, cum);
+    }
+  gfx14.options.data[2].dataPoints=[];
+  for(var w in qincprod.GLB) {
+    for(var i=0;i<5;i++){ cum+= qincprod.GLB[w][i];}
+    if (w>=thisWeek) { gfx14.options.data[2].dataPoints.push({label:w, y:cum}); }else{gfx14.options.data[2].dataPoints.push({label:w, y:null}); }
+    max = Math.max(max, cum);
+    }
+  gfx14.options.axisY.maximum = max;
 
+  max = 0;
+  gfx15.options.data[0].dataPoints=[];
+  for(var n=0, cum=0;n<LOB.week.length;n++){
+    cum+=LOB.lvl[n]; gfx15.options.data[0].dataPoints.push({label:LOB.week[n].substring(2), y:cum});
+    max = Math.max(max, cum);
+    }
+  gfx15.options.data[1].dataPoints=[];
+  var cum = 0;
+  for(var w in qprod.LVL) {
+    for(var i=0;i<5;i++){ cum+= qprod.LVL[w][i];}
+    if (w<=thisWeek) { gfx15.options.data[1].dataPoints.push({label:w, y:cum}); }
+    max = Math.max(max, cum);
+    }
+  gfx15.options.data[2].dataPoints=[];
+  for(var w in qincprod.LVL) {
+    for(var i=0;i<5;i++){ cum+= qincprod.LVL[w][i];}
+    if (w>=thisWeek) { gfx15.options.data[2].dataPoints.push({label:w, y:cum}); }else{gfx15.options.data[2].dataPoints.push({label:w, y:null}); }
+    max = Math.max(max, cum);
+    }
+  gfx15.options.axisY.maximum = max;
 
+  gfx16.options.data[0].dataPoints=[{label:'20Q1', y:837},{label:'20Q2', y:596},{label:'20Q3', y:677},{label:'20Q4', y:519},{label:'21Q1', y:423},{label:'21Q2', y:501},{label:'21Q3', y:606},{label:'21Q4', y:679},{label:'22Q1', y:572},{label:'22Q2', y:445},{label:'22Q3', y:532},{label:'22Q4', y:496},{label:'23Q1', y:546},{label:'23Q2', y:613},{label:'23Q3', y:526},{label:'23Q4', y:616},{label:'24Q1', y:588},{label:'24Q2', y:586},{label:'24Q3', y:588},{label:'24Q4', y:745},{label:'25Q1', y:738},{label:'25Q2', y:643},{name:"Target",color:"#cc6",label:'25Q3', y:0}];
+  gfx17.options.data[0].dataPoints=[{label:'20Q1',y:211},{label:'20Q2',y:200},{label:'20Q3',y:281},{label:'20Q4',y:209},{label:'21Q1',y:254},{label:'21Q2',y:233},{label:'21Q3',y:163},{label:'21Q4',y:188},{label:'22Q1',y:126},{label:'22Q2',y:93},{label:'22Q3',y:136},{label:'22Q4',y:179},{label:'23Q1',y:170},{label:'23Q2',y:113},{label:'23Q3',y:118},{label:'23Q4',y:104},{label:'24Q1', y:93},{label:'24Q2', y:122},{label:'24Q3', y:158},{label:'24Q4', y:193},{label:'25Q1', y:178},{label:'25Q2', y:276},{name:"Target",color:"#cc6",label:'25Q3', y:0}];
+  gfx18.options.data[0].dataPoints=[{label:'20Q1',y:543},{label:'20Q2',y:331},{label:'20Q3',y:359},{label:'20Q4',y:310},{label:'21Q1',y:212},{label:'21Q2',y:319},{label:'21Q3',y:469},{label:'21Q4',y:468},{label:'22Q1',y:408},{label:'22Q2',y:287},{label:'22Q3',y:141},{label:'22Q4',y:157},{label:'23Q1',y:142},{label:'23Q2',y:90},{label:'23Q3',y:107},{label:'23Q4',y:162},{label:'24Q1', y:161},{label:'24Q2', y:122},{label:'24Q3', y:248},{label:'24Q4', y:344},{label:'25Q1', y:197},{label:'25Q2', y:169},{name:"Target",color:"#cc6",label:'25Q3', y:0}];
+  gfx19.options.data[0].dataPoints=[{label:'20Q1',y:212},{label:'20Q2',y:286},{label:'20Q3',y:248},{label:'20Q4',y:188},{label:'21Q1',y:312},{label:'21Q2',y:186},{label:'21Q3',y:184},{label:'21Q4',y:147},{label:'22Q1',y:152},{label:'22Q2',y:202},{label:'22Q3',y:172},{label:'22Q4',y:140},{label:'23Q1',y:209},{label:'23Q2',y:218},{label:'23Q3',y:311},{label:'23Q4',y:266},{label:'24Q1', y:294},{label:'24Q2', y:314},{label:'24Q3', y:289},{label:'24Q4', y:216},{label:'25Q1', y:135},{label:'25Q2', y:222},{name:"Target",color:"#cc6",label:'25Q3', y:0}];
 
+  sTxt(timstp,'Update : ' + tm);
+  refreshall()
 
-
-    max = 0;
-    gfx13.options.data[0].dataPoints=[];
-    for(var n=0, cum=0;n<LOB.week.length;n++){
-      cum+=LOB.vpk[n]; gfx13.options.data[0].dataPoints.push({label:LOB.week[n], y:cum});
-      max = Math.max(max, cum);
-      }
-    gfx13.options.data[1].dataPoints=gfx13_d2;
-    for(var n=0, cum=0;n<gfx13_d2.length;n++){
-        max = Math.max(max, gfx13_d2[n].y);
-        }
-    gfx13_est=[];
-    for(var n=0, cum=0;n<incprd.vpk.length;n++){
-        cum+=incprd.vpk[n];
-        if(gfx12.options.data[0].dataPoints[n].label >= thisWeek){ gfx13_est.push({y: cum});} else {gfx13_est.push({y:null});}
-        max = Math.max(max, cum);
-        }
-    gfx13.options.data[2].dataPoints=gfx13_est;
-    gfx13.options.axisY.maximum = max;
-    gfx13.render();
-    max = 0;
-    gfx14.options.data[0].dataPoints=[];
-    for(var n=0, cum=0;n<LOB.week.length;n++){
-      cum+=LOB.glbcal[n]; gfx14.options.data[0].dataPoints.push({label:LOB.week[n], y:cum});
-      max = Math.max(max, cum);
-      }
-    gfx14.options.data[1].dataPoints=gfx14_d2;
-    for(var n=0, cum=0;n<gfx14_d2.length;n++){
-        max = Math.max(max, gfx14_d2[n].y);
-        }
-    gfx14_est=[];
-    for(var n=0, cum=0;n<incprd.glb.length;n++){
-        cum+=incprd.glb[n];
-        if(gfx12.options.data[0].dataPoints[n].label >= thisWeek){ gfx14_est.push({y: cum});} else {gfx14_est.push({y:null});}
-        max = Math.max(max, cum);
-        }
-    gfx14.options.data[2].dataPoints=gfx14_est;
-    gfx14.options.axisY.maximum = max;
-    gfx14.render();
-    max = 0;
-    gfx15.options.data[0].dataPoints=[];
-    for(var n=0, cum=0;n<LOB.week.length;n++){
-      cum+=LOB.lvl[n]; gfx15.options.data[0].dataPoints.push({label:LOB.week[n], y:cum});
-      max = Math.max(max, cum);
-      }
-    gfx15.options.data[1].dataPoints=gfx15_d2;
-    for(var n=0, cum=0;n<gfx15_d2.length;n++){
-        max = Math.max(max, gfx15_d2[n].y);
-        }
-    gfx15_est=[];
-    for(var n=0, cum=0;n<incprd.lev.length;n++){
-        cum+=incprd.lev[n];
-        if(gfx12.options.data[0].dataPoints[n].label >= thisWeek){ gfx15_est.push({y: cum});} else {gfx15_est.push({y:null});}
-        max = Math.max(max, cum);
-        }
-    gfx15.options.data[2].dataPoints=gfx15_est;
-    gfx15.options.axisY.maximum = max;
-    gfx15.render();
-    gfx16.options.data[0].dataPoints=[{label:'20Q1', y:837},{label:'20Q2', y:596},{label:'20Q3', y:677},{label:'20Q4', y:519},{label:'21Q1', y:423},{label:'21Q2', y:501},{label:'21Q3', y:606},{label:'21Q4', y:679},{label:'22Q1', y:572},{label:'22Q2', y:445},{label:'22Q3', y:532},{label:'22Q4', y:496},{label:'23Q1', y:546},{label:'23Q2', y:613},{label:'23Q3', y:526},{label:'23Q4', y:616},{label:'24Q1', y:587},{label:'24Q2', y:586},{label:'24Q3', y:608},{label:'24Q4', y:751},{name:"Target",color:"#cc6",label:'25Q1', y:0}];
-    gfx16.render();
-    gfx17.options.data[0].dataPoints=[{label:'20Q1',y:211},{label:'20Q2',y:200},{label:'20Q3',y:281},{label:'20Q4',y:209},{label:'21Q1',y:254},{label:'21Q2',y:233},{label:'21Q3',y:163},{label:'21Q4',y:188},{label:'22Q1',y:126},{label:'22Q2',y:93},{label:'22Q3',y:136},{label:'22Q4',y:179},{label:'23Q1',y:170},{label:'23Q2',y:113},{label:'23Q3',y:118},{label:'23Q4',y:104},{label:'24Q1', y:94},{label:'24Q2', y:122},{label:'24Q3', y:163},{label:'24Q4', y:193},{name:"Target",color:"#cc6",label:'25Q1', y:0}];
-    gfx17.render();
-    gfx18.options.data[0].dataPoints=[{label:'20Q1',y:543},{label:'20Q2',y:331},{label:'20Q3',y:359},{label:'20Q4',y:310},{label:'21Q1',y:212},{label:'21Q2',y:319},{label:'21Q3',y:469},{label:'21Q4',y:468},{label:'22Q1',y:408},{label:'22Q2',y:287},{label:'22Q3',y:141},{label:'22Q4',y:157},{label:'23Q1',y:142},{label:'23Q2',y:90},{label:'23Q3',y:107},{label:'23Q4',y:162},{label:'24Q1', y:163},{label:'24Q2', y:122},{label:'24Q3', y:258},{label:'24Q4', y:345},{name:"Target",color:"#cc6",label:'25Q1', y:0}];
-    gfx18.render();
-    gfx19.options.data[0].dataPoints=[{label:'20Q1',y:212},{label:'20Q2',y:286},{label:'20Q3',y:248},{label:'20Q4',y:188},{label:'21Q1',y:312},{label:'21Q2',y:186},{label:'21Q3',y:184},{label:'21Q4',y:147},{label:'22Q1',y:152},{label:'22Q2',y:202},{label:'22Q3',y:172},{label:'22Q4',y:140},{label:'23Q1',y:209},{label:'23Q2',y:218},{label:'23Q3',y:311},{label:'23Q4',y:266},{label:'24Q1', y:296},{label:'24Q2', y:314},{label:'24Q3', y:303},{label:'24Q4', y:216},{name:"Target",color:"#cc6",label:'25Q1', y:0}];
-    gfx19.render();
-    sTxt(timstp,'Update : ' + tm);
     }
   setTimeout(loadData, 60000);
   }
@@ -227,7 +216,7 @@ window.onload=function(){
   for(var n=0; n<12; n++){g[n] = new gfxbox();}
 
   var axeY_1 = {title: "Quantity", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0}
-  var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -32, labelFontFamily: 'Arial'}
+  var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -45, labelFontFamily: 'Arial'}
   var axeX_2 = {labelFontColor: "#eee", interval: 1, labelAngle: -66, labelFontFamily: 'Arial', labelFontSize: 10}
   var leg_1 = {horizontalAlign: "center", verticalAlign: "bottom", labelFontFamily: 'Arial', fontColor: "#eee"}
   var tTip1 = {shared: true, backgroundColor: c_tip, borderColor:'grey', content: toolTipContent6};
@@ -248,7 +237,7 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name:"Initial plan",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
+    { type: "line", name:"Initial plan", lineDashType:"dot", markerSize: 4, color: "#CC6", showInLegend:true, dataPoints:[]},
     { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
   });
@@ -268,7 +257,7 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name:"Initial plan",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
+    { type: "line", name:"Initial plan", lineDashType:"dot", markerSize: 4, color: "#CC6", showInLegend:true, dataPoints:[]},
     { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
   });
@@ -288,7 +277,7 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name:"Initial plan",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
+    { type: "line", name:"Initial plan", lineDashType:"dot", markerSize: 4, color: "#CC6", showInLegend:true, dataPoints:[]},
     { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
   });
@@ -308,7 +297,7 @@ window.onload=function(){
     { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
     { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
     { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
-    { type: "line", name:"Initial plan",lineDashType:"dash",color: "#CC6",showInLegend:true,dataPoints:[]},
+    { type: "line", name:"Initial plan", lineDashType:"dot", markerSize: 4, color: "#CC6", showInLegend:true, dataPoints:[]},
     { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
   });
@@ -323,7 +312,7 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip: tTip2,
   data: [              
-    { type: "line", name:"Initial plan", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
+    { type: "line", name:"Initial plan", lineDashType:"dot", markerSize: 4, color: "#CC6", showInLegend:true, dataPoints:[]},
     { type: "line", name:"Completed", color:"#8b9", showInLegend: true, dataPoints: [] },
     { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
@@ -338,7 +327,7 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip: tTip2,
   data: [              
-    { type: "line", name:"Initial plan", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
+    { type: "line", name:"Initial plan", lineDashType:"dot", markerSize: 4, color: "#CC6", showInLegend:true, dataPoints:[]},
     { type: "line", name:"Completed", color:"#8b9", showInLegend: true, dataPoints: [] },
     { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
@@ -353,7 +342,7 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip: tTip2,
   data: [              
-    { type: "line", name: "Initial plan", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
+    { type: "line", name:"Initial plan", lineDashType:"dot", markerSize: 4, color: "#CC6", showInLegend:true, dataPoints:[]},
     { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] },
     { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
@@ -368,7 +357,7 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip: tTip2,
   data: [              
-    { type: "line", name: "Initial plan", lineDashType: "dash", color: "#CC6", showInLegend: true, dataPoints: [] },
+    { type: "line", name:"Initial plan", lineDashType:"dot", markerSize: 4, color: "#CC6", showInLegend:true, dataPoints:[]},
     { type: "line", name: "Completed",  color:"#8b9", showInLegend: true, dataPoints: [] },
     { type: "line", name:"Planned", markerType: "none", lineDashType:"shortDot", color:c_proj, showInLegend:true, dataPoints:[]},
     ]
