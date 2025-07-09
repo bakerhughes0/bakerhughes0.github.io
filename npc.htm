@@ -6,9 +6,7 @@
 <script type=text/javascript>
 
 function refreshall(){
-  gfx0.render();gfx1.render();gfx2.render();gfx3.render();
-  gfx4.render();gfx5.render();gfx6.render();gfx7.render();
-  gfx8.render();gfx9.render();gfx10.render();gfx11.render();
+  gfx0.render();gfx1.render();  gfx2.render();gfx3.render();gfx4.render();gfx5.render();
   }
 
 function loadData(){
@@ -16,106 +14,67 @@ function loadData(){
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
   var js = document.createElement('script');
   js.type='text/javascript';
-  js.src="kpi.js" + "?d=" + sd;
+  js.src="kpi2.js" + "?d=" + sd;
   var weektoshow = 20;
   document.head.appendChild(js);    
   js.onload = function(){ 
-    gfx0.options.data[0].dataPoints=[];
-    gfx0.options.data[1].dataPoints=[];
-    for(var n=0; n<npc.dates.length; n++){
-      gfx0.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.memach[n][0]})
-      gfx0.options.data[1].dataPoints.push({y:npc.memach[n][1]})
+    for(var n=0; n<6; n++){
+      gfx0.options.data[n].dataPoints=[];
+      gfx1.options.data[n].dataPoints=[];
+      gfx2.options.data[n].dataPoints=[];
+      gfx3.options.data[n].dataPoints=[];
+      gfx4.options.data[n].dataPoints=[];
+      gfx5.options.data[n].dataPoints=[];
       }
-    for(var i=0;i<5; i++){
-      gfx1.options.data[i].dataPoints=[];
-      for(var n=0; n<npc.dates.length; n++){
-        if(i==0){
-          gfx1.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.memach_ovd[n][i]});
-          }else{
-          gfx1.options.data[i].dataPoints.push({y:npc.memach_ovd[n][i]});
-          }
-        }
+    for(var n=0; n<npc_eng_mac.dates.length; n++){
+      gfx0.options.data[0].dataPoints.push({label:npc_eng_mac.dates[n], y:npc_eng_mac.a[n]})
+      gfx0.options.data[1].dataPoints.push({label:npc_eng_mac.dates[n], y:npc_eng_mac.b[n]})
+      gfx0.options.data[2].dataPoints.push({label:npc_eng_mac.dates[n], y:npc_eng_mac.c[n]})
+      gfx0.options.data[3].dataPoints.push({label:npc_eng_mac.dates[n], y:npc_eng_mac.d[n]})
+      gfx0.options.data[4].dataPoints.push({label:npc_eng_mac.dates[n], y:npc_eng_mac.e[n]})
+      gfx0.options.data[5].dataPoints.push({label:npc_eng_mac.dates[n], y:npc_eng_mac.f[n]})
       }
-    gfx2.options.data[0].dataPoints=[];
-    gfx2.options.data[1].dataPoints=[];
-    for(var n=0; n<npc.dates.length; n++){
-      gfx2.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.meass[n][0]})
-      gfx2.options.data[1].dataPoints.push({y:npc.meass[n][1]})
+    for(var n=0; n<npc_eng_asm.dates.length; n++){
+      gfx1.options.data[0].dataPoints.push({label:npc_eng_asm.dates[n], y:npc_eng_asm.a[n]})
+      gfx1.options.data[1].dataPoints.push({label:npc_eng_asm.dates[n], y:npc_eng_asm.b[n]})
+      gfx1.options.data[2].dataPoints.push({label:npc_eng_asm.dates[n], y:npc_eng_asm.c[n]})
+      gfx1.options.data[3].dataPoints.push({label:npc_eng_asm.dates[n], y:npc_eng_asm.d[n]})
+      gfx1.options.data[4].dataPoints.push({label:npc_eng_asm.dates[n], y:npc_eng_asm.e[n]})
+      gfx1.options.data[5].dataPoints.push({label:npc_eng_asm.dates[n], y:npc_eng_asm.f[n]})
       }
-    for(var i=0;i<5; i++){
-      gfx3.options.data[i].dataPoints=[];
-      for(var n=0; n<npc.dates.length; n++){
-        if(i==0){
-          gfx3.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.meass_ovd[n][i]});
-          }else{
-          gfx3.options.data[i].dataPoints.push({y:npc.meass_ovd[n][i]});
-          }
-        }
+    for(var n=0; n<npc_eng_mac_eng.dates.length; n++){
+      gfx2.options.data[0].dataPoints.push({label:npc_eng_mac_eng.dates[n], y:npc_eng_mac_eng.a[n]})
+      gfx2.options.data[1].dataPoints.push({label:npc_eng_mac_eng.dates[n], y:npc_eng_mac_eng.b[n]})
+      gfx2.options.data[2].dataPoints.push({label:npc_eng_mac_eng.dates[n], y:npc_eng_mac_eng.c[n]})
+      gfx2.options.data[3].dataPoints.push({label:npc_eng_mac_eng.dates[n], y:npc_eng_mac_eng.d[n]})
+      gfx2.options.data[4].dataPoints.push({label:npc_eng_mac_eng.dates[n], y:npc_eng_mac_eng.e[n]})
+      gfx2.options.data[5].dataPoints.push({label:npc_eng_mac_eng.dates[n], y:npc_eng_mac_eng.f[n]})
       }
-    gfx4.options.data[0].dataPoints=[];
-    gfx4.options.data[1].dataPoints=[];
-    for(var n=0; n<npc.dates.length; n++){
-      gfx4.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.memachE[n][0]})
-      gfx4.options.data[1].dataPoints.push({y:npc.memachE[n][1]})
+    for(var n=0; n<npc_eng_asm_eng.dates.length; n++){
+      gfx3.options.data[0].dataPoints.push({label:npc_eng_asm_eng.dates[n], y:npc_eng_asm_eng.a[n]})
+      gfx3.options.data[1].dataPoints.push({label:npc_eng_asm_eng.dates[n], y:npc_eng_asm_eng.b[n]})
+      gfx3.options.data[2].dataPoints.push({label:npc_eng_asm_eng.dates[n], y:npc_eng_asm_eng.c[n]})
+      gfx3.options.data[3].dataPoints.push({label:npc_eng_asm_eng.dates[n], y:npc_eng_asm_eng.d[n]})
+      gfx3.options.data[4].dataPoints.push({label:npc_eng_asm_eng.dates[n], y:npc_eng_asm_eng.e[n]})
+      gfx3.options.data[5].dataPoints.push({label:npc_eng_asm_eng.dates[n], y:npc_eng_asm_eng.f[n]})
       }
-    for(var i=0;i<5; i++){
-      gfx5.options.data[i].dataPoints=[];
-      for(var n=0; n<npc.dates.length; n++){
-        if(i==0){
-          gfx5.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.memachE_ovd[n][i]});
-          }else{
-          gfx5.options.data[i].dataPoints.push({y:npc.memachE_ovd[n][i]});
-          }
-        }
+    for(var n=0; n<npc_proc.dates.length; n++){
+      gfx4.options.data[0].dataPoints.push({label:npc_proc.dates[n], y:npc_proc.a[n]})
+      gfx4.options.data[1].dataPoints.push({label:npc_proc.dates[n], y:npc_proc.b[n]})
+      gfx4.options.data[2].dataPoints.push({label:npc_proc.dates[n], y:npc_proc.c[n]})
+      gfx4.options.data[3].dataPoints.push({label:npc_proc.dates[n], y:npc_proc.d[n]})
+      gfx4.options.data[4].dataPoints.push({label:npc_proc.dates[n], y:npc_proc.e[n]})
+      gfx4.options.data[5].dataPoints.push({label:npc_proc.dates[n], y:npc_proc.f[n]})
       }
-    gfx6.options.data[0].dataPoints=[];
-    gfx6.options.data[1].dataPoints=[];
-    for(var n=0; n<npc.dates.length; n++){
-      gfx6.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.meassE[n][0]})
-      gfx6.options.data[1].dataPoints.push({y:npc.meassE[n][1]})
+    for(var n=0; n<npc_cost.dates.length; n++){
+      gfx5.options.data[0].dataPoints.push({label:npc_cost.dates[n], y:npc_cost.a[n]})
+      gfx5.options.data[1].dataPoints.push({label:npc_cost.dates[n], y:npc_cost.b[n]})
+      gfx5.options.data[2].dataPoints.push({label:npc_cost.dates[n], y:npc_cost.c[n]})
+      gfx5.options.data[3].dataPoints.push({label:npc_cost.dates[n], y:npc_cost.d[n]})
+      gfx5.options.data[4].dataPoints.push({label:npc_cost.dates[n], y:npc_cost.e[n]})
+      gfx5.options.data[5].dataPoints.push({label:npc_cost.dates[n], y:npc_cost.f[n]})
       }
-    for(var i=0;i<5; i++){
-      gfx7.options.data[i].dataPoints=[];
-      for(var n=0; n<npc.dates.length; n++){
-        if(i==0){
-          gfx7.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.meassE_ovd[n][i]});
-          }else{
-          gfx7.options.data[i].dataPoints.push({y:npc.meassE_ovd[n][i]});
-          }
-        }
-      }
-    gfx8.options.data[0].dataPoints=[];
-    gfx8.options.data[1].dataPoints=[];
-    for(var n=0; n<npc.dates.length; n++){
-      gfx8.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.proc[n][0]})
-      gfx8.options.data[1].dataPoints.push({y:npc.proc[n][1]})
-      }
-    for(var i=0;i<5; i++){
-      gfx9.options.data[i].dataPoints=[];
-      for(var n=0; n<npc.dates.length; n++){
-        if(i==0){
-          gfx9.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.proc_ovd[n][i]});
-          }else{
-          gfx9.options.data[i].dataPoints.push({y:npc.proc_ovd[n][i]});
-          }
-        }
-      }
-    gfx10.options.data[0].dataPoints=[];
-    gfx10.options.data[1].dataPoints=[];
-    for(var n=0; n<npc.dates.length; n++){
-      gfx10.options.data[0].dataPoints.push({label:npc.dates[n], y:npc.cost[n][0]})
-      gfx10.options.data[1].dataPoints.push({y:npc.cost[n][1]})
-      }
-    for(var i=0;i<5; i++){
-      gfx11.options.data[i].dataPoints=[];
-      for(var n=0; n<npc.dates.length; n++){
-        if(i==0){
-          gfx11.options.data[i].dataPoints.push({label:npc.dates[n], y:npc.cost_ovd[n][i]});
-          }else{
-          gfx11.options.data[i].dataPoints.push({y:npc.cost_ovd[n][i]});
-          }
-        }
-      }
+
     refreshall();
     sTxt(timstp,'Update : ' + tm);
     }
@@ -130,7 +89,7 @@ window.onload=function(){
   sTxt(t2,"NPC STATUS");
   timstp=new xLab();sPar(timstp,main);sFtC(timstp,'#666');
   var g = [];
-  for(var n=0; n<12; n++){g[n] = new gfxbox();}
+  for(var n=0; n<6; n++){g[n] = new gfxbox();}
   var axeY_1 = {title: "Materials", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0}
   var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -32, labelFontFamily: 'Arial'}
   var axeX_2 = {labelFontColor: "#eee", interval: 1, labelAngle: -66, labelFontFamily: 'Arial', labelFontSize: 10}
@@ -149,14 +108,18 @@ window.onload=function(){
   toolTip:ttip1,
   data: [              
     { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "Overdue", color: "#b33", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 1w", color: "#895", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 2w", color: "#B95", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 4w", color: "#A74",  dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 8w", color: "#B52", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "> 8w", color: "#A31",  dataPoints: [], showInLegend: true },
     ]
   });
   gfx1 = new CanvasJS.Chart(g[1], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "MANUFACT ENG. OVD AGE", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
-  subtitles: [{text: "Machining", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
+  title: {text: "MANUFACT ENG.", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles: [{text: "Assembly", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
   backgroundColor: null,
   dataPointMaxWidth: 16,
   legend:leg_1,
@@ -164,6 +127,7 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip:ttip1,
   data: [              
+    { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "< 1w", color: "#895", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "< 2w", color: "#B95", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "< 4w", color: "#A74",  dataPoints: [], showInLegend: true },
@@ -176,7 +140,7 @@ window.onload=function(){
   animationEnabled: true,
   animationDuration: 500,
   title: {text: "MANUFACT ENG.", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
-  subtitles: [{text: "Assembly", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
+  subtitles: [{text: "Machining - NPC-ENG", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
   backgroundColor: null,
   dataPointMaxWidth: 16,
   legend:leg_1,
@@ -185,14 +149,18 @@ window.onload=function(){
   toolTip:ttip1,
   data: [              
     { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "Overdue", color: "#b33", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 1w", color: "#895", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 2w", color: "#B95", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 4w", color: "#A74",  dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "< 8w", color: "#B52", dataPoints: [], showInLegend: true },
+    { type: "stackedColumn", name: "> 8w", color: "#A31",  dataPoints: [], showInLegend: true },
     ]
   });
   gfx3 = new CanvasJS.Chart(g[3], {
   animationEnabled: true,
   animationDuration: 500,
-  title: {text: "MANUFACT ENG. OVD AGE", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
-  subtitles: [{text: "Assembly", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
+  title: {text: "MANUFACT ENG.", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
+  subtitles: [{text: "Assembly - NPC-ENG", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
   backgroundColor: null,
   dataPointMaxWidth: 16,
   legend:leg_1,
@@ -200,6 +168,7 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip:ttip1,
   data: [              
+    { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "< 1w", color: "#895", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "< 2w", color: "#B95", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "< 4w", color: "#A74",  dataPoints: [], showInLegend: true },
@@ -207,80 +176,9 @@ window.onload=function(){
     { type: "stackedColumn", name: "> 8w", color: "#A31",  dataPoints: [], showInLegend: true },
     ]
   });
+
 
   gfx4 = new CanvasJS.Chart(g[4], {
-  animationEnabled: true,
-  animationDuration: 500,
-  title: {text: "MANUFACT ENG.", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
-  subtitles: [{text: "Machining - NPC-ENG", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
-  backgroundColor: null,
-  dataPointMaxWidth: 16,
-  legend:leg_1,
-  axisY:axeY_1,
-  axisX:axeX_1,
-  toolTip:ttip1,
-  data: [              
-    { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "Overdue", color: "#b33", dataPoints: [], showInLegend: true },
-    ]
-  });
-  gfx5 = new CanvasJS.Chart(g[5], {
-  animationEnabled: true,
-  animationDuration: 500,
-  title: {text: "MANUFACT ENG. OVD AGE", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
-  subtitles: [{text: "Machining - NPC-ENG", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
-  backgroundColor: null,
-  dataPointMaxWidth: 16,
-  legend:leg_1,
-  axisY:axeY_1,
-  axisX:axeX_1,
-  toolTip:ttip1,
-  data: [              
-    { type: "stackedColumn", name: "< 1w", color: "#895", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "< 2w", color: "#B95", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "< 4w", color: "#A74",  dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "< 8w", color: "#B52", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "> 8w", color: "#A31",  dataPoints: [], showInLegend: true },
-    ]
-  });
-
-  gfx6 = new CanvasJS.Chart(g[6], {
-  animationEnabled: true,
-  animationDuration: 500,
-  title: {text: "MANUFACT ENG.", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
-  subtitles: [{text: "Assembly - NPC-ENG", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
-  backgroundColor: null,
-  dataPointMaxWidth: 16,
-  legend:leg_1,
-  axisY:axeY_1,
-  axisX:axeX_1,
-  toolTip:ttip1,
-  data: [              
-    { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "Overdue", color: "#b33", dataPoints: [], showInLegend: true },
-    ]
-  });
-  gfx7 = new CanvasJS.Chart(g[7], {
-  animationEnabled: true,
-  animationDuration: 500,
-  title: {text: "MANUFACT ENG. OVD AGE", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
-  subtitles: [{text: "Assembly - NPC-ENG", fontSize:14, fontColor:"#ddd",fontFamily: 'Arial'}],
-  backgroundColor: null,
-  dataPointMaxWidth: 16,
-  legend:leg_1,
-  axisY:axeY_1,
-  axisX:axeX_1,
-  toolTip:ttip1,
-  data: [              
-    { type: "stackedColumn", name: "< 1w", color: "#895", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "< 2w", color: "#B95", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "< 4w", color: "#A74",  dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "< 8w", color: "#B52", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "> 8w", color: "#A31",  dataPoints: [], showInLegend: true },
-    ]
-  });
-
-  gfx8 = new CanvasJS.Chart(g[8], {
   animationEnabled: true,
   animationDuration: 500,
   title: {text: "PROCUREMENT", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
@@ -292,20 +190,6 @@ window.onload=function(){
   toolTip:ttip1,
   data: [              
     { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "Overdue", color: "#b33", dataPoints: [], showInLegend: true },
-    ]
-  });
-  gfx9 = new CanvasJS.Chart(g[9], {
-  animationEnabled: true,
-  animationDuration: 500,
-  title: {text: "PROCUREMENT OVD AGE", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  dataPointMaxWidth: 16,
-  legend:leg_1,
-  axisY:axeY_1,
-  axisX:axeX_1,
-  toolTip:ttip1,
-  data: [              
     { type: "stackedColumn", name: "< 1w", color: "#895", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "< 2w", color: "#B95", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "< 4w", color: "#A74",  dataPoints: [], showInLegend: true },
@@ -313,7 +197,7 @@ window.onload=function(){
     { type: "stackedColumn", name: "> 8w", color: "#A31",  dataPoints: [], showInLegend: true },
     ]
   });
-  gfx10 = new CanvasJS.Chart(g[10], {
+  gfx5 = new CanvasJS.Chart(g[5], {
   animationEnabled: true,
   animationDuration: 500,
   title: {text: "COSTING", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
@@ -325,21 +209,6 @@ window.onload=function(){
   toolTip:ttip1,
   data: [              
     { type: "stackedColumn", name: "Ontime", color: "#8B8", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "Overdue", color: "#b33", dataPoints: [], showInLegend: true },
-    ]
-  });
-  gfx11 = new CanvasJS.Chart(g[11], {
-  animationEnabled: true,
-  animationDuration: 500,
-  title: {text: "COSTING OVD AGE", fontSize:16, fontColor:"#ddd",fontFamily: 'Arial'},
-  backgroundColor: null,
-  dataPointMaxWidth: 16,
-  backgroundColor: null,
-  legend:leg_1,
-  axisY:axeY_1,
-  axisX:axeX_1,
-  toolTip:ttip1,
-  data: [              
     { type: "stackedColumn", name: "< 1w", color: "#895", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "< 2w", color: "#B95", dataPoints: [], showInLegend: true },
     { type: "stackedColumn", name: "< 4w", color: "#A74",  dataPoints: [], showInLegend: true },
@@ -353,10 +222,10 @@ window.onload=function(){
     movep(t1,[.01, .01, .98, .045]);
     movep(t2,[.01, .01, .98, .045]);
     movep(timstp,[.01, .97, 1, .03]);
-    for(var n=0; n<12; n++){
-      x = n % 4;
-      y = Math.floor(n/4);
-      movep(g[n],[.01+x*.2475, .07+y*.3, .2375, .29]);
+    for(var n=0; n<6; n++){
+      x = Math.floor(n/2);
+      y = n % 2;
+      movep(g[n],[.01+x*.33, .07+y*.45, .32, .43]);
       refreshall();
       }
     };window.onresize();
