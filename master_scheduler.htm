@@ -6,10 +6,7 @@
 <script type=text/javascript>
 
 function refreshall(){
-  gfx0.render();gfx1.render();gfx2.render();gfx3.render();
-  gfx4.render();
-  gfx5.render();gfx6.render();gfx7.render();gfx8.render();
-
+  gfx0.render();gfx1.render();gfx2.render();gfx3.render();gfx4.render();gfx5.render();gfx6.render();gfx7.render();gfx8.render();
   }
 
 function loadData(){
@@ -17,84 +14,81 @@ function loadData(){
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
   var js = document.createElement('script');
   js.type='text/javascript';
-  js.src="kpi.js" + "?d=" + sd;
+  js.src="kpi2.js" + "?d=" + sd;
   var weektoshow = 20;
   document.head.appendChild(js);    
   js.onload = function(){
     for(var n=0; n<3; n++){
-        gfx0.options.data[n].dataPoints=[];
-        }
-    min_pending = bklg_ana[0][1][1]
-    for(var n=0; n<bklg_ana.length; n++){
-      gfx0.options.data[0].dataPoints.push({label:bklg_ana[n][0], y:bklg_ana[n][1][1]})
-      gfx0.options.data[1].dataPoints.push({y:bklg_ana[n][1][0]})
-      gfx0.options.data[2].dataPoints.push({y:bklg_ana[n][1][2]})
-      if (bklg_ana[n][1][1] < min_pending) min_pending = bklg_ana[n][1][1];
+      gfx0.options.data[n].dataPoints=[];
+      }
+    min_pending = bklog.p[bklog.dates.length-1];
+    for(var n=0;n<bklog.dates.length;n++){
+      gfx0.options.data[0].dataPoints.push({label:bklog.dates[n], y:bklog.p[n]})
+      gfx0.options.data[1].dataPoints.push({label:bklog.dates[n], y:bklog.b[n]})
+      gfx0.options.data[2].dataPoints.push({label:bklog.dates[n], y:bklog.s[n]})
+      if(bklog.p[n]>0) min_pending = Math.min(min_pending, bklog.p[n]);
       }
     gfx0.options.axisY.minimum=min_pending * .99;
-
-
-    gfx1.options.data[0].dataPoints=[];    
-    for(var n=0;n<com_10ovd_usd.length; n++){
-      gfx1.options.data[0].dataPoints.push({name:com_10ovd_usd[n][0], y:com_10ovd_usd[n][1], x:com_10ovd_usd[n][2], z:com_10ovd_usd[n][1]})
+    for(var n=0;n<5;n++){ gfx3.options.data[n].dataPoints=[];}
+    for(var n=0;n<unclean.dates.length;n++){
+      gfx3.options.data[0].dataPoints.push({label:unclean.dates[n], y:unclean.a[n]})
+      gfx3.options.data[1].dataPoints.push({label:unclean.dates[n], y:unclean.b[n]})
+      gfx3.options.data[2].dataPoints.push({label:unclean.dates[n], y:unclean.c[n]})
+      gfx3.options.data[3].dataPoints.push({label:unclean.dates[n], y:unclean.d[n]})
+      gfx3.options.data[4].dataPoints.push({label:unclean.dates[n], y:unclean.e[n]})
       }
-    gfx2.options.data[0].dataPoints=[];    
-    for(var n=0;n<nuc_10ovd_usd.length; n++){
-      gfx2.options.data[0].dataPoints.push({name:nuc_10ovd_usd[n][0], y:nuc_10ovd_usd[n][1], x:nuc_10ovd_usd[n][2], z:com_10ovd_usd[n][1]})
+    gfx1.options.data[0].dataPoints=[];
+    for(var n=0;n<top_ovd_com.so.length;n++){
+      gfx1.options.data[0].dataPoints.push({name:top_ovd_com.so[n], y:top_ovd_com.usd[n], x:top_ovd_com.days[n], z:top_ovd_com.usd[n]})
       }
-    for(var n=0;n<3;n++){ gfx5.options.data[n].dataPoints=[];} 
+    gfx2.options.data[0].dataPoints=[];
+    for(var n=0;n<top_ovd_nuc.so.length;n++){
+      gfx2.options.data[0].dataPoints.push({name:top_ovd_nuc.so[n], y:top_ovd_nuc.usd[n], x:top_ovd_nuc.days[n], z:top_ovd_nuc.usd[n]})
+      }
+    for(var n=0;n<4;n++){ gfx4.options.data[n].dataPoints=[];}
+    for(var n=0;n<prdlate.dates.length;n++){
+      gfx4.options.data[0].dataPoints.push({label:prdlate.dates[n], y:prdlate.c[n]})
+      gfx4.options.data[1].dataPoints.push({label:prdlate.dates[n], y:prdlate.v[n]})
+      gfx4.options.data[2].dataPoints.push({label:prdlate.dates[n], y:prdlate.g[n]})
+      gfx4.options.data[3].dataPoints.push({label:prdlate.dates[n], y:prdlate.l[n]})
+      }
+    for(var n=0;n<3;n++){ gfx5.options.data[n].dataPoints=[];}
     cum=0; cq=''
-    for(var n=0;n<incprd_ms.w.length;n++){
-      gfx5.options.data[0].dataPoints.push({label:incprd_ms.w[n], y:incprd_ms.cfx[n]})
-      gfx5.options.data[1].dataPoints.push({y:incprd_ms.cfx_eng[n]})
-      if(cq!=incprd_ms.q[n]){cq=incprd_ms.q[n]; cum=0;}
-      cum+=incprd_ms.cfx[n];
-      gfx5.options.data[2].dataPoints.push({y:cum})
+    for(var n=0;n<slot_plan.w.length;n++){
+      if(cq!=slot_plan.q[n]){cq=slot_plan.q[n]; cum=0;}
+      cum+=slot_plan.c[n];
+      gfx5.options.data[0].dataPoints.push({label:slot_plan.w[n], y:slot_plan.c[n]})
+      gfx5.options.data[2].dataPoints.push({label:slot_plan.w[n], y:cum})
       }
-    for(var n=0;n<3;n++){ gfx6.options.data[n].dataPoints=[];} 
+    for(var n=0;n<3;n++){ gfx6.options.data[n].dataPoints=[];}
     cum=0; cq=''
-    for(var n=0;n<incprd_ms.w.length;n++){
-      gfx6.options.data[0].dataPoints.push({label:incprd_ms.w[n], y:incprd_ms.vpk[n]})
-      gfx6.options.data[1].dataPoints.push({y:incprd_ms.vpk_eng[n]})
-      if(cq!=incprd_ms.q[n]){cq=incprd_ms.q[n]; cum=0;}
-      cum+=incprd_ms.vpk[n];
-      gfx6.options.data[2].dataPoints.push({y:cum})
+    for(var n=0;n<slot_plan.w.length;n++){
+      if(cq!=slot_plan.q[n]){cq=slot_plan.q[n]; cum=0;}
+      cum+=slot_plan.v[n];
+      gfx6.options.data[0].dataPoints.push({label:slot_plan.w[n], y:slot_plan.v[n]})
+      gfx6.options.data[2].dataPoints.push({label:slot_plan.w[n], y:cum})
       }
-    for(var n=0;n<3;n++){ gfx7.options.data[n].dataPoints=[];} 
+    for(var n=0;n<3;n++){ gfx7.options.data[n].dataPoints=[];}
     cum=0; cq=''
-    for(var n=0;n<incprd_ms.w.length;n++){
-      gfx7.options.data[0].dataPoints.push({label:incprd_ms.w[n], y:incprd_ms.glb[n]})
-      gfx7.options.data[1].dataPoints.push({y:incprd_ms.glb_eng[n]})
-      if(cq!=incprd_ms.q[n]){cq=incprd_ms.q[n]; cum=0;}
-      cum+=incprd_ms.glb[n];
-      gfx7.options.data[2].dataPoints.push({y:cum})
+    for(var n=0;n<slot_plan.w.length;n++){
+      if(cq!=slot_plan.q[n]){cq=slot_plan.q[n]; cum=0;}
+      cum+=slot_plan.g[n];
+      gfx7.options.data[0].dataPoints.push({label:slot_plan.w[n], y:slot_plan.g[n]})
+      gfx7.options.data[2].dataPoints.push({label:slot_plan.w[n], y:cum})
       }
-    for(var n=0;n<3;n++){ gfx8.options.data[n].dataPoints=[];} 
+    for(var n=0;n<3;n++){ gfx8.options.data[n].dataPoints=[];}
     cum=0; cq=''
-    for(var n=0;n<incprd_ms.w.length;n++){
-      gfx8.options.data[0].dataPoints.push({label:incprd_ms.w[n], y:incprd_ms.lev[n]})
-      gfx8.options.data[1].dataPoints.push({y:incprd_ms.lev_eng[n]})
-      if(cq!=incprd_ms.q[n]){cq=incprd_ms.q[n]; cum=0;}
-      cum+=incprd_ms.lev[n];
-      gfx8.options.data[2].dataPoints.push({y:cum})
-      }
-    for(var n=0;n<5;n++){ gfx3.options.data[n].dataPoints=[];} 
-    for(var n=0;n<omeb.dates.length;n++){
-      gfx3.options.data[0].dataPoints.push({label:omeb.dates[n], y:omeb.ages[n][0]})
-      for(var i=1;i<5;i++){
-        gfx3.options.data[i].dataPoints.push({y:omeb.ages[n][i]})
-        }
-      }
-    for(var n=0;n<4;n++){ gfx4.options.data[n].dataPoints=[];} 
-    for(var n=0;n<prdovd.dates.length;n++){
-      gfx4.options.data[0].dataPoints.push({label:prdovd.dates[n], y:prdovd.ovd[n][0]})
-      for(var i=1;i<4;i++){
-        gfx4.options.data[i].dataPoints.push({label:prdovd.dates[n], y:prdovd.ovd[n][i]})
-        }
+    for(var n=0;n<slot_plan.w.length;n++){
+      if(cq!=slot_plan.q[n]){cq=slot_plan.q[n]; cum=0;}
+      cum+=slot_plan.l[n];
+      gfx8.options.data[0].dataPoints.push({label:slot_plan.w[n], y:slot_plan.l[n]})
+      gfx8.options.data[2].dataPoints.push({label:slot_plan.w[n], y:cum})
       }
     refreshall();
     sTxt(timstp,'Update : ' + tm);
     }
+
+
   setTimeout(loadData, 60000);
   }
 
