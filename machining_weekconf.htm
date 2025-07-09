@@ -42,24 +42,36 @@ function toolTipContent6(e) {
   } 
 
 function loadData(){
-  var week = isoWeek(new Date).slice(2)
+  var thisWeek = isoWeek(new Date()).slice(4,7);
   var d = new Date();
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
   var today=isoDate(d), currentWeek=isoWeek(d);
   var js = document.createElement('script');
   js.type='text/javascript';
-  js.src="kpi.js" + "?d=" + sd;
+  js.src="kpi2.js" + "?d=" + sd;
   document.head.appendChild(js);  
   js.onload = function(){ 
     sTxt(t1, 'CONDE MATERIALS KPI - PRODUCTION CONTROL');
-    sTxt(t2, 'MACHINING '+week)
+    sTxt(t2, 'MACHINING '+ thisWeek)
     sTxt(timstp,'Update : ' + tm);
+
+    gfx27.options.data[0].dataPoints = [];
+    for(var n=0;n<wc_h.wc.length;n++){
+        gfx27.options.data[0].dataPoints.push({label:wc_h.wc[n], y:wc_h.W[n]});
+        }
+
+
+/*
+
+
+
     for(var n=0;n<gfx28_d1.length; n++){ gfx28_d1[n].label = gfx28_d6[n].label; }
     gfx27.options.data[0].dataPoints=gfx28_d1;
     gfx27.options.data[1].dataPoints=gfx28_d2;
     gfx27.options.data[2].dataPoints=gfx28_d3;
     gfx27.options.data[3].dataPoints=gfx28_d4;
     gfx27.options.data[4].dataPoints=gfx28_d5;
+*/
     refreshall()
     }
   setTimeout(loadData, 60000); 
@@ -76,7 +88,6 @@ window.onload=function(){
   gfx27 = new CanvasJS.Chart(g27, {
   animationEnabled: true,
   animationDuration: 2500,
-//  title: {text: "WORKCENTERS WEEK CONFIRMATION", link:'fontColor:"#ddd",fontFamily: 'Arial',fontSize: 18,},
   backgroundColor: null,
   dataPointMaxWidth: 16,
   legend: {
@@ -119,11 +130,7 @@ window.onload=function(){
     },
   toolTip: {shared: true, content: toolTipContent6},
   data: [              
-    { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
-    { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
-    { type: "stackedColumn", name: "Wed", color: "#8B9",  dataPoints: [] },
-    { type: "stackedColumn", name: "Thu", color: "#586", dataPoints: [] },
-    { type: "stackedColumn", name: "Fri", color: "#8B9",  dataPoints: [] },
+    { type: "column", name: "std.h", color: "#8B9", dataPoints: [] },
     ]
   }); 
   sPar(g27,0);
