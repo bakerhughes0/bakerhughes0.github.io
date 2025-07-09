@@ -14,136 +14,112 @@ function refreshall(){
 
 function loadData(){
   var d = new Date();
+  var thisWeek = isoWeek(new Date()).slice(4,7);
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
   var js = document.createElement('script');
   js.type='text/javascript';
-  js.src="kpi.js" + "?d=" + sd;
+  js.src="kpi2.js" + "?d=" + sd;
   document.head.appendChild(js);    
   js.onload = function(){
-    xlabels = calcLabels();
-    gfx0.options.data[0].dataPoints=[];
-    gfx0.options.data[1].dataPoints=[];
-    var aIndex=-1;
-    for(var n=0; n<gfx08_d1.length; n++){
-      if(gfx08_d1[n].label==thisWeek){
-        aIndex=n;
-        break;
-        }
+    lab = ['Mon','Tue','Wed','Thu','Fri', 'Total','Plan'];
+    for(var n=0;n<2;n++){
+      gfx0.options.data[n].dataPoints=[];
+      gfx1.options.data[n].dataPoints=[];
+      gfx2.options.data[n].dataPoints=[];
+      gfx3.options.data[n].dataPoints=[];
+      gfx4.options.data[n].dataPoints=[];
       }
-    if(aIndex>-1){
-      var aData=[gfx08_d1[aIndex].y, gfx08_d2[aIndex].y, gfx08_d3[aIndex].y, gfx08_d4[aIndex].y, gfx08_d5[aIndex].y];
-      for(var n=0; n<aData.length; n++){
-        if(aData[n]==0){aData[n]=null;}
-        gfx0.options.data[0].dataPoints.push({label:xlabels[n], y:aData[n]});
+    for(var n=0;n<3;n++){
+      gfx5.options.data[n].dataPoints=[];
+      gfx6.options.data[n].dataPoints=[];
+      }
+
+    var aIndex=-1;
+    for(w in qprod.CFX){
+      aIndex++;
+      if(w==thisWeek) {
+        for(var n=0;n<5;n++){
+          if(qprod.CFX[w][n]==0) qprod.CFX[w][n]=null;
+          gfx0.options.data[0].dataPoints.push({label:lab[n], y:qprod.CFX[w][n]});
+          gfx0.options.data[1].dataPoints.push({y:null});
+          }
+        gfx0.options.data[0].dataPoints.push({label:lab[5],isIntermediateSum: true, color: "#586"});
         gfx0.options.data[1].dataPoints.push({y:null});
+        gfx0.options.data[1].dataPoints.push({label:lab[6], y:LOB.cfx[aIndex]});
         }
-      gfx0.options.data[0].dataPoints.push({ label: "Week Total", isIntermediateSum: true, color: "#586"})
-      gfx0.options.data[1].dataPoints.push({y:null});
-      gfx0.options.data[1].dataPoints.push({ label: "LOB week plan", y:LOB.cfx[aIndex]})
       }
 
-    gfx1.options.data[0].dataPoints=[];
-    gfx1.options.data[1].dataPoints=[];
     var aIndex=-1;
-    for(var n=0; n<gfx09_d1.length; n++){
-      if(gfx09_d1[n].label==thisWeek){
-        aIndex=n;
-        break;
-        }
-      }
-    if(aIndex>-1){
-      var aData=[gfx09_d1[aIndex].y, gfx09_d2[aIndex].y, gfx09_d3[aIndex].y, gfx09_d4[aIndex].y, gfx09_d5[aIndex].y];
-      for(var n=0; n<aData.length; n++){
-        if(aData[n]==0){aData[n]=null;}
-        gfx1.options.data[0].dataPoints.push({label:xlabels[n], y:aData[n]});
+    for(w in qprod.VPK){
+      aIndex++;
+      if(w==thisWeek) {
+        for(var n=0;n<5;n++){
+          if(qprod.VPK[w][n]==0) qprod.VPK[w][n]=null;
+          gfx1.options.data[0].dataPoints.push({label:lab[n], y:qprod.VPK[w][n]});
+          gfx1.options.data[1].dataPoints.push({y:null});
+          }
+        gfx1.options.data[0].dataPoints.push({label:lab[5],isIntermediateSum: true, color: "#586"});
         gfx1.options.data[1].dataPoints.push({y:null});
+        gfx1.options.data[1].dataPoints.push({label:lab[6], y:LOB.vpk[aIndex]});
         }
-      gfx1.options.data[0].dataPoints.push({ label: "Week Total", isIntermediateSum: true, color: "#586"})
-      gfx1.options.data[1].dataPoints.push({y:null});
-      gfx1.options.data[1].dataPoints.push({ label: "LOB week plan", y:LOB.vpk[aIndex]})
       }
 
-    gfx2.options.data[0].dataPoints=[];
-    gfx2.options.data[1].dataPoints=[];
+
     var aIndex=-1;
-    for(var n=0; n<gfx10a_d1.length; n++){
-      if(gfx10a_d1[n].label==thisWeek){
-        aIndex=n;
-        break;
-        }
-      }
-    if(aIndex>-1){
-      var aData=[gfx10a_d1[aIndex].y, gfx10a_d2[aIndex].y, gfx10a_d3[aIndex].y, gfx10a_d4[aIndex].y, gfx10a_d5[aIndex].y];
-      for(var n=0; n<aData.length; n++){
-        if(aData[n]==0){aData[n]=null;}
-        gfx2.options.data[0].dataPoints.push({label:xlabels[n], y:aData[n]});
+    for(w in qprod.GLBASM){
+      aIndex++;
+      if(w==thisWeek) {
+        for(var n=0;n<5;n++){
+          if(qprod.GLBASM[w][n]==0) qprod.GLBASM[w][n]=null;
+          gfx2.options.data[0].dataPoints.push({label:lab[n], y:qprod.GLBASM[w][n]});
+          gfx2.options.data[1].dataPoints.push({y:null});
+          }
+        gfx2.options.data[0].dataPoints.push({label:lab[5],isIntermediateSum: true, color: "#586"});
         gfx2.options.data[1].dataPoints.push({y:null});
+        gfx2.options.data[1].dataPoints.push({label:lab[6], y:LOB.glbasm[aIndex]});
         }
-      gfx2.options.data[0].dataPoints.push({ label: "Week Total", isIntermediateSum: true, color: "#586"})
-      gfx2.options.data[1].dataPoints.push({y:null});
-      gfx2.options.data[1].dataPoints.push({ label: "LOB week plan", y:LOB.glbasm[aIndex]})
       }
 
-    gfx3.options.data[0].dataPoints=[];
-    gfx3.options.data[1].dataPoints=[];
     var aIndex=-1;
-    for(var n=0; n<gfx10_d1.length; n++){
-      if(gfx10_d1[n].label==thisWeek){
-        aIndex=n;
-        break;
-        }
-      }
-    if(aIndex>-1){
-      var aData=[gfx10_d1[aIndex].y, gfx10_d2[aIndex].y, gfx10_d3[aIndex].y, gfx10_d4[aIndex].y, gfx10_d5[aIndex].y];
-      for(var n=0; n<aData.length; n++){
-        if(aData[n]==0){aData[n]=null;}
-        gfx3.options.data[0].dataPoints.push({label:xlabels[n], y:aData[n]});
+    for(w in qprod.GLB){
+      aIndex++;
+      if(w==thisWeek) {
+        for(var n=0;n<5;n++){
+          if(qprod.GLB[w][n]==0) qprod.GLB[w][n]=null;
+          gfx3.options.data[0].dataPoints.push({label:lab[n], y:qprod.GLB[w][n]});
+          gfx3.options.data[1].dataPoints.push({y:null});
+          }
+        gfx3.options.data[0].dataPoints.push({label:lab[5],isIntermediateSum: true, color: "#586"});
         gfx3.options.data[1].dataPoints.push({y:null});
+        gfx3.options.data[1].dataPoints.push({label:lab[6], y:LOB.glbcal[aIndex]});
         }
-      gfx3.options.data[0].dataPoints.push({ label: "Week Total", isIntermediateSum: true, color: "#586"})
-      gfx3.options.data[1].dataPoints.push({y:null});
-      gfx3.options.data[1].dataPoints.push({ label: "LOB week plan", y:LOB.glbcal[aIndex]})
       }
 
-    gfx4.options.data[0].dataPoints=[];
-    gfx4.options.data[1].dataPoints=[];
     var aIndex=-1;
-    for(var n=0; n<gfx11_d1.length; n++){
-      if(gfx11_d1[n].label==thisWeek){
-        aIndex=n;
-        break;
-        }
-      }
-    if(aIndex>-1){
-      var aData=[gfx11_d1[aIndex].y, gfx11_d2[aIndex].y, gfx11_d3[aIndex].y, gfx11_d4[aIndex].y, gfx11_d5[aIndex].y];
-      for(var n=0; n<aData.length; n++){
-        if(aData[n]==0){aData[n]=null;}
-        gfx4.options.data[0].dataPoints.push({label:xlabels[n], y:aData[n]});
+    for(w in qprod.LVL){
+      aIndex++;
+      if(w==thisWeek) {
+        for(var n=0;n<5;n++){
+          if(qprod.LVL[w][n]==0) qprod.LVL[w][n]=null;
+          gfx4.options.data[0].dataPoints.push({label:lab[n], y:qprod.LVL[w][n]});
+          gfx4.options.data[1].dataPoints.push({y:null});
+          }
+        gfx4.options.data[0].dataPoints.push({label:lab[5],isIntermediateSum: true, color: "#586"});
         gfx4.options.data[1].dataPoints.push({y:null});
+        gfx4.options.data[1].dataPoints.push({label:lab[6], y:LOB.lvl[aIndex]});
         }
-      gfx4.options.data[0].dataPoints.push({ label: "Week Total", isIntermediateSum: true, color: "#586"})
-      gfx4.options.data[1].dataPoints.push({y:null});
-      gfx4.options.data[1].dataPoints.push({ label: "LOB week plan", y:LOB.lvl[aIndex]})
       }
 
-    gfx5.options.data[0].dataPoints=[];
-    gfx5.options.data[1].dataPoints=[];
-    gfx5.options.data[2].dataPoints=[];
-    for(var n=0; n<qmlot.x.length; n++){
-      gfx5.options.data[0].dataPoints.push({label: qmlot.x[n], y: qmlot.p[n]});
-      gfx5.options.data[1].dataPoints.push({y: qmlot.n[n]});
-      gfx5.options.data[2].dataPoints.push({y: qmlot.c[n]});
-      }
-    gfx6.options.data[0].dataPoints=[];
-    gfx6.options.data[1].dataPoints=[];
-    gfx6.options.data[2].dataPoints=[];
-    for(var n=0; n<ncr.x.length; n++){
-      if(ncr.x[n]>'2023-10-11'){
-        gfx6.options.data[0].dataPoints.push({label: qmlot.x[n], y: ncr.p[n]});
-        gfx6.options.data[1].dataPoints.push({y: ncr.n[n]});
-        gfx6.options.data[2].dataPoints.push({y: ncr.c[n]});
+    for(var n=0;n<qmlot.dates.length;n++){
+        gfx5.options.data[0].dataPoints.push({label:qmlot.dates[n], y:qmlot.p[n]});
+        gfx5.options.data[1].dataPoints.push({label:qmlot.dates[n], y:qmlot.n[n]});
+        gfx5.options.data[2].dataPoints.push({label:qmlot.dates[n], y:qmlot.d[n]});
         }
-      }
+    for(var n=0;n<ncr.dates.length;n++){
+        gfx6.options.data[0].dataPoints.push({label:ncr.dates[n], y:ncr.p[n]});
+        gfx6.options.data[1].dataPoints.push({label:ncr.dates[n], y:ncr.n[n]});
+        gfx6.options.data[2].dataPoints.push({label:ncr.dates[n], y:ncr.d[n]});
+        }
 
     refreshall();
     sTxt(timstp,'Update : ' + tm);
@@ -284,18 +260,31 @@ window.onload=function(){
     ]
   });
 
+  var link1 = new xBtn(); sPar(link1,0);sTxt(link1,'NCR Dashboard')
+  link1.eClk = function() {
+    var l = document.createElement('a'); l.href='https://app.powerbi.com/links/srnVHMYKq4?ctid=d584a4b7-b1f2-4714-a578-fd4d43c146a6&pbi_source=linkShare';
+    l.setAttribute('target', '_top');
+    l.click();
+    }
+
   window.onresize=function(){
     movep(bg,[0,0,1,1]);
     movep(t1,[.01, .01, .98, .045]);
     movep(t2,[.01, .01, .98, .045]);
-    movep(timstp,[.01, .97, 1, .03]);
+    movep(timstp,[.01, .97, 9, .03]);
     for(var n=0; n<g.length; n++){
       x = n % 5;
       y = Math.floor(n/5);
-      movep(g[n],[.01+x*(.01+.188), .07+y*.455, .188, .43]);
-      refreshall();
+      if(n==6){
+        movep(g[n],[.01+x*(.01+.188), .07+y*.455, .188, .43-.04]);
+        movep(link1,[.01+1*(.01+.188), .07+1*.455+.4, .188, .03]);
+      }else{
+        movep(g[n],[.01+x*(.01+.188), .07+y*.455, .188, .43]);
+        }
       }
+    refreshall();
     };window.onresize();
+
 
   loadData();
   }
