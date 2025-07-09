@@ -17,7 +17,7 @@ function loadData(){
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
   var js = document.createElement('script');
   js.type='text/javascript';
-  js.src="kpi.js" + "?d=" + sd;
+  js.src="kpi2.js" + "?d=" + sd;
   document.head.appendChild(js);    
   js.onload = function(){ 
     sTxt(timstp,'Update : ' + tm);
@@ -35,78 +35,67 @@ function loadData(){
       }
 
     var thisWeek = isoWeek(new Date()).slice(4,7);
-    
-    sTxt(t2,data.q_name);
+    sTxt(t2,quarter);
 
-    for(var n=0, cum=0, tcum=0; n<pick.w.length;n++){
-        pick.w[n]=pick.w[n].slice(2,5); //remove year in labels
-        for(var d=0; d<5; d++){
-            if(d){
-                gfx0.options.data[d].dataPoints.push({y:pick.C[n][d]});
-                }else{
-                gfx0.options.data[d].dataPoints.push({label:pick.w[n], y:pick.C[n][d]});
-                }
-            cum+=pick.C[n][d];
+    var cum=0;
+    for(var w in qpick.CFX){
+        for(var i=0;i<5;i++) {
+            cum+=qpick.CFX[w][i]      
+            gfx0.options.data[i].dataPoints.push({label:w, y:qpick.CFX[w][i]});
             }
-        tcum+=pickingLOB.cfx[n];
+        if(w<=thisWeek){ gfx4.options.data[0].dataPoints.push({label:w, y:cum}); } else {gfx4.options.data[0].dataPoints.push({label:w, y:null});}
+        }
+    var cum=0;
+    for(var n=0;n<pickingLOB.cfx.length;n++){
         gfx0.options.data[5].dataPoints.push({y:pickingLOB.cfx[n]});
-        if(pick.w[n]<=thisWeek) {
-            gfx4.options.data[0].dataPoints.push({y:cum});
-            }
-        gfx4.options.data[1].dataPoints.push({label:pick.w[n], y:tcum});
+        cum+=pickingLOB.cfx[n];
+        gfx4.options.data[1].dataPoints.push({y:cum});
         }
 
-    for(var n=0, cum=0, tcum=0; n<pick.w.length;n++){
-        for(var d=0; d<5; d++){
-            if(d){
-                gfx1.options.data[d].dataPoints.push({y:pick.V[n][d]});
-                }else{
-                gfx1.options.data[d].dataPoints.push({label:pick.w[n], y:pick.V[n][d]});
-                }
-            cum+=pick.V[n][d];
+    var cum=0;
+    for(var w in qpick.VPK){
+        for(var i=0;i<5;i++) {
+            cum+=qpick.VPK[w][i]      
+            gfx1.options.data[i].dataPoints.push({label:w, y:qpick.VPK[w][i]});
             }
-        tcum+=pickingLOB.vpk[n];
+        if(w<=thisWeek){ gfx5.options.data[0].dataPoints.push({label:w, y:cum}); } else {gfx5.options.data[0].dataPoints.push({label:w, y:null});}
+        }
+    var cum=0;
+    for(var n=0;n<pickingLOB.cfx.length;n++){
         gfx1.options.data[5].dataPoints.push({y:pickingLOB.vpk[n]});
-        if(pick.w[n]<=thisWeek) {
-            gfx5.options.data[0].dataPoints.push({y:cum});
-            }
-        gfx5.options.data[1].dataPoints.push({label:pick.w[n], y:tcum});
+        cum+=pickingLOB.vpk[n];
+        gfx5.options.data[1].dataPoints.push({y:cum});
         }
 
-    for(var n=0, cum=0, tcum=0; n<pick.w.length;n++){
-        for(var d=0; d<5; d++){
-            if(d){
-                gfx2.options.data[d].dataPoints.push({y:pick.G[n][d]});
-                }else{
-                gfx2.options.data[d].dataPoints.push({label:pick.w[n], y:pick.G[n][d]});
-                }
-            cum+=pick.G[n][d];
+    var cum=0;
+    for(var w in qpick.GLB){
+        for(var i=0;i<5;i++) {
+            cum+=qpick.GLB[w][i]      
+            gfx2.options.data[i].dataPoints.push({label:w, y:qpick.GLB[w][i]});
             }
-        tcum+=pickingLOB.glb[n];
+        if(w<=thisWeek){ gfx6.options.data[0].dataPoints.push({label:w, y:cum}); } else {gfx6.options.data[0].dataPoints.push({label:w, y:null});}
+        }
+    var cum=0;
+    for(var n=0;n<pickingLOB.glb.length;n++){
         gfx2.options.data[5].dataPoints.push({y:pickingLOB.glb[n]});
-        if(pick.w[n]<=thisWeek) {
-            gfx6.options.data[0].dataPoints.push({y:cum});
-            }
-        gfx6.options.data[1].dataPoints.push({label:pick.w[n], y:tcum});
+        cum+=pickingLOB.glb[n];
+        gfx6.options.data[1].dataPoints.push({y:cum}); 
         }
 
-    for(var n=0, cum=0, tcum=0; n<pick.w.length;n++){
-        for(var d=0; d<5; d++){
-            if(d){
-                gfx3.options.data[d].dataPoints.push({y:pick.L[n][d]});
-                }else{
-                gfx3.options.data[d].dataPoints.push({label:pick.w[n], y:pick.L[n][d]});
-                }
-            cum+=pick.L[n][d];
+    var cum=0;
+    for(var w in qpick.LVL){
+        for(var i=0;i<5;i++) {
+            cum+=qpick.LVL[w][i]      
+            gfx3.options.data[i].dataPoints.push({label:w, y:qpick.LVL[w][i]});
             }
-        tcum+=pickingLOB.lvl[n];
+        if(w<=thisWeek){ gfx7.options.data[0].dataPoints.push({label:w, y:cum}); } else {gfx7.options.data[0].dataPoints.push({label:w, y:null});}
+        }
+    var cum=0;
+    for(var n=0;n<pickingLOB.lvl.length;n++){
         gfx3.options.data[5].dataPoints.push({y:pickingLOB.lvl[n]});
-        if(pick.w[n]<=thisWeek) {
-            gfx7.options.data[0].dataPoints.push({y:cum});
-            }
-        gfx7.options.data[1].dataPoints.push({label:pick.w[n], y:tcum});
+        cum+=pickingLOB.lvl[n];
+        gfx7.options.data[1].dataPoints.push({y:cum});
         }
-
     refreshall()
     }
   setTimeout(loadData, 60000);
