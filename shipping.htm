@@ -5,6 +5,10 @@
 <script type=text/javascript src=module.js?v=003></script>
 <script type=text/javascript>
 
+function quarter_name(d){
+  return d.getFullYear()-2000 + 'Q' + (Math.floor(d.getMonth() / 3)+1)
+  }
+
 function refreshall(){
   gfx32.render();gfx33.render();gfx34.render();
   }
@@ -62,7 +66,7 @@ function loadData(){
   var today=isoDate(d), currentWeek=isoWeek(d);
   var js = document.createElement('script');
   js.type='text/javascript';
-  js.src="kpi.js" + "?d=" + sd;
+  js.src="kpi2.js" + "?d=" + sd;
   document.head.appendChild(js);  
   js.onload = function(){ 
     sTxt(t1, 'CONDE MATERIALS KPI - SHIPPING');
@@ -97,15 +101,18 @@ function loadData(){
         //cumT+=(shppar.wtarg/5);
         if(qship.dates[n]<=today) {
           gfx33.options.data[0].dataPoints.push({label:qship.dates[n],y:cumP});
-          gfx33.options.data[1].dataPoints.push({y:cumA});
+          gfx33.options.data[1].dataPoints.push({label:qship.dates[n],y:cumA});
           }else{
           gfx33.options.data[0].dataPoints.push({label:qship.dates[n],y:null});
+          gfx33.options.data[1].dataPoints.push({label:qship.dates[n],y:null});
           }
         }
       }
-   var dayprev=shppar.wtarg/5
-   for(var n=0, cumT=0; n<5;n++){
+   var nbdays = gfx33.options.data[0].dataPoints.length
+   var dayprev=shppar.wtarg/nbdays
+   for(var n=0, cumT=0; n<nbdays;n++){
      cumT+=dayprev;
+     //gfx33.options.data[2].dataPoints.push({ y:cumT});
      gfx33.options.data[2].dataPoints.push({label:gfx33.options.data[0].dataPoints[n].label, y:cumT});
      }
 
@@ -118,7 +125,7 @@ function loadData(){
       if(wship.shp[n]+wship.wip[n]>max) max=wship.shp[n]+wship.wip[n];
       }
     gfx34.options.axisY.maximum=max*2;
-    sTxt(t2,data.q_name)
+    sTxt(t2,quarter_name(new Date))
     sTxt(timstp,'Update : ' + tm);
     refreshall()
     }
