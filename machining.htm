@@ -11,43 +11,78 @@ function refreshall(){
   gfx08.render();gfx09.render();}
 
 function loadData(){
+  var thisWeek = isoWeek(new Date()).slice(4,7);
   var d = new Date();
   var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
   var js = document.createElement('script');
   js.type='text/javascript';
-  js.src="kpi.js" + "?d=" + sd;
-  var weektoshow = 20;
+  js.src="kpi2.js" + "?d=" + sd;
+
   document.head.appendChild(js);    
   js.onload = function(){
-    for(var n=0;n<2;n++){gfx00.options.data[n].dataPoints=[];}
-    for(var n=0;n<machworkable.day.length;n++){
-      gfx00.options.data[0].dataPoints.push({label:machworkable.day[n], y:machworkable.wrk[n]})
-      gfx00.options.data[1].dataPoints.push({y:machworkable.ovd[n]})
+    gfx00.options.data[0].dataPoints =[];
+    gfx00.options.data[1].dataPoints =[];
+    for(var n=0;n<workable.dates.length;n++){
+      gfx00.options.data[0].dataPoints.push({label:workable.dates[n], y:workable.h[n]});
+      gfx00.options.data[1].dataPoints.push({label:workable.dates[n], y:workable.hovd[n]});
       }
-    gfx01.options.data[0].dataPoints=gfx06_d1;
-    gfx01.options.data[1].dataPoints=gfx06_d2;
-    gfx01.options.data[2].dataPoints=gfx06_d3;
-    gfx01.options.data[3].dataPoints=gfx06_d4;
-    gfx01.options.data[4].dataPoints=gfx06_d5;
-    gfx02.options.data[0].dataPoints=gfx29_d1;
-    gfx03.options.data[0].dataPoints=gfx31_d1;
-    gfx03.options.data[1].dataPoints=gfx31_d3;
-    gfx03.options.data[2].dataPoints=gfx31_d2;
-    gfx04.options.data[0].dataPoints=gfx03_d1;
-    gfx04.options.data[1].dataPoints=gfx03_d2;
-    gfx05.options.data[0].dataPoints=gfx05_d1;
-    gfx05.options.data[1].dataPoints=gfx05_d3;
-    gfx05.options.data[2].dataPoints=gfx05_d2;
-    gfx06.options.data[1].dataPoints=gfx28_d1.reverse();
-    gfx06.options.data[2].dataPoints=gfx28_d2.reverse();
-    gfx06.options.data[3].dataPoints=gfx28_d3.reverse();
-    gfx06.options.data[4].dataPoints=gfx28_d4.reverse();
-    gfx06.options.data[5].dataPoints=gfx28_d5.reverse();
-    gfx06.options.data[0].dataPoints=gfx28_d6.reverse();
-    gfx07.options.data[0].dataPoints=gfx07_d1.reverse();
-    gfx08.options.data[0].dataPoints=gfx04_d1;
-    gfx08.options.data[1].dataPoints=gfx04_d2;
-    gfx09.options.data[0].dataPoints=[{label:'20Q1',y:10640},{label:'20Q2',y:8120},{label:'20Q3',y:9214},{label:'20Q4',y:9014},{label:'21Q1',y:8880},{label:'21Q2',y:8612},{label:'21Q3',y:7135},{label:'21Q4',y:9215},{label:'22Q1',y:8237},{label:'22Q2',y:7468},{label:'22Q3',y:7672},{label:'22Q4',y:8287},{label:'23Q1',y:8095},{label:'23Q2',y:7859},{label:'23Q3',y:7176},{label:'23Q4',y:7788},{name:'Target',color:'#888',label:'24Q1', y:8270}];
+    for (var n=0;n<5;n++){ gfx01.options.data[n].dataPoints=[];}
+    for (var w in qstdh.MAC){
+      for (var n=0;n<5;n++){
+        gfx01.options.data[n].dataPoints.push({label:w, y:qstdh.MAC[w][n]});
+        }
+      }
+
+    gfx03.options.data[1].dataPoints=[];
+    var cum = 0;
+    for (var w in qstdh.WEL){
+      for (var n=0;n<5;n++){
+        cum += qstdh.WEL[w][n];
+        }
+      if(w<=thisWeek){ gfx03.options.data[1].dataPoints.push({label:w, y:cum}); }
+      }
+
+    gfx04.options.data[0].dataPoints=[];
+    gfx04.options.data[1].dataPoints=[];
+    for (var n=wc_load.wc.length-1;n>-1;n--){
+      gfx04.options.data[0].dataPoints.push({label:wc_load.wc[n], y:wc_load.H[n]});
+      gfx04.options.data[1].dataPoints.push({ y:wc_load.HOVD[n]});
+      }
+
+    gfx05.options.data[1].dataPoints=[];
+    var cum = 0;
+    for (var w in qstdh.MAC){
+      for (var n=0;n<5;n++){
+        cum += qstdh.MAC[w][n];
+        }
+      if(w<=thisWeek){ gfx05.options.data[1].dataPoints.push({label:w, y:cum}); }
+      }
+
+    gfx06.options.data[0].dataPoints=[];
+    var max=0;
+    for (var n=wc_h.wc.length-1;n>-1;n--){
+      max= Math.max(max,wc_h.W[n]);
+      gfx06.options.data[0].dataPoints.push({label:wc_h.wc[n], y:wc_h.W[n]});
+      }
+    gfx06.options.axisY.maximum = max*1.05;
+
+    gfx07.options.data[0].dataPoints=[];
+    var max=0;
+    for (var n=wc_h.wc.length-1;n>-1;n--){
+      max= Math.max(max,wc_h.Q[n]);
+      gfx07.options.data[0].dataPoints.push({label:wc_h.wc[n], y:wc_h.Q[n]});
+      }
+    gfx07.options.axisY.maximum = max*1.05;
+
+
+    gfx08.options.data[0].dataPoints=[];
+    gfx08.options.data[1].dataPoints=[];
+    for (var n=wc_late.wc.length-1;n>-1;n--){
+      gfx08.options.data[0].dataPoints.push({label:wc_late.wc[n], y:wc_late.H[n]});
+      gfx08.options.data[1].dataPoints.push({ y:wc_late.HOVD[n]});
+      }
+
+ gfx09.options.data[0].dataPoints=[{label:'21Q1',y:8880},{label:'21Q2',y:8612},{label:'21Q3',y:7135},{label:'21Q4',y:9215},{label:'22Q1',y:8237},{label:'22Q2',y:7468},{label:'22Q3',y:7672},{label:'22Q4',y:8287},{label:'23Q1',y:8095},{label:'23Q2',y:7859},{label:'23Q3',y:7176},{label:'23Q4',y:7788},{label:'24Q1',y:7787},{label:'24Q2',y:6892},{label:'24Q3',y:6106},{label:'24Q4',y:7829},{label:'25Q1',y:6867},{label:'25Q2',y:6041}];
     refreshall();
     sTxt(timstp,'Update : ' + tm);
     }
@@ -110,7 +145,7 @@ window.onload=function(){
   axisX:{
     labelFontColor: "#eee",
     interval: 1,
-    labelAngle: -32,
+    labelAngle: -45,
     labelFontFamily: 'Arial',
     },
   toolTip: {shared: true, content: toolTipContent6},
@@ -171,15 +206,14 @@ window.onload=function(){
     },
   axisX:{
     labelFontColor: "#eee",
-    interval: 5,
-    labelAngle: -32,
+    interval: 1,
+    labelAngle: -45,
     labelFontFamily: 'Arial',
     },
   toolTip: {shared: true},
   data: [              
     { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#888", showInLegend: true, dataPoints: []},
     { type: "line", name:"Std.h",  color:"#8b9", showInLegend: true, dataPoints: [] },
-    { type: "line", name:"Labor only", markerType:'null', color:"#465", showInLegend: true, dataPoints: [] },
     ]
   }); 
   gfx04 = new CanvasJS.Chart(g[4], {
@@ -219,7 +253,7 @@ window.onload=function(){
   gfx05 = new CanvasJS.Chart(g[5], {
   animationEnabled: true,
   animationDuration: 1000,
-  title: {text: "QUARTER TARGET", fontColor:"#ddd",fontFamily: 'Arial'},
+  title: {text: "MACHINING QUARTER", fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
   dataPointMaxWidth: 16,
   legend: {
@@ -236,21 +270,20 @@ window.onload=function(){
     },
   axisX:{
     labelFontColor: "#eee",
-    interval: 5,
-    labelAngle: -32,
+    interval: 1,
+    labelAngle: -45,
     labelFontFamily: 'Arial',
     },
   toolTip: {shared: true},
   data: [              
     { type: "line", markerSize: 4, name:"Target", lineDashType: "dot", color: "#888", showInLegend: true, dataPoints: []},
     { type: "line", name:"Std.h",  color:"#8b9", showInLegend: true, dataPoints: [] },
-    { type: "line", name:"Labor only", markerType:'null', color:"#465", showInLegend: true, dataPoints: [] },
     ]
   });
   gfx06 = new CanvasJS.Chart(g[6], {
   animationEnabled: true,
   animationDuration: 2500,
-  title: {text: "WEEK HOURS / CAPACITY", fontColor:"#ddd",fontFamily: 'Arial',fontSize:14,},
+  title: {text: "WEEK HOURS", fontColor:"#ddd",fontFamily: 'Arial',fontSize:14,},
   backgroundColor: null,
   dataPointMaxWidth: 8,
   legend: {
@@ -279,12 +312,7 @@ window.onload=function(){
     },
   toolTip: {shared: true, content: toolTipContent6},
   data: [              
-    { type: "bar", name: "Capacity", color: "#FFB", dataPoints: [],fillOpacity:.8},
-    { type: "stackedBar", name: "Mon", color: "#8B9", dataPoints: [] },
-    { type: "stackedBar", name: "Tue", color: "#586", dataPoints: [] },
-    { type: "stackedBar", name: "Wed", color: "#8B9",  dataPoints: [] },
-    { type: "stackedBar", name: "Thu", color: "#586", dataPoints: [] },
-    { type: "stackedBar", name: "Fri", color: "#8B9",  dataPoints: [] },
+    { type: "bar", name: "Week std.h", color: "#8B9", dataPoints: [] },
     ]
   });
   gfx07 = new CanvasJS.Chart(g[7], {
@@ -317,7 +345,7 @@ window.onload=function(){
     },
   toolTip: {shared: true},
   data: [              
-    { type: "bar", name: "Quarter Completion", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
+    { type: "bar", name: "Quarter std.h", indexLabelFontColor:'#eee', color:"#8b9", dataPoints: [] },
     ]
   });
   gfx08 = new CanvasJS.Chart(g[8], {
