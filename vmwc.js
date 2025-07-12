@@ -1,4 +1,4 @@
-timestamp = new Date('2025-07-12 13:05:20');
+timestamp = new Date('2025-07-12 13:10:24');
 data = [
 ["0205",1,2,33074398,"0020. TOURNER GRAIN DE PE","3 x GRAIN DE PRESSE-ETOUPE O-RING",4.25,"",59,""],
 ["0205",1,2,33052306,"0020. TOURNER CLAPET 78K","1 x CLAPET 78K 1 2500 6-STG TYP C UNBAL PREL",2.25,"",61,""],
@@ -2603,8 +2603,8 @@ data = [
 ["1430","",2,32886395,"0115. Statut NC Visuel E. COTTRAI","1 x CHAPEAU SPECIAL CRT 41K 10\" 300LB",0.211,"913789-1000 ARABELLE SOLUTIONS FRANCE SAS",50,""],
 ["1430","",2,32975764,"0115. Statut NC Visuel E. COTTRAI","1 x CHAPEAU SPECIAL CRT 41K 10\" 300LB",0.211,"913789-2000 ARABELLE SOLUTIONS FRANCE SAS",50,""],
 ["LIFT02",1,2,32896921,"0005. Critical to Lift Valve","1 x 41K BW 16X12X16 Z 900 CV1218",0.0,"1272170-1000 China Nuclear Energy Industry Corp.",18,""],
-["LIFT02",1,2,32896923,"0005. Critical to Lift Valve","1 x 41K BW 16X12X16 Z 900 CV1218",0.0,"1272170-3000 China Nuclear Energy Industry Corp.",17,""],
-["LIFT02",1,2,32896924,"0005. Critical to Lift Valve","1 x 41K BW 16X12X16 Z 900 CV1218",0.0,"1272170-4000 China Nuclear Energy Industry Corp.",17,""],
+["LIFT02",1,2,32896923,"0005. Critical to Lift Valve","1 x 41K BW 16X12X16 Z 900 CV1218",0.0,"1272170-3000 China Nuclear Energy Industry Corp.",18,""],
+["LIFT02",1,2,32896924,"0005. Critical to Lift Valve","1 x 41K BW 16X12X16 Z 900 CV1218",0.0,"1272170-4000 China Nuclear Energy Industry Corp.",18,""],
 ["LIFT02","",2,32960617,"0005. Critical to Lift Valve","1 x 41K BW 16X12X16 Z 900 CV1218",0.0,"1292141-1000 China Nuclear Energy Industry Corp.",17,""],
 ["LIFT02","",2,32960618,"0005. Critical to Lift Valve","1 x 41K BW 16X12X16 Z 900 CV1218",0.0,"1292141-2000 China Nuclear Energy Industry Corp.",17,""],
 ["LIFT02","",2,32960619,"0005. Critical to Lift Valve","1 x 41K BW 16X12X16 Z 900 CV1218",0.0,"1292141-3000 China Nuclear Energy Industry Corp.",17,""],
