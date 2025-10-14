@@ -24,19 +24,19 @@ function loadData(){
       }
     for(var n=0;n<wipstages.C.length;n++){
       gfx0.options.data[0].dataPoints.push({label:wipstages.C[n][0].slice(4), y:wipstages.C[n][2]})
-      gfx0.options.data[1].dataPoints.push({ y:wipstages.C[n][1]-wipstages.C[n][2]})
+      gfx0.options.data[1].dataPoints.push({label:wipstages.C[n][0].slice(4), y:wipstages.C[n][1]-wipstages.C[n][2]})
       }
     for(var n=0;n<wipstages.G.length;n++){
       gfx1.options.data[0].dataPoints.push({label:wipstages.G[n][0].slice(4), y:wipstages.G[n][2]})
-      gfx1.options.data[1].dataPoints.push({ y:wipstages.G[n][1]-wipstages.G[n][2]})
+      gfx1.options.data[1].dataPoints.push({label:wipstages.G[n][0].slice(4), y:wipstages.G[n][1]-wipstages.G[n][2]})
       }
     for(var n=0;n<wipstages.V.length;n++){
       gfx2.options.data[0].dataPoints.push({label:wipstages.V[n][0].slice(4), y:wipstages.V[n][2]})
-      gfx2.options.data[1].dataPoints.push({ y:wipstages.V[n][1]-wipstages.V[n][2]})
+      gfx2.options.data[1].dataPoints.push({label:wipstages.V[n][0].slice(4), y:wipstages.V[n][1]-wipstages.V[n][2]})
       }
     for(var n=0;n<wipstages.L.length;n++){
       gfx3.options.data[0].dataPoints.push({label:wipstages.L[n][0].slice(4), y:wipstages.L[n][2]})
-      gfx3.options.data[1].dataPoints.push({ y:wipstages.L[n][1]-wipstages.L[n][2]})
+      gfx3.options.data[1].dataPoints.push({label:wipstages.L[n][0].slice(4), y:wipstages.L[n][1]-wipstages.L[n][2]})
       }
     refreshall();
     sTxt(timstp,'Update : ' + tm);
@@ -44,7 +44,7 @@ function loadData(){
   setTimeout(loadData, 60000);
   }
 
-var g;
+var g, tip;
 window.onload=function(){
   var bg = new background();
   t1=new xLab();sFtC(t1,'#ccc');sPar(t1,0);
@@ -55,7 +55,7 @@ window.onload=function(){
   g = [];
   for(var n=0; n<4; n++){g[n] = new gfxbox();}
   var axeY_1 = {title: "Materials", titleFontColor: "#eee", labelFontColor: "#eee", labelFontFamily: 'Arial', minimum:0}
-  var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -45, labelFontFamily: 'Arial'}
+  var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -30, labelFontFamily: 'Arial'}
   var leg_1 = {horizontalAlign: "center", verticalAlign: "bottom", labelFontFamily: 'Arial', fontColor: "#eee"}
   var ttip1 = {shared: true, backgroundColor: '#cdc', borderColor:'grey', content: toolTipContentX};
   gfx0 = new CanvasJS.Chart(g[0], {
@@ -63,14 +63,14 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "CAMFLEX", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
-  dataPointMaxWidth: 14,
+  dataPointMaxWidth: 40,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
   toolTip:ttip1,
   data: [              
-    { type: "stackedColumn", name: "Missing Parts", color: "#B44", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "Products", color: "#8B8", dataPoints: [], showInLegend: true, indexLabel: "#total", indexLabelPlacement: "top", indexLabelFontColor: "#efe" },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Parts", color: "#B44", dataPoints: [], showInLegend: true },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Products", color: "#8B8", dataPoints: [], showInLegend: true, indexLabel: "#total", indexLabelPlacement: "top", indexLabelFontColor: "#efe" },
     ]
   });
   gfx1 = new CanvasJS.Chart(g[1], {
@@ -78,14 +78,14 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "GLOBES", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
-  dataPointMaxWidth: 14,
+  dataPointMaxWidth: 40,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
   toolTip:ttip1,
   data: [              
-    { type: "stackedColumn", name: "Missing Parts", color: "#B44", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "Products", color: "#8B8", dataPoints: [], showInLegend: true, indexLabel: "#total", indexLabelPlacement: "top", indexLabelFontColor: "#efe" },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Parts", color: "#B44", dataPoints: [], showInLegend: true },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Products", color: "#8B8", dataPoints: [], showInLegend: true, indexLabel: "#total", indexLabelPlacement: "top", indexLabelFontColor: "#efe" },
     ]
   });
   gfx2 = new CanvasJS.Chart(g[2], {
@@ -93,14 +93,14 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "VARIPAK", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
-  dataPointMaxWidth: 14,
+  dataPointMaxWidth: 40,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
   toolTip:ttip1,
   data: [              
-    { type: "stackedColumn", name: "Missing Parts", color: "#B44", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "Products", color: "#8B8", dataPoints: [], showInLegend: true, indexLabel: "#total", indexLabelPlacement: "top", indexLabelFontColor: "#efe" },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Parts", color: "#B44", dataPoints: [], showInLegend: true },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Products", color: "#8B8", dataPoints: [], showInLegend: true, indexLabel: "#total", indexLabelPlacement: "top", indexLabelFontColor: "#efe" },
     ]
   });
   gfx3 = new CanvasJS.Chart(g[3], {
@@ -108,19 +108,35 @@ window.onload=function(){
   animationDuration: 500,
   title: {text: "LEVELS", fontSize:18, fontColor:"#ddd",fontFamily: 'Arial'},
   backgroundColor: null,
-  dataPointMaxWidth: 14,
+  dataPointMaxWidth: 40,
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
   toolTip:ttip1,
   data: [              
-    { type: "stackedColumn", name: "Missing Parts", color: "#B44", dataPoints: [], showInLegend: true },
-    { type: "stackedColumn", name: "Products", color: "#8B8", dataPoints: [], showInLegend: true, indexLabel: "#total", indexLabelPlacement: "top", indexLabelFontColor: "#efe" },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Parts", color: "#B44", dataPoints: [], showInLegend: true },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Products", color: "#8B8", dataPoints: [], showInLegend: true, indexLabel: "#total", indexLabelPlacement: "top", indexLabelFontColor: "#efe" },
     ]
   });
 
-
-
+  tip = new xDiv();sBkC(tip,'#eee');sPar(tip,0);sBrR(tip,[5]);sTrx(tip, 'Opacity .3s');sOvf(tip,'hidden');hidetip2();
+  tip.h = new xLab();sPar(tip.h,tip);;
+  tip.t = new xTbl();sPar(tip.t, tip);
+  tip.tim = 0;
+  tip.onmouseenter=function(){
+      clearTimeout(tip.tim);
+      }
+  tip.onmouseleave=function(){
+     clearTimeout(tip.tim);
+     tip.tim = setTimeout(hidetip2, 200);
+      }
+  var W = scrW()*.97;
+  tip.t.fields = [['Customer',W*.25],['SO/Line',W*.1],['WO',W*.1],['Part Description',W*.25],['Current Operation',W*.25],['WC',W*.05]];
+  tip.eRes = function(){
+      [W, H] = gSiz(tip);
+      move(tip.h,[5,5,W-5,20]);
+      move(tip.t,[5,25,W-5,H-30]);
+      }
   window.onresize=function(){
     movep(bg,[0,0,1,1]);
     movep(t1,[.01, .01, .98, .045]);
@@ -130,9 +146,9 @@ window.onload=function(){
       x = Math.floor(n/2);
       y = n % 2;
       movep(g[n],[.01+x*.495, .07+y*.45, .485, .43]);
-      
       }
     refreshall();
+    movep(tip,[.01,.07,.98,0]);
     };window.onresize();
 
   loadData();
@@ -142,6 +158,51 @@ function fmtCur2(num) {
  var a=parseFloat(num).toFixed(0);
  return a.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
  }
+
+function hidetip(){
+    clearTimeout(tip.tim);
+    tip.tim = setTimeout(hidetip2, 1200);
+    }
+
+function hidetip2(){
+    sOpa(tip, 0);
+    sSiz(tip, [gSiz(tip)[0],0]);
+    }
+
+function showtip(e){
+    clearTimeout(tip.tim); 
+    sOpa(tip, .95);
+    var f=['',''];
+    f[0]=e.chart.title.text.slice(0,1);
+    if(f[0]=='G' || f[0]=='L'){
+        movep(tip,[.01,.07,.98,.43]);
+        }else{
+        movep(tip,[.01,.52,.98,.43]);
+        }
+    f[1]=e.dataPoint.label;
+    sTxt(tip.h,e.chart.title.text + ' - ' + f[1]);
+    tip.t.clear()
+    var y = 0;
+    for(var n=0; n< wipstg[f[0]].length; n++){
+        if(wipstg[f[0]][n][0].slice(4)==f[1]){
+            tip.t.addRow();
+            tip.t.body.rows[y].onmouseenter = null;
+            tip.t.body.rows[y].onmouseleave = null;
+            if(wipstg[f[0]][n][1]==1){ 
+                sBkC(tip.t.body.rows[y], '#b33');
+                sFtC(tip.t.body.rows[y], '#fff');
+                }else{ 
+                sBkC(tip.t.body.rows[y], '#eee'); 
+                sFtC(tip.t.body.rows[y], '#000'); 
+                }
+            for(var x=0; x<6; x++){
+                sTxt(tip.t.cells(y,x), wipstg[f[0]][n][x+2]);
+                }
+            y++;
+            }
+        }
+    }
+
 
 function toolTipContentX(e) {
   var str = "";
@@ -156,26 +217,97 @@ function toolTipContentX(e) {
   str2 = "<span style = \"color:#050;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
   total = Math.round(total * 100) / 100;
   str3 = "<span style = \"color:#050\">Total:</span><strong> "+fmtCur2(total)+"</strong><br/>";
-  var f=['',''];
-  f[0]=e.chart.title.text.slice(0,1);
-  f[1]=e.entries[0].dataPoint.label;
-  //str4 = "<style>table, th, td {border: 1px solid black;border-collapse: collapse; white-space:nowrap}</style>"
-  str4 = "<table><tr><th>Customer</th> <th>SO/Line</th> <th>WO</th> <th>Part Description</th><th>Current Operation</th> <th>WC</th> </tr>"
-  for(var n=0; n< wipstg[f[0]].length; n++){
-    if(wipstg[f[0]][n][0].slice(4)==f[1]){
-      str4+='<tr';
-      if(wipstg[f[0]][n][1]==1){str4+= ' style="background-color:#B44"' }
-      str4+='><td>'+wipstg[f[0]][n][2]+'&nbsp</td> <td>'+wipstg[f[0]][n][3]+'&nbsp</td>  <td>'+wipstg[f[0]][n][4]+'&nbsp</td>  <td style="white-space:nowrap" width=100>'+wipstg[f[0]][n][5]+'&nbsp</td>  <td style="white-space:nowrap">'+wipstg[f[0]][n][6]+'&nbsp</td>  <td>'+wipstg[f[0]][n][7]+'&nbsp</td> </tr>'
-      }
-    }
-  str4+='</table>'
-  if(f[0]=='C') {g[0].style.zIndex=1; g[1].style.zIndex=0; g[2].style.zIndex=0; g[3].style.zIndex=0;}
-  if(f[0]=='G') {g[0].style.zIndex=0; g[1].style.zIndex=1; g[2].style.zIndex=0; g[3].style.zIndex=0;}
-  if(f[0]=='V') {g[0].style.zIndex=0; g[1].style.zIndex=0; g[2].style.zIndex=1; g[3].style.zIndex=0;}
-  if(f[0]=='L') {g[0].style.zIndex=0; g[1].style.zIndex=0; g[2].style.zIndex=0; g[3].style.zIndex=1;}
-
-  return (str2.concat(str)).concat(str3).concat(str4);
+  return (str2.concat(str)).concat(str3);
   } 
+
+function xTbl() {
+  var headheight = 25;
+  var rowsheight = 25;
+  var obj = new xDiv();
+   sPos(obj,[50,50]);
+   sSiz(obj,[320,240]);
+   sOvf(obj,'hidden');
+   sBrW(obj,[1]);
+   sBrC(obj,['#ccc']);
+   sFtN(obj,'16px/25px fnt1');
+
+  obj.head = new xDiv();
+  sBkL(obj.head,90,'#eee 10%, #bbb 70%');
+
+  sPos(obj.head,[0,0]);
+  sMoP(obj.head,'default');
+  sNoS(obj.head);
+  obj.head.field = [];
+  obj.createFields=function(f) {
+    for (var n=0; n<f.length; n++) {
+      if (!obj.head.field[n]) {obj.head.field[n] = new xDiv()}; 
+        var c=obj.head.field[n];
+        sTxt(c,f[n][0]);
+        sBrW(c,[1]);
+        sPos(c,[(obj.head.field[n-1]?gPos(obj.head.field[n-1])[0]+gSiz(obj.head.field[n-1])[0]-gBrW(obj.head.field[n-1])[1]: 0),0]);
+        sSiz(c,[f[n][1], headheight]);
+        sBrC(c,['#aaa']);
+        sFtN(c,'16px/25px fnt1');
+        sFtA(c,'center');
+        sTxS(c,1,1,2,'#ccc');
+        sPar(c,obj.head);
+        };
+    sSiz(obj.head, [gPos(obj.head.field[f.length-1])[0] + gSiz(obj.head.field[f.length-1])[0] ,headheight]);
+    sPar(obj.head,obj);
+    for(var n=obj.head.field.length-1;n>f.length-1;n--) {
+      gPar(obj.head.field[n]).removeChild(obj.head.field[n]);
+      obj.head.field.pop();
+      };
+    };
+  Object.defineProperty(obj, "fields", { 
+    get: function () {return ''},
+    set: function (s) {obj.createFields(s)}
+    });
+  obj.body = new xDiv(); 
+   sPos(obj.body,[0,headheight]);
+   sBkC(obj.body,'#f8f8f8');
+   sOvf(obj.body,'auto');
+   sPar(obj.body,obj);
+  obj.body.onscroll = function() {sPos(obj.head,[-this.scrollLeft,0])};
+  obj.body.rows = [];
+  obj.clear=function(){
+    for(var n=0; n<obj.body.rows.length;n++) {
+        obj.body.removeChild(obj.body.rows[n]) };
+    obj.body.rows = [];
+    };
+  function mentr() {this.style.backgroundColor='#ace';};
+  function mleav() {this.style.backgroundColor = this.idx % 2 ? '#f5f5f5': '#eec';};
+  obj.addRow = function() {
+    var y=obj.body.rows.length;
+    obj.body.rows[y] = new xDiv();
+    sPos(obj.body.rows[y],[0,rowsheight * y]);
+    sFtC(obj.body.rows[y],'#225');
+    sBkC(obj.body.rows[y],(y%2?'#f5f5f5':'#eec'));
+    obj.body.rows[y].idx = y;
+    obj.body.rows[y].onclick = function() {obj.rowclick(this.idx)};
+    obj.body.rows[y].onmouseenter = mentr;
+    obj.body.rows[y].onmouseleave = mleav;
+    obj.body.rows[y].cells = [];
+    var n=0;
+    for (var n=0; n<obj.head.field.length;n++) {
+      obj.body.rows[y].cells[n] = new xDiv(); 
+      var c = obj.body.rows[y].cells[n];
+       sBrW(c,[0,1,1,1]);
+       sBrC(c,['#aaa']);
+       sPad(c,[0,3]);sFtZ(c);sOvf(c,'hidden');
+       sPos(c,[(obj.head.field[n-1]?gPos(obj.head.field[n-1])[0]+gSiz(obj.head.field[n-1])[0]-gBrW(obj.head.field[n-1])[1]: 0),0]);
+       sSiz(c,[gSiz(obj.head.field[n])[0], rowsheight]);
+       sPar(c,obj.body.rows[y]);
+      };
+    sSiz(obj.body.rows[y],[gSiz(obj.head)[0], rowsheight]);
+    sPar(obj.body.rows[y],obj.body);
+    }; 
+  obj.cells = function(y,x) {return obj.body.rows[y].cells[x]};
+  obj.eRes=function() {sSiz(obj.body,[gInS(obj)[0],gInS(obj)[1]-headheight]);};
+  obj.eRes();
+  obj.rowclick=function(idx){};
+  return obj
+  };
 
 </script>
 </head>
