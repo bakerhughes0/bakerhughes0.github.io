@@ -1,4 +1,4 @@
-timestamp = new Date('2025-10-25 17:50:27');
+timestamp = new Date('2025-10-25 18:00:23');
 data = [
 ["0205",1,2,33060291,"0020. TOURNER CAPUCHON 1\" HEXAGONAL","1 x CAPUCHON",2.25,"",179,""],
 ["0205",1,2,33149237,"0030. TOURNER AV.FRAISAGE","1 x CAGE 3/4-1\" 600LB 21KRC LIN",3.5,"",45,""],
@@ -1341,7 +1341,7 @@ data = [
 ["0805","",2,33275063,"0100. PEINT/NIV/CES1036/PS24/CARBO 893 SG","1 x 12802 2\" WCC CL600 FLG",0.72,"1826717-1000 G.I.S. EUROPE SE",1,""],
 ["0901",1,2,31478460,"0250. camouflage du corps","1 x 526 3 WCC 300 FLG SP",0.25,"",1076,"L"],
 ["0901",1,2,31600234,"0250. camouflage du corps","1 x 87-21714EB 1.5 SPL 2500 FLG SP",0.25,"",1072,"L"],
-["0901",1,2,33308471,"0010. Camouflage  masquage  actionneur","1 x NRC:200236197 Actionneur",0.002,"REWORK",23,"R"],
+["0901",1,2,33308471,"0010. Camouflage  masquage  actionneur","1 x NRC:200236197 Actionneur",0.002,"REWORK",24,"R"],
 ["0901","",2,33344211,"0020. TS 212 MP 01 Degraissage","1 x NCR :200237558 Vanne 21k de 1''",0.002,"REWORK",1,"R"],
 ["0901","",2,33275296,"0040. CAMOUFLAGE","1 x ACT 53 12 20-40 4 in 3.75 DW STD PORT",0.4,"1793706-1000 DE JONG COMBUSTION B.V.",10,""],
 ["0901","",2,33325766,"0040. CAMOUFLAGE","1 x ACT 53 12 20-40 4 in 3.75 DW STD PORT",0.4,"1793744-3000 DE JONG COMBUSTION B.V.",9,""],
@@ -1760,7 +1760,7 @@ data = [
 ["1004","",2,32884297,"0060. RESSUAGE","1 x TIGE DE CLAPET EPAULEE 1\"X1\" LG=518MM",0.15,"913787-10000 GE Steam Power Systems",1,""],
 ["1008",1,2,32790742,"0010. Mise en conformit\u00e9 \u00e9ffacer N\u00b0 + MARQUAGE","0 x 150000DA2-163SA419 => 150000DA2-163S1063",0.07,"REWORK",376,"R"],
 ["1008",1,2,32924777,"0010. Mise en conformit\u00e9 et effacer marquage","1 x 400114127-162H1557 => 400114127-162H0000",0.1,"REWORK",277,"R"],
-["1008",1,2,33014507,"0010. Mise en conformit\u00e9 et effacer marquage","1 x 075000DA2-3006N040 => 075000DA2-163S1063",0.14,"REWORK",213,"R"],
+["1008",1,2,33014507,"0010. Mise en conformit\u00e9 et effacer marquage","1 x 075000DA2-3006N040 => 075000DA2-163S1063",0.14,"REWORK",214,"R"],
 ["1008",1,2,33014511,"0010. Mise en conformit\u00e9 et effacer marquage","0 x 090000DZ2-3006N915 => 090000DZ2-163S1063",0.097,"REWORK",213,"R"],
 ["1008",1,2,33015838,"0010. Mise en conformit\u00e9 et effacer marquage","1 x 035008104-594-A780 => 035008104-594-0000",0.1,"REWORK",213,"R"],
 ["1008",1,2,33016921,"0010. Mise en conformit\u00e9 et effacer marquage","5 x 000047333-104B0000 => 000047333-300A0000",0.5,"REWORK",213,"R"],
