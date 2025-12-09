@@ -20,9 +20,9 @@ var quarter = '25Q4';
 var target_machining = 7000;
 var target_welding = 1000;
 var target_globes = 1700;
-var target_levels = 1900;
+var target_levels = 1800;
 var target_standard = 1400+500;
-var target_painting = 2200;
+var target_painting = 2100;
 var target_gscm = target_machining +target_welding+target_painting+target_standard+target_globes+target_levels;
 
 
