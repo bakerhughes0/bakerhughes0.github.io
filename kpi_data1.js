@@ -17,12 +17,12 @@ pickingLOB={
 
 
 var quarter = '26Q1';
-var target_machining = 6200+600; //Machining + Inspection
+var target_machining = 5800+600; //Machining + Inspection
 var target_welding = 800;
-var target_globes = 1200;
-var target_levels = 1200;
+var target_globes = 1100;
+var target_levels = 1100;
 var target_standard = 1350+250;
-var target_painting = 2200;
+var target_painting = 2000;
 var target_gscm = target_machining +target_welding+target_painting+target_standard+target_globes+target_levels;
 
 
