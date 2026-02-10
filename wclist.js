@@ -154,6 +154,7 @@ wclist = [
 '1519',
 '1520',
 '1521',
+'RNC03',
 'QMLOT'];
 
 wcnames = [
@@ -285,7 +286,7 @@ wcnames = [
 '1302. SOUS TRAITANTS ORDO USINAGE',
 '1303. DELESTAGE PEINTURE',
 '1306. SOUS TRAITANTS PEINTURE',
-'1308. SOUS TRAITANTS CONTRÔLE',
+'1308. SOUS TRAITANTS CONTRÃ”LE',
 '1313. OPEX (preparation emballage)',
 '1401. SERVICE PROJECTS R&D',
 '1404. ACHETER',
@@ -297,8 +298,8 @@ wcnames = [
 '1501. ARRET NCR : Controle final - inspection',
 '1502. ARRET NCR : Equip.+ Cal. Globes',
 '1504. ARRET NCR : Montage Globes',
-'1506. ARRET NCR : Camflex ≥ 6"',
-'1507. ARRET NCR : Camflex 1" à 4"',
+'1506. ARRET NCR : Camflex â‰¥ 6"',
+'1507. ARRET NCR : Camflex 1" Ã  4"',
 '1508. ARRET NCR : Varipak',
 '1510. ARRET NCR : Cellule + Instrumentation',
 '1512. ARRET NCR : Usinage',
@@ -312,6 +313,7 @@ wcnames = [
 '1519. ARRET NCR : Peinture Batiment B',
 '1520. ARRET NCR : Grenaillage Batiment A',
 '1521. ARRET NCR : Grenaillage Batiment B',
+'RNC03. ARRET NCR 03 - MRB1',
 'QMLOT. INCOMING INSPECTION']
 
 function wcname(s){
