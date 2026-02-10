@@ -76,7 +76,7 @@ function draw(){
     sFtC(tb0.cells(y,0), fcol); sFtA(tb0.cells(y,0),'center'); 
     }
   drawAging(0);
-  if(typeof lnk != 'undefined'){move(lnk,[W*0.96,H*.01,W*.04,W*.04]);sPar(lnk, 0);};
+  if(typeof lnk != 'undefined'){move(lnk,[W*0.95,H*.01,W*.04,W*.04]);sPar(lnk, 0);};
 
   var W = gr0.width, H = gr0.height; 
   with (gr0.ctx) {
@@ -199,8 +199,8 @@ window.onload=function(){
   leg0.innerHTML = '<span style="font-size: 14px; color:#bbb"> <span style="font-size: 26px; color:#9ECCF1">â– </span> New Arrival \
                    <span style="font-size: 26px; color:#FBEB85">&nbsp; â– </span> Pending \
                    <span style="font-size: 26px; color:#A6D28D">&nbsp; â– </span> Completed</span>';
-  leg1.innerHTML = '<span style="font-size: 14px; color:#bbb"> <span style="font-size: 18px; color:#A6D28D">&nbsp; âŒš</span> Outdated C.R.D <span style="font-size: 18px; color:#A6D28D">&nbsp; ðŸ§©</span> Missing Parts                   <span style="font-size: 18px; color:#A6D28D">&nbsp; ðŸš©</span> Critical Path  </span>';
-
+  //leg1.innerHTML = '<span style="font-size: 14px; color:#bbb"> <span style="font-size: 18px; color:#A6D28D">&nbsp; âŒš</span> Outdated C.R.D <span style="font-size: 18px; color:#A6D28D">&nbsp; ðŸ§©</span> Missing Parts                   <span style="font-size: 18px; color:#A6D28D">&nbsp; ðŸš©</span> Critical Path  </span>';
+  sTxt(leg1, '\u231A Outdated CRD \0 \0 \0 \uD83E\uDDE9 Missing parts \0 \0 \0 \uD83D\uDEA9 Critical path'); 
   loadData();
   if(wc[0]=='0205'){lnk = new xTmr("209");lnk.eClk=function(){window.location='vm.htm?0209';}}
   if(wc[0]=='0209'){lnk = new xTmr("210");lnk.eClk=function(){window.location='vm.htm?0210';}}
