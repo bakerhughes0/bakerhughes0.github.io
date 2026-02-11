@@ -196,10 +196,9 @@ window.onload=function(){
   leg0 = new xLab(); sFtC(leg0,'#eee');sPar(leg0,0); 
   leg1 = new xLab(); sFtC(leg1,'#eee');sPar(leg1,0); sFtA(leg1, 'right');
   window.onresize();
-  leg0.innerHTML = '<span style="font-size: 14px; color:#bbb"> <span style="font-size: 26px; color:#9ECCF1">â– </span> New Arrival \
-                   <span style="font-size: 26px; color:#FBEB85">&nbsp; â– </span> Pending \
-                   <span style="font-size: 26px; color:#A6D28D">&nbsp; â– </span> Completed</span>';
-  //leg1.innerHTML = '<span style="font-size: 14px; color:#bbb"> <span style="font-size: 18px; color:#A6D28D">&nbsp; âŒš</span> Outdated C.R.D <span style="font-size: 18px; color:#A6D28D">&nbsp; ðŸ§©</span> Missing Parts                   <span style="font-size: 18px; color:#A6D28D">&nbsp; ðŸš©</span> Critical Path  </span>';
+  leg0.innerHTML = '<span style="font-size: 14px; color:#bbb"> <span style="font-size: 26px; color:#9ECCF1">&#9632</span> New Arrival \
+                   <span style="font-size: 26px; color:#FBEB85">&nbsp; &#9632</span> Pending \
+                   <span style="font-size: 26px; color:#A6D28D">&nbsp; &#9632</span> Completed</span>';
   sTxt(leg1, '\u231A Outdated CRD \0 \0 \0 \uD83E\uDDE9 Missing parts \0 \0 \0 \uD83D\uDEA9 Critical path'); 
   loadData();
   if(wc[0]=='0205'){lnk = new xTmr("209");lnk.eClk=function(){window.location='vm.htm?0209';}}
