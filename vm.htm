@@ -59,11 +59,19 @@ function draw(){
     sTxt(tb0.cells(y,3), mydata[y][5]);
     sTxt(tb0.cells(y,4), mydata[y][6]); sFtA(tb0.cells(y,4),'right');
     sTxt(tb0.cells(y,5), mydata[y][7]);
-    var crit='';
-    if(mydata[y][10]==1){ crit+='\u231A'; } // CRD outdated
-    if(mydata[y][12]=='Y'){ crit+='\uD83E\uDDE9'; } // Missing parts
-    if(mydata[y][11]==1){ crit+='\uD83D\uDEA9'; } // Critical path
-    sTxt(tb0.cells(y,6), crit); sFtN(tb0.cells(y,6), '18px/26px fnt1');
+    var dec6=2;
+    if(mydata[y][10]==1){ 
+      tb0.cells(y,6).p1 = new picto_crd();sPar(tb0.cells(y,6).p1,tb0.cells(y,6));
+      move(tb0.cells(y,6).p1,[dec6,2,20,20]); dec6+=22;
+      }
+    if(mydata[y][12]=='Y'){ 
+      tb0.cells(y,6).p2 = new picto_pzl();sPar(tb0.cells(y,6).p2,tb0.cells(y,6));
+      move(tb0.cells(y,6).p2,[dec6,2,20,20]); dec6+=22;
+      }
+    if(mydata[y][11]==1){ 
+      tb0.cells(y,6).p3 = new picto_cp();sPar(tb0.cells(y,6).p3,tb0.cells(y,6));
+      move(tb0.cells(y,6).p3,[dec6,2,20,20]); dec6+=22;
+      }
     sFtA(tb0.cells(y,7),'center');
     tb0.cells(y,7).addEventListener('mouseenter', function(){ drawAging(1)});
     tb0.cells(y,7).addEventListener('mouseleave', function(){ drawAging(0)});
@@ -72,8 +80,12 @@ function draw(){
     if(mydata[y][2]==2){fcol=xcol[2];} // 2. Pending Workable
     if(mydata[y][2]==3){fcol=xcol[3];} // 3. New Workable Done
     if(mydata[y][2]==4){fcol=xcol[4];} // 4. Workable Done
-    sTxt(tb0.cells(y,0), '\u25A0'); sFtN(tb0.cells(y,0), '26px/20px fnt1'); 
-    sFtC(tb0.cells(y,0), fcol); sFtA(tb0.cells(y,0),'center'); 
+    tb0.cells(y,0).pic=new picto_square(); sPar(tb0.cells(y,0).pic, tb0.cells(y,0));
+    move(tb0.cells(y,0).pic, [-1+(W*.02-24)/2,0,24,24]);
+    tb0.cells(y,0).pic.setcol(fcol);
+    tb0.cells(y,7).p= new picto_circle(); sPar(tb0.cells(y,7).p,tb0.cells(y,7));
+    move(tb0.cells(y,7).p,[(W*.040-24)/2,1,24,24]); tb0.cells(y,7).p.setcol(xcol[0]);
+
     }
   drawAging(0);
   if(typeof lnk != 'undefined'){move(lnk,[W*0.95,H*.01,W*.04,W*.04]);sPar(lnk, 0);};
@@ -170,6 +182,7 @@ function drawAging(showage){
       fcol='#ffa733';
       }else{fcol='#df1111';
       }
+    if(tb0.cells(y,7).p) sVis(tb0.cells(y,7).p,0);
     sFtC(tb0.cells(y,7), fcol);
     sFtN(tb0.cells(y,7), '18px/26px fnt1');
     if(showage==1){
@@ -178,7 +191,8 @@ function drawAging(showage){
       if(mydata[y][9]=='L'){
         sTxt(tb0.cells(y,7), '\uD83D\uDD12'); 
         }else{
-        sFtN(tb0.cells(y,7), '30px/22px fnt1'); sTxt(tb0.cells(y,7), '\u25CF');
+        sTxt(tb0.cells(y,7),'');
+        sVis(tb0.cells(y,7).p,1); tb0.cells(y,7).p.setcol(fcol);
         }
       }
     }
@@ -193,13 +207,25 @@ window.onload=function(){
     h1.addEventListener('click', function(){ window.location='wcsel.htm'; });
   gr0 = new xCan(); sPar(gr0, 0); sBkC(gr0, '#eee');
   tb0 = new xTbl(); sPar(tb0,0);
-  leg0 = new xLab(); sFtC(leg0,'#eee');sPar(leg0,0); 
-  leg1 = new xLab(); sFtC(leg1,'#eee');sPar(leg1,0); sFtA(leg1, 'right');
+  leg0 = new xDiv(); sFtC(leg0,'#eee');sPar(leg0,0);
+  var p1 = new picto_square();sPar(p1, leg0); move(p1,[1,1,20,20]); p1.setcol(xcol[1]);
+  var l1 = new xLab(); sPar(l1,leg0); move(l1, [22,3,100,20]); sTxt(l1, 'New Arrival');
+  var p2 = new picto_square();sPar(p2, leg0); move(p2,[100,1,20,20]); p2.setcol(xcol[2]);
+  var l2 = new xLab(); sPar(l2,leg0); move(l2, [122,3,100,20]); sTxt(l2, 'Pending');
+  var p3 = new picto_square();sPar(p3, leg0); move(p3,[180,1,20,20]); p3.setcol(xcol[3]);
+  var l3 = new xLab(); sPar(l3,leg0); move(l3, [202,3,100,20]); sTxt(l3, 'Completed');
+
+  leg1 = new xLab(); sFtC(leg1,'#eee');sPar(leg1,0);
+  var p1 = new picto_crd();sPar(p1, leg1); move(p1,[1,1,20,20]);
+  var l1 = new xLab(); sPar(l1,leg1); move(l1, [22,3,120,20]); sTxt(l1, 'Outdated CRD');
+  var p2 = new picto_pzl();sPar(p2, leg1); move(p2,[125,1,20,20]);
+  var l2 = new xLab(); sPar(l2,leg1); move(l2, [147,3,120,20]); sTxt(l2, 'Missing parts');
+  var p3 = new picto_cp();sPar(p3, leg1); move(p3,[240,1,20,20]);
+  var l3 = new xLab(); sPar(l3,leg1); move(l3, [262,3,120,20]); sTxt(l3, 'Critical path');
+
   window.onresize();
-  leg0.innerHTML = '<span style="font-size: 14px; color:#bbb"> <span style="font-size: 26px; color:#9ECCF1">&#9632</span> New Arrival \
-                   <span style="font-size: 26px; color:#FBEB85">&nbsp; &#9632</span> Pending \
-                   <span style="font-size: 26px; color:#A6D28D">&nbsp; &#9632</span> Completed</span>';
-  sTxt(leg1, '\u231A Outdated CRD \0 \0 \0 \uD83E\uDDE9 Missing parts \0 \0 \0 \uD83D\uDEA9 Critical path'); 
+
+  //sTxt(leg1, '\u231A Outdated CRD \0 \0 \0 \uD83E\uDDE9 Missing parts \0 \0 \0 \uD83D\uDEA9 Critical path'); 
   loadData();
   if(wc[0]=='0205'){lnk = new xTmr("209");lnk.eClk=function(){window.location='vm.htm?0209';}}
   if(wc[0]=='0209'){lnk = new xTmr("210");lnk.eClk=function(){window.location='vm.htm?0210';}}
@@ -410,6 +436,124 @@ function xTmr(text){
 
 setInterval(function() {loadData();}, 30000);
 
+function picto_crd(){
+    var o = document.createElement('canvas');
+    o.width=200; o.height=200; 
+    o.ctx = o.getContext('2d');
+    with(o.ctx){
+        beginPath();
+        strokeStyle = '#F45'; fillStyle = '#eef'; lineWidth=20;
+        arc(90,100,70,0,Math.PI*2,0);
+        fill(); stroke();
+        beginPath();
+        strokeStyle = '#FA0'; fillStyle = '#FE0'; lineWidth=10; lineCap='round';
+        moveTo(130,90);lineTo(80,180);lineTo(180,180);lineTo(130,90);
+        fill(); stroke();
+        beginPath();
+        strokeStyle = '#444'; lineWidth=12; lineCap='round';
+        moveTo(90,100); lineTo(90,65);
+        moveTo(90,100); lineTo(65,135);
+        stroke();
+        beginPath();
+        lineWidth=10; 
+        moveTo(130,130); lineTo(130,150);
+        moveTo(130,165); lineTo(130,165);
+        stroke();
+        }
+    return o;
+    }
+
+function picto_pzl(){
+    var o = document.createElement('canvas');
+    o.width=200; o.height=200; 
+    o.ctx = o.getContext('2d');
+    grad = o.ctx.createLinearGradient(0, 0, 20, 100);
+    grad.addColorStop(0, '#DD0'); grad.addColorStop(.75, '#0c0'); o.ctx.fillStyle = grad;
+    o.ctx.translate(100,100);
+    o.ctx.rotate(Math.PI/4);
+    a = Math.PI/6;
+    with(o.ctx){
+        strokeStyle = '#000'; lineWidth=8; lineCap='round';
+        beginPath();
+        moveTo(-68,-68);
+        for(var n=0;n<4;n++){
+          lineTo(-15,-68);
+          step = 0.4;
+          if(n%2) {
+              for(var p=-Math.PI-a;p<a; p+=step){
+                  lineTo(20*Math.cos(p),-68+18-20*Math.sin(p))
+                  } 
+              }else{
+              for(var p=Math.PI+a;p>-a; p-=step){
+                  lineTo(20*Math.cos(p),-68-18-20*Math.sin(p))
+                  } 
+              }
+          lineTo(15,-68); lineTo(68,-68);
+          rotate(Math.PI/2);
+          stroke();        
+          } 
+         fill();    
+        }
+    return o;
+    }
+
+function picto_cp(){
+    var o = document.createElement('canvas');
+    o.width=200; o.height=200; 
+    o.ctx = o.getContext('2d');
+    with(o.ctx){
+        fillStyle = '#ca0';
+        beginPath();
+        roundRect(20,25,50,50,5);
+        fill();
+        strokeStyle = '#69f'; lineWidth=15; lineCap='round';
+        beginPath();
+        moveTo(85,50);lineTo(150,50);
+        arc(150,75,25,-Math.PI/2,Math.PI/2,0); lineTo(140,100);
+        stroke();
+        fillStyle = '#e45';
+        beginPath();
+        arc(100,100,25,0,Math.PI*2,0);
+        fill();
+        beginPath();
+        moveTo(60,100);
+        arc(50,125,25,-Math.PI/2,Math.PI/2,1); lineTo(125,150);
+        stroke();
+        beginPath();
+        moveTo(125,150); lineTo(110,140);
+        moveTo(125,150); lineTo(110,160);
+        stroke();
+        fillStyle = '#6c6';
+        beginPath();
+        moveTo(160,125);lineTo(130,175);lineTo(185,175);
+        fill();
+        }
+    return o;
+    }
+
+function picto_square(){
+    var o = document.createElement('canvas');
+    o.width=200; o.height=200; 
+    o.ctx = o.getContext('2d');
+    o.setcol = function(c){
+      o.ctx.fillStyle=c; 
+      o.ctx.roundRect(35,35,130,130,15);
+      o.ctx.fill();
+      }
+    return o;
+    }
+
+function picto_circle(){
+    var o = document.createElement('canvas');
+    o.width=200; o.height=200; 
+    o.ctx = o.getContext('2d');
+    o.setcol = function(c){
+      o.ctx.fillStyle=c; 
+      o.ctx.arc(100,100,70, 0, Math.PI*2,0);
+      o.ctx.fill();
+      }
+    return o;
+    }
 
 </script>
 </head>
