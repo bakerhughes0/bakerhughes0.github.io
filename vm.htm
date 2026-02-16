@@ -42,7 +42,7 @@ function draw(){
             ('0'+timestamp.getDate().toString()).slice(-2) +
             ' ' + ('0'+timestamp.getHours()).slice(-2) + ':' + ('0'+timestamp.getMinutes()).slice(-2));
   sTxt(h1, wcname(wc[0]));
-  tb0.fields= [['',W*.02],['Workorder', W*.065],['Operation', W*.2],['Description', W*.21],['std.H', W*.04],['SO / Customer', W*.14],['Info.', W*.055],['Aging', W*.040]];
+  tb0.fields= [['',W*.02],['Workorder', W*.065],['Operation', W*.2],['Description', W*.21],['Std.h', W*.04],['SO / Customer', W*.14],['Info.', W*.055],['Aging', W*.040]];
   tb0.clear();
   for(y=0;y<mydata.length;y++){
     tb0.addRow();
