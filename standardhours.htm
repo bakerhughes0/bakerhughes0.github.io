@@ -110,13 +110,13 @@ function loadData(){
     step = target_machining / nbweeks;
     var cum = 0;
     for (var n=0;n<nbweeks;n++){
-        mac_cum += mac_step;
-        wel_cum += wel_step;
-        pnt_cum += pnt_step;
-        cfx_cum += cfx_step;
-        glb_cum += glb_step;
-        lvl_cum += lvl_step;
-        tot_cum += tot_step;
+        mac_cum += stdhLOB.machining[n]; 
+        wel_cum += stdhLOB.welding[n];
+        pnt_cum += stdhLOB.painting[n];
+        cfx_cum += stdhLOB.standard[n];
+        glb_cum += stdhLOB.globes[n];
+        lvl_cum += stdhLOB.levels[n];
+        tot_cum += stdhLOB.machining[n]+stdhLOB.welding[n]+stdhLOB.painting[n]+stdhLOB.standard[n]+stdhLOB.globes[n]+stdhLOB.levels[n];
         gfx34.options.data[6].dataPoints.push({ y:mac_cum});
         gfx35.options.data[6].dataPoints.push({ y:wel_cum});
         gfx36.options.data[6].dataPoints.push({ y:pnt_cum});
@@ -145,7 +145,6 @@ window.onload=function(){
   var axeX_1 = {labelFontColor: "#eee", interval: 1, labelAngle: -72, labelFontFamily: 'Arial'}
   var leg_1 = {horizontalAlign: "center", verticalAlign: "bottom", labelFontFamily: 'Arial', fontColor: "#ddd"}
   var ttip1 = {shared: true, content: toolTipContentWQ};
-  var ttip2 = {shared: true, content: toolTipContentQ};
 
   gfx34 = new CanvasJS.Chart(g[0], {
   animationEnabled: true,
@@ -270,7 +269,7 @@ window.onload=function(){
   legend:leg_1,
   axisY:axeY_1,
   axisX:axeX_1,
-  toolTip: ttip2,
+  toolTip: ttip1,
   data: [              
     { type: "stackedColumn", name: "Mon", color: "#8B9", dataPoints: [] },
     { type: "stackedColumn", name: "Tue", color: "#586", dataPoints: [] },
@@ -298,43 +297,25 @@ window.onload=function(){
   }
 
 function toolTipContentWQ(e) {
-    var str = "";
-    var total = 0;
-    var str2;
-    for (var i = 0; i < e.entries.length; i++){
-        total += e.entries[i].dataPoint.y
-
-        var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtRnd2(e.entries[i].dataPoint.y)+"</strong><br/>";
-        str = str.concat(str1);
-        if(i==4){
-            var  str1 = "<span style= \"color:'#222'\"> "+'Week Total'+"</span>: <strong>"+fmtRnd2(total)+"</strong><br/>";
-            str = str.concat(str1);
-            }
-        }
-	str2 = "<span style = \"color:Black;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
-	return (str2.concat(str));
+  var str = "";
+  var total = 0;
+  var str2;
+  for (var i = 0; i < e.entries.length; i++){
+    if(e.entries[i].dataSeries.name=='Cumulative Std.h'){
+      var  str1 = "<span style= \"color:'#222'\"> "+'Week Total'+"</span>: <strong>"+fmtRnd2(total)+"</strong><br/>";
+      str = str.concat(str1);
+      }
+    total += e.entries[i].dataPoint.y
+    var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtRnd2(e.entries[i].dataPoint.y)+"</strong><br/>";
+    str = str.concat(str1);
+    }
+  str2 = "<span style = \"color:Black;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
+  return (str2.concat(str));
   } 
 
-function toolTipContentQ(e) {
-    var str = "";
-    var total = 0;
-    var str2;
-    for (var i = 0; i < e.entries.length; i++){
-        total += e.entries[i].dataPoint.y
-        var  str1 = "<span style= \"color:'#000'\"> "+e.entries[i].dataSeries.name+"</span>: <strong>"+fmtRnd2(e.entries[i].dataPoint.y)+"</strong><br/>";
-        str = str.concat(str1);
-        if(i==9){
-            var  str1 = "<span style= \"color:'#222'\"> "+'Week Total'+"</span>: <strong>"+fmtRnd2(total)+"</strong><br/>";
-            str = str.concat(str1);
-            }
-        }
-	str2 = "<span style = \"color:Black;\"><strong>"+(e.entries[0].dataPoint.label)+"</strong></span><br/>";
-	return (str2.concat(str));
-  } 
 function fmtRnd2(num) {
  var a=Math.round(num * 1000) / 1000
  return a.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
- //return num;
  }
 
 </script>
