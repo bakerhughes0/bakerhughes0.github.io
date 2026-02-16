@@ -99,15 +99,14 @@ function loadData(){
     
     var nbweeks = 0
     for (var w in qstdh.TOT){ nbweeks++} 
-    var mac_cum = 0, mac_step = target_machining / nbweeks;
-    var wel_cum = 0, wel_step = target_welding / nbweeks;
-    var pnt_cum = 0, pnt_step = target_painting / nbweeks;
-    var cfx_cum = 0, cfx_step = target_standard / nbweeks;
-    var glb_cum = 0, glb_step = target_globes / nbweeks;
-    var lvl_cum = 0, lvl_step = target_levels / nbweeks;
-    var tot_cum = 0, tot_step = target_gscm / nbweeks;
+    var mac_cum = 0;
+    var wel_cum = 0;
+    var pnt_cum = 0;
+    var cfx_cum = 0;
+    var glb_cum = 0;
+    var lvl_cum = 0;
+    var tot_cum = 0;
 
-    step = target_machining / nbweeks;
     var cum = 0;
     for (var n=0;n<nbweeks;n++){
         mac_cum += stdhLOB.machining[n]; 
