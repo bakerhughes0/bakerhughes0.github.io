@@ -42,7 +42,7 @@ function draw(){
             ('0'+timestamp.getDate().toString()).slice(-2) +
             ' ' + ('0'+timestamp.getHours()).slice(-2) + ':' + ('0'+timestamp.getMinutes()).slice(-2));
   sTxt(h1, wcname(wc[0]));
-  tb0.fields= [['',W*.02],['Workorder', W*.065],['Operation', W*.2],['Description', W*.21],['Std.h', W*.04],['SO / Customer', W*.14],['Info.', W*.055],['Aging', W*.040]];
+  tb0.fields= [['',W*.02],['Workorder', W*.065],['Operation', W*.2],['Description', W*.23],['Std.h', W*.04],['SO / Customer', W*.15],['Info.', W*.06],['Aging', W*.040]];
   tb0.clear();
   for(y=0;y<mydata.length;y++){
     tb0.addRow();
@@ -71,6 +71,10 @@ function draw(){
     if(mydata[y][11]==1){ 
       tb0.cells(y,6).p3 = new picto_cp();sPar(tb0.cells(y,6).p3,tb0.cells(y,6));
       move(tb0.cells(y,6).p3,[dec6,2,20,20]); dec6+=22;
+      }
+    if(mydata[y][9]=='L'){ 
+      tb0.cells(y,6).p4 = new picto_lock();sPar(tb0.cells(y,6).p4,tb0.cells(y,6));
+      move(tb0.cells(y,6).p4,[dec6,2,20,20]); dec6+=22;
       }
     sFtA(tb0.cells(y,7),'center');
     tb0.cells(y,7).addEventListener('mouseenter', function(){ drawAging(1)});
@@ -102,7 +106,7 @@ function draw(){
     lineTo(W,.5*H);
     stroke();
     fillStyle="#999"
-    font = "bold 14px Arial"; textAlign = "left"; textBaseline = 'top';
+    font = "bold 12px Arial"; textAlign = "left"; textBaseline = 'top';
     fillText("OPERATIONS", .0*W ,.01*H);
     fillText("STANDARD HOURS", .0*W ,.51*H);
     fill();
@@ -118,7 +122,7 @@ function draw(){
         beginPath();
         lineWidth = 2;
         moveTo(.5*W, .23*H);
-        arc(.5*W, .23*H , .4*W, ang1, ang2);
+        arc(.5*W, .23*H , .3*W, ang1, ang2);
         moveTo(.5*W, .23*H);
         fill();
         stroke();
@@ -127,7 +131,7 @@ function draw(){
           font = "14px Arial";
           textAlign = "center"; textBaseline = 'middle'
           beginPath();
-          fillText(sum[x].toString(),.5*W+.46*W*Math.cos((ang2+ang1)/2) , .23*H+.46*W*Math.sin((ang2+ang1)/2));
+          fillText(sum[x].toString(),.5*W+.36*W*Math.cos((ang2+ang1)/2) , .23*H+.36*W*Math.sin((ang2+ang1)/2));
           fill();
           }
         ang1 = ang2;
@@ -150,7 +154,7 @@ function draw(){
         ang2 = ang1 + (2*Math.PI)*sumh[x]/sumh[0];
         beginPath();
         moveTo(.5*W, .73*H);
-        arc(.5*W, .73*H , .4*W, ang1, ang2);
+        arc(.5*W, .73*H , .3*W, ang1, ang2);
         lineTo(.5*W, .73*H);
         fill();
         stroke();
@@ -159,7 +163,7 @@ function draw(){
           font = "14px Arial";
           textAlign = "center";
           beginPath();
-          fillText((Math.round(1*sumh[x])/1).toString(),.5*W+.46*W*Math.cos((ang2+ang1)/2) , .73*H+.46*W*Math.sin((ang2+ang1)/2));
+          fillText((Math.round(1*sumh[x])/1).toString(),.5*W+.36*W*Math.cos((ang2+ang1)/2) , .73*H+.36*W*Math.sin((ang2+ang1)/2));
           fill();
          }
         ang1 = ang2;
@@ -188,12 +192,10 @@ function drawAging(showage){
     if(showage==1){
       sTxt(tb0.cells(y,7), mydata[y][8]);
       }else{
-      if(mydata[y][9]=='L'){
-        sTxt(tb0.cells(y,7), '\uD83D\uDD12'); 
-        }else{
-        sTxt(tb0.cells(y,7),'');
-        sVis(tb0.cells(y,7).p,1); tb0.cells(y,7).p.setcol(fcol);
-        }
+
+      sTxt(tb0.cells(y,7),'');
+      sVis(tb0.cells(y,7).p,1); tb0.cells(y,7).p.setcol(fcol);
+
       }
     }
   }
@@ -206,22 +208,50 @@ window.onload=function(){
     h1.addEventListener('mouseleave', function(){ sBrW(this,[0]); sBkC(this,xcol[0]); });
     h1.addEventListener('click', function(){ window.location='wcsel.htm'; });
   gr0 = new xCan(); sPar(gr0, 0); sBkC(gr0, '#eee');
-  tb0 = new xTbl(); sPar(tb0,0);
-  leg0 = new xDiv(); sFtC(leg0,'#eee');sPar(leg0,0);
-  var p1 = new picto_square();sPar(p1, leg0); move(p1,[1,1,20,20]); p1.setcol(xcol[1]);
-  var l1 = new xLab(); sPar(l1,leg0); move(l1, [22,3,100,20]); sTxt(l1, 'New Arrival');
-  var p2 = new picto_square();sPar(p2, leg0); move(p2,[105,1,20,20]); p2.setcol(xcol[2]);
-  var l2 = new xLab(); sPar(l2,leg0); move(l2, [127,3,100,20]); sTxt(l2, 'Pending');
-  var p3 = new picto_square();sPar(p3, leg0); move(p3,[190,1,20,20]); p3.setcol(xcol[3]);
-  var l3 = new xLab(); sPar(l3,leg0); move(l3, [212,3,100,20]); sTxt(l3, 'Completed');
+  tb0 = new xTbl(); sPar(tb0,0); 
+  leg0 = new xDiv(); sFtC(leg0,'#aaa');sPar(leg0,0); sBrW(leg0, [1,0,0]);
+  var l = new xLab(); sPar(l,leg0); sTxt(l,'LEGEND'); move(l,[0,-16,200,16]); sFtC(l,'#888');
 
-  leg1 = new xLab(); sFtC(leg1,'#eee');sPar(leg1,0);
-  var p1 = new picto_crd();sPar(p1, leg1); move(p1,[1,1,20,20]);
-  var l1 = new xLab(); sPar(l1,leg1); move(l1, [22,3,120,20]); sTxt(l1, 'Outdated CRD');
-  var p2 = new picto_pzl();sPar(p2, leg1); move(p2,[130,1,20,20]);
-  var l2 = new xLab(); sPar(l2,leg1); move(l2, [152,3,120,20]); sTxt(l2, 'Missing parts');
-  var p3 = new picto_cp();sPar(p3, leg1); move(p3,[250,1,20,20]);
-  var l3 = new xLab(); sPar(l3,leg1); move(l3, [272,3,120,20]); sTxt(l3, 'Critical path');
+  var y=5, x=0;
+  var l = new xLab(); sPar(l,leg0); sTxt(l,'STATUS :'); move(l,[x+1,y+3,200,16]);y += 16;
+  var p1 = new picto_square();sPar(p1, leg0); move(p1,[x+2,y,16,16]); p1.setcol(xcol[1]);
+  var l1 = new xLab(); sPar(l1,leg0); move(l1, [x+20,y+2,200,16]); sTxt(l1, 'New Arrival');y += 16;
+  var p2 = new picto_square();sPar(p2, leg0); move(p2,[x+2,y,16,16]); p2.setcol(xcol[2]);
+  var l2 = new xLab(); sPar(l2,leg0); move(l2, [x+20,y+2,200,16]); sTxt(l2, 'Pending');y += 16;
+  var p3 = new picto_square();sPar(p3, leg0); move(p3,[x+2,y,16,16]); p3.setcol(xcol[3]);
+  var l3 = new xLab(); sPar(l3,leg0); move(l3, [x+20,y+2,200,16]); sTxt(l3, 'Completed');y += 16;
+
+  var y=5, x=150;
+  var l = new xLab(); sPar(l,leg0); move(l,[x+1,y+3,200,16]); sTxt(l,'TEXT COLOR :');y += 16;
+  var l = new xLab();sPar(l, leg0); move(l,[x+5,y,20,20]); sFtC(l, '#FF5050'); sTxt(l,'A');
+  var l = new xLab(); sPar(l,leg0); sTxt(l,'Operation late vs. schedule'); move(l,[x+20,y+2,200,16]);y += 16;
+  var l = new xLab();sPar(l, leg0); move(l,[x+5,y,20,20]); sFtC(l, '#eee'); sTxt(l,'A');
+  var l = new xLab(); sPar(l,leg0); sTxt(l,'Operation on time vs. schedule'); move(l,[x+20,y+2,200,16]);y += 16;
+  var l = new xLab();sPar(l, leg0); move(l,[x+5,y,20,20]); sFtC(l, '#abe'); sTxt(l,'A');
+  var l = new xLab(); sPar(l,leg0); sTxt(l,'Rework operation relative to NCR'); move(l,[x+20,y+2,200,16]);y += 16;
+  var l = new xLab();sPar(l, leg0); move(l,[x+5,y,20,20]); sFtC(l, '#777'); sTxt(l,'A');
+  var l = new xLab(); sPar(l,leg0); sTxt(l,'Locked operation'); move(l,[x+20,y+2,200,16]);y += 16;
+
+  var y=5, x=450;
+  var l = new xLab(); sPar(l,leg0); move(l,[x+1,y+3,200,16]); sTxt(l,'INFORMATIONS :');y += 16;
+  var p1 = new picto_crd();sPar(p1, leg0); move(p1,[x+2,y,16,16]); 
+  var l1 = new xLab(); sPar(l1,leg0); move(l1, [x+20,y+2,200,16]); sTxt(l1, 'Outdated C.R.D.');y += 16;
+  var p2 = new picto_pzl();sPar(p2, leg0); move(p2,[x+2,y,16,16]); 
+  var l2 = new xLab(); sPar(l2,leg0); move(l2, [x+20,y+2,200,16]); sTxt(l2, 'Missing parts');y += 16;
+  var p2 = new picto_cp();sPar(p2, leg0); move(p2,[x+2,y,16,16]); 
+  var l2 = new xLab(); sPar(l2,leg0); move(l2, [x+20,y+2,200,16]); sTxt(l2, 'Critical path');y += 16;
+  var p2 = new picto_lock();sPar(p2, leg0); move(p2,[x+2,y,16,16]); 
+  var l2 = new xLab(); sPar(l2,leg0); move(l2, [x+20,y+2,200,16]); sTxt(l2, 'Locked operation');y += 16;
+
+  var y=5, x=700;
+  var l = new xLab(); sPar(l,leg0); move(l,[x+1,y+3,200,16]); sTxt(l,'AGING RANGE :');y += 16;
+  var p1 = new picto_circle();sPar(p1, leg0); move(p1,[x+2,y,16,16]); p1.setcol('#11df11');
+  var l1 = new xLab(); sPar(l1,leg0); move(l1, [x+20,y+2,200,16]); sTxt(l1, '0 to 5 days');y += 16;
+  var p1 = new picto_circle();sPar(p1, leg0); move(p1,[x+2,y,16,16]); p1.setcol('#ffa733');
+  var l1 = new xLab(); sPar(l1,leg0); move(l1, [x+20,y+2,200,16]); sTxt(l1, '6 to 10 days');y += 16;
+  var p1 = new picto_circle();sPar(p1, leg0); move(p1,[x+2,y,16,16]); p1.setcol('#df1111');
+  var l1 = new xLab(); sPar(l1,leg0); move(l1, [x+20,y+2,200,16]); sTxt(l1, ' more than 10 days');y += 16;
+
 
   window.onresize();
   loadData();
@@ -277,17 +307,15 @@ window.onload=function(){
   if(wc[0]=='0458'){lnk = new xTmr("459");lnk.eClk=function(){window.location='vm.htm?0459';}}
   if(wc[0]=='0459'){lnk = new xTmr("421");lnk.eClk=function(){window.location='vm.htm?0421';}}
   document.body.addEventListener("mousemove", function(evt) { if(typeof lnk != 'undefined') {lnk.val=0;} });
-
   }
 
 window.onresize=function(){
   W = scrW(); H = scrH();
   move(h0,[W*.01, H*.01, W*.5, H*.025]);
   move(h1,[W*.20, H*.02, W*.765, H*.04]);
-  move(gr0,[W*.01, H*.08, W*.18, H*.9]);
-  move(tb0,[W*.20, H*.08, W*.79, H*.85]);
-  move(leg0,[W*.20, H*.95, W*.40, H*.03]);
-  move(leg1,[W*.55, H*.95, W*.34, H*.03]);
+  move(gr0,[W*.005, H*.08, W*.15, H*.6]);
+  move(tb0,[W*.16, H*.08, W*.82, H*.74]);
+  move(leg0,[W*.16, H*.85, W*.82, H*.14]); 
   draw();
   } 
 
@@ -549,6 +577,23 @@ function picto_circle(){
       o.ctx.fillStyle=c; 
       o.ctx.arc(100,100,70, 0, Math.PI*2,0);
       o.ctx.fill();
+      }
+    return o;
+    }
+
+function picto_lock(){
+    var o = document.createElement('canvas');
+    o.width=200; o.height=200; 
+    o.ctx = o.getContext('2d');
+    with(o.ctx){
+        fillStyle = '#ca0';
+        beginPath(); rect(50,80,100,100); fill();
+        fillStyle = '#cc0';
+        beginPath(); rect(70,80,60,100); fill();
+        strokeStyle = '#888'; lineWidth=18;
+        beginPath(); moveTo(132,80); lineTo(132, 50); arc(100,50,32,0, Math.PI,1); lineTo(68, 80); stroke();
+        fillStyle = '#444';
+        beginPath(); arc(100,120,12,0, Math.PI*2); rect(95,120,10,30); fill();
       }
     return o;
     }
