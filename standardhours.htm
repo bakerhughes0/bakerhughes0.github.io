@@ -3,10 +3,8 @@
 <script type=text/javascript src=js/func.js?v=001></script>
 <script type=text/javascript src=js/canvasjs.min.js?v=007></script>
 <script type=text/javascript src=module.js?v=001></script>
-<script type=text/javascript src=kpi_data1.js?v=2></script>
 
 <script type=text/javascript>
-
 
 
 function refreshall(){
@@ -16,118 +14,110 @@ function refreshall(){
 
 function loadData(){
   var d = new Date();
-  var sd = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + ' ' +  d.getUTCHours() + ':' + d.getUTCMinutes();
-  var js = document.createElement('script');
-  js.type='text/javascript';
-  js.src="kpi2.js" + "?d=" + sd;
-  document.head.appendChild(js);    
-  js.onload = function(){ 
-    sTxt(timstp,'Update : ' + tm);
-    for(var n=0;n<7;n++){
-      gfx34.options.data[n].dataPoints=[];
-      gfx35.options.data[n].dataPoints=[];
-      gfx36.options.data[n].dataPoints=[];
-      gfx37.options.data[n].dataPoints=[];
-      gfx38.options.data[n].dataPoints=[];
-      gfx39.options.data[n].dataPoints=[];
-      gfx40.options.data[n].dataPoints=[];
-      }
-
-    var thisWeek = isoWeek(new Date()).slice(4,7);
-    var cum=0;
-    for (var w in qstdh.MAC){
-      for (var n=0;n<5;n++){
-        cum+=qstdh.MAC[w][n];
-        gfx34.options.data[n].dataPoints.push({label:w, y:qstdh.MAC[w][n]});
-        }
-      if(w<=thisWeek) { gfx34.options.data[5].dataPoints.push({y:cum}); }
-      }
-
-    var cum=0;
-    for (var w in qstdh.WEL){
-      for (var n=0;n<5;n++){
-        cum+=qstdh.WEL[w][n];
-        gfx35.options.data[n].dataPoints.push({label:w, y:qstdh.WEL[w][n]});
-        }
-      if(w<=thisWeek) { gfx35.options.data[5].dataPoints.push({y:cum}); }
-      }
-
-    var cum=0;
-    for (var w in qstdh.PNT){
-      for (var n=0;n<5;n++){
-        cum+=qstdh.PNT[w][n];
-        gfx36.options.data[n].dataPoints.push({label:w, y:qstdh.PNT[w][n]});
-        }
-      if(w<=thisWeek) { gfx36.options.data[5].dataPoints.push({y:cum}); }
-      }
-
-    var cum=0;
-    for (var w in qstdh.CFX){
-      for (var n=0;n<5;n++){
-        cum+=qstdh.CFX[w][n];
-        gfx37.options.data[n].dataPoints.push({label:w, y:qstdh.CFX[w][n]});
-        }
-      if(w<=thisWeek) { gfx37.options.data[5].dataPoints.push({y:cum}); }
-      }
-
-    var cum=0;
-    for (var w in qstdh.GLB){
-      for (var n=0;n<5;n++){
-        cum+=qstdh.GLB[w][n];
-        gfx38.options.data[n].dataPoints.push({label:w, y:qstdh.GLB[w][n]});
-        }
-      if(w<=thisWeek) { gfx38.options.data[5].dataPoints.push({y:cum}); }
-      }
-
-    var cum=0;
-    for (var w in qstdh.LVL){
-      for (var n=0;n<5;n++){
-        cum+=qstdh.LVL[w][n];
-        gfx39.options.data[n].dataPoints.push({label:w, y:qstdh.LVL[w][n]});
-        }
-      if(w<=thisWeek) { gfx39.options.data[5].dataPoints.push({y:cum}); }
-      }
-
-    var cum=0;
-    for (var w in qstdh.TOT){
-      for (var n=0;n<5;n++){
-        cum+=qstdh.TOT[w][n];
-        gfx40.options.data[n].dataPoints.push({label:w, y:qstdh.TOT[w][n]});
-        }
-      if(w<=thisWeek) { gfx40.options.data[5].dataPoints.push({y:cum}); }
-      }
-    
-    var nbweeks = 0
-    for (var w in qstdh.TOT){ nbweeks++} 
-    var mac_cum = 0;
-    var wel_cum = 0;
-    var pnt_cum = 0;
-    var cfx_cum = 0;
-    var glb_cum = 0;
-    var lvl_cum = 0;
-    var tot_cum = 0;
-
-    var cum = 0;
-    for (var n=0;n<nbweeks;n++){
-        mac_cum += stdhLOB.machining[n]; 
-        wel_cum += stdhLOB.welding[n];
-        pnt_cum += stdhLOB.painting[n];
-        cfx_cum += stdhLOB.standard[n];
-        glb_cum += stdhLOB.globes[n];
-        lvl_cum += stdhLOB.levels[n];
-        tot_cum += stdhLOB.machining[n]+stdhLOB.welding[n]+stdhLOB.painting[n]+stdhLOB.standard[n]+stdhLOB.globes[n]+stdhLOB.levels[n];
-        gfx34.options.data[6].dataPoints.push({ y:mac_cum});
-        gfx35.options.data[6].dataPoints.push({ y:wel_cum});
-        gfx36.options.data[6].dataPoints.push({ y:pnt_cum});
-        gfx37.options.data[6].dataPoints.push({ y:cfx_cum});
-        gfx38.options.data[6].dataPoints.push({ y:glb_cum});
-        gfx39.options.data[6].dataPoints.push({ y:lvl_cum});
-        gfx40.options.data[6].dataPoints.push({ y:tot_cum});
-        }
-    refreshall()
-    }
+  var sdminutes = d.getUTCFullYear()+'-'+(d.getUTCMonth()+1)+'-'+d.getUTCDate()+'_'+d.getUTCHours()+':'+d.getUTCMinutes();
+  var status = '';
+  var js = document.createElement('script'); js.type='text/javascript'; js.src='kpi2.js?d=' + sdminutes; document.head.appendChild(js);
+  var js2 = document.createElement('script'); js2.type='text/javascript'; js2.src="kpi_data1.js?d=" + sdminutes; document.head.appendChild(js2);
+  js.onload = function(){ status+='1'; if(status=='11') drawData();}
+  js2.onload = function(){ status+='1'; if(status=='11') drawData();}
   setTimeout(loadData, 60000);
   }
+
+function drawData(){
+  console.log(tm);
+  sTxt(timstp,'Update : ' + tm);
+  for(var n=0;n<7;n++){
+    gfx34.options.data[n].dataPoints=[];
+    gfx35.options.data[n].dataPoints=[];
+    gfx36.options.data[n].dataPoints=[];
+    gfx37.options.data[n].dataPoints=[];
+    gfx38.options.data[n].dataPoints=[];
+    gfx39.options.data[n].dataPoints=[];
+    gfx40.options.data[n].dataPoints=[];
+    }
+  var thisWeek = isoWeek(new Date()).slice(4,7);
+  var cum=0;
+  for (var w in qstdh.MAC){
+    for (var n=0;n<5;n++){
+      cum+=qstdh.MAC[w][n];
+      gfx34.options.data[n].dataPoints.push({label:w, y:qstdh.MAC[w][n]});
+      }
+    if(w<=thisWeek) { gfx34.options.data[5].dataPoints.push({y:cum}); }
+    }
+  var cum=0;
+  for (var w in qstdh.WEL){
+    for (var n=0;n<5;n++){
+      cum+=qstdh.WEL[w][n];
+      gfx35.options.data[n].dataPoints.push({label:w, y:qstdh.WEL[w][n]});
+      }
+    if(w<=thisWeek) { gfx35.options.data[5].dataPoints.push({y:cum}); }
+    }
+  var cum=0;
+  for (var w in qstdh.PNT){
+    for (var n=0;n<5;n++){
+      cum+=qstdh.PNT[w][n];
+      gfx36.options.data[n].dataPoints.push({label:w, y:qstdh.PNT[w][n]});
+      }
+    if(w<=thisWeek) { gfx36.options.data[5].dataPoints.push({y:cum}); }
+    }
+  var cum=0;
+  for (var w in qstdh.CFX){
+    for (var n=0;n<5;n++){
+      cum+=qstdh.CFX[w][n];
+      gfx37.options.data[n].dataPoints.push({label:w, y:qstdh.CFX[w][n]});
+      }
+    if(w<=thisWeek) { gfx37.options.data[5].dataPoints.push({y:cum}); }
+    }
+  var cum=0;
+  for (var w in qstdh.GLB){
+    for (var n=0;n<5;n++){
+      cum+=qstdh.GLB[w][n];
+      gfx38.options.data[n].dataPoints.push({label:w, y:qstdh.GLB[w][n]});
+      }
+    if(w<=thisWeek) { gfx38.options.data[5].dataPoints.push({y:cum}); }
+    }
+  var cum=0;
+  for (var w in qstdh.LVL){
+    for (var n=0;n<5;n++){
+      cum+=qstdh.LVL[w][n];
+      gfx39.options.data[n].dataPoints.push({label:w, y:qstdh.LVL[w][n]});
+      }
+    if(w<=thisWeek) { gfx39.options.data[5].dataPoints.push({y:cum}); }
+    }
+  var cum=0;
+  for (var w in qstdh.TOT){
+    for (var n=0;n<5;n++){
+      cum+=qstdh.TOT[w][n];
+      gfx40.options.data[n].dataPoints.push({label:w, y:qstdh.TOT[w][n]});
+      }
+    if(w<=thisWeek) { gfx40.options.data[5].dataPoints.push({y:cum}); }
+    }
+ 
+  var nbweeks = 0
+  for (var w in qstdh.TOT){ nbweeks++} 
+  var mac_cum = 0, wel_cum = 0, pnt_cum = 0, cfx_cum = 0, glb_cum = 0, lvl_cum = 0, tot_cum = 0;
+  var cum = 0;
+  for (var n=0;n<nbweeks;n++){
+      mac_cum += stdhLOB.machining[n]; 
+      wel_cum += stdhLOB.welding[n];
+      pnt_cum += stdhLOB.painting[n];
+      cfx_cum += stdhLOB.standard[n];
+      glb_cum += stdhLOB.globes[n];
+      lvl_cum += stdhLOB.levels[n];
+      tot_cum += stdhLOB.machining[n]+stdhLOB.welding[n]+stdhLOB.painting[n]+stdhLOB.standard[n]+stdhLOB.globes[n]+stdhLOB.levels[n];
+      gfx34.options.data[6].dataPoints.push({ y:mac_cum});
+      gfx35.options.data[6].dataPoints.push({ y:wel_cum});
+      gfx36.options.data[6].dataPoints.push({ y:pnt_cum});
+      gfx37.options.data[6].dataPoints.push({ y:cfx_cum});
+      gfx38.options.data[6].dataPoints.push({ y:glb_cum});
+      gfx39.options.data[6].dataPoints.push({ y:lvl_cum});
+      gfx40.options.data[6].dataPoints.push({ y:tot_cum});
+      }
+  refreshall()
+  }
+
+
+
 
 window.onload=function(){
   var bg = new background();
