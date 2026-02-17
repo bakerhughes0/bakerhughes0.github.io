@@ -155,7 +155,8 @@ wclist = [
 '1520',
 '1521',
 'RNC03',
-'QMLOT'];
+'QMLOT',
+'3D'];
 
 wcnames = [
 '0205. TOUR PARALLELE CAZENEUVE OPTIMAX 360',
@@ -304,8 +305,8 @@ wcnames = [
 '1510. ARRET NCR : Cellule + Instrumentation',
 '1512. ARRET NCR : Usinage',
 '1513. ARRET NCR : Reception',
-'1514.  ARRET NCR : CQC + Reception',
-'1511.  ARRET NCR : TS + Peinture Batiment C',
+'1514. ARRET NCR : CQC + Reception',
+'1511. ARRET NCR : TS + Peinture Batiment C',
 '1515. ARRET NCR : Soudure Batiment B',
 '1516. ARRET NCR : Soudure Batiment A',
 '1517. ARRET NCR : Niveaux',
@@ -314,7 +315,8 @@ wcnames = [
 '1520. ARRET NCR : Grenaillage Batiment A',
 '1521. ARRET NCR : Grenaillage Batiment B',
 'RNC03. ARRET NCR 03 - MRB1',
-'QMLOT. INCOMING INSPECTION']
+'QMLOT. INCOMING INSPECTION',
+'3D. IMPRIMANTE 3D']
 
 function wcname(s){
   var n = wclist.indexOf(s);
