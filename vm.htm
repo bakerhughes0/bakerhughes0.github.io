@@ -180,9 +180,9 @@ function draw(){
 
 function drawAging(showage){
   for(y=0;y<mydata.length;y++){
-    if(mydata[y][8]<6){
+    if(mydata[y][8]<7){
       fcol='#11df11';
-      }else if(mydata[y][8]<11){
+      }else if(mydata[y][8]<30){
       fcol='#ffa733';
       }else{fcol='#df1111';
       }
@@ -246,11 +246,11 @@ window.onload=function(){
   var y=5, x=700;
   var l = new xLab(); sPar(l,leg0); move(l,[x+1,y+3,200,16]); sTxt(l,'AGING RANGE :');y += 16;
   var p1 = new picto_circle();sPar(p1, leg0); move(p1,[x+2,y,16,16]); p1.setcol('#11df11');
-  var l1 = new xLab(); sPar(l1,leg0); move(l1, [x+20,y+2,200,16]); sTxt(l1, '0 to 5 days');y += 16;
+  var l1 = new xLab(); sPar(l1,leg0); move(l1, [x+20,y+2,200,16]); sTxt(l1, '0 to 6 days');y += 16;
   var p1 = new picto_circle();sPar(p1, leg0); move(p1,[x+2,y,16,16]); p1.setcol('#ffa733');
-  var l1 = new xLab(); sPar(l1,leg0); move(l1, [x+20,y+2,200,16]); sTxt(l1, '6 to 10 days');y += 16;
+  var l1 = new xLab(); sPar(l1,leg0); move(l1, [x+20,y+2,200,16]); sTxt(l1, '7 to 30 days');y += 16;
   var p1 = new picto_circle();sPar(p1, leg0); move(p1,[x+2,y,16,16]); p1.setcol('#df1111');
-  var l1 = new xLab(); sPar(l1,leg0); move(l1, [x+20,y+2,200,16]); sTxt(l1, ' more than 10 days');y += 16;
+  var l1 = new xLab(); sPar(l1,leg0); move(l1, [x+20,y+2,200,16]); sTxt(l1, ' more than 30 days');y += 16;
 
 
   window.onresize();
