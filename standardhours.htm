@@ -104,7 +104,7 @@ function drawData(){
       cfx_cum += stdhLOB.standard[n];
       glb_cum += stdhLOB.globes[n];
       lvl_cum += stdhLOB.levels[n];
-      tot_cum += stdhLOB.machining[n]+stdhLOB.welding[n]+stdhLOB.painting[n]+stdhLOB.standard[n]+stdhLOB.globes[n]+stdhLOB.levels[n];
+      tot_cum += stdhLOB.total[n];
       gfx34.options.data[6].dataPoints.push({ y:mac_cum});
       gfx35.options.data[6].dataPoints.push({ y:wel_cum});
       gfx36.options.data[6].dataPoints.push({ y:pnt_cum});
