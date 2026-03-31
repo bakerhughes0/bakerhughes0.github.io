@@ -55,6 +55,7 @@ function draw(){
     sFtC(tb0.body.rows[y], fcol); sBkC(tb0.body.rows[y], bcol);
     sBkC(tb0.cells(y,0), xcol[0]);
     sTxt(tb0.cells(y,1), mydata[y][3]); sFtA(tb0.cells(y,1),'center');
+    if(mydata[y][0]=='QMLOT'){sTxt(tb0.cells(y,1), mydata[y][3].toString().slice(4));}
     sTxt(tb0.cells(y,2), mydata[y][4]);
     sTxt(tb0.cells(y,3), mydata[y][5]);
     sTxt(tb0.cells(y,4), mydata[y][6]); sFtA(tb0.cells(y,4),'right');
@@ -271,11 +272,12 @@ window.onload=function(){
   if(wc[0]=='0284'){lnk = new xTmr("250");lnk.eClk=function(){window.location='vm.htm?0250';}}
   if(wc[0]=='0250'){lnk = new xTmr("228");lnk.eClk=function(){window.location='vm.htm?0228';}}
 
+/*
   if(wc[0]=='0409'){lnk = new xTmr("465");lnk.eClk=function(){window.location='vm.htm?0465';}}
   if(wc[0]=='0465'){lnk = new xTmr("1203");lnk.eClk=function(){window.location='vm.htm?1203';}}
   if(wc[0]=='1203'){lnk = new xTmr("469");lnk.eClk=function(){window.location='vm.htm?0469';}}
   if(wc[0]=='0469'){lnk = new xTmr("409");lnk.eClk=function(){window.location='vm.htm?0409';}}
-
+*/
 
   if(wc[0]=='0461'){lnk = new xTmr("462");lnk.eClk=function(){window.location='vm.htm?0462';}}
   if(wc[0]=='0462'){lnk = new xTmr("461");lnk.eClk=function(){window.location='vm.htm?0461';}}
