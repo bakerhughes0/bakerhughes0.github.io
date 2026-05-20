@@ -16,27 +16,31 @@ function loadData(){
   js.src="wipstg.js" + "?d=" + sd;
   document.head.appendChild(js);    
   js.onload = function(){ 
-    for(var n=0;n<2;n++) {
+    for(var n=0;n<3;n++) {
       gfx0.options.data[n].dataPoints=[];
       gfx1.options.data[n].dataPoints=[];
       gfx2.options.data[n].dataPoints=[];
       gfx3.options.data[n].dataPoints=[];
       }
     for(var n=0;n<wipstages.C.length;n++){
-      gfx0.options.data[0].dataPoints.push({label:wipstages.C[n][0].slice(4), y:wipstages.C[n][2]})
-      gfx0.options.data[1].dataPoints.push({label:wipstages.C[n][0].slice(4), y:wipstages.C[n][1]-wipstages.C[n][2]})
+      gfx0.options.data[0].dataPoints.push({label:wipstages.C[n][0].slice(4), y:wipstages.C[n][3]})
+      gfx0.options.data[1].dataPoints.push({label:wipstages.C[n][0].slice(4), y:wipstages.C[n][2]})
+      gfx0.options.data[2].dataPoints.push({label:wipstages.C[n][0].slice(4), y:wipstages.C[n][1]-wipstages.C[n][2]-wipstages.C[n][3]})
       }
     for(var n=0;n<wipstages.G.length;n++){
-      gfx1.options.data[0].dataPoints.push({label:wipstages.G[n][0].slice(4), y:wipstages.G[n][2]})
-      gfx1.options.data[1].dataPoints.push({label:wipstages.G[n][0].slice(4), y:wipstages.G[n][1]-wipstages.G[n][2]})
+      gfx1.options.data[0].dataPoints.push({label:wipstages.G[n][0].slice(4), y:wipstages.G[n][3]})
+      gfx1.options.data[1].dataPoints.push({label:wipstages.G[n][0].slice(4), y:wipstages.G[n][2]})
+      gfx1.options.data[2].dataPoints.push({label:wipstages.G[n][0].slice(4), y:wipstages.G[n][1]-wipstages.G[n][2]-wipstages.G[n][3]})
       }
     for(var n=0;n<wipstages.V.length;n++){
-      gfx2.options.data[0].dataPoints.push({label:wipstages.V[n][0].slice(4), y:wipstages.V[n][2]})
-      gfx2.options.data[1].dataPoints.push({label:wipstages.V[n][0].slice(4), y:wipstages.V[n][1]-wipstages.V[n][2]})
+      gfx2.options.data[0].dataPoints.push({label:wipstages.V[n][0].slice(4), y:wipstages.V[n][3]})
+      gfx2.options.data[1].dataPoints.push({label:wipstages.V[n][0].slice(4), y:wipstages.V[n][2]})
+      gfx2.options.data[2].dataPoints.push({label:wipstages.V[n][0].slice(4), y:wipstages.V[n][1]-wipstages.V[n][2]-wipstages.V[n][3]})
       }
     for(var n=0;n<wipstages.L.length;n++){
-      gfx3.options.data[0].dataPoints.push({label:wipstages.L[n][0].slice(4), y:wipstages.L[n][2]})
-      gfx3.options.data[1].dataPoints.push({label:wipstages.L[n][0].slice(4), y:wipstages.L[n][1]-wipstages.L[n][2]})
+      gfx3.options.data[0].dataPoints.push({label:wipstages.L[n][0].slice(4), y:wipstages.L[n][3]})
+      gfx3.options.data[1].dataPoints.push({label:wipstages.L[n][0].slice(4), y:wipstages.L[n][2]})
+      gfx3.options.data[2].dataPoints.push({label:wipstages.L[n][0].slice(4), y:wipstages.L[n][1]-wipstages.L[n][2]-wipstages.L[n][3]})
       }
     refreshall();
     sTxt(timstp,'Update : ' + tm);
@@ -69,7 +73,8 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip:ttip1,
   data: [              
-    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Parts", color: "#B44", dataPoints: [], showInLegend: true },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Buy", color: "#B44", dataPoints: [], showInLegend: true },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Make", color: "#FE9A2E", dataPoints: [], showInLegend: true },
     { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Products", color: "#8B8", dataPoints: [], showInLegend: true, indexLabel: "#total", indexLabelPlacement: "top", indexLabelFontColor: "#efe" },
     ]
   });
@@ -84,7 +89,8 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip:ttip1,
   data: [              
-    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Parts", color: "#B44", dataPoints: [], showInLegend: true },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Buy", color: "#B44", dataPoints: [], showInLegend: true },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Make", color: "#FE9A2E", dataPoints: [], showInLegend: true },
     { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Products", color: "#8B8", dataPoints: [], showInLegend: true, indexLabel: "#total", indexLabelPlacement: "top", indexLabelFontColor: "#efe" },
     ]
   });
@@ -99,7 +105,8 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip:ttip1,
   data: [              
-    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Parts", color: "#B44", dataPoints: [], showInLegend: true },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Buy", color: "#B44", dataPoints: [], showInLegend: true },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Make", color: "#FE9A2E", dataPoints: [], showInLegend: true },
     { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Products", color: "#8B8", dataPoints: [], showInLegend: true, indexLabel: "#total", indexLabelPlacement: "top", indexLabelFontColor: "#efe" },
     ]
   });
@@ -114,7 +121,8 @@ window.onload=function(){
   axisX:axeX_1,
   toolTip:ttip1,
   data: [              
-    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Parts", color: "#B44", dataPoints: [], showInLegend: true },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Buy", color: "#B44", dataPoints: [], showInLegend: true },
+    { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Missing Make", color: "#FE9A2E", dataPoints: [], showInLegend: true },
     { mouseover: showtip, mouseout:hidetip, type: "stackedColumn", name: "Products", color: "#8B8", dataPoints: [], showInLegend: true, indexLabel: "#total", indexLabelPlacement: "top", indexLabelFontColor: "#efe" },
     ]
   });
@@ -189,6 +197,9 @@ function showtip(e){
             tip.t.body.rows[y].onmouseenter = null;
             tip.t.body.rows[y].onmouseleave = null;
             if(wipstg[f[0]][n][1]==1){ 
+                sBkC(tip.t.body.rows[y], '#FE9A2E');
+                sFtC(tip.t.body.rows[y], '#fff');
+            }else if(wipstg[f[0]][n][1]==2){ 
                 sBkC(tip.t.body.rows[y], '#b33');
                 sFtC(tip.t.body.rows[y], '#fff');
                 }else{ 
