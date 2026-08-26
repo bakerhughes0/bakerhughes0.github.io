@@ -145,11 +145,22 @@ window.onload=function(){
       move(tip.h,[5,5,W-5,20]);
       move(tip.t,[5,25,W-5,H-30]);
       }
+  var pr = new xCmb();sPar(pr,0);pr.add("ALL WIP");pr.add("M10 PROJECT");pr.value="ALL WIP";
+  pr.eChg = function(){
+    var link1 = '';
+    if(pr.value=='ALL WIP'){link1 = 'wipstages.htm';}
+    if(pr.value=='M10 PROJECT'){link1 = 'wipstages_m10.htm';}
+    var l = document.createElement('a'); l.href=link1;
+    l.setAttribute('target', '_top');
+    l.click();
+    }
+
   window.onresize=function(){
     movep(bg,[0,0,1,1]);
     movep(t1,[.01, .01, .98, .045]);
     movep(t2,[.01, .01, .98, .045]);
     movep(timstp,[.01, .97, 1, .03]);
+    movep(pr,[.88,.016, .11,.03]);
     for(var n=0; n<4; n++){
       x = Math.floor(n/2);
       y = n % 2;
