@@ -1,4 +1,4 @@
-timestamp = new Date('2026-10-21 17:50:25');
+timestamp = new Date('2026-10-21 18:00:24');
 data = [
 ["0205",1,2,33670341,"0010. TOURNER","8 x ENS (BOITE+RONDELLES) 1\"-2\"CFX",1.85,"1919962-1000 KEM ONE S.A.S.",126,"",1,0,"N"],
 ["0205",1,2,33756455,"0030. TOURNER EBAUCHE SIEGE","2 x SIEGE STELLITE #B #D #E",2.0,"1886870-3000 FRAMATOME SPAIN SOCIEDAD LIMITADA.",5,"",0,1,"N"],
@@ -1056,7 +1056,7 @@ data = [
 ["0470",1,2,33847591,"0010. Demontage Commande Manuelle","1 x NCR 200255119",0.002,"REWORK",7,"R",0,0,"N"],
 ["0470",1,2,33847592,"0010. Demontage Commande Manuelle","1 x NCR 200255119",0.002,"REWORK",7,"R",0,0,"N"],
 ["0470",1,2,33847593,"0010. Demontage Commande Manuelle","1 x NCR 200255119",0.002,"REWORK",7,"R",0,0,"N"],
-["0470",1,2,33847595,"0010. Demontage Commande Manuelle","1 x NCR 200255119",0.002,"REWORK",6,"R",0,0,"N"],
+["0470",1,2,33847595,"0010. Demontage Commande Manuelle","1 x NCR 200255119",0.002,"REWORK",7,"R",0,0,"N"],
 ["0470",1,2,33847596,"0010. Demontage Commande Manuelle","1 x NCR 200255118",0.002,"REWORK",6,"R",0,0,"N"],
 ["0470",1,2,33847597,"0010. Demontage Commande Manuelle","1 x NCR 200255118",0.002,"REWORK",6,"R",0,0,"N"],
 ["0470",1,3,33775690,"0040. ASSEMBLAGE","1 x 536H 2\" WCC CL150 FLG SP",1.0,"1925506-1000 DRESSER ITALIA SRL",0,"",1,1,"N"],
