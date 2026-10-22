@@ -1,4 +1,4 @@
-timestamp = new Date('2026-10-22 17:50:28');
+timestamp = new Date('2026-10-22 18:00:27');
 data = [
 ["0205",1,2,33782527,"0020. TOURNER ( EBAUCHE )","1 x S-RNG 21K 2 PN100[600] Q.C.",0.7,"1925639-1000 DRESSER ITALIA SRL",42,"",0,0,"N"],
 ["0205",1,2,33653698,"0040. TOURNER ( FINITION )","1 x CLAPET 21K 2 2500 LIN CONT FUL",4.25,"1820320-8000 LYONDELL CHIMIE FRANCE SAS",43,"",0,1,"N"],
@@ -964,7 +964,7 @@ data = [
 ["0470",1,2,33847591,"0010. Demontage Commande Manuelle","1 x NCR 200255119",0.002,"REWORK",8,"R",0,0,"N"],
 ["0470",1,2,33847592,"0010. Demontage Commande Manuelle","1 x NCR 200255119",0.002,"REWORK",8,"R",0,0,"N"],
 ["0470",1,2,33847593,"0010. Demontage Commande Manuelle","1 x NCR 200255119",0.002,"REWORK",8,"R",0,0,"N"],
-["0470",1,2,33847595,"0010. Demontage Commande Manuelle","1 x NCR 200255119",0.002,"REWORK",7,"R",0,0,"N"],
+["0470",1,2,33847595,"0010. Demontage Commande Manuelle","1 x NCR 200255119",0.002,"REWORK",8,"R",0,0,"N"],
 ["0470",1,2,33847596,"0010. Demontage Commande Manuelle","1 x NCR 200255118",0.002,"REWORK",7,"R",0,0,"N"],
 ["0470",1,2,33847597,"0010. Demontage Commande Manuelle","1 x NCR 200255118",0.002,"REWORK",7,"R",0,0,"N"],
 ["0470",1,1,33705321,"0140. ASSEMBLAGE","1 x 87-41755 6\" WC6 CL300 BW S0",1.85,"1840403-25000 DRESSER LLC",0,"",0,1,"N"],
